@@ -1,0 +1,4 @@
+gradually_admin:
+    resource: "@GraduallyAdminBundle/Resources/config/routing.yml"
+    prefix:   /admin
+

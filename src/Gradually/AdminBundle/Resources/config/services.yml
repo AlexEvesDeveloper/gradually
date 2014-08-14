@@ -1,0 +1,7 @@
+parameters:
+#    gradually_admin.example.class: Gradually\AdminBundle\Example
+
+services:
+#    gradually_admin.example:
+#        class: %gradually_admin.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
