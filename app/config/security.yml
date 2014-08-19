@@ -1,24 +1,28 @@
 security:
+    firewalls:
+        secured_area:
+            pattern:   ^/
+            anonymous: ~
+            form_login:
+                login_path: /user/login
+                check_path: /user/login_check
+                csrf_provider: form.csrf_provider
+
+    role_hierarchy:
+        ROLE_ADMIN: ROLE_USER
+        ROLE_SUPER: ROLE_ADMIN
+
+    access_control:
+        - { path: ^/admin/, roles: ROLE_ADMIN }
+        - { path: ^/admin$, roles: ROLE_ADMIN }
+
     providers:
         in_memory:
             memory:
                 users:
-                    alex: { password: alexpwd, roles: 'ROLE_USER' }
+                    normal: { password: normalpwd, roles: 'ROLE_USER' }
                     admin: { password: adminpwd, roles: 'ROLE_ADMIN' }
-
-    firewalls:
-        dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
-            security: false
-
-        secured_area:
-            pattern: ^/
-            anonymous: ~
-            http_basic:
-                realm: "Secured Admin Area"
-
-    access_control:
-        - { path: ^/admin$, roles: ROLE_ADMIN }
+                    super: { password: superpwd, roles: 'ROLE_SUPER' }
 
     encoders:
         Symfony\Component\Security\Core\User\User: plaintext

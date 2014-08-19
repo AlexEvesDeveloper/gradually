@@ -1,0 +1,6 @@
+gradually_user_login:
+    path:     /login
+    defaults: { _controller: GraduallyUserBundle:Default:login }
+
+gradually_user_login_check:
+    path:    /login_check
