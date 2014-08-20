@@ -32,16 +32,9 @@ class User implements UserInterface, \Serializable
     /**
      * @var string
      *
-     * @ORM\Column(name="password", type="string", length=64)
+     * @ORM\Column(name="password", type="string", length=256)
      */
     private $password;
-
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="isActive", type="boolean")
-     */
-    private $isActive;
 
     /**
      * @var string
@@ -57,6 +50,12 @@ class User implements UserInterface, \Serializable
      */
     private $lastName;
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="isActive", type="boolean")
+     */
+    private $isActive;
 
     /**
      * Get id
@@ -95,29 +94,6 @@ class User implements UserInterface, \Serializable
     }
 
     /**
-     * Set isActive
-     *
-     * @param boolean $isActive
-     * @return User
-     */
-    public function setIsActive($isActive)
-    {
-        $this->isActive = $isActive;
-
-        return $this;
-    }
-
-    /**
-     * Get isActive
-     *
-     * @return boolean 
-     */
-    public function getIsActive()
-    {
-        return $this->isActive;
-    }
-
-    /**
      * Set firstName
      *
      * @param string $firstName
@@ -128,16 +104,6 @@ class User implements UserInterface, \Serializable
         $this->firstName = $firstName;
 
         return $this;
-    }
-
-    /**
-     * Get firstName
-     *
-     * @return string 
-     */
-    public function getFirstName()
-    {
-        return $this->firstName;
     }
 
     /**
@@ -154,13 +120,16 @@ class User implements UserInterface, \Serializable
     }
 
     /**
-     * Get lastName
+     * Set isActive
      *
-     * @return string 
+     * @param boolean $isActive
+     * @return User
      */
-    public function getLastName()
+    public function setIsActive($isActive)
     {
-        return $this->lastName;
+        $this->isActive = $isActive;
+
+        return $this;
     }
 
     /**
@@ -174,17 +143,39 @@ class User implements UserInterface, \Serializable
     /**
      * @inheritDoc
      */
-    public function getSalt()
-    {
-        return null;
-    }
-
-    /**
-     * @inheritDoc
-     */
     public function getPassword()
     {
         return $this->password;
+    }
+
+    /**
+     * Get firstName
+     *
+     * @return string 
+     */
+    public function getFirstName()
+    {
+        return $this->firstName;
+    }
+
+    /**
+     * Get lastName
+     *
+     * @return string 
+     */
+    public function getLastName()
+    {
+        return $this->lastName;
+    }
+
+    /**
+     * Get isActive
+     *
+     * @return boolean 
+     */
+    public function getIsActive()
+    {
+        return $this->isActive;
     }
 
     /**
@@ -193,6 +184,14 @@ class User implements UserInterface, \Serializable
     public function getRoles()
     {
         return array('ROLE_USER');
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSalt()
+    {
+        return null;
     }
 
     /**
