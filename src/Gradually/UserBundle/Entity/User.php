@@ -6,10 +6,11 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * User
- *
- * @ORM\Table(name="users")
  * @ORM\Entity
+ * @ORM\Table(name="users")
+ * @ORM\InheritanceType("SINGLE_TABLE")
+ * @ORM\DiscriminatorColumn(name="type", type="string")
+ * @ORM\DiscriminatorMap({"graduate" = "GraduateUser", "recruiter" = "RecruiterUser", "admin" = "AdminUser"})
  */
 class User implements UserInterface, \Serializable
 {
@@ -56,6 +57,13 @@ class User implements UserInterface, \Serializable
      * @ORM\Column(name="isActive", type="boolean")
      */
     private $isActive;
+
+    /**
+     * @var \Gradually\ProfileBundle\Entity\Profile
+     *
+     * @ORM\OneToOne(targetEntity="\Gradually\ProfileBundle\Entity\Profile", inversedBy="user")
+     */
+    private $profile;
 
     /**
      * Get id
@@ -223,5 +231,28 @@ class User implements UserInterface, \Serializable
             $this->username,
             $this->password
         ) = unserialize($serialized);
+    }
+
+    /**
+     * Set profile
+     *
+     * @param \Gradually\ProfileBundle\Entity\Profile $profile
+     * @return User
+     */
+    public function setProfile(\Gradually\ProfileBundle\Entity\Profile $profile = null)
+    {
+        $this->profile = $profile;
+
+        return $this;
+    }
+
+    /**
+     * Get profile
+     *
+     * @return \Gradually\ProfileBundle\Entity\Profile 
+     */
+    public function getProfile()
+    {
+        return $this->profile;
     }
 }
