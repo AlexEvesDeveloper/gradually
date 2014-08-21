@@ -3,7 +3,8 @@
 namespace Gradually\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\UserInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
 /**
  * User
@@ -11,7 +12,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @ORM\Table(name="users")
  * @ORM\Entity
  */
-class User implements UserInterface, \Serializable
+class User implements AdvancedUserInterface, \Serializable
 {
     /**
      * @var integer
@@ -56,6 +57,22 @@ class User implements UserInterface, \Serializable
      * @ORM\Column(name="isActive", type="boolean")
      */
     private $isActive;
+
+    /**
+     * @var array
+     *
+     * @ORM\ManyToMany(targetEntity="Role", inversedBy="users")
+     */
+    private $roles;
+
+    /**
+     * Constructor.
+     */
+    public function __construct()
+    {
+        $this->isActive = true;
+        $this->roles = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -183,7 +200,30 @@ class User implements UserInterface, \Serializable
      */
     public function getRoles()
     {
-        return array('ROLE_USER');
+        return $this->roles->toArray();
+    }
+
+    /**
+     * Add roles
+     *
+     * @param \Gradually\UserBundle\Entity\Role $roles
+     * @return User
+     */
+    public function addRole(\Gradually\UserBundle\Entity\Role $roles)
+    {
+        $this->roles[] = $roles;
+
+        return $this;
+    }
+
+    /**
+     * Remove roles
+     *
+     * @param \Gradually\UserBundle\Entity\Role $roles
+     */
+    public function removeRole(\Gradually\UserBundle\Entity\Role $roles)
+    {
+        $this->roles->removeElement($roles);
     }
 
     /**
@@ -200,6 +240,39 @@ class User implements UserInterface, \Serializable
     public function eraseCredentials()
     {
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function isAccountNonExpired()
+    {
+        return true;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function isAccountNonLocked()
+    {
+        return true;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function isCredentialsNonExpired()
+    {
+        return true;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function isEnabled()
+    {
+        return $this->isActive;
+    }
+
 
     /**
      * @see \Serializable::serialize()

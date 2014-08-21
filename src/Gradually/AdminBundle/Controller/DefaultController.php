@@ -8,6 +8,7 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('GraduallyAdminBundle:Default:index.html.twig');
+    	print "Hello " . ucfirst($this->getUser()->getUsername());
+    	return $this->render('GraduallyAdminBundle:Default:index.html.twig');
     }
 }
