@@ -21,6 +21,7 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new Gradually\ProfileBundle\GraduallyProfileBundle(),
             new Gradually\GraduateBundle\GraduallyGraduateBundle(),
+            new Gradually\RecruiterBundle\GraduallyRecruiterBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

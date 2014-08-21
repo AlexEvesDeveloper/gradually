@@ -1,7 +1,11 @@
+gradually_recruiter:
+    resource: "@GraduallyRecruiterBundle/Controller/"
+    type:     annotation
+    prefix:   /recruiters
 gradually_graduate:
     resource: "@GraduallyGraduateBundle/Controller/"
     type:     annotation
-    prefix:   /
+    prefix:   /graduates
 
 gradually_profile:
     resource: "@GraduallyProfileBundle/Controller/"
@@ -15,4 +19,3 @@ gradually_user:
 gradually_admin:
     resource: "@GraduallyAdminBundle/Resources/config/routing.yml"
     prefix:   /admin
-
