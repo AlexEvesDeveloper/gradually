@@ -1,3 +1,8 @@
+gradually_graduate:
+    resource: "@GraduallyGraduateBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 gradually_profile:
     resource: "@GraduallyProfileBundle/Controller/"
     type:     annotation

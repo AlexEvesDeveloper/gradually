@@ -19,6 +19,7 @@ class GraduateUser extends User
 
     public function __construct()
     {
+        parent::__construct();
         $this->recruiters = new ArrayCollection();
     }
 

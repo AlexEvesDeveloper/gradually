@@ -84,6 +84,18 @@ class LoadUserData implements FixtureInterface
         $userRecruiter->setProfile($profile);
         $manager->persist($profile);
         $manager->persist($userRecruiter);
+
+        // extra users
+        $user = new GraduateUser();
+        $user->setUsername('graduatetwo');
+        $user->setPassword(password_hash('graduatetwopwd', PASSWORD_BCRYPT, array('cost' => 12)));
+        $user->setFirstName('Graduate Two');
+        $user->setLastName('User');
+        $user->addRole($roleNormal);
+        $profile = new Profile();
+        $user->setProfile($profile);
+        $manager->persist($profile);
+        $manager->persist($user);   
         
         $manager->flush();
     }

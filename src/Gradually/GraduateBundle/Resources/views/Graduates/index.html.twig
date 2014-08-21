@@ -1,0 +1,8 @@
+{% for graduate in graduates %}
+	Name: {{ graduate.firstname | capitalize }}
+	<br>
+	Profile Id: {{ graduate.profile.id }}
+	<br>
+	<br>
+	<br>
+{% endfor %}

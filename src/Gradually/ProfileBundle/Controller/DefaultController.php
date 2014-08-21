@@ -17,6 +17,7 @@ class DefaultController extends Controller
      */
     public function indexAction($id)
     {
+        // if this is a graduate profile
         if($this->getUser()->getProfile()->getId() != $id){
             throw $this->createAccessDeniedException('Unable to access this page!');
         }
