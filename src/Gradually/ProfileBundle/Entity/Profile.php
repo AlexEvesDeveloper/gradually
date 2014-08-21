@@ -7,8 +7,11 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Profile
  *
- * @ORM\Table(name="profiles")
  * @ORM\Entity
+ * @ORM\Table(name="profiles")
+ * @ORM\InheritanceType("SINGLE_TABLE")
+ * @ORM\DiscriminatorColumn(name="type", type="string")
+ * @ORM\DiscriminatorMap({"graduate" = "GraduateProfile", "recruiter" = "RecruiterProfile"})
  */
 class Profile
 {

@@ -1,0 +1,29 @@
+<?php
+
+namespace Gradually\ProfileBundle\Entity;
+
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
+ 
+/**
+ * GraduateProfile
+ *
+ * @ORM\Entity
+ */
+
+class GraduateProfile extends Profile
+{
+    /**
+     * var \Gradually\GraduateBundle\Entity\University
+     *
+     * @ORM\ManyToOne(targetEntity="\Gradually\GraduateBundle\Entity\University", inversedBy="graduates")
+     */
+    private $university;
+
+    /**
+     * @var \Gradually\GraduateBundle\Entity\Degree
+     *
+     * @ORM\ManyToMany(targetEntity="\Gradually\GraduateBundle\Entity\Degree", inversedBy="graduates")
+     */
+    private $degrees;
+}

@@ -25,8 +25,12 @@ class DefaultController extends Controller
      */
     public function viewAction($id)
     {
-    	// does the user have access to this profile?
-    	if((!$this->get('security.context')->isGranted('ROLE_ADMIN')) && ($this->getUser()->getId() != $id)){
+        // redirect to login if not logged in
+        if(($user = $this->getUser()) == null){
+            return $this->redirect($this->generateUrl('gradually_user_default_login'));
+        }
+    	// access denied if user is not admin, does not own this profile, OR IS NOT LINKED WITH THIS PROFILE
+    	if((!$this->get('security.context')->isGranted('ROLE_ADMIN')) && ($user->getId() != $id)){
             throw $this->createAccessDeniedException('Unable to access this page!');
         }
 
