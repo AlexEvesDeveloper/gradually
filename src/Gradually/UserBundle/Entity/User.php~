@@ -3,6 +3,7 @@
 namespace Gradually\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+<<<<<<< HEAD
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
@@ -10,9 +11,22 @@ use Symfony\Component\Security\Core\User\AdvancedUserInterface;
  * User
  *
  * @ORM\Table(name="users")
+=======
+use Symfony\Component\Security\Core\User\UserInterface;
+
+/**
+>>>>>>> b2ffec1685c199fd558968256335e0a801bf4e4a
  * @ORM\Entity
+ * @ORM\Table(name="users")
+ * @ORM\InheritanceType("SINGLE_TABLE")
+ * @ORM\DiscriminatorColumn(name="type", type="string")
+ * @ORM\DiscriminatorMap({"graduate" = "GraduateUser", "recruiter" = "RecruiterUser", "admin" = "AdminUser"})
  */
+<<<<<<< HEAD
 class User implements AdvancedUserInterface, \Serializable
+=======
+class User implements UserInterface, \Serializable
+>>>>>>> b2ffec1685c199fd558968256335e0a801bf4e4a
 {
     /**
      * @var integer
@@ -59,6 +73,7 @@ class User implements AdvancedUserInterface, \Serializable
     private $isActive;
 
     /**
+<<<<<<< HEAD
      * @var array
      *
      * @ORM\ManyToMany(targetEntity="Role", inversedBy="users")
@@ -73,6 +88,13 @@ class User implements AdvancedUserInterface, \Serializable
         $this->isActive = true;
         $this->roles = new ArrayCollection();
     }
+=======
+     * @var \Gradually\ProfileBundle\Entity\Profile
+     *
+     * @ORM\OneToOne(targetEntity="\Gradually\ProfileBundle\Entity\Profile", mappedBy="profile")
+     */
+    private $profile;
+>>>>>>> b2ffec1685c199fd558968256335e0a801bf4e4a
 
     /**
      * Get id
@@ -197,6 +219,7 @@ class User implements AdvancedUserInterface, \Serializable
 
     /**
      * @inheritDoc
+<<<<<<< HEAD
      */
     public function getRoles()
     {
@@ -212,11 +235,24 @@ class User implements AdvancedUserInterface, \Serializable
     public function addRole(\Gradually\UserBundle\Entity\Role $roles)
     {
         $this->roles[] = $roles;
+=======
+     */
+    public function getRoles()
+    {
+        return array('ROLE_USER');
+    }
+>>>>>>> b2ffec1685c199fd558968256335e0a801bf4e4a
 
-        return $this;
+    /**
+     * @inheritDoc
+     */
+    public function getSalt()
+    {
+        return null;
     }
 
     /**
+<<<<<<< HEAD
      * Remove roles
      *
      * @param \Gradually\UserBundle\Entity\Role $roles
@@ -233,6 +269,47 @@ class User implements AdvancedUserInterface, \Serializable
     {
         return null;
     }
+=======
+     * @inheritDoc
+     */
+    public function eraseCredentials()
+    {
+    }
+
+    /**
+     * @see \Serializable::serialize()
+     */
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->username,
+            $this->password
+        ));
+    }
+
+    /**
+     * @see \Serializable::unserialize()
+     */
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            $this->username,
+            $this->password
+        ) = unserialize($serialized);
+    }
+
+    /**
+     * Set profile
+     *
+     * @param \Gradually\ProfileBundle\Entity\Profile $profile
+     * @return User
+     */
+    public function setProfile(\Gradually\ProfileBundle\Entity\Profile $profile = null)
+    {
+        $this->profile = $profile;
+>>>>>>> b2ffec1685c199fd558968256335e0a801bf4e4a
 
     /**
      * @inheritDoc
@@ -242,6 +319,7 @@ class User implements AdvancedUserInterface, \Serializable
     }
 
     /**
+<<<<<<< HEAD
      * @inheritDoc
      */
     public function isAccountNonExpired()
@@ -296,5 +374,14 @@ class User implements AdvancedUserInterface, \Serializable
             $this->username,
             $this->password
         ) = unserialize($serialized);
+=======
+     * Get profile
+     *
+     * @return \Gradually\ProfileBundle\Entity\Profile 
+     */
+    public function getProfile()
+    {
+        return $this->profile;
+>>>>>>> b2ffec1685c199fd558968256335e0a801bf4e4a
     }
 }

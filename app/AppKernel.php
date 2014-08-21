@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new Gradually\AdminBundle\GraduallyAdminBundle(),
             new Gradually\UserBundle\GraduallyUserBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
+            new Gradually\ProfileBundle\GraduallyProfileBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

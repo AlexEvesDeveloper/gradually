@@ -7,10 +7,11 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
 /**
- * User
- *
- * @ORM\Table(name="users")
  * @ORM\Entity
+ * @ORM\Table(name="users")
+ * @ORM\InheritanceType("SINGLE_TABLE")
+ * @ORM\DiscriminatorColumn(name="type", type="string")
+ * @ORM\DiscriminatorMap({"graduate" = "GraduateUser", "recruiter" = "RecruiterUser", "admin" = "AdminUser"})
  */
 class User implements AdvancedUserInterface, \Serializable
 {
@@ -64,6 +65,13 @@ class User implements AdvancedUserInterface, \Serializable
      * @ORM\ManyToMany(targetEntity="Role", inversedBy="users")
      */
     private $roles;
+
+    /**
+     * @var \Gradually\ProfileBundle\Entity\Profile
+     *
+     * @ORM\OneToOne(targetEntity="\Gradually\ProfileBundle\Entity\Profile", inversedBy="user")
+     */
+    private $profile;
 
     /**
      * Constructor.
@@ -296,5 +304,28 @@ class User implements AdvancedUserInterface, \Serializable
             $this->username,
             $this->password
         ) = unserialize($serialized);
+    }
+
+    /**
+     * Set profile
+     *
+     * @param \Gradually\ProfileBundle\Entity\Profile $profile
+     * @return User
+     */
+    public function setProfile(\Gradually\ProfileBundle\Entity\Profile $profile = null)
+    {
+        $this->profile = $profile;
+
+        return $this;
+    }
+
+    /**
+     * Get profile
+     *
+     * @return \Gradually\ProfileBundle\Entity\Profile 
+     */
+    public function getProfile()
+    {
+        return $this->profile;
     }
 }
