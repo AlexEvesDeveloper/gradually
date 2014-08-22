@@ -9,9 +9,13 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 use Gradually\UserBundle\Entity\GraduateUser;
-use Gradually\UserBundle\Form\UserType;
 use Gradually\UserBundle\Entity\Role;
 use Gradually\ProfileBundle\Entity\GraduateProfile;
+use Gradually\GraduateBundle\Entity\Qualification;
+
+use Gradually\UserBundle\Form\UserType;
+use Gradually\GraduateBundle\Form\QualificationType;
+
 
 class DefaultController extends Controller
 {
@@ -43,7 +47,14 @@ class DefaultController extends Controller
 
     	$graduate = $this->getDoctrine()->getManager()->getRepository('GraduallyUserBundle:GraduateUser')->find($id);
 
-        return array('graduate' => $graduate);
+        // add new Qualification
+        $qual = new Qualification();
+        $form = $this->createForm(new QualificationType, $qual);
+
+        return array(
+            'graduate' => $graduate,
+            'form' => $form->createView()
+        );
     }
 
     /**

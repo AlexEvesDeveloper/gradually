@@ -3,4 +3,6 @@
 {% block body %}
 	<p>Name: {{ graduate.profile.firstname | capitalize }}</p>
 	<p>Profile Id: {{ graduate.profile.id }}</p>
+
+	{{ form(form) }}
 {% endblock %}
