@@ -120,23 +120,60 @@ class LoadUserData implements FixtureInterface
 
     	// USERS
         $userSuper = new AdminUser();
-        $userSuper->setUsername('super');
+        $userSuper->setEmail('super@test.com');
         $userSuper->setPassword(password_hash('superpwd', PASSWORD_BCRYPT, array('cost' => 12)));
-        $userSuper->setFirstName('Super');
-        $userSuper->setLastName('User');
         $userSuper->addRole($roleSuper);
-        $userSuper->setIsActive(1);
         $manager->persist($userSuper);
         
         $userAdmin = new AdminUser();
-        $userAdmin->setUsername('admin');
+        $userAdmin->setEmail('admin@test.com');
         $userAdmin->setPassword(password_hash('adminpwd', PASSWORD_BCRYPT, array('cost' => 12)));
-        $userAdmin->setFirstName('Admin');
-        $userAdmin->setLastName('User');
         $userAdmin->addRole($roleAdmin);
-        $userAdmin->setIsActive(1);
         $manager->persist($userAdmin);
 
+        $g = new GraduateUser();
+        $g->setEmail('grad@test.com');
+        $g->setPassword(password_hash('gradpwd', PASSWORD_BCRYPT, array('cost' => 12)));
+        $g->addRole($roleNormal);
+        $q = new Qualification();
+        $q->setUniversity($uniM);
+        $q->setDegree($degCsBsc);
+        $q->setResult('2:1');
+        $q->setYearAttained(new \DateTime('2012-10-08'));
+        $q2 = new Qualification();
+        $q2->setUniversity($uniM);
+        $q2->setDegree($degCsMs);
+        $q2->setResult('1');
+        $q2->setYearAttained(new \DateTime('2013-10-08'));
+        $p = new GraduateProfile();
+        $p->setFirstName('Graduate');
+        $p->setLastName('One');
+        $g->setProfile($p);
+        $q->setGraduate($p);
+        $q2->setGraduate($p);
+        $manager->persist($q);
+        $manager->persist($q2);
+        $manager->persist($p);
+        $manager->persist($g);
+
+        $g = new GraduateUser();
+        $g->setEmail('grad2@test.com');
+        $g->setPassword(password_hash('grad2pwd', PASSWORD_BCRYPT, array('cost' => 12)));
+        $g->addRole($roleNormal);
+        $q = new Qualification();
+        $q->setUniversity($uniLo);
+        $q->setDegree($degJBa);
+        $q->setResult('2:1');
+        $q->setYearAttained(new \DateTime('2012-10-08'));
+        $p = new GraduateProfile();
+        $p->setFirstName('Graduate');
+        $p->setLastName('Two');
+        $g->setProfile($p);
+        $q->setGraduate($p);
+        $manager->persist($q);
+        $manager->persist($p);
+        $manager->persist($g);
+/*
         $userGraduate = new GraduateUser();
         $userGraduate->setUsername('graduate');
         $userGraduate->setPassword(password_hash('graduatepwd', PASSWORD_BCRYPT, array('cost' => 12)));
@@ -209,7 +246,7 @@ class LoadUserData implements FixtureInterface
         $manager->persist($profile);
         $manager->persist($user); 
 
-
+*/
 
         $manager->flush();
     }

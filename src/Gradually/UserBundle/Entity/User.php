@@ -5,6 +5,7 @@ namespace Gradually\UserBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -27,30 +28,22 @@ class User implements AdvancedUserInterface, \Serializable
     /**
      * @var string
      *
-     * @ORM\Column(name="username", type="string", length=128)
+     * @ORM\Column(name="email", type="string", length=60, unique=true)
+     *
+     * @Assert\Email
+     * @Assert\NotBlank
      */
-    private $username;
+    private $email;
 
     /**
      * @var string
      *
      * @ORM\Column(name="password", type="string", length=256)
+     *
+     * @Assert\Length(min="6")
+     * @Assert\NotBlank
      */
     private $password;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="firstName", type="string", length=64)
-     */
-    private $firstName;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="lastName", type="string", length=64)
-     */
-    private $lastName;
 
     /**
      * @var boolean
@@ -90,19 +83,6 @@ class User implements AdvancedUserInterface, \Serializable
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set username
-     *
-     * @param string $username
-     * @return User
-     */
-    public function setUsername($username)
-    {
-        $this->username = $username;
-
-        return $this;
     }
 
     /**
@@ -155,14 +135,6 @@ class User implements AdvancedUserInterface, \Serializable
         $this->isActive = $isActive;
 
         return $this;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getUsername()
-    {
-        return $this->username;
     }
 
     /**
@@ -289,7 +261,7 @@ class User implements AdvancedUserInterface, \Serializable
     {
         return serialize(array(
             $this->id,
-            $this->username,
+            $this->email,
             $this->password
         ));
     }
@@ -301,7 +273,7 @@ class User implements AdvancedUserInterface, \Serializable
     {
         list (
             $this->id,
-            $this->username,
+            $this->email,
             $this->password
         ) = unserialize($serialized);
     }
@@ -328,4 +300,37 @@ class User implements AdvancedUserInterface, \Serializable
     {
         return $this->profile;
     }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     * @return User
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string 
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Required from AdvancedUserInterface
+     * We are using email so just return null
+     */
+    public function getUsername()
+    {
+        return null;
+    }
+
 }

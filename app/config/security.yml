@@ -1,12 +1,14 @@
 security:
     firewalls:
-        admin_area:
+        secured_area:
             pattern:   ^/
             anonymous: ~
             form_login:
                 login_path: /user/login
                 check_path: /user/login_check
                 csrf_provider: form.csrf_provider
+                username_parameter: _email
+                password_parameter: _password
             logout:
                 path: /user/logout
                 target: /
@@ -21,7 +23,7 @@ security:
 
     providers:
         main:
-            entity: { class: GraduallyUserBundle:User, property: username }
+            entity: { class: GraduallyUserBundle:User, property: email }
 
     encoders:
         Gradually\UserBundle\Entity\User: 

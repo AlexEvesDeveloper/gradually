@@ -1,3 +1,6 @@
-Name: {{ graduate.firstname | capitalize }}
-<br>
-Profile Id: {{ graduate.profile.id }}
+{% extends "::base.html.twig" %}
+
+{% block body %}
+	<p>Name: {{ graduate.profile.firstname | capitalize }}</p>
+	<p>Profile Id: {{ graduate.profile.id }}</p>
+{% endblock %}

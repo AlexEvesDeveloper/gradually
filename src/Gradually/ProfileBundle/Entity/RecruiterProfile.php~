@@ -13,4 +13,49 @@ use Doctrine\ORM\Mapping as ORM;
 
 class RecruiterProfile extends Profile
 {
+	 /**
+      * @ORM\ManyToMany(targetEntity="GraduateProfile", mappedBy="recruiters")
+      */
+     private $graduates;
+    
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->graduates = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add graduates
+     *
+     * @param \Gradually\ProfileBundle\Entity\GraduateProfile $graduates
+     * @return RecruiterProfile
+     */
+    public function addGraduate(\Gradually\ProfileBundle\Entity\GraduateProfile $graduates)
+    {
+        $this->graduates[] = $graduates;
+
+        return $this;
+    }
+
+    /**
+     * Remove graduates
+     *
+     * @param \Gradually\ProfileBundle\Entity\GraduateProfile $graduates
+     */
+    public function removeGraduate(\Gradually\ProfileBundle\Entity\GraduateProfile $graduates)
+    {
+        $this->graduates->removeElement($graduates);
+    }
+
+    /**
+     * Get graduates
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getGraduates()
+    {
+        return $this->graduates;
+    }
 }
