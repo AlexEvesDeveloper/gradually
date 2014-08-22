@@ -1,10 +1,14 @@
 {% for graduate in graduates %}
-	Name: {{ graduate.firstname }}
-	<br>
-	User Id: {{ graduate.id }}
-	<br>
-	Profile Id: {{ graduate.profile.id }}
-	<br>
-	<br>
-	<br>
+	<p>User Id: {{ graduate.id }}</p>
+	<p>Name: {{ graduate.firstname }}</p>
+	<p>Qualifications:</p>
+	{% for qualification in graduate.profile.qualifications %}
+		<ul>
+			<li>University: {{ qualification.university.name }}</li>
+			<li>Degree: {{ qualification.degree.title }}</li>
+			<li>Honors: {{ qualification.result }}</li>
+			<li>Year Attained: {{ qualification.yearAttained | date("Y") }}</li>
+		</ul>
+	{% endfor %}
+	<hr>
 {% endfor %}

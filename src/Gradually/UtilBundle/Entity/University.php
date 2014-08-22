@@ -1,6 +1,6 @@
 <?php
 
-namespace Gradually\GraduateBundle\Entity;
+namespace Gradually\UtilBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -30,7 +30,7 @@ class University
     private $name;
 
     /**
-     * @var \Gradually\GraduateBundle\Entity\Degree
+     * @var \Gradually\UtilBundle\Entity\Degree
      *
      * @ORM\ManyToMany(targetEntity="Degree", inversedBy="universities")
      */
@@ -87,10 +87,10 @@ class University
     /**
      * Add degrees
      *
-     * @param \Gradually\GraduateBundle\Entity\Degree $degrees
+     * @param \Gradually\UtilBundle\Entity\Degree $degrees
      * @return University
      */
-    public function addDegree(\Gradually\GraduateBundle\Entity\Degree $degrees)
+    public function addDegree(\Gradually\UtilBundle\Entity\Degree $degrees)
     {
         $this->degrees[] = $degrees;
 
@@ -100,9 +100,9 @@ class University
     /**
      * Remove degrees
      *
-     * @param \Gradually\GraduateBundle\Entity\Degree $degrees
+     * @param \Gradually\UtilBundle\Entity\Degree $degrees
      */
-    public function removeDegree(\Gradually\GraduateBundle\Entity\Degree $degrees)
+    public function removeDegree(\Gradually\UtilBundle\Entity\Degree $degrees)
     {
         $this->degrees->removeElement($degrees);
     }

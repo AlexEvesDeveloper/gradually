@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             new Gradually\ProfileBundle\GraduallyProfileBundle(),
             new Gradually\GraduateBundle\GraduallyGraduateBundle(),
             new Gradually\RecruiterBundle\GraduallyRecruiterBundle(),
+            new Gradually\UtilBundle\GraduallyUtilBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

@@ -14,16 +14,50 @@ use Doctrine\ORM\Mapping as ORM;
 class GraduateProfile extends Profile
 {
     /**
-     * var \Gradually\GraduateBundle\Entity\University
+     * var \Gradually\GraduateBundle\Entity\Qualification
      *
-     * @ORM\ManyToOne(targetEntity="\Gradually\GraduateBundle\Entity\University", inversedBy="graduates")
+     * @ORM\OneToMany(targetEntity="\Gradually\GraduateBundle\Entity\Qualification", mappedBy="graduate")
      */
-    private $university;
+    private $qualifications;
+    
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->qualifications = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
-     * @var \Gradually\GraduateBundle\Entity\Degree
+     * Add qualifications
      *
-     * @ORM\ManyToMany(targetEntity="\Gradually\GraduateBundle\Entity\Degree", inversedBy="graduates")
+     * @param \Gradually\ProfileBundle\Entity\Qualification $qualifications
+     * @return GraduateProfile
      */
-    private $degrees;
+    public function addQualification(\Gradually\GraduateBundle\Entity\Qualification $qualifications)
+    {
+        $this->qualifications[] = $qualifications;
+
+        return $this;
+    }
+
+    /**
+     * Remove qualifications
+     *
+     * @param \Gradually\ProfileBundle\Entity\Qualification $qualifications
+     */
+    public function removeQualification(\Gradually\GraduateBundle\Entity\Qualification $qualifications)
+    {
+        $this->qualifications->removeElement($qualifications);
+    }
+
+    /**
+     * Get qualifications
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getQualifications()
+    {
+        return $this->qualifications;
+    }
 }

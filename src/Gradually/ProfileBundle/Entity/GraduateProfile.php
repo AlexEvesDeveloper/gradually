@@ -14,79 +14,50 @@ use Doctrine\ORM\Mapping as ORM;
 class GraduateProfile extends Profile
 {
     /**
-     * var \Gradually\GraduateBundle\Entity\University
+     * var \Gradually\GraduateBundle\Entity\Qualification
      *
-     * @ORM\ManyToOne(targetEntity="\Gradually\GraduateBundle\Entity\University", inversedBy="graduates")
+     * @ORM\OneToMany(targetEntity="\Gradually\GraduateBundle\Entity\Qualification", mappedBy="graduate")
      */
-    private $university;
-
-    /**
-     * @var \Gradually\GraduateBundle\Entity\Degree
-     *
-     * @ORM\ManyToMany(targetEntity="\Gradually\GraduateBundle\Entity\Degree", inversedBy="graduates")
-     */
-    private $degrees;
+    private $qualifications;
+    
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->degrees = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->qualifications = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
-     * Set university
+     * Add qualifications
      *
-     * @param \Gradually\GraduateBundle\Entity\University $university
+     * @param \Gradually\ProfileBundle\Entity\Qualification $qualifications
      * @return GraduateProfile
      */
-    public function setUniversity(\Gradually\GraduateBundle\Entity\University $university = null)
+    public function addQualification(\Gradually\GraduateBundle\Entity\Qualification $qualifications)
     {
-        $this->university = $university;
+        $this->qualifications[] = $qualifications;
 
         return $this;
     }
 
     /**
-     * Get university
+     * Remove qualifications
      *
-     * @return \Gradually\GraduateBundle\Entity\University 
+     * @param \Gradually\ProfileBundle\Entity\Qualification $qualifications
      */
-    public function getUniversity()
+    public function removeQualification(\Gradually\GraduateBundle\Entity\Qualification $qualifications)
     {
-        return $this->university;
+        $this->qualifications->removeElement($qualifications);
     }
 
     /**
-     * Add degrees
-     *
-     * @param \Gradually\GraduateBundle\Entity\Degree $degrees
-     * @return GraduateProfile
-     */
-    public function addDegree(\Gradually\GraduateBundle\Entity\Degree $degrees)
-    {
-        $this->degrees[] = $degrees;
-
-        return $this;
-    }
-
-    /**
-     * Remove degrees
-     *
-     * @param \Gradually\GraduateBundle\Entity\Degree $degrees
-     */
-    public function removeDegree(\Gradually\GraduateBundle\Entity\Degree $degrees)
-    {
-        $this->degrees->removeElement($degrees);
-    }
-
-    /**
-     * Get degrees
+     * Get qualifications
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getDegrees()
+    public function getQualifications()
     {
-        return $this->degrees;
+        return $this->qualifications;
     }
 }

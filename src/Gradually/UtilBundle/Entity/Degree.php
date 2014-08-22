@@ -1,6 +1,6 @@
 <?php
 
-namespace Gradually\GraduateBundle\Entity;
+namespace Gradually\UtilBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -30,18 +30,11 @@ class Degree
     private $title;
 
     /**
-     * @var \Gradually\GraduateBundle\Entity\University
+     * @var \Gradually\UtilBundle\Entity\University
      *
      * @ORM\ManyToMany(targetEntity="University", mappedBy="degrees")
      */
     private $universities;
-
-     /**
-      * @var \Gradually\ProfileBundle\Entity\GraduateProfile
-      *
-      * @ORM\ManyToMany(targetEntity="\Gradually\ProfileBundle\Entity\GraduateProfile", mappedBy="degrees")
-      */
-     private $graduates;
 
     /**
      * @var string
@@ -51,12 +44,13 @@ class Degree
     private $level;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="yearAttained", type="datetime")
+     * Constructor
      */
-    private $yearAttained;
-
+    public function __construct()
+    {
+        $this->universities = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->graduates = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -115,43 +109,12 @@ class Degree
     }
 
     /**
-     * Set yearAttained
-     *
-     * @param \DateTime $yearAttained
-     * @return Degree
-     */
-    public function setYearAttained($yearAttained)
-    {
-        $this->yearAttained = $yearAttained;
-
-        return $this;
-    }
-
-    /**
-     * Get yearAttained
-     *
-     * @return \DateTime 
-     */
-    public function getYearAttained()
-    {
-        return $this->yearAttained;
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->universities = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->graduates = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
      * Add universities
      *
-     * @param \Gradually\GraduateBundle\Entity\University $universities
+     * @param \Gradually\UtilBundle\Entity\University $universities
      * @return Degree
      */
-    public function addUniversity(\Gradually\GraduateBundle\Entity\University $universities)
+    public function addUniversity(\Gradually\UtilBundle\Entity\University $universities)
     {
         $this->universities[] = $universities;
 
@@ -161,9 +124,9 @@ class Degree
     /**
      * Remove universities
      *
-     * @param \Gradually\GraduateBundle\Entity\University $universities
+     * @param \Gradually\UtilBundle\Entity\University $universities
      */
-    public function removeUniversity(\Gradually\GraduateBundle\Entity\University $universities)
+    public function removeUniversity(\Gradually\UtilBundle\Entity\University $universities)
     {
         $this->universities->removeElement($universities);
     }
