@@ -1,8 +1,65 @@
 {% extends "::base.html.twig" %}
 
 {% block body %}
-	<p>Name: {{ graduate.profile.firstname | capitalize }}</p>
-	<p>Profile Id: {{ graduate.profile.id }}</p>
+	<p>Name: {{ graduate.user.firstname | capitalize }} {{ graduate.user.lastname }}</p>
 
-	{{ form(form) }}
+    {{ form_start(form) }}
+        {{ form_errors(form) }}
+        <div>
+            {{ form_label(form.university) }}
+            {{ form_errors(form.university) }}
+            {{ form_widget(form.university) }}
+        </div>
+        <div>
+            {{ form_label(form.degree) }}
+            {{ form_errors(form.degree) }}
+            {{ form_widget(form.degree) }}
+        </div>
+        <div>
+            {{ form_label(form.degreeLevel) }}
+            {{ form_errors(form.degreeLevel) }}
+            {{ form_widget(form.degreeLevel) }}
+        </div>
+        <div>
+            {{ form_label(form.result) }}
+            {{ form_errors(form.result) }}
+            {{ form_widget(form.result) }}
+        </div>
+        <div>
+            {{ form_label(form.yearAttained) }}
+            {{ form_errors(form.yearAttained) }}
+            {{ form_widget(form.yearAttained) }}
+        </div>
+    {{ form_end(form) }}
+
+
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script>
+var $university = $('#gradually_graduatebundle_qualification_university');
+// When university gets selected ...
+$university.change(function() {
+  // ... retrieve the corresponding form.
+  var $form = $(this).closest('form');
+  // Simulate form data, but only include the selected university value.
+  var data = {};
+  data[$university.attr('name')] = $university.val();
+  // Submit data via AJAX to the form's action path.
+  $.ajax({
+    url : $form.attr('action'),
+    type: $form.attr('method'),
+    data : data,
+    success: function(html) {
+      // Replace degree field ...
+      $('#gradually_graduatebundle_qualification_degree').replaceWith(
+        // ... with the returned one from the AJAX response.
+        $(html).find('#gradually_graduatebundle_qualification_degree')
+      );
+      // Degree field now displays the appropriate degrees.
+    }
+  });
+});
+</script>
 {% endblock %}

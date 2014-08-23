@@ -39,7 +39,7 @@ class University
     /**
      * @var \Gradually\ProfileBundle\Entity\GraduateProfile
      *
-     * @ORM\OneToMany(targetEntity="\Gradually\ProfileBundle\Entity\GraduateProfile", mappedBy="university")
+     * @ORM\ManyToMany(targetEntity="\Gradually\ProfileBundle\Entity\GraduateProfile", inversedBy="universities"))
      */
     private $graduates;
 
@@ -148,5 +148,10 @@ class University
     public function getGraduates()
     {
         return $this->graduates;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
     }
 }

@@ -6,12 +6,12 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * University
+ * DegreeLevel
  *
- * @ORM\Table(name="universities")
+ * @ORM\Table(name="degreelevels")
  * @ORM\Entity
  */
-class University
+class DegreeLevel
 {
     /**
      * @var integer
@@ -25,23 +25,16 @@ class University
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="title", type="string", length=64)
      */
-    private $name;
+    private $title;
 
     /**
      * @var \Gradually\UtilBundle\Entity\Degree
      *
-     * @ORM\ManyToMany(targetEntity="Degree", inversedBy="universities")
+     * @ORM\ManyToMany(targetEntity="Degree", mappedBy="levels")
      */
     private $degrees;
-
-    /**
-     * @var \Gradually\ProfileBundle\Entity\GraduateProfile
-     *
-     * @ORM\ManyToMany(targetEntity="\Gradually\ProfileBundle\Entity\GraduateProfile", inversedBy="universities"))
-     */
-    private $graduates;
 
     /**
      * Get id
@@ -54,26 +47,26 @@ class University
     }
 
     /**
-     * Set name
+     * Set title
      *
-     * @param string $name
-     * @return University
+     * @param string $title
+     * @return DegreeLevel
      */
-    public function setName($name)
+    public function setTitle($title)
     {
-        $this->name = $name;
+        $this->title = $title;
 
         return $this;
     }
 
     /**
-     * Get name
+     * Get title
      *
      * @return string 
      */
-    public function getName()
+    public function getTitle()
     {
-        return $this->name;
+        return $this->title;
     }
     /**
      * Constructor
@@ -81,14 +74,13 @@ class University
     public function __construct()
     {
         $this->degrees = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->graduates = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
      * Add degrees
      *
      * @param \Gradually\UtilBundle\Entity\Degree $degrees
-     * @return University
+     * @return DegreeLevel
      */
     public function addDegree(\Gradually\UtilBundle\Entity\Degree $degrees)
     {
@@ -117,41 +109,8 @@ class University
         return $this->degrees;
     }
 
-    /**
-     * Add graduates
-     *
-     * @param \Gradually\ProfileBundle\Entity\GraduateProfile $graduates
-     * @return University
-     */
-    public function addGraduate(\Gradually\ProfileBundle\Entity\GraduateProfile $graduates)
-    {
-        $this->graduates[] = $graduates;
-
-        return $this;
-    }
-
-    /**
-     * Remove graduates
-     *
-     * @param \Gradually\ProfileBundle\Entity\GraduateProfile $graduates
-     */
-    public function removeGraduate(\Gradually\ProfileBundle\Entity\GraduateProfile $graduates)
-    {
-        $this->graduates->removeElement($graduates);
-    }
-
-    /**
-     * Get graduates
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getGraduates()
-    {
-        return $this->graduates;
-    }
-
     public function __toString()
     {
-        return $this->name;
+        return $this->title;
     }
 }

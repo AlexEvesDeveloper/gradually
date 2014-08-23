@@ -14,20 +14,6 @@ use Doctrine\ORM\Mapping as ORM;
 class GraduateProfile extends Profile
 {
     /**
-     * @var string
-     *
-     * @ORM\Column(name="firstName", type="string", length=64)
-     */
-    private $firstName;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="lastName", type="string", length=64)
-     */
-    private $lastName;
-    
-    /**
      * var \Gradually\GraduateBundle\Entity\Qualification
      *
      * @ORM\OneToMany(targetEntity="\Gradually\GraduateBundle\Entity\Qualification", mappedBy="graduate")
@@ -38,6 +24,11 @@ class GraduateProfile extends Profile
      * @ORM\ManyToMany(targetEntity="RecruiterProfile", inversedBy="graduates")
      */
     private $recruiters;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="\Gradually\UtilBundle\Entity\University", mappedBy="graduates")
+     */
+    private $universities;
     
     /**
      * Constructor
@@ -80,53 +71,7 @@ class GraduateProfile extends Profile
         return $this->qualifications;
     }
 
-    /**
-     * Set firstName
-     *
-     * @param string $firstName
-     * @return GraduateProfile
-     */
-    public function setFirstName($firstName)
-    {
-        $this->firstName = $firstName;
-
-        return $this;
-    }
-
-    /**
-     * Get firstName
-     *
-     * @return string 
-     */
-    public function getFirstName()
-    {
-        return $this->firstName;
-    }
-
-    /**
-     * Set lastName
-     *
-     * @param string $lastName
-     * @return GraduateProfile
-     */
-    public function setLastName($lastName)
-    {
-        $this->lastName = $lastName;
-
-        return $this;
-    }
-
-    /**
-     * Get lastName
-     *
-     * @return string 
-     */
-    public function getLastName()
-    {
-        return $this->lastName;
-    }
-
-    /**
+   /**
      * Add recruiters
      *
      * @param \Gradually\ProfileBundle\Entity\RecruiterProfile $recruiters
@@ -157,5 +102,38 @@ class GraduateProfile extends Profile
     public function getRecruiters()
     {
         return $this->recruiters;
+    }
+
+    /**
+     * Add universities
+     *
+     * @param \Gradually\UtilBundle\Entity\University $universities
+     * @return GraduateProfile
+     */
+    public function addUniversity(\Gradually\UtilBundle\Entity\University $universities)
+    {
+        $this->universities[] = $universities;
+
+        return $this;
+    }
+
+    /**
+     * Remove universities
+     *
+     * @param \Gradually\UtilBundle\Entity\University $universities
+     */
+    public function removeUniversity(\Gradually\UtilBundle\Entity\University $universities)
+    {
+        $this->universities->removeElement($universities);
+    }
+
+    /**
+     * Get universities
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getUniversities()
+    {
+        return $this->universities;
     }
 }

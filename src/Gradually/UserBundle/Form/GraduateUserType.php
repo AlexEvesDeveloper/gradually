@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class UserType extends AbstractType
+class GraduateUserType extends UserType
 {
         /**
      * @param FormBuilderInterface $builder
@@ -14,9 +14,11 @@ class UserType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        parent::buildForm($builder, $options);
         $builder
-            ->add('email')
-            ->add('password')
+            ->add('firstName')
+            ->add('lastName')
+            ->add('submit', 'submit', array('label' => 'Get started'))
         ;
     }
     
@@ -26,7 +28,7 @@ class UserType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Gradually\UserBundle\Entity\User'
+            'data_class' => 'Gradually\UserBundle\Entity\GraduateUser'
         ));
     }
 
@@ -35,6 +37,6 @@ class UserType extends AbstractType
      */
     public function getName()
     {
-        return 'gradually_userbundle_user';
+        return 'gradually_userbundle_graduateuser';
     }
 }

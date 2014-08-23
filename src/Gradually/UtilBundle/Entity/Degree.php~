@@ -37,11 +37,11 @@ class Degree
     private $universities;
 
     /**
-     * @var string
+     * @var \Gradually\UtilBundle\Entity\DegreeLevel
      *
-     * @ORM\Column(name="level", type="string", length=128)
+     * @ORM\ManyToMany(targetEntity="DegreeLevel", inversedBy="degrees")
      */
-    private $level;
+    private $levels;
 
     /**
      * Constructor
@@ -50,6 +50,7 @@ class Degree
     {
         $this->universities = new \Doctrine\Common\Collections\ArrayCollection();
         $this->graduates = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->levels = new \Doctrine\Common\Collections\ArrayCollection(); 
     }
 
     /**
@@ -83,29 +84,6 @@ class Degree
     public function getTitle()
     {
         return $this->title;
-    }
-
-    /**
-     * Set level
-     *
-     * @param string $level
-     * @return Degree
-     */
-    public function setLevel($level)
-    {
-        $this->level = $level;
-
-        return $this;
-    }
-
-    /**
-     * Get level
-     *
-     * @return string 
-     */
-    public function getLevel()
-    {
-        return $this->level;
     }
 
     /**
@@ -172,5 +150,43 @@ class Degree
     public function getGraduates()
     {
         return $this->graduates;
+    }
+
+    public function __toString()
+    {
+        return $this->title;
+    }    
+
+    /**
+     * Add level
+     *
+     * @param \Gradually\UtilBundle\Entity\DegreeLevel $level
+     * @return Degree
+     */
+    public function addLevel(\Gradually\UtilBundle\Entity\DegreeLevel $level)
+    {
+        $this->levels[] = $level;
+
+        return $this;
+    }
+
+    /**
+     * Remove level
+     *
+     * @param \Gradually\UtilBundle\Entity\DegreeLevel $level
+     */
+    public function removeLevel(\Gradually\UtilBundle\Entity\DegreeLevel $level)
+    {
+        $this->levels->removeElement($level);
+    }
+
+    /**
+     * Get levels
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getLevels()
+    {
+        return $this->levels;
     }
 }

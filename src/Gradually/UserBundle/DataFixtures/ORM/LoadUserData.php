@@ -13,7 +13,7 @@ use Gradually\ProfileBundle\Entity\GraduateProfile;
 use Gradually\ProfileBundle\Entity\RecruiterProfile;
 use Gradually\UtilBundle\Entity\University;
 use Gradually\UtilBundle\Entity\Degree;
-use Gradually\UtilBundle\Classes\Degrees\DegreeLevels;
+use Gradually\UtilBundle\Entity\DegreeLevel;
 use Gradually\GraduateBundle\Entity\Qualification;
 
 
@@ -38,68 +38,54 @@ class LoadUserData implements FixtureInterface
         $uniLo = new University();
         $uniLo->setName('University of London'); 
 
+        // DEGREE LEVELS
+        $ba = new DegreeLevel();
+        $ba->setTitle('Bachelor of Art');
+        $manager->persist($ba);
+
+        $bsc = new DegreeLevel();
+        $bsc->setTitle('Bachelor of Science');
+        $manager->persist($bsc); 
+
+        $ma = new DegreeLevel();
+        $ma->setTitle('Master of Art');
+        $manager->persist($ma);
+
+        $msc = new DegreeLevel();
+        $msc->setTitle('Master of Science');
+        $manager->persist($msc);
+
+        $phd = new DegreeLevel();
+        $phd->setTitle('Doctor of Philosophy');
+        $manager->persist($phd);
+
         // DEGREES
-        $degCsBsc = new Degree();
-        $degCsBsc->setTitle('Computer Science');
-        $degCsBsc->setLevel(DegreeLevels::BSC);
-        $manager->persist($degCsBsc);
+        $degCs = new Degree();
+        $degCs->setTitle('Computer Science');
+        $degCs->addLevel($bsc);
+        $degCs->addLevel($msc);
+        $degCs->addLevel($phd);
+        $manager->persist($degCs);
 
-        $degCsMs = new Degree();
-        $degCsMs->setTitle('Computer Science');
-        $degCsMs->setLevel(DegreeLevels::MS);
-        $manager->persist($degCsMs);
-
-        $degCsPhd = new Degree();
-        $degCsPhd->setTitle('Computer Science');
-        $degCsPhd->setLevel(DegreeLevels::PHD);
-        $manager->persist($degCsPhd);
-
-        $degJBa = new Degree();
-        $degJBa->setTitle('Journalism');
-        $degJBa->setLevel(DegreeLevels::BA);
-        $manager->persist($degJBa);
-
-        $degJMa = new Degree();
-        $degJMa->setTitle('Journalism');
-        $degJMa->setLevel(DegreeLevels::MA);
-        $manager->persist($degJMa);
-
-        $degJPhd = new Degree();
-        $degJPhd->setTitle('Journalism');
-        $degJPhd->setLevel(DegreeLevels::PHD);
-        $manager->persist($degJPhd);
+        $degJ = new Degree();
+        $degJ->setTitle('Journalism');
+        $degJ->addLevel($ba);
+        $degJ->addLevel($ma);
+        $manager->persist($degJ);
 
         // CONNECT UNIS AND DEGREES
-        $uniM->addDegree($degCsBsc);
-        $uniM->addDegree($degCsMs);
-        $uniM->addDegree($degCsPhd);
-        $uniM->addDegree($degJBa);
-        $uniM->addDegree($degJMa);
-        $uniM->addDegree($degJPhd);
+        $uniM->addDegree($degCs);
+        $uniM->addDegree($degJ);
         $manager->persist($uniM);
 
-        $uniLi->addDegree($degCsBsc);
-        $uniLi->addDegree($degCsMs);
-        $uniLi->addDegree($degCsPhd);
-        $uniLi->addDegree($degJBa);
-        $uniLi->addDegree($degJMa);
-        $uniLi->addDegree($degJPhd);
+        $uniLi->addDegree($degJ);
         $manager->persist($uniLi);
 
-        $uniB->addDegree($degCsBsc);
-        $uniB->addDegree($degCsMs);
-        $uniB->addDegree($degCsPhd);
-        $uniB->addDegree($degJBa);
-        $uniB->addDegree($degJMa);
-        $uniB->addDegree($degJPhd);
+        $uniB->addDegree($degCs);
         $manager->persist($uniB);
 
-        $uniLo->addDegree($degCsBsc);
-        $uniLo->addDegree($degCsMs);
-        $uniLo->addDegree($degCsPhd);
-        $uniLo->addDegree($degJBa);
-        $uniLo->addDegree($degJMa);
-        $uniLo->addDegree($degJPhd);
+        $uniLo->addDegree($degCs);
+        $uniLo->addDegree($degJ);
         $manager->persist($uniLo);
 
     	// ROLES
@@ -137,12 +123,14 @@ class LoadUserData implements FixtureInterface
         $g->addRole($roleNormal);
         $q = new Qualification();
         $q->setUniversity($uniM);
-        $q->setDegree($degCsBsc);
+        $q->setDegree($degCs);
+        $q->setDegreeLevel($bsc);
         $q->setResult('2:1');
         $q->setYearAttained(new \DateTime('2012-10-08'));
         $q2 = new Qualification();
         $q2->setUniversity($uniM);
-        $q2->setDegree($degCsMs);
+        $q2->setDegree($degCs);
+        $q2->setDegreeLevel($msc);
         $q2->setResult('1');
         $q2->setYearAttained(new \DateTime('2013-10-08'));
         $p = new GraduateProfile();
@@ -162,7 +150,8 @@ class LoadUserData implements FixtureInterface
         $g->addRole($roleNormal);
         $q = new Qualification();
         $q->setUniversity($uniLo);
-        $q->setDegree($degJBa);
+        $q->setDegree($degJ);
+        $q->setDegreeLevel($ba);
         $q->setResult('2:1');
         $q->setYearAttained(new \DateTime('2012-10-08'));
         $p = new GraduateProfile();

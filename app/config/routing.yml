@@ -7,11 +7,6 @@ gradually_graduate:
     type:     annotation
     prefix:   /graduates
 
-gradually_profile:
-    resource: "@GraduallyProfileBundle/Controller/"
-    type:     annotation
-    prefix:   /
-
 gradually_user:
     resource: "@GraduallyUserBundle/Controller/"
     type:     annotation

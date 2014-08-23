@@ -28,19 +28,26 @@ class Qualification
      */
     private $graduate;
 
-     /**
+    /**
      * @var \Gradually\UtilBundle\Entity\University
      *
      * @ORM\ManyToOne(targetEntity="\Gradually\UtilBundle\Entity\University")
      */   
     private $university;
 
-     /**
+    /**
      * @var \Gradually\UtilBundle\Entity\Degree
      *
      * @ORM\ManyToOne(targetEntity="\Gradually\UtilBundle\Entity\Degree")
      */
     private $degree;
+
+    /**
+     * @var \Gradually\UtilBundle\Entity\DegreeLevel
+     *
+     * @ORM\ManyToOne(targetEntity="\Gradually\UtilBundle\Entity\DegreeLevel")
+     */
+    private $degreeLevel;
 
     /**
      * @var string
@@ -50,9 +57,9 @@ class Qualification
     private $result;
 
     /**
-     * @var \DateTime
+     * @var \Date
      *
-     * @ORM\Column(name="yearAttained", type="datetime")
+     * @ORM\Column(name="yearAttained", type="date")
      */
     private $yearAttained;
 
@@ -96,7 +103,7 @@ class Qualification
      * @param \DateTime $yearAttained
      * @return Qualification
      */
-    public function setYearAttained(\DateTime $yearAttained)
+    public function setYearAttained(\DateTime $yearAttained = null)
     {
         $this->yearAttained = $yearAttained;
 
@@ -180,5 +187,28 @@ class Qualification
     public function getDegree()
     {
         return $this->degree;
+    }
+
+    /**
+     * Set degreeLevel
+     *
+     * @param \Gradually\UtilBundle\Entity\DegreeLevel $degreeLevel
+     * @return Qualification
+     */
+    public function setDegreeLevel(\Gradually\UtilBundle\Entity\DegreeLevel $degreeLevel = null)
+    {
+        $this->degreeLevel = $degreeLevel;
+
+        return $this;
+    }
+
+    /**
+     * Get degreeLevel
+     *
+     * @return \Gradually\UtilBundle\Entity\DegreeLevel 
+     */
+    public function getDegreeLevel()
+    {
+        return $this->degreeLevel;
     }
 }

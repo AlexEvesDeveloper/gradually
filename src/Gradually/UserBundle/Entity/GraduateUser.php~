@@ -12,5 +12,17 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class GraduateUser extends User
 {
-
+     /**
+      * @var string
+      *
+      * @ORM\Column(name="firstName", type="string", length=64)
+      */
+     private $firstName;
+ 
+     /**
+      * @var string
+      *
+      * @ORM\Column(name="lastName", type="string", length=64)
+      */
+     private $lastName;
 }
