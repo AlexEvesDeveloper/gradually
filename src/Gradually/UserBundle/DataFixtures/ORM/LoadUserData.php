@@ -118,6 +118,8 @@ class LoadUserData implements FixtureInterface
         $manager->persist($userAdmin);
 
         $g = new GraduateUser();
+        $g->setFirstName('Graduate');
+        $g->setLastName('One');
         $g->setEmail('grad@test.com');
         $g->setPassword(password_hash('gradpwd', PASSWORD_BCRYPT, array('cost' => 12)));
         $g->addRole($roleNormal);
@@ -134,8 +136,6 @@ class LoadUserData implements FixtureInterface
         $q2->setResult('1');
         $q2->setYearAttained(new \DateTime('2013-10-08'));
         $p = new GraduateProfile();
-        $p->setFirstName('Graduate');
-        $p->setLastName('One');
         $g->setProfile($p);
         $q->setGraduate($p);
         $q2->setGraduate($p);
@@ -145,6 +145,8 @@ class LoadUserData implements FixtureInterface
         $manager->persist($g);
 
         $g = new GraduateUser();
+        $g->setFirstName('Graduate');
+        $g->setLastName('Two');
         $g->setEmail('grad2@test.com');
         $g->setPassword(password_hash('grad2pwd', PASSWORD_BCRYPT, array('cost' => 12)));
         $g->addRole($roleNormal);
@@ -155,8 +157,6 @@ class LoadUserData implements FixtureInterface
         $q->setResult('2:1');
         $q->setYearAttained(new \DateTime('2012-10-08'));
         $p = new GraduateProfile();
-        $p->setFirstName('Graduate');
-        $p->setLastName('Two');
         $g->setProfile($p);
         $q->setGraduate($p);
         $manager->persist($q);
