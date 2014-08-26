@@ -28,6 +28,16 @@ class User implements AdvancedUserInterface, \Serializable
     /**
      * @var string
      *
+     * @ORM\Column(name="username", type="string", length=60, unique=true)
+     *
+     * @Assert\Email
+     * @Assert\NotBlank
+     */
+    private $username;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="email", type="string", length=60, unique=true)
      *
      * @Assert\Email
@@ -74,6 +84,7 @@ class User implements AdvancedUserInterface, \Serializable
         $this->isActive = true;
         $this->roles = new ArrayCollection();
     }
+
 
     /**
      * Get id
@@ -261,7 +272,7 @@ class User implements AdvancedUserInterface, \Serializable
     {
         return serialize(array(
             $this->id,
-            $this->email,
+            $this->username,
             $this->password
         ));
     }
@@ -273,7 +284,7 @@ class User implements AdvancedUserInterface, \Serializable
     {
         list (
             $this->id,
-            $this->email,
+            $this->username,
             $this->password
         ) = unserialize($serialized);
     }
@@ -325,12 +336,29 @@ class User implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Required from AdvancedUserInterface
-     * We are using email so just return null
+     * Get username
+     *
+     * @return string
      */
     public function getUsername()
     {
-        return null;
+        return $this->username;
     }
 
+
+    /**
+     * Set username
+     *
+     * @param string $username
+     * @return User
+     */
+    public function setUsername($username)
+    {
+        $this->username = $username;
+
+        // username is e-mail, so set e-mail too
+        $this->setEmail($username);
+
+        return $this;
+    }
 }

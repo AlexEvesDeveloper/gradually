@@ -107,12 +107,14 @@ class LoadUserData implements FixtureInterface
     	// USERS
         $userSuper = new AdminUser();
         $userSuper->setEmail('super@test.com');
+        $userSuper->setUsername('super@test.com');
         $userSuper->setPassword(password_hash('superpwd', PASSWORD_BCRYPT, array('cost' => 12)));
         $userSuper->addRole($roleSuper);
         $manager->persist($userSuper);
         
         $userAdmin = new AdminUser();
         $userAdmin->setEmail('admin@test.com');
+        $userAdmin->setUsername('admin@test.com');
         $userAdmin->setPassword(password_hash('adminpwd', PASSWORD_BCRYPT, array('cost' => 12)));
         $userAdmin->addRole($roleAdmin);
         $manager->persist($userAdmin);
@@ -121,6 +123,7 @@ class LoadUserData implements FixtureInterface
         $g->setFirstName('Graduate');
         $g->setLastName('One');
         $g->setEmail('grad@test.com');
+        $g->setUsername('grad@test.com');
         $g->setPassword(password_hash('gradpwd', PASSWORD_BCRYPT, array('cost' => 12)));
         $g->addRole($roleNormal);
         $q = new Qualification();
@@ -148,6 +151,7 @@ class LoadUserData implements FixtureInterface
         $g->setFirstName('Graduate');
         $g->setLastName('Two');
         $g->setEmail('grad2@test.com');
+        $g->setUsername('grad2@test.com');
         $g->setPassword(password_hash('grad2pwd', PASSWORD_BCRYPT, array('cost' => 12)));
         $g->addRole($roleNormal);
         $q = new Qualification();

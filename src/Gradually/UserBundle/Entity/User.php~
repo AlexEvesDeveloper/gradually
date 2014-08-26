@@ -28,6 +28,16 @@ class User implements AdvancedUserInterface, \Serializable
     /**
      * @var string
      *
+     * @ORM\Column(name="username", type="string", length=60, unique=true)
+     *
+     * @Assert\Email
+     * @Assert\NotBlank
+     */
+    private $username;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="email", type="string", length=60, unique=true)
      *
      * @Assert\Email
@@ -261,7 +271,7 @@ class User implements AdvancedUserInterface, \Serializable
     {
         return serialize(array(
             $this->id,
-            $this->email,
+            $this->username,
             $this->password
         ));
     }
@@ -273,7 +283,7 @@ class User implements AdvancedUserInterface, \Serializable
     {
         list (
             $this->id,
-            $this->email,
+            $this->username,
             $this->password
         ) = unserialize($serialized);
     }
