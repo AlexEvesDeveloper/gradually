@@ -23,6 +23,9 @@ class AppKernel extends Kernel
             new Gradually\GraduateBundle\GraduallyGraduateBundle(),
             new Gradually\RecruiterBundle\GraduallyRecruiterBundle(),
             new Gradually\UtilBundle\GraduallyUtilBundle(),
+            new FOS\RestBundle\FOSRestBundle(),
+            new JMS\SerializerBundle\JMSSerializerBundle(),
+            new Gradually\RestBundle\GraduallyRestBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

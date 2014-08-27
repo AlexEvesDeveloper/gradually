@@ -1,0 +1,3 @@
+graduates:
+    type: rest
+    resource: Gradually\RestBundle\Controller\GraduateProfileController

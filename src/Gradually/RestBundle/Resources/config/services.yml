@@ -1,0 +1,7 @@
+parameters:
+#    gradually_rest.example.class: Gradually\RestBundle\Example
+
+services:
+#    gradually_rest.example:
+#        class: %gradually_rest.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
