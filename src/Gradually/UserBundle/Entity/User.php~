@@ -14,7 +14,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\DiscriminatorColumn(name="type", type="string")
  * @ORM\DiscriminatorMap({"graduate" = "GraduateUser", "recruiter" = "RecruiterUser", "admin" = "AdminUser"})
  */
-class User implements AdvancedUserInterface, \Serializable
+abstract class User implements AdvancedUserInterface, \Serializable
 {
     /**
      * @var integer
@@ -23,17 +23,24 @@ class User implements AdvancedUserInterface, \Serializable
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      *
      * @ORM\Column(name="username", type="string", length=60, unique=true)
+     */
+    protected $username;
+
+   /**
+     * @var string
      *
-     * @Assert\Email
+     * @ORM\Column(name="password", type="string", length=256)
+     *
+     * @Assert\Length(min="6")
      * @Assert\NotBlank
      */
-    private $username;
+    protected $password;
 
     /**
      * @var string
@@ -43,38 +50,28 @@ class User implements AdvancedUserInterface, \Serializable
      * @Assert\Email
      * @Assert\NotBlank
      */
-    private $email;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="password", type="string", length=256)
-     *
-     * @Assert\Length(min="6")
-     * @Assert\NotBlank
-     */
-    private $password;
+    protected $email;
 
     /**
      * @var boolean
      *
      * @ORM\Column(name="isActive", type="boolean")
      */
-    private $isActive;
+    protected $isActive;
 
     /**
      * @var array
      *
      * @ORM\ManyToMany(targetEntity="Role", inversedBy="users")
      */
-    private $roles;
+    protected $roles;
 
     /**
      * @var \Gradually\ProfileBundle\Entity\Profile
      *
      * @ORM\OneToOne(targetEntity="\Gradually\ProfileBundle\Entity\Profile", inversedBy="user")
      */
-    private $profile;
+    protected $profile;
 
     /**
      * Constructor.
@@ -84,6 +81,7 @@ class User implements AdvancedUserInterface, \Serializable
         $this->isActive = true;
         $this->roles = new ArrayCollection();
     }
+
 
     /**
      * Get id
@@ -96,6 +94,29 @@ class User implements AdvancedUserInterface, \Serializable
     }
 
     /**
+     * Set username
+     *
+     * @param string $username
+     * @return GraduateUser
+     */
+    public function setUsername($username)
+    {
+        $this->username = $username;
+ 
+        return $this;
+    }
+ 
+    /**
+     * Get username
+     *
+     * @return string 
+     */
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    /**
      * Set password
      *
      * @param string $password
@@ -104,32 +125,6 @@ class User implements AdvancedUserInterface, \Serializable
     public function setPassword($password)
     {
         $this->password = $password;
-
-        return $this;
-    }
-
-    /**
-     * Set firstName
-     *
-     * @param string $firstName
-     * @return User
-     */
-    public function setFirstName($firstName)
-    {
-        $this->firstName = $firstName;
-
-        return $this;
-    }
-
-    /**
-     * Set lastName
-     *
-     * @param string $lastName
-     * @return User
-     */
-    public function setLastName($lastName)
-    {
-        $this->lastName = $lastName;
 
         return $this;
     }
@@ -155,27 +150,7 @@ class User implements AdvancedUserInterface, \Serializable
         return $this->password;
     }
 
-    /**
-     * Get firstName
-     *
-     * @return string 
-     */
-    public function getFirstName()
-    {
-        return $this->firstName;
-    }
-
-    /**
-     * Get lastName
-     *
-     * @return string 
-     */
-    public function getLastName()
-    {
-        return $this->lastName;
-    }
-
-    /**
+   /**
      * Get isActive
      *
      * @return boolean 
@@ -310,37 +285,4 @@ class User implements AdvancedUserInterface, \Serializable
     {
         return $this->profile;
     }
-
-    /**
-     * Set email
-     *
-     * @param string $email
-     * @return User
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    /**
-     * Get email
-     *
-     * @return string 
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    /**
-     * Required from AdvancedUserInterface
-     * We are using email so just return null
-     */
-    public function getUsername()
-    {
-        return null;
-    }
-
 }

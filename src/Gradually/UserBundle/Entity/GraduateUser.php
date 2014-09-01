@@ -4,6 +4,7 @@ namespace Gradually\UserBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection; 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * GraduateUser
@@ -12,19 +13,19 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class GraduateUser extends User
 {
-     /**
+    /**
       * @var string
       *
-      * @ORM\Column(name="firstName", type="string", length=64)
+      * @ORM\Column(name="first_name", type="string", length=64)
       */
-     private $firstName;
+     protected $firstName;
  
      /**
       * @var string
       *
-      * @ORM\Column(name="lastName", type="string", length=64)
+      * @ORM\Column(name="last_name", type="string", length=64)
       */
-     private $lastName;
+     protected $lastName;
 
     /**
      * Set firstName

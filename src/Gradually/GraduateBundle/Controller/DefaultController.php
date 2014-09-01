@@ -87,6 +87,9 @@ class DefaultController extends Controller
             // encode the password
             $user->setPassword(password_hash($form->getData()->getPassword(), PASSWORD_BCRYPT, array('cost' => 12)));
 
+            // manually set the e-mail as the username
+            $user->setUsername($form->getData()->getEmail());
+
             // create an empty GraduateProfile
             $profile = new GraduateProfile();
             $user->setProfile($profile);            
@@ -102,7 +105,6 @@ class DefaultController extends Controller
 
             return $this->redirect($this->generateUrl('gradually_graduate_default_view', array('id' => $user->getProfile()->getId())));
         }
-
 
         return array('form' => $form->createView());
     }

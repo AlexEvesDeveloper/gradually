@@ -18,6 +18,7 @@ class GraduateUserType extends UserType
         $builder
             ->add('firstName')
             ->add('lastName')
+            ->add('email')
             ->add('submit', 'submit', array('label' => 'Get started'))
         ;
     }
