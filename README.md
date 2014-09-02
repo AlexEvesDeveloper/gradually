@@ -1,6 +1,11 @@
 Symfony Standard Edition
 ========================
 
+MyNotes:
+
+Homepage theme idea: http://themeforest.net/item/jobboard-responsive-job-market-html-template/full_screen_preview/7641746
+
+
 Welcome to the Symfony Standard Edition - a fully-functional Symfony2
 application that you can use as the skeleton for your new applications.
 
