@@ -13,11 +13,16 @@ use Doctrine\ORM\Mapping as ORM;
 
 class RecruiterProfile extends Profile
 {
-	 /**
-      * @ORM\ManyToMany(targetEntity="GraduateProfile", mappedBy="recruiters")
-      */
-     private $graduates;
-    
+	/**
+     * @ORM\ManyToMany(targetEntity="GraduateProfile", mappedBy="recruiters")
+     */
+    private $graduates;
+
+    /**
+     * @ORM\OneToMany(targetEntity="\Gradually\JobBundle\Entity\Job", mappedBy="recruiter")
+     */
+    private $jobs;
+
     /**
      * Constructor
      */

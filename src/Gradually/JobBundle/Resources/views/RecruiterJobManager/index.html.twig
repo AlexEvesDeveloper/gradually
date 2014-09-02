@@ -1,0 +1,10 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+<p>Jobs</p>
+
+{% for job in jobs %}
+    <p>{{ job.title }}</p>
+{% endfor %}
+
+{% endblock %}
