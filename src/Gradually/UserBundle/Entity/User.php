@@ -23,14 +23,14 @@ abstract class User implements AdvancedUserInterface, \Serializable
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $id;
+    private $id;
 
     /**
      * @var string
      *
      * @ORM\Column(name="username", type="string", length=60, unique=true)
      */
-    protected $username;
+    private $username;
 
    /**
      * @var string
@@ -40,7 +40,7 @@ abstract class User implements AdvancedUserInterface, \Serializable
      * @Assert\Length(min="6")
      * @Assert\NotBlank
      */
-    protected $password;
+    private $password;
 
     /**
      * @var string
@@ -50,28 +50,28 @@ abstract class User implements AdvancedUserInterface, \Serializable
      * @Assert\Email
      * @Assert\NotBlank
      */
-    protected $email;
+    private $email;
 
     /**
      * @var boolean
      *
      * @ORM\Column(name="isActive", type="boolean")
      */
-    protected $isActive;
+    private $isActive;
 
     /**
      * @var array
      *
      * @ORM\ManyToMany(targetEntity="Role", inversedBy="users")
      */
-    protected $roles;
+    private $roles;
 
     /**
      * @var \Gradually\ProfileBundle\Entity\Profile
      *
      * @ORM\OneToOne(targetEntity="\Gradually\ProfileBundle\Entity\Profile", inversedBy="user")
      */
-    protected $profile;
+    private $profile;
 
     /**
      * Constructor.

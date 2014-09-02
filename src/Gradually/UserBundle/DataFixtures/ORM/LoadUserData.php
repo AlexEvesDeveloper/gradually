@@ -15,7 +15,7 @@ use Gradually\UtilBundle\Entity\University;
 use Gradually\UtilBundle\Entity\Degree;
 use Gradually\UtilBundle\Entity\DegreeLevel;
 use Gradually\GraduateBundle\Entity\Qualification;
-
+use Gradually\JobBundle\Entity\Job;
 
 class LoadUserData implements FixtureInterface
 {
@@ -166,6 +166,27 @@ class LoadUserData implements FixtureInterface
         $manager->persist($q);
         $manager->persist($p);
         $manager->persist($g);
+
+        // RECRUITERS
+        $r = new RecruiterUser();
+        $r->setCompanyName("Recruiter One");
+        $r->setEmail("recone@test.com");
+        $r->setUsername("Recruiter One");
+        $r->setPassword(password_hash('reconepwd', PASSWORD_BCRYPT, array('cost' => 12)));
+        $r->addRole($roleNormal);
+        $p = new RecruiterProfile();
+        $r->setProfile($p);
+        $j = new Job();
+        $j->setTitle('Recruiter One: Job One');
+        $j->setDescription('Description for the job');
+        $j->setSalaryFrom('20000');
+        $j->setSalaryTo('25000');
+        $j->setRecruiter($p);
+        $manager->persist($p);
+        $manager->persist($j);
+        $manager->persist($r);
+
+
 /*
         $userGraduate = new GraduateUser();
         $userGraduate->setUsername('graduate');

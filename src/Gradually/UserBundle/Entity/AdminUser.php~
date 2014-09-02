@@ -12,5 +12,4 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class AdminUser extends User
 {
-
 }

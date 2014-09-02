@@ -72,28 +72,4 @@ class GraduateUser extends User
     {
         return $this->lastName;
     }
-
-    /**
-     * Override setEmail method
-     *
-     * @param string email
-     * @return GraduateUser
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-        $this->setUsername($email);
-
-        return $this;
-    }
-
-    /**
-     * Get email
-     *
-     * @return string 
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
 }

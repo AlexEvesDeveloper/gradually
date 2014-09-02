@@ -1,3 +1,8 @@
+gradually_job:
+    resource: "@GraduallyJobBundle/Controller/"
+    type:     annotation
+    prefix:   /jobs
+
 gradually_rest:
     type: rest
     resource: "@GraduallyRestBundle/Resources/config/routing.yml"
