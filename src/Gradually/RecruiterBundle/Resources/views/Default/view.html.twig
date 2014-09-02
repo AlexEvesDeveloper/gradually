@@ -1,3 +1,7 @@
-Name: {{ recruiter.user.companyName }}
-<br>
-Profile Id: {{ recruiter.id }}
+{% extends '::base.html.twig' %}
+
+{% block body %}
+<p>Name: {{ recruiter.user.companyName }}</p>
+<p>Profile Id: {{ recruiter.id }}</p>
+<p><a href="{{ path('gradually_job_recruiterjobmanager_index', {'id' : recruiter.id}) }}">Manage jobs</a></p>
+{% endblock %}

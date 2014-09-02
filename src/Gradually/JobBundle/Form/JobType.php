@@ -19,11 +19,7 @@ class JobType extends AbstractType
             ->add('description')
             ->add('salaryFrom')
             ->add('salaryTo')
-            ->add('created')
-            ->add('updated')
-            ->add('expires')
-            ->add('isActive')
-            ->add('recruiter')
+            ->add('save', 'submit', array('label' => 'Post job'))    
         ;
     }
     

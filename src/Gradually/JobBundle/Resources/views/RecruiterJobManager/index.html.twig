@@ -4,7 +4,9 @@
 <p>Jobs</p>
 
 {% for job in jobs %}
-    <p>{{ job.title }}</p>
+    <p><a href="{{ path('gradually_job_recruiterjobmanager_view', {'id' : recruiter.id, 'jobId' : job.id}) }}">{{ job.title }}</a></p>
 {% endfor %}
+
+<p><a href="{{ path('gradually_job_recruiterjobmanager_add', {'id' : recruiter.id}) }}">Add a new job</a></p>
 
 {% endblock %}
