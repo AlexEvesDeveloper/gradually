@@ -113,37 +113,37 @@ class LoadUserData implements FixtureInterface
         // PURCHASEOPTIONS
         $po = new PurchaseOption();
         $po->setReference('1JOB');
-        $po->setPostCredits(1);
+        $po->setPostingCredits(1);
         $po->setSearchCredits(0);
         $manager->persist($po); 
         
         $po = new PurchaseOption();
         $po->setReference('5JOB');
-        $po->setPostCredits(5);
+        $po->setPostingCredits(5);
         $po->setSearchCredits(0);
         $manager->persist($po); 
 
         $po = new PurchaseOption();
         $po->setReference('1SEARCH');
-        $po->setPostCredits(0);
+        $po->setPostingCredits(0);
         $po->setSearchCredits(1);
         $manager->persist($po);
 
         $po = new PurchaseOption();
         $po->setReference('5SEARCH');
-        $po->setPostCredits(0);
+        $po->setPostingCredits(0);
         $po->setSearchCredits(5);
         $manager->persist($po);
 
         $po = new PurchaseOption();
         $po->setReference('1JOB1SEARCH');
-        $po->setPostCredits(1);
+        $po->setPostingCredits(1);
         $po->setSearchCredits(1);
         $manager->persist($po); 
  
         $po = new PurchaseOption();
         $po->setReference('5JOB5SEARCH');
-        $po->setPostCredits(5);
+        $po->setPostingCredits(5);
         $po->setSearchCredits(5);
         $manager->persist($po); 
 
