@@ -143,4 +143,27 @@ class PurchaseOption
     {
         return $this->transactions;
     }
+
+    /**
+     * Set reference
+     *
+     * @param string $reference
+     * @return PurchaseOption
+     */
+    public function setReference($reference)
+    {
+        $this->reference = $reference;
+
+        return $this;
+    }
+
+    /**
+     * Get reference
+     *
+     * @return string 
+     */
+    public function getReference()
+    {
+        return $this->reference;
+    }
 }

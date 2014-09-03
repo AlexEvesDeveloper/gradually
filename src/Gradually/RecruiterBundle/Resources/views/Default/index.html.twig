@@ -1,9 +1,9 @@
 {% for recruiter in recruiters %}
-	Name: {{ recruiter.firstname }}
+	Name: {{ recruiter.user.companyname }}
 	<br>
-	User Id: {{ recruiter.id }}
+	User Id: {{ recruiter.user.id }}
 	<br>
-	Profile Id: {{ recruiter.profile.id }}
+	Profile Id: {{ recruiter.id }}
 	<br>
 	<br>
 	<br>

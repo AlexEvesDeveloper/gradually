@@ -29,6 +29,16 @@ class RecruiterProfile extends Profile
     private $transactions;
 
     /**
+     * @ORM\Column(name="posting_credits", type="integer")
+     */
+    private $postingCredits;
+
+    /**
+     * @ORM\Column(name="search_credits", type="integer")
+     */
+    private $searchCredits;
+
+    /**
      * Constructor
      */
     public function __construct()

@@ -182,7 +182,7 @@ class LoadUserData implements FixtureInterface
         $q2->setResult('1');
         $q2->setYearAttained(new \DateTime('2013-10-08'));
         $p = new GraduateProfile();
-        $g->setProfile($p);
+        $p->setUser($g);
         $q->setGraduate($p);
         $q2->setGraduate($p);
         $manager->persist($q);
@@ -204,7 +204,7 @@ class LoadUserData implements FixtureInterface
         $q->setResult('2:1');
         $q->setYearAttained(new \DateTime('2012-10-08'));
         $p = new GraduateProfile();
-        $g->setProfile($p);
+        $p->setUser($g);
         $q->setGraduate($p);
         $manager->persist($q);
         $manager->persist($p);
@@ -218,7 +218,7 @@ class LoadUserData implements FixtureInterface
         $r->setPassword(password_hash('reconepwd', PASSWORD_BCRYPT, array('cost' => 12)));
         $r->addRole($roleRecruiter);
         $p = new RecruiterProfile();
-        $r->setProfile($p);
+        $p->setUser($r);
         $j = new Job();
         $j->setTitle('Recruiter One: Job One');
         $j->setDescription('Description for the job');

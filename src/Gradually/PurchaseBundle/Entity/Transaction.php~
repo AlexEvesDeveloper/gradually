@@ -28,9 +28,8 @@ class Transaction
 
     /**
      * @ORM\ManyToOne(targetEntity="PurchaseOption", inversedBy="transactions")
-     * @ORM\Column(name="purchase_option_id")
      */
-    private $purchaseOption;
+    private $option;
 
     /**
      * Get id
@@ -66,25 +65,25 @@ class Transaction
     }
 
     /**
-     * Set purchaseOption
+     * Set option
      *
-     * @param \Gradually\PurchaseBundle\Entity\PurchaseOption $purchaseOption
+     * @param string $option
      * @return Transaction
      */
-    public function setOption(\Gradually\PurchaseBundle\Entity\PurchaseOption $purchaseOption = null)
+    public function setOption($option)
     {
-        $this->purchaseOption = $purchaseOption;
+        $this->option = $option;
 
         return $this;
     }
 
     /**
-     * Get purchaseOption
+     * Get option
      *
-     * @return \Gradually\PurchaseBundle\Entity\PurchaseOption 
+     * @return string 
      */
     public function getOption()
     {
-        return $this->purchaseOption;
+        return $this->option;
     }
 }

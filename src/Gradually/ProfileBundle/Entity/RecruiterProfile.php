@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  * RecruiterProfile
  *
  * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks()
  */
 
 class RecruiterProfile extends Profile
@@ -27,6 +28,16 @@ class RecruiterProfile extends Profile
      * @ORM\OneToMany(targetEntity="\Gradually\PurchaseBundle\Entity\Transaction", mappedBy="recruiter")
      */
     private $transactions;
+
+    /**
+     * @ORM\Column(name="posting_credits", type="integer")
+     */
+    private $postingCredits;
+
+    /**
+     * @ORM\Column(name="search_credits", type="integer")
+     */
+    private $searchCredits;
 
     /**
      * Constructor
@@ -135,5 +146,60 @@ class RecruiterProfile extends Profile
     public function getTransactions()
     {
         return $this->transactions;
+    }
+
+    /**
+     * Set postingCredits
+     *
+     * @param integer $postingCredits
+     * @return RecruiterProfile
+     */
+    public function setPostingCredits($postingCredits)
+    {
+        $this->postingCredits = $postingCredits;
+
+        return $this;
+    }
+
+    /**
+     * Get postingCredits
+     *
+     * @return integer 
+     */
+    public function getPostingCredits()
+    {
+        return $this->postingCredits;
+    }
+
+    /**
+     * Set searchCredits
+     *
+     * @param integer $searchCredits
+     * @return RecruiterProfile
+     */
+    public function setSearchCredits($searchCredits)
+    {
+        $this->searchCredits = $searchCredits;
+
+        return $this;
+    }
+
+    /**
+     * Get searchCredits
+     *
+     * @return integer 
+     */
+    public function getSearchCredits()
+    {
+        return $this->searchCredits;
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function initCredits()
+    {
+        $this->postingCredits = 0;
+        $this->searchCredits = 0;
     }
 }

@@ -69,7 +69,7 @@ abstract class User implements AdvancedUserInterface, \Serializable
     /**
      * @var \Gradually\ProfileBundle\Entity\Profile
      *
-     * @ORM\OneToOne(targetEntity="\Gradually\ProfileBundle\Entity\Profile", inversedBy="user")
+     * @ORM\OneToOne(targetEntity="\Gradually\ProfileBundle\Entity\Profile", mappedBy="user")
      */
     private $profile;
 

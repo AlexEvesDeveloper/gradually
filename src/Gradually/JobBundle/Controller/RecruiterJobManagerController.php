@@ -43,22 +43,35 @@ class RecruiterJobManagerController extends Controller
             return $this->redirect($this->generateUrl('gradually_user_default_login'));
         }
 
+        // get the Recruiter
+        $recruiter = $this->getDoctrine()->getRepository('GraduallyProfileBundle:RecruiterProfile')->find($id);
+
+        // check posting credits
+        if(!($postingCredits = $recruiter->getPostingCredits())){
+            return $this->redirect($this->generateUrl('gradually_purchase_default_index'));
+        }
+
         $job = new Job();
         $form = $this->createForm(new JobType(), $job);
 
         $form->handleRequest($request);
         if($form->isValid()){
-            $em = $this->getDoctrine()->getManager();
-            $recruiter = $em->getRepository('GraduallyProfileBundle:RecruiterProfile')->find($id);
-            
             // attach the job to this recruiter
             $job->setRecruiter($recruiter);
 
+            // decrement posting credits
+            $recruiter->setPostingCredits(--$postingCredits);
+
+            $em = $this->getDoctrine()->getManager();
             $em->persist($job);
+            $em->persist($recruiter);
             $em->flush();
         
             // TODO redirect to global job view
-            return $this->redirect($this->generateUrl('gradually_job_recruiterjobmanager_view', array('jobId' => $job->getId())));
+            return $this->redirect($this->generateUrl('gradually_job_recruiterjobmanager_view', array(
+                'id' => $id,
+                'jobId' => $job->getId()
+            )));
         }
 
         return array(

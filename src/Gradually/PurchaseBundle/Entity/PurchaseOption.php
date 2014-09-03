@@ -31,9 +31,9 @@ class PurchaseOption
     /**
      * @var integer
      *
-     * @ORM\Column(name="postCredits", type="integer")
+     * @ORM\Column(name="postingCredits", type="integer")
      */
-    private $postCredits;
+    private $postingCredits;
 
     /**
      * @var integer
@@ -66,26 +66,26 @@ class PurchaseOption
     }
 
     /**
-     * Set postCredits
+     * Set postingCredits
      *
-     * @param integer $postCredits
+     * @param integer $postingCredits
      * @return PurchaseOption
      */
-    public function setPostCredits($postCredits)
+    public function setPostingCredits($postingCredits)
     {
-        $this->postCredits = $postCredits;
+        $this->postingCredits = $postingCredits;
 
         return $this;
     }
 
     /**
-     * Get postCredits
+     * Get postingCredits
      *
      * @return integer 
      */
-    public function getPostCredits()
+    public function getPostingCredits()
     {
-        return $this->postCredits;
+        return $this->postingCredits;
     }
 
     /**

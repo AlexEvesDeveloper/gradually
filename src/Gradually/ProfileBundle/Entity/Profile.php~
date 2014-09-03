@@ -27,7 +27,7 @@ class Profile
     /**
      * @var \Gradually\UserBundle\Entity\User
      *
-     * @ORM\OneToOne(targetEntity="\Gradually\UserBundle\Entity\User", mappedBy="profile")
+     * @ORM\OneToOne(targetEntity="\Gradually\UserBundle\Entity\User", inversedBy="profile")
      */
     private $user;
 

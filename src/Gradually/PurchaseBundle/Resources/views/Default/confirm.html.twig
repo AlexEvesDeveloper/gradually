@@ -1,0 +1,12 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    {% if recruiter is not null %}
+        {{recruiter.user.companyName}}
+        <p>Remaining posting credits: {{recruiter.postingCredits}}</p>
+        <p>Remaining search credits: {{recruiter.searchCredits}}</p>
+
+        {{ form_start(form) }}
+        {{ form_end(form) }}
+    {% endif %}
+{% endblock %}

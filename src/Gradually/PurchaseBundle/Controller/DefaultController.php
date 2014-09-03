@@ -2,9 +2,11 @@
 
 namespace Gradually\PurchaseBundle\Controller;
 
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Gradually\PurchaseBundle\Entity\Transaction;
 
 class DefaultController extends Controller
 {
@@ -14,6 +16,63 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        return array();
+        $options = $this->getDoctrine()->getRepository('GraduallyPurchaseBundle:PurchaseOption')->findAll();
+
+        return array(
+            'options' => $options
+        );
+    }
+
+    /**
+     * @Route("/{id}", requirements={"id":"\d+"})
+     * @Template()
+     */
+    public function confirmAction(Request $request, $id)
+    {
+        // user must be logged in... 
+        if(($user = $this->getUser()) == null){
+            return $this->redirect($this->generateUrl('gradually_user_default_login')); 
+        }
+        
+        $recruiter = $this->getDoctrine()->getRepository('GraduallyProfileBundle:RecruiterProfile')->findOneBy(
+            array('user' => $user->getId())
+        ); 
+
+        // ...and have ROLE_RECRUITER access
+        if($recruiter === null && !$this->get('security.context')->isGranted('ROLE_RECRUITER') ){
+            throw $this->createAccessDeniedException('Unable to access this page!');
+        }
+
+        $form = $this->createFormBuilder()
+            ->add('save', 'submit', array('label' => 'Confirm purchase'))
+            ->getForm();
+
+        $form->handleRequest($request);
+        if($form->isValid()){
+            $em = $this->getDoctrine()->getManager();
+            
+            // get the correct purchaseoption
+            $purchaseOption = $em->getRepository('GraduallyPurchaseBundle:PurchaseOption')->find($id);
+            
+            // create a transaction
+            $transaction = new Transaction();
+            $transaction->setRecruiter($recruiter);
+            $transaction->setOption($purchaseOption);
+        
+            // increment the credits for the recruiter
+            $currentPostingCredits = $recruiter->getPostingCredits();
+            $currentSearchCredits = $recruiter->getSearchCredits();
+            $recruiter->setPostingCredits($currentPostingCredits += $purchaseOption->getPostingCredits());
+            $recruiter->setSearchCredits($currentSearchCredits += $purchaseOption->getSearchCredits());
+
+            $em->persist($transaction);
+            $em->persist($recruiter);
+            $em->flush();
+        }
+
+        return array(
+            'recruiter' => $recruiter,
+            'form' => $form->createView()
+        );
     }
 }

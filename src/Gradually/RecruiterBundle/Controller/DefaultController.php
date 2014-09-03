@@ -20,7 +20,7 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-    	$recruiters = $this->getDoctrine()->getManager()->getRepository('GraduallyUserBundle:RecruiterUser')->findAll();
+    	$recruiters = $this->getDoctrine()->getManager()->getRepository('GraduallyProfileBundle:RecruiterProfile')->findAll();
 
         return array('recruiters' => $recruiters);
     }

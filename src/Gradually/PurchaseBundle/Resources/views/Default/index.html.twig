@@ -2,10 +2,7 @@
 
 {% block body %}
 <h3>Choose a purchase option</h3>
-<a href="">1 job post</a><br>
-<a href="">5 job posts</a><br>
-<a href="">1 graduate search</a><br>
-<a href="">5 graduate searches</a><br>
-<a href="">1 job post and 1 graduate search</a><br>
-<a href="">5 job posts and 5 graduate searches</a><br>
+{% for option in options %}
+    <a href="{{ path('gradually_purchase_default_confirm', {'id' : option.id}) }}">{{option.reference}}</a><br>
+{% endfor %}
 {% endblock %}
