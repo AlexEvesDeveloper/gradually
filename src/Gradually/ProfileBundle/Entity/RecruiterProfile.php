@@ -24,11 +24,18 @@ class RecruiterProfile extends Profile
     private $jobs;
 
     /**
+     * @ORM\OneToMany(targetEntity="\Gradually\PurchaseBundle\Entity\Transaction", mappedBy="recruiter")
+     */
+    private $transactions;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
-        $this->graduates = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->graduates = new ArrayCollection();
+        $this->jobs = new ArrayCollection();
+        $this->transactions = new ArrayCollection();
     }
 
     /**
@@ -95,5 +102,38 @@ class RecruiterProfile extends Profile
     public function getJobs()
     {
         return $this->jobs;
+    }
+
+    /**
+     * Add transactions
+     *
+     * @param \Gradually\PurchaseBundle\Entity\Transaction $transactions
+     * @return RecruiterProfile
+     */
+    public function addTransaction(\Gradually\PurchaseBundle\Entity\Transaction $transactions)
+    {
+        $this->transactions[] = $transactions;
+
+        return $this;
+    }
+
+    /**
+     * Remove transactions
+     *
+     * @param \Gradually\PurchaseBundle\Entity\Transaction $transactions
+     */
+    public function removeTransaction(\Gradually\PurchaseBundle\Entity\Transaction $transactions)
+    {
+        $this->transactions->removeElement($transactions);
+    }
+
+    /**
+     * Get transactions
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTransactions()
+    {
+        return $this->transactions;
     }
 }

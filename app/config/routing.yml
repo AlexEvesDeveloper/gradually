@@ -1,3 +1,8 @@
+gradually_purchase:
+    resource: "@GraduallyPurchaseBundle/Controller/"
+    type:     annotation
+    prefix:   /purchase
+
 gradually_job:
     resource: "@GraduallyJobBundle/Controller/"
     type:     annotation

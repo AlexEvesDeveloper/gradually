@@ -16,6 +16,7 @@ use Gradually\UtilBundle\Entity\Degree;
 use Gradually\UtilBundle\Entity\DegreeLevel;
 use Gradually\GraduateBundle\Entity\Qualification;
 use Gradually\JobBundle\Entity\Job;
+use Gradually\PurchaseBundle\Entity\PurchaseOption;
 
 class LoadUserData implements FixtureInterface
 {
@@ -89,10 +90,15 @@ class LoadUserData implements FixtureInterface
         $manager->persist($uniLo);
 
     	// ROLES
-    	$roleNormal = new Role();
-    	$roleNormal->setName('normal');
-    	$roleNormal->setRole('ROLE_NORMAL');
-    	$manager->persist($roleNormal);
+    	$roleRecruiter = new Role();
+    	$roleRecruiter->setName('recruiter');
+    	$roleRecruiter->setRole('ROLE_RECRUITER');
+    	$manager->persist($roleRecruiter);
+        
+        $roleGraduate = new Role();
+    	$roleGraduate->setName('graduate');
+    	$roleGraduate->setRole('ROLE_GRADUATE');
+    	$manager->persist($roleGraduate);
 
     	$roleAdmin = new Role();
     	$roleAdmin->setName('admin');
@@ -103,6 +109,43 @@ class LoadUserData implements FixtureInterface
     	$roleSuper->setName('super');
     	$roleSuper->setRole('ROLE_SUPER');
     	$manager->persist($roleSuper);
+
+        // PURCHASEOPTIONS
+        $po = new PurchaseOption();
+        $po->setReference('1JOB');
+        $po->setPostCredits(1);
+        $po->setSearchCredits(0);
+        $manager->persist($po); 
+        
+        $po = new PurchaseOption();
+        $po->setReference('5JOB');
+        $po->setPostCredits(5);
+        $po->setSearchCredits(0);
+        $manager->persist($po); 
+
+        $po = new PurchaseOption();
+        $po->setReference('1SEARCH');
+        $po->setPostCredits(0);
+        $po->setSearchCredits(1);
+        $manager->persist($po);
+
+        $po = new PurchaseOption();
+        $po->setReference('5SEARCH');
+        $po->setPostCredits(0);
+        $po->setSearchCredits(5);
+        $manager->persist($po);
+
+        $po = new PurchaseOption();
+        $po->setReference('1JOB1SEARCH');
+        $po->setPostCredits(1);
+        $po->setSearchCredits(1);
+        $manager->persist($po); 
+ 
+        $po = new PurchaseOption();
+        $po->setReference('5JOB5SEARCH');
+        $po->setPostCredits(5);
+        $po->setSearchCredits(5);
+        $manager->persist($po); 
 
     	// USERS
         $userSuper = new AdminUser();
@@ -125,7 +168,7 @@ class LoadUserData implements FixtureInterface
         $g->setEmail('grad@test.com');
         $g->setUsername('grad@test.com');
         $g->setPassword(password_hash('gradpwd', PASSWORD_BCRYPT, array('cost' => 12)));
-        $g->addRole($roleNormal);
+        $g->addRole($roleGraduate);
         $q = new Qualification();
         $q->setUniversity($uniM);
         $q->setDegree($degCs);
@@ -153,7 +196,7 @@ class LoadUserData implements FixtureInterface
         $g->setEmail('grad2@test.com');
         $g->setUsername('grad2@test.com');
         $g->setPassword(password_hash('grad2pwd', PASSWORD_BCRYPT, array('cost' => 12)));
-        $g->addRole($roleNormal);
+        $g->addRole($roleGraduate);
         $q = new Qualification();
         $q->setUniversity($uniLo);
         $q->setDegree($degJ);
@@ -173,7 +216,7 @@ class LoadUserData implements FixtureInterface
         $r->setEmail("recone@test.com");
         $r->setUsername("Recruiter One");
         $r->setPassword(password_hash('reconepwd', PASSWORD_BCRYPT, array('cost' => 12)));
-        $r->addRole($roleNormal);
+        $r->addRole($roleRecruiter);
         $p = new RecruiterProfile();
         $r->setProfile($p);
         $j = new Job();
