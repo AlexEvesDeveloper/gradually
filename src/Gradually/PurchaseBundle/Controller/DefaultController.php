@@ -44,6 +44,8 @@ class DefaultController extends Controller
         }
 
         $form = $this->createFormBuilder()
+	    ->setAction('https://test.sagepay.com/Simulator/VSPFormGateway.asp')
+	    ->add('VPSProtocol', 'hidden', array('data' => '2.23', 'property_path' => 'false'))
             ->add('save', 'submit', array('label' => 'Confirm purchase'))
             ->getForm();
 
@@ -70,9 +72,36 @@ class DefaultController extends Controller
             $em->flush();
         }
 
+	$dataPadded = $this->pkcs5_pad('Currency=GBP', 16);
+	$crypt = $this->encryptFormData($dataPadded);
+
         return array(
             'recruiter' => $recruiter,
-            'form' => $form->createView()
-        );
+            'form' => $form->createView(),
+            'crypt' => $crypt
+	);
+    }
+
+    private function pkcs5_pad($input)
+    {
+
+        $blockSize = 16;
+        $padd = "";
+
+        // Pad input to an even block size boundary.
+        $length = $blockSize - (strlen($input) % $blockSize);
+        for ($i = 1; $i <= $length; $i++)
+        {
+            $padd .= chr($length);
+        }
+
+        return $input . $padd;
+    }
+
+    private function encryptFormData($input)
+    {
+	$key = 'VwOqLydQ4sveNRjY';
+	$crypt = mcrypt_encrypt(MCRYPT_RIJNDAEL_128, $key, $input, MCRYPT_MODE_CBC, $key);
+	return "@" . strtoupper(bin2hex($crypt));
     }
 }
