@@ -35,7 +35,7 @@ ul{
 
 .jumbotron-inner{
 	position: relative;
-	top: -175px;
+	margin-top: -175px;
 }
 
 .jumbotron-inner .jumbotron-inner-section{
@@ -53,4 +53,14 @@ ul{
 
 .jumbotron-home .btn{
 	width: 150px;
+}
+
+/* MEDIA */
+@media (max-width: 1197px){
+	.jumbotron-inner{
+		height: auto !important;
+		width: 100% !important;
+		margin-top: 0;
+		background: none repeat scroll 0 0 #0ca788;
+	}	
 }
