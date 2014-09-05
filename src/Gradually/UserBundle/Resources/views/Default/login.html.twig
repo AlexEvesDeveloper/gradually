@@ -10,37 +10,37 @@
 	    <div class="col-md-2"></div>
             <div class="col-md-4">
                 <form class="form-signin" action="{{ path('gradually_user_default_logincheck') }}" method="post">
-		    <h2 class="form-signin-heading center-align">Graduates</h2>
+		            <h2 class="form-signin-heading center-align">Graduates</h2>
                     <div class="input-group input-group-small">
-		    	<span class="input-group-addon">@</span>
-		    	<input class="input-block-level form-control" type="text" id="username" name="_username" value="{{ last_username }}" placeholder="E-mail address" />
-		    </div>
-		    <br>
-		    <div class="input-group input-group-small">
-                    	<span class="input-group-addon password-addon">?</span>
-			<input class="input-block-level form-control" type="password" id="password" name="_password" placeholder="Password" />
+		    	        <span class="input-group-addon glyphicon glyphicon-envelope"></span>
+		    	        <input class="input-block-level form-control login-input" type="text" id="username" name="_username" value="{{ last_username }}" placeholder="E-mail address" />
+		            </div>
+		            <br>
+		            <div class="input-group input-group-small">
+                    	<span class="input-group-addon glyphicon glyphicon-question-sign"></span>
+			            <input class="input-block-level form-control login-input" type="password" id="password" name="_password" placeholder="Password" />
                     </div>
-		    <br>
-		    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+		            <br>
+		            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
                     <p class="center-align"><button class="btn btn-large btn-primary" type="submit">Sign in</button></p>
                 </form>
             </div><!-- col-md-4 -->
+            
             <div class="col-md-4">
                 <form class="form-signin" action="{{ path('gradually_user_default_logincheck') }}" method="post">
-		    <h2 class="form-signin-heading center-align">Recruiters</h2>
+		            <h2 class="form-signin-heading center-align">Recruiters</h2>
                     <div class="input-group input-group-small">
-			<span class="input-group-addon glyphicon glyphicon-tag"></span>
-		    	<input class="input-block-level form-control" type="text" id="username" name="_username" value="{{ last_username }}" placeholder="Company name" />
+			            <span class="input-group-addon glyphicon glyphicon-tag"></span>
+		    	        <input class="input-block-level form-control login-input" type="text" id="username" name="_username" value="{{ last_username }}" placeholder="Company name" />
                     </div>
-		    <br>
-		    <div class="input-group input-group-small">
-			<span class="input-group-addon password-addon">?</span>
-                    	<input class="input-block-level form-control" type="password" id="password" name="_password" placeholder="Password" />
-		    </div>
-		    <br>
-		    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-        
-		    <p class="center-align"><button class="btn btn-large btn-primary" type="submit">Sign in</button></p>
+		            <br>
+		            <div class="input-group input-group-small">
+			            <span class="input-group-addon glyphicon glyphicon-question-sign"></span>
+                    	<input class="input-block-level form-control login-input" type="password" id="password" name="_password" placeholder="Password" />
+		            </div>
+		            <br>
+		            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+		            <p class="center-align"><button class="btn btn-large btn-primary" type="submit">Sign in</button></p>
                 </form>
             </div><!-- col-md-6 -->
 	    <div class="col-md-2"></div>
