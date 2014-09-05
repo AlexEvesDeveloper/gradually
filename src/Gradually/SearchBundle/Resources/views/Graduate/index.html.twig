@@ -1,0 +1,9 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+<div class="container under-navbar">
+	{% for graduate in graduates %}
+		<p>Name: {{graduate.user.firstname}} {{graduate.user.lastname}}</p>
+	{% endfor %}
+</div>
+{% endblock %}

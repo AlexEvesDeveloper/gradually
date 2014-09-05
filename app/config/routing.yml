@@ -1,7 +1,7 @@
 gradually_search:
     resource: "@GraduallySearchBundle/Controller/"
     type:     annotation
-    prefix:   /
+    prefix:   /search
 
 gradually_home:
     resource: "@GraduallyHomeBundle/Controller/"
