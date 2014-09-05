@@ -1,19 +1,7 @@
 {% extends "::base.html.twig" %}
 
 {% block body %}
-	{% for graduate in graduates %}
-		<p>ID: {{ graduate.profile.id }}</p>
-		<p>Name: {{ graduate.firstname }}</p>
-		<p>Qualifications:</p>
-		{% for qualification in graduate.profile.qualifications %}
-			<ul>
-				<li>University: {{ qualification.university.name }}</li>
-				<li>Degree: {{ qualification.degree.title }}</li>
-                <li>Level: {{ qualification.degreelevel.title }}</li>
-                <li>Honors: {{ qualification.result }}</li>
-				<li>Year Attained: {{ qualification.yearAttained | date("Y") }}</li>
-			</ul>
-		{% endfor %}
-		<hr>
-	{% endfor %}
+<div class="container under-navbar">
+	<a class="btn btn-primary" href="{{path('gradually_graduate_default_search')}}">Search</a>
+</div>
 {% endblock %}

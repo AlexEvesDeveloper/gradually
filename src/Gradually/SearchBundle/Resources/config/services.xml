@@ -6,11 +6,11 @@
 
     <!--
     <parameters>
-        <parameter key="gradually_user.example.class">Gradually\UserBundle\Example</parameter>
+        <parameter key="gradually_search.example.class">Gradually\SearchBundle\Example</parameter>
     </parameters>
 
     <services>
-        <service id="gradually_user.example" class="%gradually_user.example.class%">
+        <service id="gradually_search.example" class="%gradually_search.example.class%">
             <argument type="service" id="service_id" />
             <argument>plain_value</argument>
             <argument>%parameter_name%</argument>

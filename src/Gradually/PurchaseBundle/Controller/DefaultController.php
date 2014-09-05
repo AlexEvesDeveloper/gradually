@@ -44,8 +44,6 @@ class DefaultController extends Controller
         }
 
         $form = $this->createFormBuilder()
-	    ->setAction('https://test.sagepay.com/Simulator/VSPFormGateway.asp')
-	    ->add('VPSProtocol', 'hidden', array('data' => '2.23', 'property_path' => 'false'))
             ->add('save', 'submit', array('label' => 'Confirm purchase'))
             ->getForm();
 

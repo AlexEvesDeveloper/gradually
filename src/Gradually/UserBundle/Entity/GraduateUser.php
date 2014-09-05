@@ -72,4 +72,14 @@ class GraduateUser extends User
     {
         return $this->lastName;
     }
+
+    /**
+     * Get type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return parent::TYPE_GRADUATE;
+    }
 }

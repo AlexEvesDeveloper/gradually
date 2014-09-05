@@ -13,6 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\InheritanceType("SINGLE_TABLE")
  * @ORM\DiscriminatorColumn(name="type", type="string")
  * @ORM\DiscriminatorMap({"graduate" = "GraduateUser", "recruiter" = "RecruiterUser", "admin" = "AdminUser"})
+ * @ORM\Entity(repositoryClass="Gradually\UserBundle\Entity\UserRepository")
  */
 abstract class User implements AdvancedUserInterface, \Serializable
 {
@@ -72,6 +73,12 @@ abstract class User implements AdvancedUserInterface, \Serializable
      * @ORM\OneToOne(targetEntity="\Gradually\ProfileBundle\Entity\Profile", mappedBy="user")
      */
     private $profile;
+
+    const TYPE_ADMIN = 'ADMIN';
+    const TYPE_GRADUATE = 'GRADUATE';
+    const TYPE_RECRUITER = 'RECRUITER';
+
+    abstract public function getType();
 
     /**
      * Constructor.

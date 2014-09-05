@@ -25,9 +25,12 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-    	$graduates = $this->getDoctrine()->getManager()->getRepository('GraduallyUserBundle:GraduateUser')->findAll();
+        // graduate's can't access this page
+        if($this->getUser()->getType() == 'GRADUATE'){
+            throw $this->createAccessDeniedException('Unable to access this page!');
+        }
 
-        return array('graduates' => $graduates);
+        return array();
     }
 
     /**
@@ -107,5 +110,30 @@ class DefaultController extends Controller
         }
 
         return array('form' => $form->createView());
+    }
+
+    /**
+     * @Route("/search")
+     * @Template()
+     */
+    public function searchAction(Request $request)
+    {
+        // redirect to login if not logged in
+        if(($user = $this->getUser()) == null){
+            return $this->redirect($this->generateUrl('gradually_user_default_login'));
+        }
+
+        // recruiters without search credits redirect to purchase page
+        if($user->getType() == 'RECRUITER'){
+            if(!$user->getProfile()->getSearchCredits()){
+                return $this->redirect($this->generateUrl('gradually_purchase_default_index'));
+            }
+        }
+
+        $graduates = $this->getDoctrine()->getRepository('GraduallyProfileBundle:GraduateProfile')->findAll();
+
+        return array(
+            'graduates' => $graduates
+        );
     }
 }

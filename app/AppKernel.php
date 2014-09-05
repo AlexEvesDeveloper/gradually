@@ -29,6 +29,7 @@ class AppKernel extends Kernel
             new Gradually\JobBundle\GraduallyJobBundle(),
             new Gradually\PurchaseBundle\GraduallyPurchaseBundle(),
             new Gradually\HomeBundle\GraduallyHomeBundle(),
+            new Gradually\SearchBundle\GraduallySearchBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
