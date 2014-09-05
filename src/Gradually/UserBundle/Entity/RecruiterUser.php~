@@ -41,4 +41,14 @@ class RecruiterUser extends User
     {
         return $this->companyName;
     }
+
+    /**
+     * Get type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return parent::TYPE_RECRUITER;
+    }
 }

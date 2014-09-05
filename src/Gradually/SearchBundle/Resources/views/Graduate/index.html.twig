@@ -2,8 +2,13 @@
 
 {% block body %}
 <div class="container under-navbar">
-	{% for graduate in graduates %}
-		<p>Name: {{graduate.user.firstname}} {{graduate.user.lastname}}</p>
-	{% endfor %}
+	{{form_start(form)}}
+		{{form_label(form.university)}}
+		{{form_widget(form.university)}}
+		{{form_label(form.degree)}}
+		{{form_widget(form.degree)}}
+		{{form_label(form.save)}}
+		{{form_widget(form.save, {attr : {class: 'btn btn-primary'}})}}
+	{{form_end(form)}}
 </div>
 {% endblock %}

@@ -1,0 +1,43 @@
+<?php
+
+namespace Gradually\SearchBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GraduateSearch
+ *
+ * @ORM\Table()
+ * @ORM\Entity
+ */
+class GraduateSearch
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\OneToOne(targetEntity="\Gradually\UtilBundle\Entity\University")
+     */
+    private $university;
+
+    /**
+     * @ORM\OneToOne(targetEntity="\Gradually\UtilBundle\Entity\Degree")
+     */
+    private $degree;
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+}

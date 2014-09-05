@@ -74,6 +74,12 @@ abstract class User implements AdvancedUserInterface, \Serializable
      */
     private $profile;
 
+    const TYPE_ADMIN = 'ADMIN';
+    const TYPE_GRADUATE = 'GRADUATE';
+    const TYPE_RECRUITER = 'RECRUITER';
+
+    abstract public function getType();
+
     /**
      * Constructor.
      */

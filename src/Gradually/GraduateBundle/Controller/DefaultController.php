@@ -20,20 +20,6 @@ use Gradually\GraduateBundle\Form\QualificationType;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/")
-     * @Template()
-     */
-    public function indexAction()
-    {
-        // graduate's can't access this page
-        if($this->getUser()->getType() == 'GRADUATE'){
-            throw $this->createAccessDeniedException('Unable to access this page!');
-        }
-
-        return array();
-    }
-
-    /**
      * @Route("/{id}", requirements={"id" = "\d+"})
      * @Template()
      */
