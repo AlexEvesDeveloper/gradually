@@ -7,7 +7,11 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Qualification
  *
- * @ORM\Table(name="qualifications")
+ * @ORM\Table(name="qualifications", indexes={
+ *   @ORM\Index(name="year_attained_and_result", columns={"year_attained", "result"}),
+ *   @ORM\Index(name="year_attained", columns={"year_attained"}), 
+ *   @ORM\Index(name="result", columns={"result"})
+ * })
  * @ORM\Entity
  */
 class Qualification
@@ -59,7 +63,7 @@ class Qualification
     /**
      * @var \Date
      *
-     * @ORM\Column(name="yearAttained", type="date")
+     * @ORM\Column(name="year_attained", type="date")
      */
     private $yearAttained;
 

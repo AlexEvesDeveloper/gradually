@@ -5,6 +5,7 @@ namespace Gradually\SearchBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Doctrine\ORM\EntityRepository;
 
 class GraduateSearchType extends AbstractType
 {
@@ -16,10 +17,32 @@ class GraduateSearchType extends AbstractType
     {
         $builder
             ->add('university', 'entity', array(
-	    	'class' => 'Gradually\UtilBundle\Entity\University'
+	    	'class' => 'Gradually\UtilBundle\Entity\University',
+		'multiple' => false,
+		'expanded' => false,
+		'empty_value' => 'All',
+		'property' => 'name',
+		'required' => false,
+		'query_builder' => function(EntityRepository $er){
+			return $er->createQueryBuilder('university')->orderBy('university.name', 'ASC');
+		},
 	    ))
             ->add('degree', 'entity', array(
-		'class' => 'Gradually\UtilBundle\Entity\Degree'
+		'class' => 'Gradually\UtilBundle\Entity\Degree',
+		'multiple' => false,
+		'expanded' => false,
+		'empty_value' => 'All',
+		'property' => 'title',
+		'required' => false,
+		'query_builder' => function(EntityRepository $er){
+			return $er->createQueryBuilder('degree')->orderBy('degree.title', 'ASC');
+		},
+	    ))
+	    ->add('yearAttained', 'text', array(
+		'required' => false
+	    ))
+	    ->add('result', 'text', array(
+		'required' => false
 	    ))
 	    ->add('save', 'submit', array('label' => 'Search'))
         ;

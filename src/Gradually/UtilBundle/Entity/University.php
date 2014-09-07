@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  * University
  *
  * @ORM\Table(name="universities", indexes={@ORM\Index(name="university_name", columns={"name"})})
- * @ORM\Entity
+ * @ORM\Entity()
  */
 class University
 {

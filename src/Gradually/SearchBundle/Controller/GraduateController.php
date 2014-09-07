@@ -20,6 +20,8 @@ class GraduateController extends Controller
      */
     public function indexAction(Request $request)
     {
+	// initialise empty search results
+	$graduates = array();
 	$graduateSearch = new GraduateSearch();
 	$form = $this->createForm(new GraduateSearchType(), $graduateSearch);
 
@@ -42,14 +44,52 @@ class GraduateController extends Controller
 		    $currentCredits = $user->getProfile()->getSearchCredits();
 		    $user->getProfile()->setSearchCredits(--$currentCredits);
 		    $em->persist($user);
+	    	    $em->flush();
 		}
 	    }
 
-	    $em->flush();
+	    $queryString = '
+		SELECT g, q, u, un, d FROM GraduallyProfileBundle:GraduateProfile g
+		JOIN g.user u
+	    	JOIN g.qualifications q
+		JOIN q.university un
+		JOIN q.degree d
+		WHERE u.isActive = :isActive
+	    ';
+
+	    $queryParams = array();
+	    $queryParams['isActive'] = true;
+
+	    if(($university = $form->getData()->getUniversity()) !== null){
+	   	$queryString .= " AND un.id = :university";
+		$queryParams['university'] = $university->getId(); 
+	    }
+
+	    if(($degree = $form->getData()->getDegree()) !== null){
+	    	$queryString .= " AND d.id = :degree";
+	    	$queryParams['degree'] = $degree->getId();
+	    }
+
+	    if(($yearAttained = $form->getData()->getYearAttained()) !== null){
+		$queryString .= " AND q.yearAttained = :year";
+		$queryParams['year']  = sprintf('%s-01-01', $yearAttained);
+	    }
+
+	    if(($result = $form->getData()->getResult()) !== null){
+	    	$queryString .= " AND q.result = :result";
+	        $queryParams['result'] = $result;
+	    }
+	    //print "<pre>" . $queryString . "<br>";
+
+	    $queryString .= " ORDER BY g.id ASC";
+
+	    $query = $this->getDoctrine()->getManager()->createQuery($queryString)->setParameters($queryParams);
+	    $graduates = $query->getResult();
 	}
 
 	return array(
-	    'form' => $form->createView()
+	    'form' => $form->createView(),
+	    'graduates' => $graduates
 	);
     }
 
@@ -57,7 +97,7 @@ class GraduateController extends Controller
      * @Route("/results")
      * @Template()
      */
-    public function resultsAction()
+    public function resultsAction($results)
     {
 	$query = $this->getDoctrine()->getManager()
         	->createQuery('

@@ -32,6 +32,16 @@ class GraduateSearch
     private $degree;
 
     /**
+     * @ORM\Column(name="year_attained", type="string", length=4)
+     */
+    private $yearAttained;
+
+    /**
+     * @ORM\Column(name="result", type="string", length=3)
+     */
+    private $result;
+   
+    /**
      * Get id
      *
      * @return integer 
@@ -85,5 +95,51 @@ class GraduateSearch
     public function getDegree()
     {
         return $this->degree;
+    }
+
+    /**
+     * Set yearAttained
+     *
+     * @param string $yearAttained
+     * @return GraduateSearch
+     */
+    public function setYearAttained($yearAttained)
+    {
+        $this->yearAttained = $yearAttained;
+
+        return $this;
+    }
+
+    /**
+     * Get yearAttained
+     *
+     * @return string 
+     */
+    public function getYearAttained()
+    {
+        return $this->yearAttained;
+    }
+
+    /**
+     * Set result
+     *
+     * @param string $result
+     * @return GraduateSearch
+     */
+    public function setResult($result)
+    {
+        $this->result = $result;
+
+        return $this;
+    }
+
+    /**
+     * Get result
+     *
+     * @return string 
+     */
+    public function getResult()
+    {
+        return $this->result;
     }
 }
