@@ -65,4 +65,25 @@ class GraduateSearchType extends AbstractType
     {
         return 'gradually_searchbundle_graduatesearch';
     }
+
+    /**
+     * Return an array that is used by the SearchHandler.
+     * Each item represents a filter that was placed on the search.
+     * There should be an entry for each field defined above.
+	 * 'field' => name of field declared above
+	 * 'property' => the db column (entity property) against which the input will be compared against
+     * 'owningEntity' => the entity to which the property belongs
+     * 'isEntity' => is the field an entity?
+     *
+     * @return array
+     */
+    public static function getFields()
+    {
+    	return array(
+    		array('field' => 'university', 'property' => 'id', 'owningEntity' => 'university', 'isEntity' => true),
+    		array('field' => 'degree', 'property' => 'id', 'owningEntity' => 'degree', 'isEntity' => true),
+    		array('field' => 'yearAttained', 'property' => 'yearAttained', 'owningEntity' => 'qualification', 'isEntity' => false),
+    		array('field' => 'result', 'property' => 'result', 'owningEntity' => 'qualification', 'isEntity' => false)
+    	);
+    }
 }

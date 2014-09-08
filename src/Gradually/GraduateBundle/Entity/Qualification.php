@@ -61,9 +61,9 @@ class Qualification
     private $result;
 
     /**
-     * @var \Date
+     * @var integer
      *
-     * @ORM\Column(name="year_attained", type="date")
+     * @ORM\Column(name="year_attained", type="smallint")
      */
     private $yearAttained;
 
@@ -104,10 +104,10 @@ class Qualification
     /**
      * Set yearAttained
      *
-     * @param \DateTime $yearAttained
+     * @param $yearAttained
      * @return Qualification
      */
-    public function setYearAttained(\DateTime $yearAttained = null)
+    public function setYearAttained($yearAttained)
     {
         $this->yearAttained = $yearAttained;
 
@@ -117,7 +117,7 @@ class Qualification
     /**
      * Get yearAttained
      *
-     * @return \DateTime 
+     * @return integer 
      */
     public function getYearAttained()
     {

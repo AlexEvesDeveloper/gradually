@@ -1,0 +1,4 @@
+services:
+    graduate_search_handler:
+        class: Gradually\SearchBundle\Classes\GraduateSearchHandler
+        arguments: ['@doctrine']

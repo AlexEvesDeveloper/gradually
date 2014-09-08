@@ -27,127 +27,31 @@ class LoadUserData implements FixtureInterface
     {
 
         // UNIVERSITIES
-	$universities = $this->createUniversities($manager);
+		$universities = $this->createUniversities($manager);
 
         // DEGREE LEVELS
-	$degreeLevels = $this->createDegreeLevels($manager);
+		$degreeLevels = $this->createDegreeLevels($manager);
 
         // DEGREES
-	$degrees = $this->createDegrees($manager, $degreeLevels);
+		$degrees = $this->createDegrees($manager, $degreeLevels);
 
         // CONNECT UNIS AND DEGREES
-	$this->connectUniversitiesToDegrees($manager, $universities, $degrees);
+		$this->connectUniversitiesToDegrees($manager, $universities, $degrees);
 
     	// ROLES
-	$roles = $this->createRoles($manager);
-        
-	// PURCHASEOPTIONS
-	$purchaseOptions = $this->createPurchaseOptions($manager);
-	
+		$roles = $this->createRoles($manager);
+	        
+		// PURCHASEOPTIONS
+		$purchaseOptions = $this->createPurchaseOptions($manager);
+		
     	// USERS
-	$adminUsers = $this->createAdminUsers($manager, $roles['admin']);
-	$superUsers = $this->createSuperUsers($manager, $roles['super']);
-	$graduateUsers = $this->createGraduateUsers($manager, $roles['graduate'], $universities, $degrees, $degreeLevels);
-	$recruiterUsers = $this->createRecruiterUsers($manager, $roles['recruiter']);
-
-	// JOBS
-	$jobs = $this->createJobs($manager, $recruiterUsers);
-/*
-
-        $r = new RecruiterUser();
-        $r->setCompanyName("Recruiter One");
-        $r->setEmail("recone@test.com");
-        $r->setUsername("Recruiter One");
-        $r->setPassword(password_hash('reconepwd', PASSWORD_BCRYPT, array('cost' => 12)));
-        $r->addRole($roleRecruiter);
-        $p = new RecruiterProfile();
-        $p->setUser($r);
-        $j = new Job();
-        $j->setTitle('Recruiter One: Job One');
-        $j->setDescription('Description for the job');
-        $j->setSalaryFrom('20000');
-        $j->setSalaryTo('25000');
-        $j->setRecruiter($p);
-        $manager->persist($p);
-        $manager->persist($j);
-        $manager->persist($r);
-*/
-
-/*
-        $userGraduate = new GraduateUser();
-        $userGraduate->setUsername('graduate');
-        $userGraduate->setPassword(password_hash('graduatepwd', PASSWORD_BCRYPT, array('cost' => 12)));
-        $userGraduate->setFirstName('Graduate');
-        $userGraduate->setLastName('User');
-        $userGraduate->addRole($roleNormal);
-        $userGraduate->setIsActive(1);
-        $qual = new Qualification();
-        $qual->setUniversity($uniM);
-        $qual->setDegree($degCsBsc);
-        $qual->setResult('2:1');
-        $qual->setYearAttained(new \DateTime('2012-10-08'));
-        $profile = new GraduateProfile();
-        $profile->addQualification($qual);
-        $qual->setGraduate($profile);
-        $userGraduate->setProfile($profile);
-        $manager->persist($qual);
-        $manager->persist($profile);
-        $manager->persist($userGraduate);
-
-        $userRecruiter = new RecruiterUser();
-        $userRecruiter->setUsername('recruiter');
-        $userRecruiter->setPassword(password_hash('recruiterpwd', PASSWORD_BCRYPT, array('cost' => 12)));
-        $userRecruiter->setFirstName('Recruiter');
-        $userRecruiter->setLastName('User');
-        $userRecruiter->addRole($roleNormal);
-        $userRecruiter->setIsActive(1);
-        $profile = new RecruiterProfile();
-        $userRecruiter->setProfile($profile);
-        $manager->persist($profile);
-        $manager->persist($userRecruiter);
-
-        // extra users
-        $user = new GraduateUser();
-        $user->setUsername('graduatetwo');
-        $user->setPassword(password_hash('graduatetwopwd', PASSWORD_BCRYPT, array('cost' => 12)));
-        $user->setFirstName('Graduate Two');
-        $user->setLastName('User');
-        $user->addRole($roleNormal);
-        $qual = new Qualification();
-        $qual->setUniversity($uniLo);
-        $qual->setDegree($degJBa);
-        $qual->setResult('First');
-        $qual->setYearAttained(new \DateTime('2013-10-10'));
-        $qual2 = new Qualification();
-        $qual2->setUniversity($uniLo);
-        $qual2->setDegree($degJMa);
-        $qual2->setResult('2:2');
-        $qual2->setYearAttained(new \DateTime('2014-10-10'));
-        $profile = new GraduateProfile();
-        $profile->addQualification($qual);
-        $profile->addQualification($qual2);
-        $qual->setGraduate($profile);
-        $qual2->setGraduate($profile);
-        $user->setProfile($profile);
-        $manager->persist($qual);
-        $manager->persist($qual2);
-        $manager->persist($profile);
-        $manager->persist($user);   
-        
-
-        $user = new RecruiterUser();
-        $user->setUsername('recruitertwo');
-        $user->setPassword(password_hash('recruitertwopwd', PASSWORD_BCRYPT, array('cost' => 12)));
-        $user->setFirstName('Recruiter Two');
-        $user->setLastName('User');
-        $user->addRole($roleNormal);
-        $profile = new RecruiterProfile();
-        $user->setProfile($profile);
-        $manager->persist($profile);
-        $manager->persist($user); 
-
-*/
-
+		$adminUsers = $this->createAdminUsers($manager, $roles['admin']);
+		$superUsers = $this->createSuperUsers($manager, $roles['super']);
+		$graduateUsers = $this->createGraduateUsers($manager, $roles['graduate'], $universities, $degrees, $degreeLevels);
+		$recruiterUsers = $this->createRecruiterUsers($manager, $roles['recruiter']);
+	
+		// JOBS
+		$jobs = $this->createJobs($manager, $recruiterUsers);
     }
 
 	protected function createUniversities($manager)
@@ -339,7 +243,7 @@ class LoadUserData implements FixtureInterface
 	protected function createGraduateUsers($manager, $role, $universities, $degrees, $degreeLevels)
 	{
 		$return = array();
-		for($i = 1; $i < 2001; $i++){
+		for($i = 1; $i < 101; $i++){
 			$g = new GraduateUser();
 			$g->setFirstName(sprintf('Graduate %d', $i));
 			$g->setLastName('Test');
@@ -380,9 +284,8 @@ class LoadUserData implements FixtureInterface
 						break;
 				}
 				// random year
-				$randYear = rand(10, 14);
-				$year = sprintf('20%d', $randYear);
-				$q->setYearAttained(new \DateTime(sprintf('%s-01-01', $year)));
+				$randYear = rand(2010, 2014);
+				$q->setYearAttained($randYear);
 				
 				$q->setGraduate($p);	
 				$manager->persist($q);
