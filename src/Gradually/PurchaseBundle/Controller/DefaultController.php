@@ -34,9 +34,7 @@ class DefaultController extends Controller
             return $this->redirect($this->generateUrl('gradually_user_default_login')); 
         }
         
-        $recruiter = $this->getDoctrine()->getRepository('GraduallyProfileBundle:RecruiterProfile')->findOneBy(
-            array('user' => $user->getId())
-        ); 
+        $recruiter = $this->getDoctrine()->getRepository('GraduallyUserBundle:RecruiterUser')->find($user->getId()); 
 
         // ...and have ROLE_RECRUITER access
         if($recruiter === null && !$this->get('security.context')->isGranted('ROLE_RECRUITER') ){
@@ -48,6 +46,8 @@ class DefaultController extends Controller
             ->getForm();
 
         $form->handleRequest($request);
+
+
         if($form->isValid()){
             $em = $this->getDoctrine()->getManager();
             
@@ -70,14 +70,14 @@ class DefaultController extends Controller
             $em->flush();
         }
 
-	$dataPadded = $this->pkcs5_pad('Currency=GBP', 16);
-	$crypt = $this->encryptFormData($dataPadded);
+	    $dataPadded = $this->pkcs5_pad('Currency=GBP', 16);
+	    $crypt = $this->encryptFormData($dataPadded);
 
         return array(
             'recruiter' => $recruiter,
             'form' => $form->createView(),
             'crypt' => $crypt
-	);
+	    );
     }
 
     private function pkcs5_pad($input)

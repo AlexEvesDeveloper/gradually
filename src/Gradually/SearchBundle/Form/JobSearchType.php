@@ -50,25 +50,4 @@ class JobSearchType extends AbstractType
     {
         return 'gradually_searchbundle_jobsearch';
     }
-
-    /**
-     * Return an array that is used by the SearchHandler.
-     * Each item represents a filter that was placed on the search.
-     * There should be an entry for each field defined above.
-     * 'field' => name of field declared above
-     * 'property' => the db column (entity property) against which the input will be compared against
-     * 'owningEntity' => the entity to which the property belongs
-     * 'isEntity' => is the field an entity?
-     *
-     * @return array
-     */
-    public static function getFields()
-    {
-        return array(
-            array('field' => 'recruiter', 'property' => 'id', 'owningEntity' => 'recruiter', 'isEntity' => true),
-            array('field' => 'salaryFrom', 'property' => 'salaryFrom', 'owningEntity' => 'job', 'isEntity' => false),
-            array('field' => 'salaryTo', 'property' => 'salaryTo', 'owningEntity' => 'job', 'isEntity' => false)
-
-        );
-    }
 }

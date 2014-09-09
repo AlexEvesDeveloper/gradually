@@ -23,7 +23,7 @@ class Job
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="\Gradually\ProfileBundle\Entity\RecruiterProfile", inversedBy="jobs")
+     * @ORM\ManyToOne(targetEntity="\Gradually\UserBundle\Entity\RecruiterUser", inversedBy="jobs")
      */
     private $recruiter;
 
@@ -266,10 +266,10 @@ class Job
     /**
      * Set recruiter
      *
-     * @param \Gradually\ProfileBundle\Entity\RecruiterProfile $recruiter
+     * @param \Gradually\UserBundle\Entity\RecruiterUser $recruiter
      * @return Job
      */
-    public function setRecruiter(\Gradually\ProfileBundle\Entity\RecruiterProfile $recruiter = null)
+    public function setRecruiter(\Gradually\UserBundle\Entity\RecruiterUser $recruiter = null)
     {
         $this->recruiter = $recruiter;
 
@@ -279,7 +279,7 @@ class Job
     /**
      * Get recruiter
      *
-     * @return \Gradually\ProfileBundle\Entity\RecruiterProfile 
+     * @return \Gradually\UserBundle\Entity\RecruiterUser
      */
     public function getRecruiter()
     {

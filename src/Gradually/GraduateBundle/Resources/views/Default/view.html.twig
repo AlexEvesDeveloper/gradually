@@ -1,7 +1,7 @@
 {% extends "::base.html.twig" %}
 
 {% block body %}
-	<p>Name: {{ graduate.user.firstname | capitalize }} {{ graduate.user.lastname }}</p>
+	<p>Name: {{ graduate.firstname | capitalize }} {{ graduate.lastname }}</p>
 
     {{ form_start(form) }}
         {{ form_errors(form) }}
@@ -31,8 +31,6 @@
             {{ form_widget(form.yearAttained) }}
         </div>
     {{ form_end(form) }}
-
-
 {% endblock %}
 
 {% block javascripts %}

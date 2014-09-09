@@ -10,7 +10,6 @@ use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 use Gradually\UserBundle\Entity\GraduateUser;
 use Gradually\UserBundle\Entity\Role;
-use Gradually\ProfileBundle\Entity\GraduateProfile;
 use Gradually\GraduateBundle\Entity\Qualification;
 
 use Gradually\UserBundle\Form\GraduateUserType;
@@ -30,11 +29,11 @@ class DefaultController extends Controller
             return $this->redirect($this->generateUrl('gradually_user_default_login'));
         }
     	// access denied if user is not admin, does not own this profile, OR IS NOT LINKED WITH THIS PROFILE
-    	if((!$this->get('security.context')->isGranted('ROLE_ADMIN')) && ($user->getProfile()->getId() != $id)){
+    	if((!$this->get('security.context')->isGranted('ROLE_ADMIN')) && ($user->getId() != $id)){
             throw $this->createAccessDeniedException('Unable to access this page!');
         }
 
-    	$graduate = $this->getDoctrine()->getManager()->getRepository('GraduallyProfileBundle:GraduateProfile')->find($id);
+    	$graduate = $this->getDoctrine()->getManager()->getRepository('GraduallyUserBundle:GraduateUser')->find($id);
 
         // add new Qualification
         $qual = new Qualification();
@@ -70,7 +69,7 @@ class DefaultController extends Controller
             $em = $this->getDoctrine()->getManager();
             
             // set role to ROLE_NORMAL
-            $role = $em->getRepository('GraduallyUserBundle:Role')->findOneByName('normal');
+            $role = $em->getRepository('GraduallyUserBundle:Role')->findOneByName('graduate');
             $user->addRole($role);
             
             // encode the password
@@ -79,12 +78,7 @@ class DefaultController extends Controller
             // manually set the e-mail as the username
             $user->setUsername($form->getData()->getEmail());
 
-            // create an empty GraduateProfile
-            $profile = new GraduateProfile();
-            $user->setProfile($profile);            
-            
             // finish up
-            $em->persist($profile);
             $em->persist($user);
             $em->flush();
 
@@ -92,7 +86,7 @@ class DefaultController extends Controller
             $token = new UsernamePasswordToken($user, $user->getPassword(), 'secured_area', $user->getRoles());
             $this->container->get('security.context')->setToken($token);
 
-            return $this->redirect($this->generateUrl('gradually_graduate_default_view', array('id' => $user->getProfile()->getId())));
+            return $this->redirect($this->generateUrl('gradually_graduate_default_view', array('id' => $user->getId())));
         }
 
         return array('form' => $form->createView());

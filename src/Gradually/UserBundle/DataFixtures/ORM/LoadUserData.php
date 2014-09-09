@@ -252,8 +252,7 @@ class LoadUserData implements FixtureInterface
 			$g->setPassword(password_hash(sprintf('grad%dpwd', $i), PASSWORD_BCRYPT, array('cost' => 12)));
 			$g->addRole($role);
 		
-			$p = new GraduateProfile();
-			$p->setUser($g);
+
 		
 			// random number of qualifications
 			$rand = rand(1,3);
@@ -287,14 +286,14 @@ class LoadUserData implements FixtureInterface
 				$randYear = rand(2010, 2014);
 				$q->setYearAttained($randYear);
 				
-				$q->setGraduate($p);	
+				$q->setGraduate($g);	
 				$manager->persist($q);
 			}
 			
-			$manager->persist($p);
+
 			$manager->persist($g);
 		
-			$return[] = $p;
+			$return[] = $g;
 		}
 		
         	$manager->flush();
@@ -312,10 +311,7 @@ class LoadUserData implements FixtureInterface
 			$r->setUsername(sprintf('Recruiter %d', $i));
 			$r->setPassword(password_hash(sprintf('rec%dpwd', $i), PASSWORD_BCRYPT, array('cost' => 12)));
 			$r->addRole($role);
-			$p = new RecruiterProfile();
-			$p->setUser($r);
-			$r->setProfile($p);	
-			$manager->persist($p);
+	
 			$manager->persist($r);
 			
 			$return[] = $r;
@@ -350,7 +346,7 @@ Quisque nibh arcu, iaculis ac risus non, luctus pharetra massa. Suspendisse pret
 				// to is 5 to 10 k> than from
 				$to = sprintf('%d000', $fromRand + rand(5, 10));
 				$j->setSalaryTo($to);
-				$j->setRecruiter($recruiter->getProfile());
+				$j->setRecruiter($recruiter);
 
 				$manager->persist($j);
 				$return[] = $j;

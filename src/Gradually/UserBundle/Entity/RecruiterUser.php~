@@ -20,27 +20,29 @@ class RecruiterUser extends User
     protected $companyName;
 
     /**
-     * Set companyName
-     *
-     * @param string $companyName
-     * @return RecruiterUser
+     * @ORM\ManyToMany(targetEntity="GraduateProfile", mappedBy="recruiters")
      */
-    public function setCompanyName($companyName)
-    {
-        $this->companyName = $companyName;
-
-        return $this;
-    }
+    private $graduates;
 
     /**
-     * Get companyName
-     *
-     * @return string 
+     * @ORM\OneToMany(targetEntity="\Gradually\JobBundle\Entity\Job", mappedBy="recruiter")
      */
-    public function getCompanyName()
-    {
-        return $this->companyName;
-    }
+    private $jobs;
+
+    /**
+     * @ORM\OneToMany(targetEntity="\Gradually\PurchaseBundle\Entity\Transaction", mappedBy="recruiter")
+     */
+    private $transactions;
+
+    /**
+     * @ORM\Column(name="posting_credits", type="integer")
+     */
+    private $postingCredits;
+
+    /**
+     * @ORM\Column(name="search_credits", type="integer")
+     */
+    private $searchCredits;
 
     /**
      * Get type

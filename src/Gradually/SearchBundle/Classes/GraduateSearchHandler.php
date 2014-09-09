@@ -22,12 +22,11 @@ class GraduateSearchHandler
 	public function __construct(Registry $doctrine)
 	{
 		$this->queryString = '
-			SELECT graduate, qualification, user, university, degree FROM GraduallyProfileBundle:GraduateProfile graduate
-			JOIN graduate.user user
+			SELECT graduate, qualification, university, degree FROM GraduallyUserBundle:GraduateUser graduate
 	    	JOIN graduate.qualifications qualification
 			JOIN qualification.university university
 			JOIN qualification.degree degree
-			WHERE user.isActive = :isActive
+			WHERE graduate.isActive = :isActive
 	    ';
 
 	    $this->doctrine = $doctrine;

@@ -37,9 +37,9 @@ class University
     private $degrees;
 
     /**
-     * @var \Gradually\ProfileBundle\Entity\GraduateProfile
+     * @var \Gradually\UserBundle\Entity\GraduateUser
      *
-     * @ORM\ManyToMany(targetEntity="\Gradually\ProfileBundle\Entity\GraduateProfile", inversedBy="universities"))
+     * @ORM\ManyToMany(targetEntity="\Gradually\UserBundle\Entity\GraduateUser", inversedBy="universities"))
      */
     private $graduates;
 
@@ -120,10 +120,10 @@ class University
     /**
      * Add graduates
      *
-     * @param \Gradually\ProfileBundle\Entity\GraduateProfile $graduates
+     * @param \Gradually\UserBundle\Entity\GraduateUser $graduates
      * @return University
      */
-    public function addGraduate(\Gradually\ProfileBundle\Entity\GraduateProfile $graduates)
+    public function addGraduate(\Gradually\UserBundle\Entity\GraduateUser $graduates)
     {
         $this->graduates[] = $graduates;
 
@@ -133,9 +133,9 @@ class University
     /**
      * Remove graduates
      *
-     * @param \Gradually\ProfileBundle\Entity\GraduateProfile $graduates
+     * @param \Gradually\UserBundle\Entity\GraduateUser $graduates
      */
-    public function removeGraduate(\Gradually\ProfileBundle\Entity\GraduateProfile $graduates)
+    public function removeGraduate(\Gradually\UserBundle\Entity\GraduateUser $graduates)
     {
         $this->graduates->removeElement($graduates);
     }

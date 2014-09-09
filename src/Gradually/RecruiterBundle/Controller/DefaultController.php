@@ -10,7 +10,6 @@ use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 use Gradually\UserBundle\Entity\RecruiterUser;
 use Gradually\UserBundle\Form\RecruiterUserType;
-use Gradually\ProfileBundle\Entity\RecruiterProfile;
 
 class DefaultController extends Controller
 {
@@ -20,7 +19,7 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-    	$recruiters = $this->getDoctrine()->getManager()->getRepository('GraduallyProfileBundle:RecruiterProfile')->findAll();
+    	$recruiters = $this->getDoctrine()->getManager()->getRepository('GraduallyUserBundle:RecruiterUser')->findAll();
 
         return array('recruiters' => $recruiters);
     }
@@ -31,7 +30,7 @@ class DefaultController extends Controller
      */
     public function viewAction($id)
     {
-    	$recruiter = $this->getDoctrine()->getManager()->getRepository('GraduallyProfileBundle:RecruiterProfile')->find($id);
+    	$recruiter = $this->getDoctrine()->getManager()->getRepository('GraduallyUserBundle:RecruiterUser')->find($id);
 
         return array('recruiter' => $recruiter);
     }
@@ -51,7 +50,7 @@ class DefaultController extends Controller
             $em = $this->getDoctrine()->getManager();
  
             // set role to ROLE_NORMAL
-            $role = $em->getRepository('GraduallyUserBundle:Role')->findOneByName('normal');
+            $role = $em->getRepository('GraduallyUserBundle:Role')->findOneByName('recruiter');
             $user->addRole($role);
  
             // encode the password
@@ -59,13 +58,8 @@ class DefaultController extends Controller
 
             // manually set the username as the companyname
             $user->setUsername($form->getData()->getCompanyName());
-
-            // create an empty RecruiterProfile
-            $profile = new RecruiterProfile();
-            $user->setProfile($profile);
  
             // finish up
-            $em->persist($profile);
             $em->persist($user);
             $em->flush();
  
@@ -73,7 +67,7 @@ class DefaultController extends Controller
             $token = new UsernamePasswordToken($user, $user->getPassword(), 'secured_area', $user->getRoles());
             $this->container->get('security.context')->setToken($token);
  
-            return $this->redirect($this->generateUrl('gradually_recruiter_default_view', array('id' => $user->getProfile()->getId())));
+            return $this->redirect($this->generateUrl('gradually_recruiter_default_view', array('id' => $user->getId())));
         }
 
         return array('form' => $form->createView());

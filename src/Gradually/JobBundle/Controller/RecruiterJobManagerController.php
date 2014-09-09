@@ -25,7 +25,7 @@ class RecruiterJobManagerController extends Controller
         }
 
         // get all jobs belonging to this recruiter
-        $recruiter = $this->getDoctrine()->getManager()->getRepository('GraduallyProfileBundle:RecruiterProfile')->find($id);
+        $recruiter = $this->getDoctrine()->getManager()->getRepository('GraduallyUserBundle:RecruiterUser')->find($id);
         
         return array(
             'recruiter' => $recruiter,
@@ -44,7 +44,7 @@ class RecruiterJobManagerController extends Controller
         }
 
         // get the Recruiter
-        $recruiter = $this->getDoctrine()->getRepository('GraduallyProfileBundle:RecruiterProfile')->find($id);
+        $recruiter = $this->getDoctrine()->getRepository('GraduallyUserBundle:RecruiterUser')->find($id);
 
         // check posting credits
         if(!($postingCredits = $recruiter->getPostingCredits())){
@@ -131,7 +131,7 @@ class RecruiterJobManagerController extends Controller
         }
 
         // access denied if user is not admin, does not own this profile
-        if((!$this->get('security.context')->isGranted('ROLE_ADMIN')) && ($user->getProfile()->getId() != $id)){
+        if((!$this->get('security.context')->isGranted('ROLE_ADMIN')) && ($user->getId() != $id)){
             throw $this->createAccessDeniedException('Unable to access this page!');
         }
 

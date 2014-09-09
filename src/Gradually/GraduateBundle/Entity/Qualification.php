@@ -26,9 +26,9 @@ class Qualification
     private $id;
 
     /**
-     * @var \Gradually\ProfileBundle\Entity\GraduateProfile
+     * @var \Gradually\UserBundle\Entity\GraduateProfile
      *
-     * @ORM\ManyToOne(targetEntity="\Gradually\ProfileBundle\Entity\GraduateProfile", inversedBy="qualifications")
+     * @ORM\ManyToOne(targetEntity="\Gradually\UserBundle\Entity\GraduateUser", inversedBy="qualifications")
      */
     private $graduate;
 
@@ -127,10 +127,10 @@ class Qualification
     /**
      * Set graduate
      *
-     * @param \Gradually\ProfileBundle\Entity\GraduateProfile $graduate
+     * @param \Gradually\UserBundle\Entity\GraduateUser $graduate
      * @return Qualification
      */
-    public function setGraduate(\Gradually\ProfileBundle\Entity\GraduateProfile $graduate = null)
+    public function setGraduate(\Gradually\UserBundle\Entity\GraduateUser $graduate = null)
     {
         $this->graduate = $graduate;
 
@@ -140,7 +140,7 @@ class Qualification
     /**
      * Get graduate
      *
-     * @return \Gradually\ProfileBundle\Entity\GraduateProfile
+     * @return \Gradually\UserBundle\Entity\GraduateUser
      */
     public function getGraduate()
     {

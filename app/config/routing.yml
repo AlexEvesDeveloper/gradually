@@ -17,11 +17,6 @@ gradually_job:
     resource: "@GraduallyJobBundle/Controller/"
     type:     annotation
 
-gradually_rest:
-    type: rest
-    resource: "@GraduallyRestBundle/Resources/config/routing.yml"
-    prefix:   /api
-
 gradually_recruiter:
     resource: "@GraduallyRecruiterBundle/Controller/"
     type:     annotation

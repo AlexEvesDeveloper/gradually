@@ -1,8 +1,9 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
+<div class="container under-nav">
     {% if recruiter is not null %}
-        {{recruiter.user.companyName}}
+        {{recruiter.companyName}}
         <p>Remaining posting credits: {{recruiter.postingCredits}}</p>
         <p>Remaining search credits: {{recruiter.searchCredits}}</p>
 
@@ -16,4 +17,5 @@
 	    <button id="form_save" name="save" type="submit">Purchase</button>
 	</form>
     {% endif %}
+   </div>
 {% endblock %}

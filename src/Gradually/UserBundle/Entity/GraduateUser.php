@@ -14,18 +14,46 @@ use Symfony\Component\Validator\Constraints as Assert;
 class GraduateUser extends User
 {
     /**
-      * @var string
-      *
-      * @ORM\Column(name="first_name", type="string", length=64)
-      */
-     protected $firstName;
+     * @var string
+     *
+     * @ORM\Column(name="first_name", type="string", length=64)
+     */
+    protected $firstName;
  
-     /**
-      * @var string
-      *
-      * @ORM\Column(name="last_name", type="string", length=64)
-      */
-     protected $lastName;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="last_name", type="string", length=64)
+     */
+    protected $lastName;
+
+    /**
+     * var \Gradually\GraduateBundle\Entity\Qualification
+     *
+     * @ORM\OneToMany(targetEntity="\Gradually\GraduateBundle\Entity\Qualification", mappedBy="graduate")
+     */
+    private $qualifications;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="RecruiterUser", inversedBy="graduates")
+     */
+    private $recruiters;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="\Gradually\UtilBundle\Entity\University", mappedBy="graduates")
+     */
+    private $universities;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->qualifications = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->recruiters = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->universities = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Set firstName
@@ -71,6 +99,105 @@ class GraduateUser extends User
     public function getLastName()
     {
         return $this->lastName;
+    }
+
+    /**
+     * Add qualifications
+     *
+     * @param \Gradually\GraduateBundle\Entity\Qualification $qualifications
+     * @return GraduateUser
+     */
+    public function addQualification(\Gradually\GraduateBundle\Entity\Qualification $qualifications)
+    {
+        $this->qualifications[] = $qualifications;
+
+        return $this;
+    }
+
+    /**
+     * Remove qualifications
+     *
+     * @param \Gradually\GraduateBundle\Entity\Qualification $qualifications
+     */
+    public function removeQualification(\Gradually\GraduateBundle\Entity\Qualification $qualifications)
+    {
+        $this->qualifications->removeElement($qualifications);
+    }
+
+    /**
+     * Get qualifications
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getQualifications()
+    {
+        return $this->qualifications;
+    }
+
+    /**
+     * Add recruiters
+     *
+     * @param \Gradually\UserBundle\Entity\RecruiterProfile $recruiters
+     * @return GraduateUser
+     */
+    public function addRecruiter(\Gradually\UserBundle\Entity\RecruiterProfile $recruiters)
+    {
+        $this->recruiters[] = $recruiters;
+
+        return $this;
+    }
+
+    /**
+     * Remove recruiters
+     *
+     * @param \Gradually\UserBundle\Entity\RecruiterProfile $recruiters
+     */
+    public function removeRecruiter(\Gradually\UserBundle\Entity\RecruiterProfile $recruiters)
+    {
+        $this->recruiters->removeElement($recruiters);
+    }
+
+    /**
+     * Get recruiters
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getRecruiters()
+    {
+        return $this->recruiters;
+    }
+
+    /**
+     * Add universities
+     *
+     * @param \Gradually\UtilBundle\Entity\University $universities
+     * @return GraduateUser
+     */
+    public function addUniversity(\Gradually\UtilBundle\Entity\University $universities)
+    {
+        $this->universities[] = $universities;
+
+        return $this;
+    }
+
+    /**
+     * Remove universities
+     *
+     * @param \Gradually\UtilBundle\Entity\University $universities
+     */
+    public function removeUniversity(\Gradually\UtilBundle\Entity\University $universities)
+    {
+        $this->universities->removeElement($universities);
+    }
+
+    /**
+     * Get universities
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getUniversities()
+    {
+        return $this->universities;
     }
 
     /**

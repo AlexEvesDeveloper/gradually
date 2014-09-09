@@ -22,7 +22,7 @@ class Transaction
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="\Gradually\ProfileBundle\Entity\RecruiterProfile", inversedBy="transactions")
+     * @ORM\ManyToOne(targetEntity="\Gradually\UserBundle\Entity\RecruiterUser", inversedBy="transactions")
      */
     private $recruiter;
 
@@ -44,10 +44,10 @@ class Transaction
     /**
      * Set recruiter
      *
-     * @param \Gradually\ProfileBundle\Entity\RecruiterProfile $recruiter
+     * @param \Gradually\UserBundle\Entity\RecruiterUser $recruiter
      * @return Transaction
      */
-    public function setRecruiter(\Gradually\ProfileBundle\Entity\RecruiterProfile $recruiter = null)
+    public function setRecruiter(\Gradually\UserBundle\Entity\RecruiterUser $recruiter = null)
     {
         $this->recruiter = $recruiter;
 
@@ -57,7 +57,7 @@ class Transaction
     /**
      * Get recruiter
      *
-     * @return \Gradually\ProfileBundle\Entity\RecruiterProfile 
+     * @return \Gradually\UserBundle\Entity\RecruiterUser
      */
     public function getRecruiter()
     {

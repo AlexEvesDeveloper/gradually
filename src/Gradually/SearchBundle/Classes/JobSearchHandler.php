@@ -33,11 +33,8 @@ class JobSearchHandler
 	public function handleSearch(Form $form, array $orderBy)
 	{
 		$this->applyFilters($form);
-		$this->queryString .= sprintf(' ORDER BY %s %s', $orderBy['property'], $orderBy['order']);
 
-		//print '<pre>';
-		//print_r($this->queryString);
-		//print_r($this->queryParams);
+		$this->queryString .= sprintf(' ORDER BY %s %s', $orderBy['property'], $orderBy['order']);
 
 	    $query = $this->doctrine->getManager()->createQuery($this->queryString)->setParameters($this->queryParams);
 
