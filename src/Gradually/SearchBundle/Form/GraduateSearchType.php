@@ -17,35 +17,37 @@ class GraduateSearchType extends AbstractType
     {
         $builder
             ->add('university', 'entity', array(
-	    	'class' => 'Gradually\UtilBundle\Entity\University',
-		'multiple' => false,
-		'expanded' => false,
-		'empty_value' => 'All',
-		'property' => 'name',
-		'required' => false,
-		'query_builder' => function(EntityRepository $er){
-			return $er->createQueryBuilder('university')->orderBy('university.name', 'ASC');
-		},
+	    	    'class' => 'Gradually\UtilBundle\Entity\University',
+		        'multiple' => false,
+		        'expanded' => false,
+		        'empty_value' => 'All',
+		        'property' => 'name',
+		        'required' => false,
+		        'query_builder' => function(EntityRepository $er){
+			        return $er->createQueryBuilder('university')->orderBy('university.name', 'ASC');
+		        },
 	    ))
             ->add('degree', 'entity', array(
-		'class' => 'Gradually\UtilBundle\Entity\Degree',
-		'multiple' => false,
-		'expanded' => false,
-		'empty_value' => 'All',
-		'property' => 'title',
-		'required' => false,
-		'query_builder' => function(EntityRepository $er){
-			return $er->createQueryBuilder('degree')->orderBy('degree.title', 'ASC');
-		},
+		        'class' => 'Gradually\UtilBundle\Entity\Degree',
+		        'multiple' => false,
+		        'expanded' => false,
+		        'empty_value' => 'All',
+		        'property' => 'title',
+		        'required' => false,
+		        'query_builder' => function(EntityRepository $er){
+			        return $er->createQueryBuilder('degree')->orderBy('degree.title', 'ASC');
+		        },
 	    ))
-	    ->add('yearAttained', 'text', array(
-		'required' => false
-	    ))
-	    ->add('result', 'text', array(
-		'required' => false
-	    ))
-	    ->add('save', 'submit', array('label' => 'Search'))
-        ;
+	       
+            ->add('yearAttained', 'text', array(
+		        'required' => false
+	        ))
+
+	        ->add('result', 'text', array(
+		        'required' => false
+	        ))
+	    
+            ->add('save', 'submit', array('label' => 'Search'));
     }
     
     /**

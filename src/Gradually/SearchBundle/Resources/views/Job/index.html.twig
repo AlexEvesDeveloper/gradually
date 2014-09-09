@@ -1,0 +1,26 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+<div class="container under-navbar">
+	<div class="row">
+	{{form_start(form)}}
+		{{form_label(form.recruiter)}}
+		{{form_widget(form.recruiter)}}
+		{{form_label(form.salaryFrom)}}
+		{{form_widget(form.salaryFrom)}}
+		{{form_label(form.salaryTo)}}
+		{{form_widget(form.salaryTo)}}
+		{{form_label(form.save)}}
+		{{form_widget(form.save, {attr : {class: 'btn btn-primary'}})}}
+	{{form_end(form)}}
+	</div>
+	<div class="row">
+        	{% for job in jobs %}
+                	<h3>{{job.title}}</h3>
+                	<p>{{job.salaryFrom}}</p>
+                	<p>{{job.salaryTo}}</p>
+        	{% endfor %}	
+	</div>
+
+</div>
+{% endblock %}
