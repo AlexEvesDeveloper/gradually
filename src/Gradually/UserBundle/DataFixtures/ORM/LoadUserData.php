@@ -304,7 +304,7 @@ class LoadUserData implements FixtureInterface
 	{
 		$return = array();
 		
-		for($i = 1; $i < 11; $i++){
+		for($i = 1; $i < 51; $i++){
 			$r = new RecruiterUser();
 			$r->setCompanyName(sprintf('Recruiter %d', $i));
 			$r->setEmail(sprintf('rec%d@test.com', $i));

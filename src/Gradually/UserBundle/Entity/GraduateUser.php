@@ -137,10 +137,10 @@ class GraduateUser extends User
     /**
      * Add recruiters
      *
-     * @param \Gradually\UserBundle\Entity\RecruiterProfile $recruiters
+     * @param \Gradually\UserBundle\Entity\RecruiterUser $recruiters
      * @return GraduateUser
      */
-    public function addRecruiter(\Gradually\UserBundle\Entity\RecruiterProfile $recruiters)
+    public function addRecruiter(\Gradually\UserBundle\Entity\RecruiterUser $recruiters)
     {
         $this->recruiters[] = $recruiters;
 
@@ -150,9 +150,9 @@ class GraduateUser extends User
     /**
      * Remove recruiters
      *
-     * @param \Gradually\UserBundle\Entity\RecruiterProfile $recruiters
+     * @param \Gradually\UserBundle\Entity\RecruiterUser $recruiters
      */
-    public function removeRecruiter(\Gradually\UserBundle\Entity\RecruiterProfile $recruiters)
+    public function removeRecruiter(\Gradually\UserBundle\Entity\RecruiterUser $recruiters)
     {
         $this->recruiters->removeElement($recruiters);
     }
