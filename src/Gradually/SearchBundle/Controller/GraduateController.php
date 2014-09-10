@@ -31,7 +31,7 @@ class GraduateController extends Controller
 	    	$em = $this->getDoctrine()->getManager();
 	
 	    	// redirect to login if not logged in
-	    	if(($user = $this->getUser()) == null){
+	    	if(($user = $this->getUser()) === null){
 	    		return $this->redirect($this->generateUrl('gradually_user_default_login'));
 	    	}		
 	

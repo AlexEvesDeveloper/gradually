@@ -28,6 +28,13 @@ class Job
     private $recruiter;
 
     /**
+     * var \Gradually\GraduateBundle\Entity\Application
+     *
+     * @ORM\OneToMany(targetEntity="\Gradually\GraduateBundle\Entity\Application", mappedBy="job") 
+     */
+    private $applications;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255)
@@ -82,6 +89,13 @@ class Job
      * @ORM\Column(name="is_active", type="boolean")
      */
     private $isActive;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="view_count", type="integer")
+     */
+    private $viewCount;
 
     /**
      * Constructor.
@@ -312,7 +326,7 @@ class Job
     /**
      * @ORM\PrePersist
      */
-    public function setCreatedDate()
+    public function initCreatedDate()
     {
         $this->created = new \DateTime("now");
     }
@@ -321,7 +335,7 @@ class Job
      * @ORM\PrePersist
      * @ORM\PreUpdate
      */
-    public function setUpdatedDate()
+    public function initUpdatedDate()
     {
         $this->updated = new \DateTime("now");
     }
@@ -329,9 +343,72 @@ class Job
     /**
      * @ORM\PrePersist
      */
-    public function setExpiryDate()
+    public function initExpiryDate()
     {
         $this->expires = new \DateTime("now");
         $this->expires->add(new \DateInterval('P30D')); 
+    }
+    /**
+     * @ORM\PrePersist
+     */
+    public function initViewCount()
+    {
+        $this->setViewCount(0);
+    }    
+
+    /**
+     * Set viewCount
+     *
+     * @param integer $viewCount
+     * @return Job
+     */
+    public function setViewCount($viewCount)
+    {
+        $this->viewCount = $viewCount;
+
+        return $this;
+    }
+
+    /**
+     * Get viewCount
+     *
+     * @return integer 
+     */
+    public function getViewCount()
+    {
+        return $this->viewCount;
+    }
+
+    /**
+     * Add applications
+     *
+     * @param \Gradually\GraduateBundle\Entity\Application $applications
+     * @return Job
+     */
+    public function addApplication(\Gradually\GraduateBundle\Entity\Application $applications)
+    {
+        $this->applications[] = $applications;
+
+        return $this;
+    }
+
+    /**
+     * Remove applications
+     *
+     * @param \Gradually\GraduateBundle\Entity\Application $applications
+     */
+    public function removeApplication(\Gradually\GraduateBundle\Entity\Application $applications)
+    {
+        $this->applications->removeElement($applications);
+    }
+
+    /**
+     * Get applications
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getApplications()
+    {
+        return $this->applications;
     }
 }
