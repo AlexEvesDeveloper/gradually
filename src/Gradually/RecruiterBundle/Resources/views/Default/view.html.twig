@@ -4,4 +4,8 @@
 <p>Name: {{ recruiter.companyName }}</p>
 <p>Profile Id: {{ recruiter.id }}</p>
 <p><a href="{{ path('gradually_job_recruiterjobmanager_index', {'id' : recruiter.id}) }}">Manage jobs</a></p>
+{% if userType == 'GRADUATE' %}
+	<a class="btn btn-primary" href="{{path('gradually_recruiter_default_watch', 
+		{'recruiterId' : recruiter.id, 'graduateId' : app.user.id}) }}">Watch this Recruiter</a>
+{% endif %}
 {% endblock %}

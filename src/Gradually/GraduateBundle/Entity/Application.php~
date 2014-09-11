@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Application
  *
- * @ORM\Table()
+ * @ORM\Table(name="applications")
  * @ORM\Entity
  */
 class Application
@@ -24,7 +24,7 @@ class Application
     /**
      * @var string
      *
-     * @ORM\Column(name="coverNote", type="text")
+     * @ORM\Column(name="coverNote", type="text", nullable=true)
      */
     private $coverNote;
 
@@ -74,5 +74,51 @@ class Application
     public function getCoverNote()
     {
         return $this->coverNote;
+    }
+
+    /**
+     * Set graduate
+     *
+     * @param \Gradually\UserBundle\Entity\GraduateUser $graduate
+     * @return Application
+     */
+    public function setGraduate(\Gradually\UserBundle\Entity\GraduateUser $graduate = null)
+    {
+        $this->graduate = $graduate;
+
+        return $this;
+    }
+
+    /**
+     * Get graduate
+     *
+     * @return \Gradually\UserBundle\Entity\GraduateUser 
+     */
+    public function getGraduate()
+    {
+        return $this->graduate;
+    }
+
+    /**
+     * Set job
+     *
+     * @param \Gradually\JobBundle\Entity\Job $job
+     * @return Application
+     */
+    public function setJob(\Gradually\JobBundle\Entity\Job $job = null)
+    {
+        $this->job = $job;
+
+        return $this;
+    }
+
+    /**
+     * Get job
+     *
+     * @return \Gradually\JobBundle\Entity\Job 
+     */
+    public function getJob()
+    {
+        return $this->job;
     }
 }

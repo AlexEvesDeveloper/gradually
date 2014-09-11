@@ -71,12 +71,12 @@ class DefaultController extends Controller
         }
 
 	    $dataPadded = $this->pkcs5_pad('Currency=GBP', 16);
-	    $crypt = $this->encryptFormData($dataPadded);
+	    //$crypt = $this->encryptFormData($dataPadded);
 
         return array(
             'recruiter' => $recruiter,
             'form' => $form->createView(),
-            'crypt' => $crypt
+            //'crypt' => $crypt
 	    );
     }
 

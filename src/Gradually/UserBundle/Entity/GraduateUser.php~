@@ -216,4 +216,37 @@ class GraduateUser extends User
     {
         return parent::TYPE_GRADUATE;
     }
+
+    /**
+     * Add applications
+     *
+     * @param \Gradually\GraduateBundle\Entity\Application $applications
+     * @return GraduateUser
+     */
+    public function addApplication(\Gradually\GraduateBundle\Entity\Application $applications)
+    {
+        $this->applications[] = $applications;
+
+        return $this;
+    }
+
+    /**
+     * Remove applications
+     *
+     * @param \Gradually\GraduateBundle\Entity\Application $applications
+     */
+    public function removeApplication(\Gradually\GraduateBundle\Entity\Application $applications)
+    {
+        $this->applications->removeElement($applications);
+    }
+
+    /**
+     * Get applications
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getApplications()
+    {
+        return $this->applications;
+    }
 }

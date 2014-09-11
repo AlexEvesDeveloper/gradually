@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * RecruiterUser
  *
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Gradually\UserBundle\Entity\RecruiterUserRepository")
  */
 class RecruiterUser extends User
 {

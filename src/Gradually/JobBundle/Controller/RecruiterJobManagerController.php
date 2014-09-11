@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Gradually\UserBundle\Entity\RecruiterUser;
 use Gradually\JobBundle\Entity\Job;
 use Gradually\JobBundle\Form\JobType;
 
@@ -66,6 +67,8 @@ class RecruiterJobManagerController extends Controller
             $em->persist($job);
             $em->persist($recruiter);
             $em->flush();
+
+            $this->notifyRecruiterSubscribers($recruiter, $job);
         
             // TODO redirect to global job view
             return $this->redirect($this->generateUrl('gradually_job_recruiterjobmanager_view', array(
@@ -114,6 +117,22 @@ class RecruiterJobManagerController extends Controller
         return array(
             'form' => $form->createView()
         );
+    }
+
+    /**
+     * Get all Graduates that are subscribed to this Recruiter and notify them.
+     *
+     * @param Recruiter
+     */
+    protected function notifyRecruiterSubscribers(RecruiterUser $recruiter, Job $job)
+    {
+        $subscribers = $this->getDoctrine()
+            ->getRepository('GraduallyUserBundle:RecruiterUser')
+            ->findAllSubscribedGraduates($recruiter->getId());
+
+        foreach($subscribers as $subscriber){
+            //$subscriber->jobNotificationManager->notify($recruiter, $job);
+        }
     }
 
     /**

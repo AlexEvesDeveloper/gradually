@@ -32,7 +32,10 @@ class DefaultController extends Controller
     {
     	$recruiter = $this->getDoctrine()->getManager()->getRepository('GraduallyUserBundle:RecruiterUser')->find($id);
 
-        return array('recruiter' => $recruiter);
+        return array(
+            'recruiter' => $recruiter,
+            'userType' => $this->getUser()->getType()
+        );
     }
 
     /**
@@ -71,5 +74,24 @@ class DefaultController extends Controller
         }
 
         return array('form' => $form->createView());
+    }
+
+    /**
+     * Subscribe the recruiter to the graduates list of recruiters 
+     *
+     * @Route("/watch/{recruiterId}/{graduateId}", requirements={"recruiterId" = "\d+", "graduateId" = "\d+"})")
+     */
+    public function watchAction($recruiterId, $graduateId)
+    {
+        $em = $this->getDoctrine()->getManager();
+        
+        $graduate = $em->getRepository('GraduallyUserBundle:GraduateUser')->find($graduateId);
+        $graduate->addRecruiter($em->getRepository('GraduallyUserBundle:RecruiterUser')->find($recruiterId));
+
+        $em->persist($graduate);
+        $em->flush();
+
+        // all done, redirect to the page we came from
+        return $this->redirect($this->generateUrl('gradually_recruiter_default_view', array('id' => $recruiterId)));
     }
 }
