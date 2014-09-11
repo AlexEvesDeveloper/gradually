@@ -17,8 +17,14 @@ class JobSearchType extends AbstractType
     {
         $builder
             //->add('keywords')
-            ->add('salaryFrom')
-            ->add('salaryTo')
+            ->add('salaryFrom', 'choice', array(
+                'choices' => $this->getSalaryChoices(),
+                'empty_value' => 'No minimum',
+            ))
+            ->add('salaryTo', 'choice', array(
+                'choices' => $this->getSalaryChoices(),
+                'empty_value' => 'No maximum',
+            ))
             ->add('recruiter', 'entity', array(
                 'class' => 'Gradually\UserBundle\Entity\RecruiterUser',
                 'multiple' => false,
@@ -49,5 +55,30 @@ class JobSearchType extends AbstractType
     public function getName()
     {
         return 'gradually_searchbundle_jobsearch';
+    }
+
+    protected function getSalaryChoices()
+    {
+        return array(
+            '10000' => '10,000',
+            '15000' => '15,000',
+            '20000' => '20,000',
+            '25000' => '25,000',
+            '30000' => '30,000',
+            '35000' => '35,000',
+            '40000' => '40,000',
+            '45000' => '45,000',
+            '50000' => '50,000',
+            '55000' => '55,000',
+            '60000' => '60,000',
+            '65000' => '65,000',
+            '70000' => '70,000',
+            '75000' => '75,000',
+            '80000' => '80,000',
+            '85000' => '85,000',
+            '90000' => '90,000',
+            '95000' => '95,000',
+            '100000' => '100,000'
+        );
     }
 }

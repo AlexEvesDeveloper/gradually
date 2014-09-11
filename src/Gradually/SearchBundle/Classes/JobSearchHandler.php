@@ -59,7 +59,7 @@ class JobSearchHandler
 				$this->queryString .= sprintf(' AND job.salaryFrom <= :salaryTo OR job.salaryTo >= :salaryFrom AND job.salaryTo <= :salaryTo)');
 				$this->queryParams['salaryTo'] = $salaryTo;
 			}else{
-				$this->queryString .= sprintf(' OR job.salaryTo >= :salaryFrom');
+				$this->queryString .= sprintf(' OR job.salaryTo >= :salaryFrom)');
 			}
 			$this->queryParams['salaryFrom'] = $salaryFrom;
 		}		
