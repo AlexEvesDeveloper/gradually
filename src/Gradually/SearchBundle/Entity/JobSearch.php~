@@ -22,7 +22,7 @@ class JobSearch
     private $id;
 
     /**
-     * @ORM\OneToOne(targetEntity="\Gradually\ProfileBundle\Entity\RecruiterProfile")
+     * @ORM\OneToOne(targetEntity="\Gradually\UserBundle\Entity\RecruiterUser")
      */
     private $recruiter;
 
@@ -123,10 +123,10 @@ class JobSearch
     /**
      * Set recruiter
      *
-     * @param \Gradually\ProfileBundle\Entity\RecruiterProfile $recruiter
+     * @param \Gradually\UserBundle\Entity\RecruiterUser $recruiter
      * @return JobSearch
      */
-    public function setRecruiter(\Gradually\ProfileBundle\Entity\RecruiterProfile $recruiter = null)
+    public function setRecruiter(\Gradually\UserBundle\Entity\RecruiterUser $recruiter = null)
     {
         $this->recruiter = $recruiter;
 
@@ -136,7 +136,7 @@ class JobSearch
     /**
      * Get recruiter
      *
-     * @return \Gradually\ProfileBundle\Entity\RecruiterProfile 
+     * @return \Gradually\UserBundle\Entity\RecruiterUser
      */
     public function getRecruiter()
     {

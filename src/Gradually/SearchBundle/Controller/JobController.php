@@ -34,8 +34,6 @@ class JobController extends Controller
 	
 	    	$orderBy = array('property' => 'job.id', 'order' => 'ASC');
 	    	$jobs = $sh->handleSearch($form, $orderBy);
-
-	    	//print '<pre>'; print_r($jobs); exit;
 		}
 		
 		return array(

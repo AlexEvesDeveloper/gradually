@@ -26,7 +26,7 @@ class Qualification
     private $id;
 
     /**
-     * @var \Gradually\UserBundle\Entity\GraduateProfile
+     * @var \Gradually\UserBundle\Entity\GraduateUser
      *
      * @ORM\ManyToOne(targetEntity="\Gradually\UserBundle\Entity\GraduateUser", inversedBy="qualifications")
      */

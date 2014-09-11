@@ -45,6 +45,13 @@ class GraduateUser extends User
     private $universities;
 
     /**
+     * var \Gradually\GraduateBundle\Entity\Application
+     *
+     * @ORM\OneToMany(targetEntity="\Gradually\GraduateBundle\Entity\Application", mappedBy="graduate") 
+     */
+    private $applications;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -208,5 +215,38 @@ class GraduateUser extends User
     public function getType()
     {
         return parent::TYPE_GRADUATE;
+    }
+
+    /**
+     * Add applications
+     *
+     * @param \Gradually\GraduateBundle\Entity\Application $applications
+     * @return GraduateUser
+     */
+    public function addApplication(\Gradually\GraduateBundle\Entity\Application $applications)
+    {
+        $this->applications[] = $applications;
+
+        return $this;
+    }
+
+    /**
+     * Remove applications
+     *
+     * @param \Gradually\GraduateBundle\Entity\Application $applications
+     */
+    public function removeApplication(\Gradually\GraduateBundle\Entity\Application $applications)
+    {
+        $this->applications->removeElement($applications);
+    }
+
+    /**
+     * Get applications
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getApplications()
+    {
+        return $this->applications;
     }
 }

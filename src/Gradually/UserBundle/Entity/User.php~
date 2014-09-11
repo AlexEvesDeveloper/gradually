@@ -67,13 +67,6 @@ abstract class User implements AdvancedUserInterface, \Serializable
      */
     private $roles;
 
-    /**
-     * @var \Gradually\ProfileBundle\Entity\Profile
-     *
-     * @ORM\OneToOne(targetEntity="\Gradually\ProfileBundle\Entity\Profile", mappedBy="user")
-     */
-    private $profile;
-
     const TYPE_ADMIN = 'ADMIN';
     const TYPE_GRADUATE = 'GRADUATE';
     const TYPE_RECRUITER = 'RECRUITER';
@@ -268,29 +261,6 @@ abstract class User implements AdvancedUserInterface, \Serializable
             $this->username,
             $this->password
         ) = unserialize($serialized);
-    }
-
-    /**
-     * Set profile
-     *
-     * @param \Gradually\ProfileBundle\Entity\Profile $profile
-     * @return User
-     */
-    public function setProfile(\Gradually\ProfileBundle\Entity\Profile $profile = null)
-    {
-        $this->profile = $profile;
-
-        return $this;
-    }
-
-    /**
-     * Get profile
-     *
-     * @return \Gradually\ProfileBundle\Entity\Profile 
-     */
-    public function getProfile()
-    {
-        return $this->profile;
     }
 
     /**

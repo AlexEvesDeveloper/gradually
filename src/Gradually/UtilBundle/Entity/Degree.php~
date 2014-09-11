@@ -119,39 +119,6 @@ class Degree
         return $this->universities;
     }
 
-    /**
-     * Add graduates
-     *
-     * @param \Gradually\ProfileBundle\Entity\GraduateProfile $graduates
-     * @return Degree
-     */
-    public function addGraduate(\Gradually\ProfileBundle\Entity\GraduateProfile $graduates)
-    {
-        $this->graduates[] = $graduates;
-
-        return $this;
-    }
-
-    /**
-     * Remove graduates
-     *
-     * @param \Gradually\ProfileBundle\Entity\GraduateProfile $graduates
-     */
-    public function removeGraduate(\Gradually\ProfileBundle\Entity\GraduateProfile $graduates)
-    {
-        $this->graduates->removeElement($graduates);
-    }
-
-    /**
-     * Get graduates
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getGraduates()
-    {
-        return $this->graduates;
-    }
-
     public function __toString()
     {
         return $this->title;
