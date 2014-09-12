@@ -9,6 +9,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Gradually\UserBundle\Entity\RecruiterUser;
 use Gradually\JobBundle\Entity\Job;
 use Gradually\JobBundle\Form\JobType;
+use Gradually\NotificationBundle\Classes\NotificationManager;
+use Gradually\NotificationBundle\Classes\Factories\JobNotifierFactory;
 
 /**
  * @Route("/recruiters/{id}/jobs")
@@ -69,7 +71,7 @@ class RecruiterJobManagerController extends Controller
             $em->flush();
 
             $this->notifyRecruiterSubscribers($recruiter, $job);
-        
+            exit;
             // TODO redirect to global job view
             return $this->redirect($this->generateUrl('gradually_job_recruiterjobmanager_view', array(
                 'id' => $id,
@@ -131,7 +133,9 @@ class RecruiterJobManagerController extends Controller
             ->findAllSubscribedGraduates($recruiter->getId());
 
         foreach($subscribers as $subscriber){
-            //$subscriber->jobNotificationManager->notify($recruiter, $job);
+            $notifier = JobNotifierFactory::getNotifier($subscriber->getNotificationMethod());
+            $nm = new NotificationManager($notifier);
+            $nm->notify(array($subscriber, $recruiter, $job));
         }
     }
 

@@ -52,6 +52,13 @@ class GraduateUser extends User
     private $applications;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="notification_method", type="string", length=16)
+     */
+    private $notificationMethod;
+
+    /**
      * Constructor
      */
     public function __construct()

@@ -52,6 +52,13 @@ class GraduateUser extends User
     private $applications;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="notification_method", type="string", length=16)
+     */
+    private $notificationMethod;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -248,5 +255,29 @@ class GraduateUser extends User
     public function getApplications()
     {
         return $this->applications;
+    }
+
+    /**
+     * Set notificationMethod
+     *
+     * @param string $notificationMethod
+     * @return GraduateUser
+     */
+    public function setNotificationMethod($notificationMethod)
+    {
+        $this->notificationMethod = $notificationMethod;
+
+        return $this;
+    }
+
+    /**
+     * Get notificationMethod
+     *
+     * @return string 
+     */
+    public function getNotificationMethod()
+    {
+        return 'text';
+        return $this->notificationMethod;
     }
 }
