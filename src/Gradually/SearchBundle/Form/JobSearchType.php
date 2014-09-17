@@ -20,10 +20,12 @@ class JobSearchType extends AbstractType
             ->add('salaryFrom', 'choice', array(
                 'choices' => $this->getSalaryChoices(),
                 'empty_value' => 'No minimum',
+		'required' => false,
             ))
             ->add('salaryTo', 'choice', array(
                 'choices' => $this->getSalaryChoices(),
                 'empty_value' => 'No maximum',
+		'required' => false,
             ))
             ->add('recruiter', 'entity', array(
                 'class' => 'Gradually\UserBundle\Entity\RecruiterUser',

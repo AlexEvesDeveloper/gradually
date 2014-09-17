@@ -22,7 +22,7 @@ class GraduateController extends Controller
     public function indexAction(Request $request)
     {
 		// initialise empty search results
-		$graduates = array();
+		$result = array();
 		$graduateSearch = new GraduateSearch();
 		$form = $this->createForm(new GraduateSearchType(), $graduateSearch);
 
@@ -37,27 +37,41 @@ class GraduateController extends Controller
 	
 	    	// recruiters without search credits redirect to purchase page, otherwise reduce one credit
 	    	if($user->getType() == 'RECRUITER'){
-	    		if(!$user->getProfile()->getSearchCredits()){
+	    		if(!$user->getSearchCredits()){
 		    		// insufficient credits
 		    		return $this->redirect($this->generateUrl('gradually_purchase_default_index'));
-				}else{
+			}else{
 		    		// decrement credits by one
-		    		$currentCredits = $user->getProfile()->getSearchCredits();
-		    		$user->getProfile()->setSearchCredits(--$currentCredits);
+		    		$currentCredits = $user->getSearchCredits();
+		    		$user->setSearchCredits(--$currentCredits);
 		    		$em->persist($user);
-	    	    	$em->flush();
-				}
+	    	    		$em->flush();
+			}
 	    	}
 	
-	    	$sh = $this->container->get('graduate_search_handler');
-	
-	    	$orderBy = array('property' => 'graduate.id', 'order' => 'ASC');
-	    	$graduates = $sh->handleSearch($form, $orderBy);
+	    		$sh = $this->container->get('graduate_search_handler');
+			$orderBy = array('property' => 'graduate.id', 'order' => 'ASC');
+	    		$sh->prepareSearch($form, $orderBy);
+			$result = $sh->execute();	
+			/*
+			// caching
+			$cache = $this->get('cache');
+			$cache->setMemcached($this->get('memcached'));
+
+
+			$queryKey = 'KEY' . md5($sh->getQueryString());
+			if($resultString = $cache->fetch($queryKey)){
+				$result = unserialize($resultString);
+			}else{
+				$result = $sh->execute();
+				$cache->save($queryKey, serialize($result), 30);	
+			}
+			*/
 		}
 		
 		return array(
-	    	'form' => $form->createView(),
-	    	'graduates' => $graduates
+	    		'form' => $form->createView(),
+	    		'graduates' => $result
 		);
 	}
 }

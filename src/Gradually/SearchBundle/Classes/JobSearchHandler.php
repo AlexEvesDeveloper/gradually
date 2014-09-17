@@ -30,16 +30,37 @@ class JobSearchHandler
 	    $this->doctrine = $doctrine;
 	}
 
-	public function handleSearch(Form $form, array $orderBy)
+	/**
+	 * Construct the query string.	
+  	 */
+	public function prepareSearch(Form $form, array $orderBy)
 	{
 		$this->applyFilters($form);
-
 		$this->queryString .= sprintf(' ORDER BY %s %s', $orderBy['property'], $orderBy['order']);
-
-	    $query = $this->doctrine->getManager()->createQuery($this->queryString)->setParameters($this->queryParams);
-
-	    return $query->getResult();
 	}
+	
+	/**
+	 * Execute the query.
+	 *
+	 * @return Result set.
+	 */
+	public function execute()
+	{
+		$query = $this->doctrine->getManager()->createQuery($this->queryString)->setParameters($this->queryParams);
+		$query->useResultCache(true, 600, 'KEY' . md5($this->getQueryString()));	
+		return $query->getResult();
+	}
+
+        /**
+         * Returns the query string, with its parameters appended to the end, comma separated.
+         *
+         * Primarily used by memcache to create a unique key for each specificly filtered query,
+         * But also good for debugging purposes.
+         */
+        public function getQueryString()
+        {
+                return $this->queryString . implode(',', $this->queryParams);
+        }
 
 	protected function applyFilters(Form $form)
 	{

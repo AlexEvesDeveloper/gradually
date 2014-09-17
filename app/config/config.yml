@@ -58,7 +58,24 @@ doctrine:
 
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
-        auto_mapping: true
+        #auto_mapping: true
+        default_entity_manager: default
+        entity_managers:
+            default:
+                metadata_cache_driver: memcached
+                result_cache_driver: memcached
+                query_cache_driver: memcached
+                connection: default
+                mappings:
+                    GraduallyUserBundle: { type: annotation, dir: Entity/ }
+                    GraduallyUtilBundle: { type: annotation, dir: Entity/ }
+                    GraduallyGraduateBundle: { type: annotation, dir: Entity/ }
+                    GraduallyJobBundle: { type: annotation, dir: Entity/ }
+                    GraduallyPurchaseBundle: { type: annotation, dir: Entity/ }
+                    GraduallySearchBundle: { type: annotation, dir: Entity/ }
+                    #GraduallyRecruiterBundle: { type: annotation, dir: Entity/ }
+                    #GraduallyNotificationBundle: { type: annotation, dir: Entity/ }
+                    #GraduallyAdminBundle: { type: annotation, dir: Entity/ }
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -72,7 +89,21 @@ sensio_framework_extra:
     view:      { annotations: false }
     router:    { annotations: true }
 
+# rest
 fos_rest:
     format_listener: true
     view:
         view_response_listener: 'force'
+
+#memcached
+parameters:
+    memcached.servers:
+        - { host: 127.0.0.1, port: 11211 }
+
+services:
+    memcached:
+        class: Memcached
+        calls: 
+            - [ addServers, [ %memcached.servers%]]
+    cache:
+        class: Doctrine\Common\Cache\MemcachedCache

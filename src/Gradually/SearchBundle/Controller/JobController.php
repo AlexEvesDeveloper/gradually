@@ -28,17 +28,17 @@ class JobController extends Controller
 
 		$form->handleRequest($request);
 		if($form->isValid()){
-	    	$em = $this->getDoctrine()->getManager();
+	    		$em = $this->getDoctrine()->getManager();
 
-	    	$sh = $this->container->get('job_search_handler');
-	
-	    	$orderBy = array('property' => 'job.id', 'order' => 'ASC');
-	    	$jobs = $sh->handleSearch($form, $orderBy);
+	    		$sh = $this->container->get('job_search_handler');
+	    		$orderBy = array('property' => 'job.id', 'order' => 'ASC');
+                	$sh->prepareSearch($form, $orderBy);
+                	$result = $sh->execute();	
 		}
 		
 		return array(
 	    	'form' => $form->createView(),
-	    	'jobs' => $jobs
+	    	'jobs' => $result
 		);
 	}
 }
