@@ -52,6 +52,10 @@ doctrine:
         user:     "%database_user%"
         password: "%database_password%"
         charset:  UTF8
+        types:
+            point: Gradually\LibraryBundle\Classes\Doctrine\PointType
+        mapping_types:
+            point: point
         # if using pdo_sqlite as your database driver, add the path in parameters.yml
         # e.g. database_path: "%kernel.root_dir%/data/data.db3"
         # path:     "%database_path%"
@@ -62,7 +66,7 @@ doctrine:
         default_entity_manager: default
         entity_managers:
             default:
-                metadata_cache_driver: memcached
+                #metadata_cache_driver: memcached
                 result_cache_driver: memcached
                 query_cache_driver: memcached
                 connection: default

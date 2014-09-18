@@ -256,4 +256,28 @@ class GraduateUser extends User
     {
         return $this->applications;
     }
+
+    /**
+     * Set notificationMethod
+     *
+     * @param string $notificationMethod
+     * @return GraduateUser
+     */
+    public function setNotificationMethod($notificationMethod)
+    {
+        $this->notificationMethod = $notificationMethod;
+
+        return $this;
+    }
+
+    /**
+     * Get notificationMethod
+     *
+     * @return string 
+     */
+    public function getNotificationMethod()
+    {
+        return 'text';
+        return $this->notificationMethod;
+    }
 }

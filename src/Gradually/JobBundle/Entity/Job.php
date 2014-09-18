@@ -49,6 +49,13 @@ class Job
     private $description;
 
     /**
+     * @var \Gradually\JobBundle\Entity\Location
+     *
+     * @ORM\ManyToOne(targetEntity="\Gradually\JobBundle\Entity\Location", inversedBy="jobs")
+     */
+    private $location;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="salaryFrom", type="decimal")
@@ -410,5 +417,28 @@ class Job
     public function getApplications()
     {
         return $this->applications;
+    }
+
+    /**
+     * Set location
+     *
+     * @param \Gradually\JobBundle\Entity\Location $location
+     * @return Job
+     */
+    public function setLocation(\Gradually\JobBundle\Entity\Location $location = null)
+    {
+        $this->location = $location;
+
+        return $this;
+    }
+
+    /**
+     * Get location
+     *
+     * @return \Gradually\JobBundle\Entity\Location 
+     */
+    public function getLocation()
+    {
+        return $this->location;
     }
 }

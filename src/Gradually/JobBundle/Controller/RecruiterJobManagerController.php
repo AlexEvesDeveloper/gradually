@@ -8,9 +8,11 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Gradually\UserBundle\Entity\RecruiterUser;
 use Gradually\JobBundle\Entity\Job;
+use Gradually\JobBundle\Entity\Location;
 use Gradually\JobBundle\Form\JobType;
 use Gradually\NotificationBundle\Classes\NotificationManager;
 use Gradually\NotificationBundle\Classes\Factories\JobNotifierFactory;
+use Gradually\LibraryBundle\Classes\Doctrine\Point;
 
 /**
  * @Route("/recruiters/{id}/jobs")
@@ -59,13 +61,22 @@ class RecruiterJobManagerController extends Controller
 
         $form->handleRequest($request);
         if($form->isValid()){
+            $em = $this->getDoctrine()->getManager();
+
             // attach the job to this recruiter
             $job->setRecruiter($recruiter);
+
+            // create the location
+            $point = new Point(10, 20.5);
+            $location = new Location();
+            $location->setPostcode('LN6');
+            $location->setPoint($point);
+            $em->persist($location);
+            $job->setLocation($location);
 
             // decrement posting credits
             $recruiter->setPostingCredits(--$postingCredits);
 
-            $em = $this->getDoctrine()->getManager();
             $em->persist($job);
             $em->persist($recruiter);
             $em->flush();

@@ -32,9 +32,14 @@ class DefaultController extends Controller
     {
     	$recruiter = $this->getDoctrine()->getManager()->getRepository('GraduallyUserBundle:RecruiterUser')->find($id);
 
+        $userType = null;
+        if($this->getUser()){
+            $userType = $this->getUser()->getType();
+        }
+
         return array(
             'recruiter' => $recruiter,
-            'userType' => $this->getUser()->getType()
+            'userType' => $userType
         );
     }
 
