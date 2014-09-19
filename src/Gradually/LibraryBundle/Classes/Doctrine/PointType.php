@@ -1,46 +1,47 @@
 <?php
-
 namespace Gradually\LibraryBundle\Classes\Doctrine;
 
 use Doctrine\DBAL\Types\Type;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 
 /**
- * Extend Doctrine to create a new data type, POINT.
+ * Mapping type for spatial POINT objects
  */
-class PointType extends Type
-{
-	const POINT = 'point';
+class PointType extends Type {
+    const POINT = 'point';
 
-	// abstract method from parent
-	public function getName()
-	{
-		return self::POINT;
-	}
+    /**
+     * Gets the name of this type.
+     *
+     * @return string
+     */
+    public function getName() {
+        return self::POINT;
+    }
 
-	// abstract method from parent
-	public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $Platform)
-	{
-		return 'POINT';
-	}
+    /**
+     * Gets the SQL declaration snippet for a field of this type.
+     *
+     * @param array $fieldDeclaration The field declaration.
+     * @param AbstractPlatform $platform The currently used database platform.
+     */
+    public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform) {
+        return 'POINT';
+    }
 
-	public function convertToPHPValue($value, AbstractPlatform $Platform)
-	{
-		// Null fields come into this function as empty strings
-		if($value == ''){
-			return null;
-		}
+    public function convertToPHPValue($value, AbstractPlatform $platform) {
+        //Null fields come in as empty strings
+        if($value == '') {
+            return null;
+        }
 
-		$data = unpack('x/x/x/x/corder/Ltype/dlat/dlon', $value);
-		return new Point($data['lat'], $data['lon']);
-	}
+        $data = unpack('x/x/x/x/corder/Ltype/dlat/dlon', $value);
+        return new \Wantlet\ORM\Point($data['lat'], $data['lon']);
+    }
 
-	public function convertToDatabaseValue($value, AbstractPlatform $Platform)
-	{
-		if(!$value){
-			return;
-		}
-
-		return pack('xxxxcLdd', '0', 1, $value->getLatitude(), $value->getLongitude());
-	}
+    public function convertToDatabaseValue($value, AbstractPlatform $platform) {
+        if (!$value) return;
+        
+        return pack('xxxxcLdd', '0', 1, $value->getLatitude(), $value->getLongitude());
+    }
 }

@@ -67,7 +67,8 @@ class RecruiterJobManagerController extends Controller
             $job->setRecruiter($recruiter);
 
             // create the location
-            $point = new Point(10, 20.5);
+            // dummy point
+	    $point = new Point(10, 20.5);
             $location = new Location();
             $location->setPostcode('LN6');
             $location->setPoint($point);
@@ -82,7 +83,6 @@ class RecruiterJobManagerController extends Controller
             $em->flush();
 
             $this->notifyRecruiterSubscribers($recruiter, $job);
-            exit;
             // TODO redirect to global job view
             return $this->redirect($this->generateUrl('gradually_job_recruiterjobmanager_view', array(
                 'id' => $id,

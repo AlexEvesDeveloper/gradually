@@ -42,6 +42,11 @@ class JobSearch
     private $salaryTo;
 
     /**
+     * @ORM\Column(name="location", type="text", length=16, nullable=true)
+     */
+    private $location;
+
+    /**
      * Get id
      *
      * @return integer 

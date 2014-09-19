@@ -51,7 +51,7 @@ class Job
     /**
      * @var \Gradually\JobBundle\Entity\Location
      *
-     * @ORM\ManyToOne(targetEntity="\Gradually\JobBundle\Entity\Location", inversedBy="jobs")
+     * @ORM\ManyToOne(targetEntity="\Gradually\JobBundle\Entity\Location")
      */
     private $location;
 

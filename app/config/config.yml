@@ -67,8 +67,8 @@ doctrine:
         entity_managers:
             default:
                 #metadata_cache_driver: memcached
-                result_cache_driver: memcached
-                query_cache_driver: memcached
+                #result_cache_driver: memcached
+                #query_cache_driver: memcached
                 connection: default
                 mappings:
                     GraduallyUserBundle: { type: annotation, dir: Entity/ }
@@ -80,6 +80,10 @@ doctrine:
                     #GraduallyRecruiterBundle: { type: annotation, dir: Entity/ }
                     #GraduallyNotificationBundle: { type: annotation, dir: Entity/ }
                     #GraduallyAdminBundle: { type: annotation, dir: Entity/ }
+                dql:
+                    numeric_functions:
+                        point_str: Gradually\LibraryBundle\Classes\Doctrine\PointStr
+                        distance: Gradually\LibraryBundle\Classes\Doctrine\Distance
 
 # Swiftmailer Configuration
 swiftmailer:

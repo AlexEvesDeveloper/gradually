@@ -42,6 +42,11 @@ class JobSearch
     private $salaryTo;
 
     /**
+     * @ORM\Column(name="location", type="text", length=16, nullable=true)
+     */
+    private $location;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -141,5 +146,28 @@ class JobSearch
     public function getRecruiter()
     {
         return $this->recruiter;
+    }
+
+    /**
+     * Set location
+     *
+     * @param string $location
+     * @return JobSearch
+     */
+    public function setLocation($location)
+    {
+        $this->location = $location;
+
+        return $this;
+    }
+
+    /**
+     * Get location
+     *
+     * @return string 
+     */
+    public function getLocation()
+    {
+        return $this->location;
     }
 }
