@@ -25,6 +25,7 @@ class JobSearchHandler
 		$this->queryString = '
 			SELECT job, recruiter FROM GraduallyJobBundle:Job job
 			JOIN job.recruiter recruiter
+			JOIN job.location location
 			WHERE job.isActive = :isActive
 	    ';
 
@@ -91,6 +92,18 @@ class JobSearchHandler
 				$this->queryString .= sprintf(' OR job.salaryTo >= :salaryFrom)');
 			}
 			$this->queryParams['salaryFrom'] = $salaryFrom;
-		}		
+		}	
+
+		if(($location = $form->getData()->getLocation()) !== null){
+			if(($distance = $form->getData()->getDistance()) === null){
+				$distance = 5;
+			}
+
+			$point = $location->getPoint();
+			$this->queryString .= sprintf(' AND DISTANCE(location.point, POINT_STR(:point)) / 1600 < :distance');
+			$this->queryParams['point'] = $point;
+			$this->queryParams['distance'] = $distance;
+
+		}
 	}
 }

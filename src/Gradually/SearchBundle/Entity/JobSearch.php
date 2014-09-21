@@ -42,9 +42,14 @@ class JobSearch
     private $salaryTo;
 
     /**
-     * @ORM\Column(name="location", type="text", length=16, nullable=true)
+     * @ORM\OneToMany(targetEntity="\Gradually\JobBundle\Entity\Location", mappedBy="jobSearch")
      */
     private $location;
+
+    /**
+     * @ORM\Column(name="distance", type="text", length=16, nullable=true)
+     */
+    private $distance;
 
     /**
      * Get id
@@ -169,5 +174,58 @@ class JobSearch
     public function getLocation()
     {
         return $this->location;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->location = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Set distance
+     *
+     * @param string $distance
+     * @return JobSearch
+     */
+    public function setDistance($distance)
+    {
+        $this->distance = $distance;
+
+        return $this;
+    }
+
+    /**
+     * Get distance
+     *
+     * @return string 
+     */
+    public function getDistance()
+    {
+        return $this->distance;
+    }
+
+    /**
+     * Add location
+     *
+     * @param \Gradually\JobBundle\Entity\Location $location
+     * @return JobSearch
+     */
+    public function addLocation(\Gradually\JobBundle\Entity\Location $location)
+    {
+        $this->location[] = $location;
+
+        return $this;
+    }
+
+    /**
+     * Remove location
+     *
+     * @param \Gradually\JobBundle\Entity\Location $location
+     */
+    public function removeLocation(\Gradually\JobBundle\Entity\Location $location)
+    {
+        $this->location->removeElement($location);
     }
 }

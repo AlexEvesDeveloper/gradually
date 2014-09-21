@@ -36,6 +36,11 @@ class Location
     private $point;
 
     /**
+     * @ORM\ManyToOne(targetEntity="\Gradually\SearchBundle\Entity\JobSearch", inversedBy="location")
+     */
+    private $jobSearch;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -89,5 +94,28 @@ class Location
     public function getPoint()
     {
         return $this->point;
+    }
+
+    /**
+     * Set jobSearch
+     *
+     * @param \Gradually\SearchBundle\Entity\JobSearch $jobSearch
+     * @return Location
+     */
+    public function setJobSearch(\Gradually\SearchBundle\Entity\JobSearch $jobSearch = null)
+    {
+        $this->jobSearch = $jobSearch;
+
+        return $this;
+    }
+
+    /**
+     * Get jobSearch
+     *
+     * @return \Gradually\SearchBundle\Entity\JobSearch 
+     */
+    public function getJobSearch()
+    {
+        return $this->jobSearch;
     }
 }

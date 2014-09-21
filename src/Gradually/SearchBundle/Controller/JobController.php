@@ -22,13 +22,14 @@ class JobController extends Controller
     public function indexAction(Request $request)
     {
 		// initialise empty search results
-		$jobs = array();
+		$result = array();
 		$jobSearch = new JobSearch();
 		$form = $this->createForm(new JobSearchType(), $jobSearch);
 
 		$form->handleRequest($request);
 		if($form->isValid()){
 	    		$em = $this->getDoctrine()->getManager();
+
 
 	    		$sh = $this->container->get('job_search_handler');
 	    		$orderBy = array('property' => 'job.id', 'order' => 'ASC');

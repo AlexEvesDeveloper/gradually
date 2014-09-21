@@ -36,7 +36,7 @@ class PointType extends Type {
         }
 
         $data = unpack('x/x/x/x/corder/Ltype/dlat/dlon', $value);
-        return new \Wantlet\ORM\Point($data['lat'], $data['lon']);
+        return new \Gradually\LibraryBundle\Classes\Doctrine\Point($data['lat'], $data['lon']);
     }
 
     public function convertToDatabaseValue($value, AbstractPlatform $platform) {

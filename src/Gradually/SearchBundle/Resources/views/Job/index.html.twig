@@ -19,8 +19,7 @@
                 	<h3>
                 		<a href="{{ path('gradually_job_default_view', {'id' : job.id}) }}">{{job.title}}</a>
                 	</h3>
-                	<p>{{job.salaryFrom}}</p>
-                	<p>{{job.salaryTo}}</p>
+			<p>{{job.location.postcode}}</p>
         	{% endfor %}	
 	</div>
 

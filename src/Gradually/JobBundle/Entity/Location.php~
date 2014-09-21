@@ -36,6 +36,11 @@ class Location
     private $point;
 
     /**
+     * @ORM\ManyToOne(targetEntity="\Gradually\SearchBundle\Entity\JobSearch", inversedBy="location")
+     */
+    private $jobSearch;
+
+    /**
      * Get id
      *
      * @return integer 

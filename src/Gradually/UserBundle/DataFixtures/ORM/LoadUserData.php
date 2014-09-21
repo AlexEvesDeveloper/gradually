@@ -17,6 +17,8 @@ use Gradually\UtilBundle\Entity\DegreeLevel;
 use Gradually\GraduateBundle\Entity\Qualification;
 use Gradually\JobBundle\Entity\Job;
 use Gradually\PurchaseBundle\Entity\PurchaseOption;
+use Gradually\LibraryBundle\Classes\Doctrine\Point;
+use Gradually\JobBundle\Entity\Location;
 
 class LoadUserData implements FixtureInterface
 {
@@ -25,6 +27,8 @@ class LoadUserData implements FixtureInterface
      */
     public function load(ObjectManager $manager)
     {
+	// LOCATIONS
+		$locations = $this->createLocations($manager);
 
         // UNIVERSITIES
 		$universities = $this->createUniversities($manager);
@@ -50,8 +54,8 @@ class LoadUserData implements FixtureInterface
 		$graduateUsers = $this->createGraduateUsers($manager, $roles['graduate'], $universities, $degrees, $degreeLevels);
 		$recruiterUsers = $this->createRecruiterUsers($manager, $roles['recruiter']);
 	
-		// JOBS
-		$jobs = $this->createJobs($manager, $recruiterUsers);
+	// JOBS
+	$jobs = $this->createJobs($manager, $recruiterUsers, $locations);
     }
 
 	protected function createUniversities($manager)
@@ -243,7 +247,7 @@ class LoadUserData implements FixtureInterface
 	protected function createGraduateUsers($manager, $role, $universities, $degrees, $degreeLevels)
 	{
 		$return = array();
-		for($i = 1; $i < 101; $i++){
+		for($i = 1; $i < 11; $i++){
 			$g = new GraduateUser();
 			$g->setFirstName(sprintf('Graduate %d', $i));
 			$g->setLastName('Test');
@@ -304,7 +308,7 @@ class LoadUserData implements FixtureInterface
 	{
 		$return = array();
 		
-		for($i = 1; $i < 51; $i++){
+		for($i = 1; $i < 2; $i++){
 			$r = new RecruiterUser();
 			$r->setCompanyName(sprintf('Recruiter %d', $i));
 			$r->setEmail(sprintf('rec%d@test.com', $i));
@@ -322,22 +326,16 @@ class LoadUserData implements FixtureInterface
 		return $return;
 	}
 
-	protected function createJobs($manager, $recruiters)
+	protected function createJobs($manager, $recruiters, $locations)
 	{
 		$return = array();
-		foreach($recruiters as $recruiter){
-			for($i = 1; $i < 11; $i++){
+		foreach($locations as $location){
+		    foreach($recruiters as $recruiter){
+			for($i = 1; $i < 2; $i++){
 				$j = new Job();
 				$j->setTitle(sprintf('%s: Job %d', $recruiter->getCompanyName(), $i));
-				$j->setDescription('Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat nunc vitae porta consectetur. Sed diam sapien, eleifend eu tempor vel, vehicula a sem. Nullam a tellus vehicula sem viverra volutpat. Nunc id est efficitur, auctor mi vel, tempus diam. Curabitur venenatis, eros sed scelerisque imperdiet, dui magna pretium nisi, at lobortis elit diam sit amet risus. Maecenas accumsan eleifend justo. Fusce sit amet libero ut ante auctor pulvinar. Aenean vitae felis at lacus facilisis interdum. Cras tempus tincidunt metus sit amet fringilla.
+				$j->setDescription('Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat nunc vitae porta consectetur. Sed diam sapien, eleifend eu tempor vel, vehicula a sem. Nullam a tellus vehicula sem viverra volutpat. Nunc id est efficitur, auctor mi vel, tempus diam. Curabitur venenatis, eros sed scelerisque imperdiet, dui magna pretium nisi, at lobortis elit diam sit amet risus. Maecenas accumsan eleifend justo. Fusce sit amet libero ut ante auctor pulvinar. Aenean vitae felis at lacus facilisis interdum. Cras tempus tincidunt metus sit amet fringilla.');
 
-Ut vel ipsum eget felis dictum pharetra eu at purus. Sed lobortis tortor a nibh cursus suscipit. Maecenas pharetra rutrum semper. Pellentesque velit ex, dignissim eget arcu sit amet, vehicula blandit elit. Quisque at nisl sed tellus ornare semper at id nulla. Proin vitae consequat metus. Aliquam aliquet dolor ac ligula tempor suscipit. Mauris fringilla, odio vehicula facilisis varius, tortor urna malesuada nunc, non interdum ex diam ac mauris. Proin tincidunt porta hendrerit. Donec id efficitur libero, eget cursus lectus. Duis sagittis quis neque et pellentesque. Duis pellentesque, sem sit amet varius tincidunt, odio ex pretium sem, vitae facilisis dolor quam sed mauris. Integer id pulvinar enim, non tristique massa. Quisque porttitor ultricies lacus, vel tristique risus volutpat in. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed ligula massa, sollicitudin sed leo faucibus, ornare placerat tellus.
-
-Sed pellentesque odio condimentum nisi lobortis ultricies. Aenean eget placerat felis, ut elementum ex. Nunc finibus vehicula volutpat. Nam sapien odio, tristique nec ultricies non, mollis quis est. Aenean ac sollicitudin leo. Vestibulum quam diam, dignissim in tristique quis, cursus ac orci. Vivamus sit amet bibendum lacus. Quisque at ex neque. Duis feugiat viverra mauris vitae tincidunt. Vestibulum consequat magna nulla, venenatis fringilla est pulvinar at. Donec imperdiet libero massa, in sollicitudin nisi luctus ut. Nulla vitae suscipit ex.
-
-Etiam eget nisi laoreet, finibus nulla non, feugiat ligula. Curabitur id nunc eu felis lobortis convallis sed eu arcu. Maecenas facilisis eros massa, sit amet faucibus dolor aliquam ut. Integer scelerisque efficitur gravida. Vestibulum sit amet ex at dolor imperdiet malesuada. Aliquam non ligula ac nulla ullamcorper interdum a at nibh. Ut in nisl consectetur, vehicula sem at, accumsan dui.
-
-Quisque nibh arcu, iaculis ac risus non, luctus pharetra massa. Suspendisse pretium nisi eu massa accumsan, tincidunt sollicitudin velit condimentum. Aenean dui lectus, pulvinar ac cursus vel, venenatis ac felis. Nam molestie at diam ac facilisis. Curabitur lectus metus, varius et imperdiet vitae, euismod nec velit. Sed sagittis augue sit amet nisl vehicula dictum quis ut velit. Phasellus cursus metus sed dui fermentum aliquet.');
 				// random from 
 				$fromRand = rand(10, 100);
 				$from = sprintf('%d000', $fromRand);
@@ -348,11 +346,35 @@ Quisque nibh arcu, iaculis ac risus non, luctus pharetra massa. Suspendisse pret
 				$j->setSalaryTo($to);
 				$j->setRecruiter($recruiter);
 
+				$j->setLocation($location);
+
 				$manager->persist($j);
 				$return[] = $j;
 			}
+  	 	    }
 		}
         	$manager->flush();
+		return $return;
+	}
+
+	protected function createLocations($manager)
+	{
+		$return = array();
+
+		$row = 1;
+		if(($handle = fopen(__DIR__.'/uk-postcodes.csv', 'r')) !== FALSE){
+			while(($data = fgetcsv($handle, 1000, ',')) !== FALSE){
+				$postcode = $data[0];
+				$point = new Point($data[1], $data[2]);
+				$location = new Location();
+				$location->setPostcode($postcode);
+				$location->setPoint($point);
+				
+				$manager->persist($location);
+				$return[] = $location;
+			}
+		}
+		$manager->flush();
 		return $return;
 	}
 }

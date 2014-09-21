@@ -38,7 +38,15 @@ class JobSearchType extends AbstractType
                     return $er->createQueryBuilder('user')->orderBy('user.companyName', 'ASC');
                 }
             ))
-	    ->add('location')
+	    ->add('location', 'entity', array(
+		'class' => 'Gradually\JobBundle\Entity\Location',
+		'multiple' => false,
+		'expanded' => false,
+		'empty_value' => 'Nationwide',
+		'property' => 'postcode',
+		'required' => false
+	    ))
+	    ->add('distance')
             ->add('save', 'submit', array('label' => 'Search'));
     }
     
