@@ -1,0 +1,389 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"Gra",
+				"Gradually"
+			],
+			[
+				"long",
+				"longitude"
+			],
+			[
+				"lon",
+				"longitude"
+			],
+			[
+				"Noti",
+				"NotifierInterface"
+			],
+			[
+				"Not",
+				"NotificationBundle"
+			],
+			[
+				"Job",
+				"JobNotifierFactory"
+			],
+			[
+				"Notifica",
+				"NotificaionManager"
+			],
+			[
+				"Grad",
+				"Gradually"
+			],
+			[
+				"rec",
+				"recruiterId"
+			],
+			[
+				"Rec",
+				"RecruiterUser"
+			],
+			[
+				"gra",
+				"graduate"
+			],
+			[
+				"grad",
+				"graduateId"
+			],
+			[
+				"Gradually",
+				"GraduallyUserBundle"
+			],
+			[
+				"Jo",
+				"JobBundle"
+			],
+			[
+				"job",
+				"job_view"
+			],
+			[
+				"rand",
+				"randYear"
+			],
+			[
+				"order",
+				"orderBy"
+			],
+			[
+				"false",
+				"false"
+			],
+			[
+				"form",
+				"formFieldValue"
+			],
+			[
+				"university",
+				"university"
+			],
+			[
+				"field",
+				"field"
+			],
+			[
+				"uni",
+				"university"
+			],
+			[
+				"deg",
+				"degree"
+			],
+			[
+				"qua",
+				"qualification"
+			],
+			[
+				"graduate",
+				"graduate"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "app_dev.php",
+			"settings":
+			{
+				"buffer_size": 1245,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 54.0,
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"pa",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 139.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/var/www/gradually.co.uk/gradually",
+		"/var/www/gradually.co.uk/gradually/web"
+	],
+	"file_history":
+	[
+		"/var/www/gradually.co.uk/gradually/vendor/composer/installed.json",
+		"/var/www/gradually.co.uk/gradually/vendor/phpunit/phpunit/PHPUnit/Framework/Constraint/IsNull.php",
+		"/var/www/gradually.co.uk/gradually/vendor/phpunit/php-token-stream/tests/_fixture/classInScopedNamespace.php",
+		"/var/www/gradually.co.uk/gradually/vendor/phpunit/phpunit/Tests/_files/ExceptionInSetUpTest.php",
+		"/var/www/gradually.co.uk/gradually/src/Gradually/UtilBundle/Entity/University.php",
+		"/var/www/gradually.co.uk/gradually/app/console",
+		"/var/www/gradually.co.uk/gradually/src/Gradually/LibraryBundle/GraduallyLibraryBundle.php",
+		"/var/www/gradually.co.uk/gradually/web/app_dev.php",
+		"/var/www/gradually.co.uk/gradually/src/Gradually/GraduateBundle/Entity/Qualification.php",
+		"/var/www/gradually.co.uk/gradually/src/Gradually/RecruiterBundle/Controller/DefaultController.php",
+		"/var/www/gradually.co.uk/gradually/src/Gradually/UtilBundle/Entity/Degree.php",
+		"/var/www/gradually.co.uk/gradually/src/Gradually/LibraryBundle/Classes/Doctrine/Point.php",
+		"/var/www/gradually.co.uk/gradually/src/Gradually/NotificationBundle/Classes/NotificationManager.php",
+		"/var/www/gradually.co.uk/gradually/src/Gradually/NotificationBundle/Classes/Notifiers/NotifierInterface.php",
+		"/var/www/gradually.co.uk/gradually/src/Gradually/UserBundle/Entity/User.php",
+		"/var/www/gradually.co.uk/gradually/src/Gradually/UserBundle/Entity/GraduateUser.php",
+		"/var/www/gradually.co.uk/gradually/src/Gradually/NotificationBundle/Classes/NotificationManagers/NotificationManager.php",
+		"/var/www/gradually.co.uk/gradually/src/Gradually/NotificationBundle/Classes/Notifiers/EmailJobNotifier.php",
+		"/var/www/gradually.co.uk/gradually/src/Gradually/NotificationBundle/Classes/Notifiers/BaseJobNotifier.php",
+		"/var/www/gradually.co.uk/gradually/src/Gradually/UserBundle/Entity/RecruiterUserRepository.php",
+		"/var/www/gradually.co.uk/gradually/src/Gradually/SearchBundle/Classes/GraduateSearchHandler.php",
+		"/var/www/gradually.co.uk/gradually/src/Gradually/UserBundle/Entity/RecruiterUser.php",
+		"/var/www/gradually.co.uk/gradually/app/config/routing.yml",
+		"/var/www/gradually.co.uk/gradually/src/Gradually/SearchBundle/Controller/GraduateController.php",
+		"/var/www/gradually.co.uk/gradually/src/Gradually/RecruiterBundle/Resources/views/Default/view.html.twig",
+		"/var/www/gradually.co.uk/gradually/src/Gradually/JobBundle/Resources/views/RecruiterJobManager/add.html.twig",
+		"/var/www/gradually.co.uk/gradually/src/Gradually/JobBundle/Entity/Job.php",
+		"/var/www/gradually.co.uk/gradually/src/Gradually/JobBundle/Entity/JobListener.php",
+		"/var/www/gradually.co.uk/gradually/src/Gradually/JobBundle/EventListener/JobListener.php",
+		"/var/www/gradually.co.uk/gradually/src/Gradually/PurchaseBundle/Controller/DefaultController.php",
+		"/var/www/gradually.co.uk/gradually/src/Gradually/PurchaseBundle/Resources/views/Default/confirm.html.twig",
+		"/var/www/gradually.co.uk/gradually/src/Gradually/PurchaseBundle/Resources/views/Default/index.html.twig",
+		"/var/www/gradually.co.uk/gradually/composer.json",
+		"/var/www/gradually.co.uk/gradually/vendor/doctrine/orm/lib/Doctrine/ORM/Version.php",
+		"/var/www/gradually.co.uk/gradually/src/Gradually/GraduateBundle/Controller/DefaultController.php",
+		"/var/www/gradually.co.uk/gradually/src/Gradually/SearchBundle/Resources/views/Job/index.html.twig",
+		"/var/www/gradually.co.uk/gradually/src/Gradually/JobBundle/Resources/views/Default/index.html.twig",
+		"/var/www/gradually.co.uk/gradually/bin/phpunit",
+		"/var/www/gradually.co.uk/gradually/vendor/phpunit/phpunit/build/phar-autoload.php.in",
+		"/var/www/gradually.co.uk/gradually/vendor/kriswallsmith/assetic/package.json",
+		"/var/www/gradually.co.uk/gradually/vendor/swiftmailer/swiftmailer/doc/installing.rst",
+		"/var/www/gradually.co.uk/gradually/vendor/twig/twig/doc/installation.rst",
+		"/var/www/gradually.co.uk/gradually/web/bundles/sensiodistribution/webconfigurator/css/install.css",
+		"/var/www/gradually.co.uk/gradually/vendor/doctrine/orm/docs/bin/install-dependencies.sh",
+		"/var/www/gradually.co.uk/gradually/vendor/doctrine/orm/docs/en/reference/installation.rst",
+		"/var/www/gradually.co.uk/gradually/vendor/jms/serializer-bundle/JMS/SerializerBundle/Resources/doc/installation.rst",
+		"/var/www/gradually.co.uk/gradually/vendor/doctrine/doctrine-bundle/Doctrine/Bundle/DoctrineBundle/Resources/doc/installation.rst",
+		"/var/www/gradually.co.uk/gradually/vendor/sensio/distribution-bundle/Sensio/Bundle/DistributionBundle/Resources/public/webconfigurator/css/install.css",
+		"/var/www/gradually.co.uk/gradually/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Command/AssetsInstallCommand.php",
+		"/var/www/gradually.co.uk/gradually/vendor/twig/twig/test/Twig/Tests/Fixtures/macros/nested_calls.test",
+		"/var/www/gradually.co.uk/gradually/vendor/incenteev/composer-parameter-handler/Incenteev/ParameterHandler/Tests/fixtures/invalid/invalid_existing_values.yml",
+		"/var/www/gradually.co.uk/gradually/vendor/symfony/symfony/src/Symfony/Component/Intl/Resources/stubs/Locale.php",
+		"/var/www/gradually.co.uk/gradually/vendor/incenteev/composer-parameter-handler/Incenteev/ParameterHandler/Tests/fixtures/invalid/invalid_existing_values.yml.dist",
+		"/var/www/gradually.co.uk/gradually/vendor/symfony/symfony/src/Symfony/Component/Intl/Tests/Locale/AbstractLocaleTest.php",
+		"/var/www/gradually.co.uk/gradually/vendor/doctrine/dbal/lib/Doctrine/DBAL/Types/SmallIntType.php",
+		"/var/www/gradually.co.uk/gradually/vendor/doctrine/common/lib/Doctrine/Common/Reflection/StaticReflectionClass.php",
+		"/var/www/gradually.co.uk/gradually/vendor/symfony/symfony/src/Symfony/Component/Intl/Tests/Collator/AbstractCollatorTest.php",
+		"/var/www/gradually.co.uk/gradually/vendor/doctrine/orm/lib/Doctrine/ORM/Query/Exec/SingleTableDeleteUpdateExecutor.php",
+		"/var/www/gradually.co.uk/gradually/vendor/jms/serializer/tests/JMS/Serializer/Tests/Serializer/xml/constraint_violation_list.xml",
+		"/var/www/gradually.co.uk/gradually/vendor/symfony/symfony/src/Symfony/Bridge/Twig/Tests/Extension/FormExtensionTableLayoutTest.php",
+		"/var/www/gradually.co.uk/gradually/vendor/symfony/symfony/src/Symfony/Bundle/SecurityBundle/Tests/DependencyInjection/Fixtures/xml/custom_acl_provider.xml",
+		"/var/www/gradually.co.uk/gradually/vendor/symfony/symfony/src/Symfony/Bundle/SecurityBundle/Tests/DependencyInjection/Fixtures/yml/custom_acl_provider.yml",
+		"/var/www/gradually.co.uk/gradually/vendor/symfony/symfony/src/Symfony/Component/Validator/ConstraintViolationList.php",
+		"/var/www/gradually.co.uk/gradually/vendor/symfony/symfony/src/Symfony/Component/Intl/ResourceBundle/Transformer/Rule/LocaleBundleTransformationRule.php",
+		"/var/www/gradually.co.uk/gradually/vendor/symfony/symfony/src/Symfony/Component/Validator/ConstraintViolationListInterface.php",
+		"/var/www/gradually.co.uk/gradually/vendor/symfony/symfony/src/Symfony/Component/Intl/ResourceBundle/Transformer/Rule/LanguageBundleTransformationRule.php",
+		"/var/www/gradually.co.uk/gradually/vendor/doctrine/dbal/lib/Doctrine/DBAL/Event/SchemaCreateTableColumnEventArgs.php",
+		"/var/www/gradually.co.uk/gradually/vendor/doctrine/dbal/lib/Doctrine/DBAL/Event/SchemaAlterTableAddColumnEventArgs.php",
+		"/var/www/gradually.co.uk/gradually/vendor/symfony/symfony/src/Symfony/Component/Intl/Tests/Locale/LocaleTest.php",
+		"/var/www/gradually.co.uk/gradually/vendor/symfony/symfony/src/Symfony/Component/Validator/Tests/ConstraintViolationListTest.php",
+		"/var/www/gradually.co.uk/gradually/vendor/doctrine/dbal/lib/Doctrine/DBAL/Event/SchemaAlterTableChangeColumnEventArgs.php",
+		"/var/www/gradually.co.uk/gradually/vendor/doctrine/dbal/lib/Doctrine/DBAL/Event/SchemaAlterTableRemoveColumnEventArgs.php",
+		"/var/www/gradually.co.uk/gradually/src/Gradually/JobBundle/Controller/RecruiterJobManagerController.php",
+		"/var/www/gradually.co.uk/gradually/src/Gradually/GraduateBundle/Entity/Application.php",
+		"/var/www/gradually.co.uk/gradually/src/Gradually/SearchBundle/Resources/config/services.yml",
+		"/var/www/gradually.co.uk/gradually/src/Gradually/SearchBundle/DependencyInjection/GraduallySearchExtension.php",
+		"/var/www/gradually.co.uk/gradually/src/Gradually/UserBundle/DataFixtures/ORM/LoadUserData.php"
+	],
+	"find":
+	{
+		"height": 25.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"findAllSubscribedGraduates",
+			");\n"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "app_dev.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1245,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								88,
+								88
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 25.0
+	},
+	"input":
+	{
+		"height": 33.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "gradually.sublime-project",
+	"replace":
+	{
+		"height": 46.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+		"xdebug":
+		{
+			"hide_conflict": false
+		}
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 191.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

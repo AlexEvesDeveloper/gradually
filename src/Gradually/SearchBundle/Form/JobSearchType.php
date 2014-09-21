@@ -20,12 +20,12 @@ class JobSearchType extends AbstractType
             ->add('salaryFrom', 'choice', array(
                 'choices' => $this->getSalaryChoices(),
                 'empty_value' => 'No minimum',
-		'required' => false,
+		        'required' => false,
             ))
             ->add('salaryTo', 'choice', array(
                 'choices' => $this->getSalaryChoices(),
                 'empty_value' => 'No maximum',
-		'required' => false,
+		        'required' => false,
             ))
             ->add('recruiter', 'entity', array(
                 'class' => 'Gradually\UserBundle\Entity\RecruiterUser',
@@ -38,15 +38,8 @@ class JobSearchType extends AbstractType
                     return $er->createQueryBuilder('user')->orderBy('user.companyName', 'ASC');
                 }
             ))
-	    ->add('location', 'entity', array(
-		'class' => 'Gradually\JobBundle\Entity\Location',
-		'multiple' => false,
-		'expanded' => false,
-		'empty_value' => 'Nationwide',
-		'property' => 'postcode',
-		'required' => false
-	    ))
-	    ->add('distance')
+	        ->add('locationString')
+	        ->add('distance')
             ->add('save', 'submit', array('label' => 'Search'));
     }
     

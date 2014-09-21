@@ -42,9 +42,9 @@ class JobSearch
     private $salaryTo;
 
     /**
-     * @ORM\OneToMany(targetEntity="\Gradually\JobBundle\Entity\Location", mappedBy="jobSearch")
+     * @ORM\Column(name="location_string", type="string", length=64)
      */
-    private $location;
+    private $locationString;
 
     /**
      * @ORM\Column(name="distance", type="text", length=16, nullable=true)

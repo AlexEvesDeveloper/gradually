@@ -362,11 +362,17 @@ class LoadUserData implements FixtureInterface
 		$return = array();
 
 		$row = 1;
-		if(($handle = fopen(__DIR__.'/uk-postcodes.csv', 'r')) !== FALSE){
+		if(($handle = fopen(__DIR__.'/Uk-Postcodes-Towns.csv', 'r')) !== FALSE){
 			while(($data = fgetcsv($handle, 1000, ',')) !== FALSE){
+				// ignore first row
+				if($row++ == 1){
+					continue;
+				}
+
 				$postcode = $data[0];
-				$point = new Point($data[1], $data[2]);
+				$point = new Point($data[2], $data[3]);
 				$location = new Location();
+				$location->setTown($data[1]);
 				$location->setPostcode($postcode);
 				$location->setPoint($point);
 				

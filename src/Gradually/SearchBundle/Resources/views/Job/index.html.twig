@@ -10,6 +10,10 @@
 		{{form_widget(form.salaryFrom)}}
 		{{form_label(form.salaryTo)}}
 		{{form_widget(form.salaryTo)}}
+		{{form_label(form.locationString, 'Location' )}}
+		{{form_widget(form.locationString, {'attr': {'class': 'typeahead'}})}}
+		{{form_label(form.distance)}}
+		{{form_widget(form.distance)}}
 		{{form_label(form.save)}}
 		{{form_widget(form.save, {attr : {class: 'btn btn-primary'}})}}
 	{{form_end(form)}}
@@ -19,9 +23,19 @@
                 	<h3>
                 		<a href="{{ path('gradually_job_default_view', {'id' : job.id}) }}">{{job.title}}</a>
                 	</h3>
+			<p>{{job.location.town}}</p>
 			<p>{{job.location.postcode}}</p>
         	{% endfor %}	
 	</div>
 
 </div>
+{% endblock %}
+{% block javascripts %}
+    {{parent()}}
+    <!-- typeahead autocomplete -->
+    <script src="{{ asset('js/typeahead/typeahead.bundle.min.js') }}"></script>
+    <script>
+     var locations = {{towns|raw}};
+    </script>
+    <script src="{{ asset('js/typeahead/typeahead.custom.js') }}"></script>
 {% endblock %}

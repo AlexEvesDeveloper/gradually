@@ -77,33 +77,57 @@ class JobSearchHandler
 		$this->queryParams['isActive'] = true;
 
 		if(($recruiter = $form->getData()->getRecruiter()) !== null){
-			$this->queryString .= sprintf(' AND recruiter.id = :recruiter');
+			$this->queryString .= ' AND recruiter.id = :recruiter';
 			$this->queryParams['recruiter'] = $recruiter->getId();
 		}
 
 		if(($salaryFrom = $form->getData()->getSalaryFrom()) !== null){
 
-			$this->queryString .= sprintf(' AND (job.salaryFrom >= :salaryFrom');
+			$this->queryString .= ' AND (job.salaryFrom >= :salaryFrom';
 			
 			if(($salaryTo = $form->getData()->getSalaryTo()) !== null){
-				$this->queryString .= sprintf(' AND job.salaryFrom <= :salaryTo OR job.salaryTo >= :salaryFrom AND job.salaryTo <= :salaryTo)');
+				$this->queryString .= ' AND job.salaryFrom <= :salaryTo OR job.salaryTo >= :salaryFrom AND job.salaryTo <= :salaryTo)';
 				$this->queryParams['salaryTo'] = $salaryTo;
 			}else{
-				$this->queryString .= sprintf(' OR job.salaryTo >= :salaryFrom)');
+				$this->queryString .= ' OR job.salaryTo >= :salaryFrom)';
 			}
 			$this->queryParams['salaryFrom'] = $salaryFrom;
 		}	
 
-		if(($location = $form->getData()->getLocation()) !== null){
+		if(($locationString = $form->getData()->getLocationString()) !== null){
+			if(is_numeric($locationString[1]) || is_numeric($locationString[2])){
+				// postcode entered
+				$locations = $this->doctrine->getRepository('GraduallyJobBundle:Location')->findOneByPostcode($locationString);
+			}else{
+				// town entered, need all postcodes for this town
+				$locations = $this->doctrine->getRepository('GraduallyJobBundle:Location')->findByTown(ucwords($locationString));
+			}
+			
 			if(($distance = $form->getData()->getDistance()) === null){
 				$distance = 5;
 			}
 
-			$point = $location->getPoint();
-			$this->queryString .= sprintf(' AND DISTANCE(location.point, POINT_STR(:point)) / 1600 < :distance');
-			$this->queryParams['point'] = $point;
-			$this->queryParams['distance'] = $distance;
+			// for now, only filter by location if we find a Location entity
+			if(($locationCount = count($locations)) == true){
+				if($locationCount == 1){
+					$point = $locations->getPoint();
+				}else{
+					$point = $locations[0]->getPoint();
+				}
 
+				$this->queryString .= ' AND DISTANCE(location.point, POINT_STR(:point)) / 1600 < :distance';
+				$this->queryParams['point'] = $point;
+
+				// now handle extra locations that will be here if a town was entered
+				for($i = 1; $i < $locationCount; $i++){
+					$pointStr = sprintf('point%d', $i);
+					$this->queryString .= sprintf(' OR DISTANCE(location.point, POINT_STR(:%s)) / 1600 < :distance', $pointStr);
+					$this->queryParams[$pointStr] = $locations[$i]->getPoint();
+				}
+
+
+				$this->queryParams['distance'] = $distance;
+			}
 		}
 	}
 }

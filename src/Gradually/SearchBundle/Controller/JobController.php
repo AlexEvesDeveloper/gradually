@@ -36,10 +36,21 @@ class JobController extends Controller
                 	$sh->prepareSearch($form, $orderBy);
                 	$result = $sh->execute();	
 		}
+
+		$locations = $this->getDoctrine()->getRepository('GraduallyJobBundle:Location')->findAll();
+		// create a repo function to get town names, but for now...
+		$towns = array();
+		foreach($locations as $l){
+			$towns[] = $l->getTown();
+			$towns[] = $l->getPostcode();
+		}
 		
+		$towns = array_unique($towns);
+
 		return array(
 	    	'form' => $form->createView(),
-	    	'jobs' => $result
+	    	'jobs' => $result,
+	    	'towns' => json_encode($towns)
 		);
 	}
 }

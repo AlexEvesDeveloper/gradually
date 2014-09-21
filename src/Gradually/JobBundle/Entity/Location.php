@@ -24,6 +24,13 @@ class Location
     /**
      * @var string
      *
+     * @ORM\Column(name="town", type="string", length=64)
+     */
+    private $town;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="postcode", type="string", length=5)
      */
     private $postcode;
@@ -34,11 +41,6 @@ class Location
      * @ORM\Column(name="point", type="point")
      */
     private $point;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="\Gradually\SearchBundle\Entity\JobSearch", inversedBy="location")
-     */
-    private $jobSearch;
 
     /**
      * Get id
@@ -97,25 +99,30 @@ class Location
     }
 
     /**
-     * Set jobSearch
+     * Set town
      *
-     * @param \Gradually\SearchBundle\Entity\JobSearch $jobSearch
+     * @param string $town
      * @return Location
      */
-    public function setJobSearch(\Gradually\SearchBundle\Entity\JobSearch $jobSearch = null)
+    public function setTown($town)
     {
-        $this->jobSearch = $jobSearch;
+        $this->town = $town;
 
         return $this;
     }
 
     /**
-     * Get jobSearch
+     * Get town
      *
-     * @return \Gradually\SearchBundle\Entity\JobSearch 
+     * @return string 
      */
-    public function getJobSearch()
+    public function getTown()
     {
-        return $this->jobSearch;
+        return $this->town;
+    }
+
+    public function __toString()
+    {
+        return '';
     }
 }

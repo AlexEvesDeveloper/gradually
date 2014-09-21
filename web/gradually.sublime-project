@@ -1,0 +1,14 @@
+{
+	"folders":
+	[
+		{
+			"follow_symlinks": true,
+			"path": "/var/www/gradually.co.uk/gradually"
+		}
+	],
+	"settings": {
+		"xdebug": {
+			"url": "http://gradually.co.uk/app_dev.php"
+		}
+	}
+}

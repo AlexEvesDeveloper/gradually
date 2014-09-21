@@ -42,12 +42,12 @@ class JobSearch
     private $salaryTo;
 
     /**
-     * @ORM\OneToMany(targetEntity="\Gradually\JobBundle\Entity\Location", mappedBy="jobSearch")
+     * @ORM\Column(name="location_string", type="string", length=64)
      */
-    private $location;
+    private $locationString;
 
     /**
-     * @ORM\Column(name="distance", type="text", length=16, nullable=true)
+     * @ORM\Column(name="distance", type="integer", nullable=true)
      */
     private $distance;
 
@@ -227,5 +227,28 @@ class JobSearch
     public function removeLocation(\Gradually\JobBundle\Entity\Location $location)
     {
         $this->location->removeElement($location);
+    }
+
+    /**
+     * Set locationString
+     *
+     * @param string $locationString
+     * @return JobSearch
+     */
+    public function setLocationString($locationString)
+    {
+        $this->locationString = $locationString;
+
+        return $this;
+    }
+
+    /**
+     * Get locationString
+     *
+     * @return string 
+     */
+    public function getLocationString()
+    {
+        return $this->locationString;
     }
 }
