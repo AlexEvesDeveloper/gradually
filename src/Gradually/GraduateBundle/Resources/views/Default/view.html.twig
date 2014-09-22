@@ -1,36 +1,42 @@
 {% extends "::base.html.twig" %}
 
 {% block body %}
+<div class="container under-navbar">
+  {{ image }}
 	<p>Name: {{ graduate.firstname | capitalize }} {{ graduate.lastname }}</p>
 
-    {{ form_start(form) }}
-        {{ form_errors(form) }}
+    {{ form_start(pForm) }}
+    {{ form_end(pForm) }}
+
+    {{ form_start(qForm) }}
+        {{ form_errors(qForm) }}
         <div>
-            {{ form_label(form.university) }}
-            {{ form_errors(form.university) }}
-            {{ form_widget(form.university) }}
+            {{ form_label(qForm.university) }}
+            {{ form_errors(qForm.university) }}
+            {{ form_widget(qForm.university) }}
         </div>
         <div>
-            {{ form_label(form.degree) }}
-            {{ form_errors(form.degree) }}
-            {{ form_widget(form.degree) }}
+            {{ form_label(qForm.degree) }}
+            {{ form_errors(qForm.degree) }}
+            {{ form_widget(qForm.degree) }}
         </div>
         <div>
-            {{ form_label(form.degreeLevel) }}
-            {{ form_errors(form.degreeLevel) }}
-            {{ form_widget(form.degreeLevel) }}
+            {{ form_label(qForm.degreeLevel) }}
+            {{ form_errors(qForm.degreeLevel) }}
+            {{ form_widget(qForm.degreeLevel) }}
         </div>
         <div>
-            {{ form_label(form.result) }}
-            {{ form_errors(form.result) }}
-            {{ form_widget(form.result) }}
+            {{ form_label(qForm.result) }}
+            {{ form_errors(qForm.result) }}
+            {{ form_widget(qForm.result) }}
         </div>
         <div>
-            {{ form_label(form.yearAttained) }}
-            {{ form_errors(form.yearAttained) }}
-            {{ form_widget(form.yearAttained) }}
+            {{ form_label(qForm.yearAttained) }}
+            {{ form_errors(qForm.yearAttained) }}
+            {{ form_widget(qForm.yearAttained) }}
         </div>
-    {{ form_end(form) }}
+    {{ form_end(qForm) }}
+</div>
 {% endblock %}
 
 {% block javascripts %}

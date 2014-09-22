@@ -67,6 +67,11 @@ abstract class User implements AdvancedUserInterface, \Serializable
      */
     private $roles;
 
+    /**
+     * @ORM\OneToOne(targetEntity="ProfileImage")
+     */
+    private $ProfileImage;
+
     const TYPE_ADMIN = 'ADMIN';
     const TYPE_GRADUATE = 'GRADUATE';
     const TYPE_RECRUITER = 'RECRUITER';
@@ -284,5 +289,28 @@ abstract class User implements AdvancedUserInterface, \Serializable
     public function getEmail()
     {
         return $this->email;
+    }
+
+    /**
+     * Set ProfileImage
+     *
+     * @param \Gradually\UserBundle\Entity\ProfileImage $profileImage
+     * @return User
+     */
+    public function setProfileImage(\Gradually\UserBundle\Entity\ProfileImage $profileImage = null)
+    {
+        $this->ProfileImage = $profileImage;
+
+        return $this;
+    }
+
+    /**
+     * Get ProfileImage
+     *
+     * @return \Gradually\UserBundle\Entity\ProfileImage 
+     */
+    public function getProfileImage()
+    {
+        return $this->ProfileImage;
     }
 }

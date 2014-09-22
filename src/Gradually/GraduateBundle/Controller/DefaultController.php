@@ -14,6 +14,7 @@ use Gradually\GraduateBundle\Entity\Qualification;
 
 use Gradually\UserBundle\Form\GraduateUserType;
 use Gradually\GraduateBundle\Form\QualificationType;
+use Gradually\UserBundle\Entity\ProfileImage;
 
 
 class DefaultController extends Controller
@@ -35,22 +36,43 @@ class DefaultController extends Controller
 
     	$graduate = $this->getDoctrine()->getManager()->getRepository('GraduallyUserBundle:GraduateUser')->find($id);
 
+        // add a profile image
+        if(($image = $user->getImage()) === null){
+            $image = new ProfileImage();
+        }
+
+        $pForm = $this->createFormBuilder($image)
+            ->add('file')
+            ->add('save', 'submit', array('label' => 'Upload'))
+            ->getForm();
+
+        $pForm->handleRequest($request);
+        if($pForm->isValid()){
+            // upload image
+            $image->setUser($user);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($image);
+            $em->flush();            
+        }
+
         // add new Qualification
         $qual = new Qualification();
-        $form = $this->createForm(new QualificationType, $qual);
-        $form->handleRequest($request);
+        $qForm = $this->createForm(new QualificationType, $qual);
+        $qForm->handleRequest($request);
 
-        if($form->isValid()){
+        if($qForm->isValid()){
             // process
             $qual->setGraduate($graduate);
             $em = $this->getDoctrine()->getManager();
             $em->persist($qual);
             $em->flush();
-        } 
+        }
 
         return array(
             'graduate' => $graduate,
-            'form' => $form->createView()
+            'pForm' => $pForm->createView(),
+            'qForm' => $qForm->createView(),
+            'image' => $image->getAbsolutePath()
         );
     }
 

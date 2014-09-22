@@ -4,6 +4,42 @@
 		"selected_items":
 		[
 			[
+				"po",
+				"pointStr"
+			],
+			[
+				"pi",
+				"pointStr"
+			],
+			[
+				"query",
+				"queryString"
+			],
+			[
+				"loca",
+				"locationCount"
+			],
+			[
+				"lo",
+				"locations"
+			],
+			[
+				"Gr",
+				"GraduallyJobBundle"
+			],
+			[
+				"Grad",
+				"GraduallyJobBundle"
+			],
+			[
+				"create",
+				"createQueryBuilder"
+			],
+			[
+				"En",
+				"EntityRepository"
+			],
+			[
 				"Gra",
 				"Gradually"
 			],
@@ -30,10 +66,6 @@
 			[
 				"Notifica",
 				"NotificaionManager"
-			],
-			[
-				"Grad",
-				"Gradually"
 			],
 			[
 				"rec",
@@ -108,11 +140,79 @@
 	"buffers":
 	[
 		{
-			"file": "app_dev.php",
+			"file": "/var/www/gradually.co.uk/gradually/src/Gradually/SearchBundle/Resources/views/Job/index.html.twig",
 			"settings":
 			{
-				"buffer_size": 1245,
+				"buffer_size": 1272,
 				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/var/www/gradually.co.uk/gradually/app/Resources/views/base.html.twig",
+			"settings":
+			{
+				"buffer_size": 4345,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "js/typeahead/typeahead.custom.js",
+			"settings":
+			{
+				"buffer_size": 886,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/var/www/gradually.co.uk/gradually/src/Gradually/SearchBundle/Controller/JobController.php",
+			"settings":
+			{
+				"buffer_size": 1525,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Unix",
+				"name": "Xdebug Context",
+				"read_only": true,
+				"scratch": true
+			}
+		},
+		{
+			"contents": "",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Unix",
+				"name": "Xdebug Watch",
+				"read_only": true,
+				"scratch": true
+			}
+		},
+		{
+			"contents": "",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Unix",
+				"name": "Xdebug Stack",
+				"read_only": true,
+				"scratch": true
+			}
+		},
+		{
+			"contents": "",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Unix",
+				"name": "Xdebug Breakpoint",
+				"read_only": true,
+				"scratch": true
 			}
 		}
 	],
@@ -153,10 +253,43 @@
 	"expanded_folders":
 	[
 		"/var/www/gradually.co.uk/gradually",
-		"/var/www/gradually.co.uk/gradually/web"
+		"/var/www/gradually.co.uk/gradually/app",
+		"/var/www/gradually.co.uk/gradually/app/Resources",
+		"/var/www/gradually.co.uk/gradually/app/Resources/views",
+		"/var/www/gradually.co.uk/gradually/src",
+		"/var/www/gradually.co.uk/gradually/src/Gradually",
+		"/var/www/gradually.co.uk/gradually/src/Gradually/SearchBundle",
+		"/var/www/gradually.co.uk/gradually/src/Gradually/SearchBundle/Controller",
+		"/var/www/gradually.co.uk/gradually/src/Gradually/SearchBundle/Entity",
+		"/var/www/gradually.co.uk/gradually/src/Gradually/SearchBundle/Form",
+		"/var/www/gradually.co.uk/gradually/src/Gradually/SearchBundle/Resources",
+		"/var/www/gradually.co.uk/gradually/src/Gradually/SearchBundle/Resources/views",
+		"/var/www/gradually.co.uk/gradually/src/Gradually/SearchBundle/Resources/views/Job",
+		"/var/www/gradually.co.uk/gradually/web",
+		"/var/www/gradually.co.uk/gradually/web/js",
+		"/var/www/gradually.co.uk/gradually/web/js/typeahead"
 	],
 	"file_history":
 	[
+		"/var/www/gradually.co.uk/gradually/src/Gradually/SearchBundle/Form/JobSearchType.php",
+		"/var/www/gradually.co.uk/gradually/src/Gradually/SearchBundle/Entity/JobSearch.php",
+		"/var/www/gradually.co.uk/gradually/app/Resources/views/base.html.twig",
+		"/var/www/gradually.co.uk/gradually/web/js/typeahead/typeahead.bundle.min.js",
+		"/var/www/gradually.co.uk/gradually/web/js/typeahead/typeahead.jquery.js",
+		"/var/www/gradually.co.uk/gradually/web/js/typeahead/typeahead.bundle.js",
+		"/var/www/gradually.co.uk/gradually/web/js/typeahead/bloodhound.js",
+		"/var/www/gradually.co.uk/gradually/src/Gradually/JobBundle/Entity/Location.php",
+		"/var/www/gradually.co.uk/gradually/src/Gradually/SearchBundle/Resources/views/Job/index.html.twig",
+		"/var/www/gradually.co.uk/gradually/src/Gradually/SearchBundle/Classes/JobSearchHandler.php",
+		"/var/www/gradually.co.uk/gradually/src/Gradually/SearchBundle/Controller/JobController.php",
+		"/var/www/gradually.co.uk/gradually/src/Gradually/SearchBundle/Classes/GraduateSearchHandler.php",
+		"/var/www/gradually.co.uk/gradually/src/Gradually/UserBundle/DataFixtures/ORM/LoadUserData.php",
+		"/var/www/gradually.co.uk/gradually/src/Gradually/JobBundle/Entity/Town.php",
+		"/var/www/gradually.co.uk/gradually/src/Gradually/HomeBundle/Controller/DefaultController.php",
+		"/var/www/gradually.co.uk/gradually/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/Kernel.php",
+		"/var/www/gradually.co.uk/gradually/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/HttpKernel.php",
+		"/var/www/gradually.co.uk/gradually/web/app_dev.php",
+		"/var/www/gradually.co.uk/gradually/web/gradually.sublime-project",
 		"/var/www/gradually.co.uk/gradually/vendor/composer/installed.json",
 		"/var/www/gradually.co.uk/gradually/vendor/phpunit/phpunit/PHPUnit/Framework/Constraint/IsNull.php",
 		"/var/www/gradually.co.uk/gradually/vendor/phpunit/php-token-stream/tests/_fixture/classInScopedNamespace.php",
@@ -164,7 +297,6 @@
 		"/var/www/gradually.co.uk/gradually/src/Gradually/UtilBundle/Entity/University.php",
 		"/var/www/gradually.co.uk/gradually/app/console",
 		"/var/www/gradually.co.uk/gradually/src/Gradually/LibraryBundle/GraduallyLibraryBundle.php",
-		"/var/www/gradually.co.uk/gradually/web/app_dev.php",
 		"/var/www/gradually.co.uk/gradually/src/Gradually/GraduateBundle/Entity/Qualification.php",
 		"/var/www/gradually.co.uk/gradually/src/Gradually/RecruiterBundle/Controller/DefaultController.php",
 		"/var/www/gradually.co.uk/gradually/src/Gradually/UtilBundle/Entity/Degree.php",
@@ -177,7 +309,6 @@
 		"/var/www/gradually.co.uk/gradually/src/Gradually/NotificationBundle/Classes/Notifiers/EmailJobNotifier.php",
 		"/var/www/gradually.co.uk/gradually/src/Gradually/NotificationBundle/Classes/Notifiers/BaseJobNotifier.php",
 		"/var/www/gradually.co.uk/gradually/src/Gradually/UserBundle/Entity/RecruiterUserRepository.php",
-		"/var/www/gradually.co.uk/gradually/src/Gradually/SearchBundle/Classes/GraduateSearchHandler.php",
 		"/var/www/gradually.co.uk/gradually/src/Gradually/UserBundle/Entity/RecruiterUser.php",
 		"/var/www/gradually.co.uk/gradually/app/config/routing.yml",
 		"/var/www/gradually.co.uk/gradually/src/Gradually/SearchBundle/Controller/GraduateController.php",
@@ -192,7 +323,6 @@
 		"/var/www/gradually.co.uk/gradually/composer.json",
 		"/var/www/gradually.co.uk/gradually/vendor/doctrine/orm/lib/Doctrine/ORM/Version.php",
 		"/var/www/gradually.co.uk/gradually/src/Gradually/GraduateBundle/Controller/DefaultController.php",
-		"/var/www/gradually.co.uk/gradually/src/Gradually/SearchBundle/Resources/views/Job/index.html.twig",
 		"/var/www/gradually.co.uk/gradually/src/Gradually/JobBundle/Resources/views/Default/index.html.twig",
 		"/var/www/gradually.co.uk/gradually/bin/phpunit",
 		"/var/www/gradually.co.uk/gradually/vendor/phpunit/phpunit/build/phar-autoload.php.in",
@@ -232,8 +362,7 @@
 		"/var/www/gradually.co.uk/gradually/src/Gradually/JobBundle/Controller/RecruiterJobManagerController.php",
 		"/var/www/gradually.co.uk/gradually/src/Gradually/GraduateBundle/Entity/Application.php",
 		"/var/www/gradually.co.uk/gradually/src/Gradually/SearchBundle/Resources/config/services.yml",
-		"/var/www/gradually.co.uk/gradually/src/Gradually/SearchBundle/DependencyInjection/GraduallySearchExtension.php",
-		"/var/www/gradually.co.uk/gradually/src/Gradually/UserBundle/DataFixtures/ORM/LoadUserData.php"
+		"/var/www/gradually.co.uk/gradually/src/Gradually/SearchBundle/DependencyInjection/GraduallySearchExtension.php"
 	],
 	"find":
 	{
@@ -251,6 +380,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"\n			",
 			"findAllSubscribedGraduates",
 			");\n"
 		],
@@ -270,24 +400,110 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 2,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "app_dev.php",
+					"file": "/var/www/gradually.co.uk/gradually/src/Gradually/SearchBundle/Resources/views/Job/index.html.twig",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1245,
+						"buffer_size": 1272,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								88,
-								88
+								1166,
+								1166
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Twig/Syntaxes/HTML (Twig).tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 245.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/var/www/gradually.co.uk/gradually/app/Resources/views/base.html.twig",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4345,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4089,
+								4089
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Twig/Syntaxes/HTML (Twig).tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1095.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "js/typeahead/typeahead.custom.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 886,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								795,
+								795
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 126.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/var/www/gradually.co.uk/gradually/src/Gradually/SearchBundle/Controller/JobController.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1525,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1358,
+								1358
 							]
 						],
 						"settings":
@@ -295,10 +511,134 @@
 							"syntax": "Packages/PHP/PHP.tmLanguage"
 						},
 						"translation.x": 0.0,
+						"translation.y": 500.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 4,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Xdebug Client/Xdebug.tmLanguage",
+							"word_wrap": false
+						},
+						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Xdebug Client/Xdebug.tmLanguage",
+							"word_wrap": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 6,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Xdebug Client/Xdebug.tmLanguage",
+							"word_wrap": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Xdebug Client/Xdebug.tmLanguage",
+							"word_wrap": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
 					"type": "text"
 				}
 			]
@@ -319,18 +659,32 @@
 			[
 				0,
 				0,
-				1,
+				2,
 				1
+			],
+			[
+				0,
+				1,
+				1,
+				2
+			],
+			[
+				1,
+				1,
+				2,
+				2
 			]
 		],
 		"cols":
 		[
 			0.0,
+			0.5,
 			1.0
 		],
 		"rows":
 		[
 			0.0,
+			0.7,
 			1.0
 		]
 	},
@@ -338,6 +692,10 @@
 	"output.find_results":
 	{
 		"height": 0.0
+	},
+	"output.xdebug":
+	{
+		"height": 112.0
 	},
 	"project": "gradually.sublime-project",
 	"replace":
@@ -374,14 +732,59 @@
 	{
 		"xdebug":
 		{
-			"hide_conflict": false
+			"hide_conflict": false,
+			"restore_index":
+			{
+				"81":
+				{
+					"group": 0,
+					"index": 0
+				},
+				"84":
+				{
+					"group": 0,
+					"index": 1
+				},
+				"92":
+				{
+					"group": 0,
+					"index": 2
+				},
+				"93":
+				{
+					"group": 0,
+					"index": 3
+				}
+			},
+			"restore_layout":
+			{
+				"cells":
+				[
+					[
+						0,
+						0,
+						1,
+						1
+					]
+				],
+				"cols":
+				[
+					0.0,
+					1.0
+				],
+				"rows":
+				[
+					0.0,
+					1.0
+				]
+			}
 		}
 	},
 	"show_minimap": true,
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 191.0,
+	"side_bar_width": 253.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
