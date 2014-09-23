@@ -37,24 +37,31 @@ class DefaultController extends Controller
     	$graduate = $this->getDoctrine()->getManager()->getRepository('GraduallyUserBundle:GraduateUser')->find($id);
 
         // add a profile image
-        if(($image = $user->getImage()) === null){
-            $image = new ProfileImage();
-        }
-
-        $pForm = $this->createFormBuilder($image)
-            ->add('file')
-            ->add('save', 'submit', array('label' => 'Upload'))
-            ->getForm();
-
+        $image = new ProfileImage();
+        $pForm = $this->createFormBuilder($image)->add('file')->add('save', 'submit')->getForm();
         $pForm->handleRequest($request);
         if($pForm->isValid()){
-            // upload image
-            $image->setUser($user);
             $em = $this->getDoctrine()->getManager();
+            // upload image, first remove their old one, if they had one
+            
+            if(($oldImage = $user->getImage()) !== null){
+                $em->remove($oldImage);
+                $em->flush();
+            }
+                     
+            $image->setUser($user);
+            $user->setProfileImage($image);
+            
             $em->persist($image);
             $em->flush();            
         }
 
+        if(($image = $user->getImage()) === null){
+            $imagePath = 'uploads/profile_images/default/female.jpg';
+        }else{
+            $imageFilename = $image->getId() . '.' . $image->getPath();
+            $imagePath = 'uploads/profile_images/' . $imageFilename;
+        }
         // add new Qualification
         $qual = new Qualification();
         $qForm = $this->createForm(new QualificationType, $qual);
@@ -72,7 +79,7 @@ class DefaultController extends Controller
             'graduate' => $graduate,
             'pForm' => $pForm->createView(),
             'qForm' => $qForm->createView(),
-            'image' => $image->getAbsolutePath()
+            'imagePath' => $imagePath
         );
     }
 

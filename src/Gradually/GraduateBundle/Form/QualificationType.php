@@ -61,7 +61,7 @@ class QualificationType extends AbstractType
 
         $builder->add('result');
         $builder->add('yearAttained'); 
-        $builder->add('saveAndAdd', 'submit', array('label' => 'Save and Add'));
+        $builder->add('save', 'submit', array('label' => 'Save'));
     }
     
     /**

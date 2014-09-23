@@ -68,7 +68,7 @@ abstract class User implements AdvancedUserInterface, \Serializable
     private $roles;
 
     /**
-     * @ORM\OneToOne(targetEntity="ProfileImage", mappedBy="user")
+     * @ORM\OneToOne(targetEntity="ProfileImage", mappedBy="user", cascade={"persist", "remove"})
      */
     private $image;
 
