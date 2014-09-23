@@ -29,6 +29,31 @@ ul{
     padding-top: 75px;
 }
 
+.section{
+  display: block;
+  padding: 10px;
+  margin-bottom: 20px;
+  line-height: 1.42857143;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 0px 0px 4px 4px;
+  -webkit-transition: all .2s ease-in-out;
+  -o-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+}
+
+.section-header{
+  display: block;
+  margin-bottom: 0px;
+  line-height: 1.42857143;
+  background-color: #e3e3e3;
+  border: 1px solid #ddd;
+  border-radius: 4px 4px 0px 0px;
+  -webkit-transition: all .2s ease-in-out;
+  -o-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out 
+}
+
 /* JUMBOTRON */
 
 .jumbotron{
