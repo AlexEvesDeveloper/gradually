@@ -32,9 +32,14 @@ class GraduateSearch
     private $degree;
 
     /**
-     * @ORM\Column(name="year_attained", type="string", length=4, nullable=true)
+     * @ORM\Column(name="year_from", type="string", length=4, nullable=true)
      */
-    private $yearAttained;
+    private $yearFrom;
+
+     /**
+     * @ORM\Column(name="year_to", type="string", length=4, nullable=true)
+     */
+    private $yearTo;   
 
     /**
      * @ORM\Column(name="result", type="string", length=3, nullable=true)
@@ -98,29 +103,6 @@ class GraduateSearch
     }
 
     /**
-     * Set yearAttained
-     *
-     * @param string $yearAttained
-     * @return GraduateSearch
-     */
-    public function setYearAttained($yearAttained)
-    {
-        $this->yearAttained = $yearAttained;
-
-        return $this;
-    }
-
-    /**
-     * Get yearAttained
-     *
-     * @return string 
-     */
-    public function getYearAttained()
-    {
-        return $this->yearAttained;
-    }
-
-    /**
      * Set result
      *
      * @param string $result
@@ -141,5 +123,51 @@ class GraduateSearch
     public function getResult()
     {
         return $this->result;
+    }
+
+    /**
+     * Set yearFrom
+     *
+     * @param string $yearFrom
+     * @return GraduateSearch
+     */
+    public function setYearFrom($yearFrom)
+    {
+        $this->yearFrom = $yearFrom;
+
+        return $this;
+    }
+
+    /**
+     * Get yearFrom
+     *
+     * @return string 
+     */
+    public function getYearFrom()
+    {
+        return $this->yearFrom;
+    }
+
+    /**
+     * Set yearTo
+     *
+     * @param string $yearTo
+     * @return GraduateSearch
+     */
+    public function setYearTo($yearTo)
+    {
+        $this->yearTo = $yearTo;
+
+        return $this;
+    }
+
+    /**
+     * Get yearTo
+     *
+     * @return string 
+     */
+    public function getYearTo()
+    {
+        return $this->yearTo;
     }
 }

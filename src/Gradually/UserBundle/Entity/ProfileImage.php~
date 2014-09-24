@@ -25,7 +25,7 @@ class ProfileImage
     private $id;
 
     /**
-     * @ORM\OneToOne(targetEntity="User")
+     * @ORM\OneToOne(targetEntity="User", inversedBy="image")
      */
     private $user;
 
@@ -214,5 +214,28 @@ class ProfileImage
     protected function getUploadDir()
     {
         return 'uploads/profile_images';
+    }
+
+    /**
+     * Set user
+     *
+     * @param \Gradually\UserBundle\Entity\User $user
+     * @return ProfileImage
+     */
+    public function setUser(\Gradually\UserBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Gradually\UserBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

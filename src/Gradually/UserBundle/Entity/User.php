@@ -313,4 +313,17 @@ abstract class User implements AdvancedUserInterface, \Serializable
     {
         return $this->image;
     }
+
+    /**
+     * Set image
+     *
+     * @param \Gradually\UserBundle\Entity\ProfileImage $image
+     * @return User
+     */
+    public function setImage(\Gradually\UserBundle\Entity\ProfileImage $image = null)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
 }

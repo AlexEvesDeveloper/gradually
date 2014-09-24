@@ -32,9 +32,14 @@ class GraduateSearch
     private $degree;
 
     /**
-     * @ORM\Column(name="year_attained", type="string", length=4, nullable=true)
+     * @ORM\Column(name="year_from", type="string", length=4, nullable=true)
      */
-    private $yearAttained;
+    private $yearFrom;
+
+     /**
+     * @ORM\Column(name="year_to", type="string", length=4, nullable=true)
+     */
+    private $yearTo;   
 
     /**
      * @ORM\Column(name="result", type="string", length=3, nullable=true)

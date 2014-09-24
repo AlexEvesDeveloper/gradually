@@ -39,9 +39,13 @@ class GraduateSearchType extends AbstractType
 		        },
 	    ))
 	       
-            ->add('yearAttained', 'text', array(
+            ->add('yearFrom', 'text', array(
 		        'required' => false
 	        ))
+
+            ->add('yearTo', 'text', array(
+                'required' => false
+            ))
 
 	        ->add('result', 'text', array(
 		        'required' => false

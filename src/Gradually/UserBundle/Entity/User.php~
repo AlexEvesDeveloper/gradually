@@ -68,9 +68,9 @@ abstract class User implements AdvancedUserInterface, \Serializable
     private $roles;
 
     /**
-     * @ORM\OneToOne(targetEntity="ProfileImage")
+     * @ORM\OneToOne(targetEntity="ProfileImage", mappedBy="user", cascade={"persist", "remove"})
      */
-    private $ProfileImage;
+    private $image;
 
     const TYPE_ADMIN = 'ADMIN';
     const TYPE_GRADUATE = 'GRADUATE';
@@ -297,9 +297,9 @@ abstract class User implements AdvancedUserInterface, \Serializable
      * @param \Gradually\UserBundle\Entity\ProfileImage $profileImage
      * @return User
      */
-    public function setProfileImage(\Gradually\UserBundle\Entity\ProfileImage $profileImage = null)
+    public function setProfileImage(\Gradually\UserBundle\Entity\ProfileImage $image = null)
     {
-        $this->ProfileImage = $profileImage;
+        $this->image = $image;
 
         return $this;
     }
@@ -309,8 +309,8 @@ abstract class User implements AdvancedUserInterface, \Serializable
      *
      * @return \Gradually\UserBundle\Entity\ProfileImage 
      */
-    public function getProfileImage()
+    public function getImage()
     {
-        return $this->ProfileImage;
+        return $this->image;
     }
 }

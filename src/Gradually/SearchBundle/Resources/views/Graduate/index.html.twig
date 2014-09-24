@@ -3,20 +3,50 @@
 {% block body %}
 <div class="container under-navbar">
 	<div class="row">
-	{{form_start(form)}}
-		{{form_label(form.university)}}
-		{{form_widget(form.university)}}
-		{{form_label(form.degree)}}
-		{{form_widget(form.degree)}}
-		{{form_label(form.save)}}
-		{{form_widget(form.save, {attr : {class: 'btn btn-primary'}})}}
-	{{form_end(form)}}
+		<div class="col-md-4"></div>
+		<div class="col-md-4">
+			{{form_start(form, {'attr':{'class': 'form-horizontal','role': 'form'}})}}
+				<div class="form-group">
+					{{form_label(form.university)}}
+					{{form_widget(form.university, {'attr':{'class':'form-control'}})}}
+				</div>
+				<div class="form-group">
+					{{form_label(form.degree)}}
+					{{form_widget(form.degree, {'attr':{'class':'form-control'}})}}
+				</div>
+				<label>Year Graduated</label>
+				<div id="datepicker" class="form-group input-daterange input-group">
+					{{form_widget(form.yearFrom, {'attr':{'class':'input-sm form-control'}})}}
+					<span class="input-group-addon">to</span>
+					{{form_widget(form.yearTo, {'attr':{'class':'input-sm form-control'}})}}
+				</div>
+				<div class="form-group">
+					{{form_label(form.result)}}
+					{{form_widget(form.result)}}
+				</div>
+				<div class="form-group">
+					{{form_label(form.save)}}
+					{{form_widget(form.save, {attr : {class: 'btn btn-primary'}})}}
+				</div>
+			{{form_end(form)}}			
+		</div>				
+		<div class="col-md-4"></div>
 	</div>
 	<div class="row">
         	{% for graduate in graduates %}
                 	<p>Name: {{graduate.id}} {{graduate.firstname}}</p>
         	{% endfor %}	
 	</div>
-
 </div>
+{% endblock %}
+
+{% block javascripts %}
+{{parent()}}
+<script>
+	$('#datepicker').datepicker({
+    	format: " yyyy",
+    	viewMode: "years", 
+    	minViewMode: "years"
+	});
+</script>
 {% endblock %}

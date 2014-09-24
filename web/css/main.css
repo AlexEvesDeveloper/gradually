@@ -29,6 +29,10 @@ ul{
     padding-top: 75px;
 }
 
+.no-left-padding{
+  padding-left: 0px;
+}
+
 .section{
   display: block;
   padding: 10px;
