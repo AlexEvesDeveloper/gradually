@@ -48,15 +48,8 @@ class JobSearchHandler
 	 */
 	public function execute()
 	{
-		//$query = $this->doctrine->getManager()->createQuery('SELECT job FROM GraduallyJobBundle:Job job JOIN job.location location WHERE DISTANCE(location.point, POINT_STR(:point)) < 5');
-		//$point = new Point(10, 20.5);
-		//$query->setParameter('point', $point);
-		//MAYBE NOT NEEDED $query->execute();
-		//$query = $this->doctrine->getManager()->createQuery($this->queryString)->setParameters($this->queryParams);
-		
 		$query = $this->doctrine->getManager()->createQuery($this->queryString)->setParameters($this->queryParams);
-		$query->useResultCache(true, 600, 'KEY' . md5($this->getQueryString()));	
-		
+		$query->useResultCache(true, 600, 'KEY' . md5($this->getQueryString()));			
 		return $query->getResult();
 	}
 

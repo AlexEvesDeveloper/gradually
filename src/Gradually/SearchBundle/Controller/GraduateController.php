@@ -40,38 +40,39 @@ class GraduateController extends Controller
 	    		if(!$user->getSearchCredits()){
 		    		// insufficient credits
 		    		return $this->redirect($this->generateUrl('gradually_purchase_default_index'));
-			}else{
+				}else{
 		    		// decrement credits by one
 		    		$currentCredits = $user->getSearchCredits();
 		    		$user->setSearchCredits(--$currentCredits);
 		    		$em->persist($user);
 	    	    		$em->flush();
-			}
+				}
 	    	}
 	
 	    		$sh = $this->container->get('graduate_search_handler');
-			$orderBy = array('property' => 'graduate.id', 'order' => 'ASC');
+				$orderBy = array('property' => 'graduate.id', 'order' => 'ASC');
 	    		$sh->prepareSearch($form, $orderBy);
-			$result = $sh->execute();	
-			/*
-			// caching
-			$cache = $this->get('cache');
-			$cache->setMemcached($this->get('memcached'));
-
-
-			$queryKey = 'KEY' . md5($sh->getQueryString());
-			if($resultString = $cache->fetch($queryKey)){
-				$result = unserialize($resultString);
-			}else{
-				$result = $sh->execute();
-				$cache->save($queryKey, serialize($result), 30);	
-			}
-			*/
+				$result = $sh->execute();	
+				
+				/*
+				// caching
+				$cache = $this->get('cache');
+				$cache->setMemcached($this->get('memcached'));
+	
+	
+				$queryKey = 'KEY' . md5($sh->getQueryString());
+				if($resultString = $cache->fetch($queryKey)){
+					$result = unserialize($resultString);
+				}else{
+					$result = $sh->execute();
+					$cache->save($queryKey, serialize($result), 30);	
+				}
+				*/
 		}
 		
 		return array(
-	    		'form' => $form->createView(),
-	    		'graduates' => $result
+	    	'form' => $form->createView(),
+	    	'graduates' => $result
 		);
 	}
 }

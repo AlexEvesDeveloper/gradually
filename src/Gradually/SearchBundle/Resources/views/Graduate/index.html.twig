@@ -6,27 +6,50 @@
 		<div class="col-md-4"></div>
 		<div class="col-md-4">
 			{{form_start(form, {'attr':{'class': 'form-horizontal','role': 'form'}})}}
-				<div class="form-group">
-					{{form_label(form.university)}}
-					{{form_widget(form.university, {'attr':{'class':'form-control'}})}}
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							{{form_label(form.university)}}
+							{{form_widget(form.university, {'attr':{'class':'form-control'}})}}
+						</div>
+					</div>
 				</div>
-				<div class="form-group">
-					{{form_label(form.degree)}}
-					{{form_widget(form.degree, {'attr':{'class':'form-control'}})}}
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							{{form_label(form.degree)}}
+							{{form_widget(form.degree, {'attr':{'class':'form-control'}})}}
+						</div>
+					</div>
 				</div>
-				<label>Year Graduated</label>
-				<div id="datepicker" class="form-group input-daterange input-group">
-					{{form_widget(form.yearFrom, {'attr':{'class':'input-sm form-control'}})}}
-					<span class="input-group-addon">to</span>
-					{{form_widget(form.yearTo, {'attr':{'class':'input-sm form-control'}})}}
+				
+				<div class="row">
+					<label>Year Graduated</label>
+					<div class="col-md-12">
+						<div id="datepicker" class="form-group input-daterange input-group">
+							{{form_widget(form.yearFrom, {'attr':{'class':'input-sm form-control from-to-col-6'}})}}
+							<span class="input-group-addon">to</span>
+							{{form_widget(form.yearTo, {'attr':{'class':'input-sm form-control from-to-col-6'}})}}
+						</div>
+					</div>
 				</div>
-				<div class="form-group">
-					{{form_label(form.result)}}
-					{{form_widget(form.result)}}
+				
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							{{form_label(form.result)}}
+							{{form_widget(form.result, {'attr':{'class':'form-control'}})}}
+						</div>
+					</div>
 				</div>
-				<div class="form-group">
-					{{form_label(form.save)}}
-					{{form_widget(form.save, {attr : {class: 'btn btn-primary'}})}}
+
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							{{form_label(form.save)}}
+							{{form_widget(form.save, {attr : {class: 'btn btn-primary'}})}}
+						</div>
+					</div>
 				</div>
 			{{form_end(form)}}			
 		</div>				
@@ -34,7 +57,14 @@
 	</div>
 	<div class="row">
         	{% for graduate in graduates %}
-                	<p>Name: {{graduate.id}} {{graduate.firstname}}</p>
+                	<p>{{graduate.id}}</p>
+                	{% for qualification in graduate.qualifications %}
+                	<p>{{qualification.university.name}}</p> 
+                	<p>{{qualification.degree.title}}</p> 
+                	<p>{{qualification.yearAttained}}</p> 
+                	<p>{{qualification.result}}</p> 
+                	{% endfor %}
+                	<hr>
         	{% endfor %}	
 	</div>
 </div>

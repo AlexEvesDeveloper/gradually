@@ -4,7 +4,6 @@ namespace Gradually\SearchBundle\Classes;
 
 use Doctrine\Bundle\DoctrineBundle\Registry;
 use Symfony\Component\Form\Form;
-use Gradually\SearchBundle\Form\GraduateSearchType;
 
 class GraduateSearchHandler
 {
@@ -23,7 +22,7 @@ class GraduateSearchHandler
 	{
 		$this->queryString = '
 			SELECT graduate, qualification, university, degree FROM GraduallyUserBundle:GraduateUser graduate
-	    	        JOIN graduate.qualifications qualification
+	    	JOIN graduate.qualifications qualification
 			JOIN qualification.university university
 			JOIN qualification.degree degree
 			WHERE graduate.isActive = :isActive
@@ -68,23 +67,34 @@ class GraduateSearchHandler
 	{
 		// a hard coded filter, might need refactoring at some point
 		$this->queryParams['isActive'] = true;
-		foreach(GraduateSearchType::getFields() as $field){
-			$getMethod = sprintf('get%s', ucfirst($field['field']));
-	    
-	    	if(($formFieldValue = $form->getData()->{$getMethod}()) === null){
-	    		// field was left blank, so no filter to apply on this field
-	    		continue;
-	    	}
-	   			
-	   		$this->queryString .= sprintf(' AND %s.%s = :%s', 
-	   			$field['owningEntity'], 
-	   			$field['property'], 
-	   			$field['field']
-	   		);
-	   		
-			$this->queryParams[$field['field']] = $field['isEntity'] ? 
-				$formFieldValue->getId() :
-				$formFieldValue; 
+
+		if(($university = $form->getData()->getUniversity()) !== null){
+			$this->queryString .= ' AND university.id = :university';
+			$this->queryParams['university'] = $university->getId();
+		}
+
+		if(($degree = $form->getData()->getDegree()) !== null){
+			$this->queryString .= ' AND degree.id = :degree';
+			$this->queryParams['degree'] = $degree->getId();
+		}
+
+		if(($yearFrom = $form->getData()->getYearFrom()) === null){
+			$yearFrom = date('Y') - 4;
+		}
+		
+		if(($yearTo = $form->getData()->getYearTo()) === null){
+			$yearTo = date('Y');
+		}		
+
+		$this->queryString .= ' AND (qualification.yearAttained >= :yearFrom 
+								AND qualification.yearAttained <= :yearTo)';
+		
+		$this->queryParams['yearFrom'] = $yearFrom;
+		$this->queryParams['yearTo'] = $yearTo;
+
+		if(($result = $form->getData()->getResult()) !== null){
+			$this->queryString .= ' AND qualification.result = :result';
+			$this->queryParams['result'] = $result;
 		}		
 	}
 }
