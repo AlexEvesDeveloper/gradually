@@ -38,7 +38,9 @@ class JobSearchType extends AbstractType
                     return $er->createQueryBuilder('user')->orderBy('user.companyName', 'ASC');
                 }
             ))
-	        ->add('locationString')
+	        ->add('locationString', 'text', array(
+                'required' => false
+            ))
 	        ->add('distance')
             ->add('save', 'submit', array('label' => 'Search'));
     }

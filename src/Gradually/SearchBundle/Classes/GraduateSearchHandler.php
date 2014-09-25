@@ -38,7 +38,7 @@ class GraduateSearchHandler
 	public function prepareSearch(Form $form, array $orderBy)
 	{
 		$this->applyFilters($form);
-		$this->queryString .= sprintf(' ORDER BY %s %s', $orderBy['property'], $orderBy['order']);
+		$this->queryString = sprintf('%s ORDER BY %s %s', $this->queryString, $orderBy['property'], $orderBy['order']);
 	}
 
 	/**
@@ -70,12 +70,12 @@ class GraduateSearchHandler
 		$this->queryParams['isActive'] = true;
 
 		if(($university = $form->getData()->getUniversity()) !== null){
-			$this->queryString .= ' AND university.id = :university';
+			$this->queryString = sprintf('%s AND university.id = :university', $this->queryString);
 			$this->queryParams['university'] = $university->getId();
 		}
 
 		if(($degree = $form->getData()->getDegree()) !== null){
-			$this->queryString .= ' AND degree.id = :degree';
+			$this->queryString = sprintf('%s AND degree.id = :degree', $this->queryString);
 			$this->queryParams['degree'] = $degree->getId();
 		}
 
@@ -87,8 +87,8 @@ class GraduateSearchHandler
 			$yearTo = date('Y');
 		}		
 
-		$this->queryString .= ' AND (qualification.yearAttained >= :yearFrom 
-								AND qualification.yearAttained <= :yearTo)';
+		$this->queryString = sprintf('%s AND (qualification.yearAttained >= :yearFrom 
+								AND qualification.yearAttained <= :yearTo)', $this->queryString);
 		
 		$this->queryParams['yearFrom'] = $yearFrom;
 		$this->queryParams['yearTo'] = $yearTo;
@@ -96,17 +96,19 @@ class GraduateSearchHandler
 		if(($resultFrom = $form->getData()->getResultFrom()) !== null){
 			$resultFrom = $resultFrom->getId();
 		}else{
-			$resultFrom = 10;
+			$result = $this->doctrine->getRepository('GraduallyUtilBundle:DegreeResult')->findOneByName('Ordinary');
+			$resultFrom = $result->getId();
 		}	
 
 		if(($resultTo = $form->getData()->getResultTo()) !== null){
 			$resultTo = $resultTo->getId();
 		}else{
-			$resultTo = 6;
+			$result = $this->doctrine->getRepository('GraduallyUtilBundle:DegreeResult')->findOneByName('First-class honours');
+			$resultTo = $result->getId();
 		}
 
-		$this->queryString .= ' AND (result.id <= :resultFrom 
-								AND result.id >= :resultTo)';
+		$this->queryString = sprintf('%s AND (result.id <= :resultFrom 
+								AND result.id >= :resultTo)', $this->queryString);
 		
 		$this->queryParams['resultFrom'] = $resultFrom;
 		$this->queryParams['resultTo'] = $resultTo;		

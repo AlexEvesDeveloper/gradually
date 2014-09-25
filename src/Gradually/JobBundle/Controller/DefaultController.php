@@ -18,14 +18,6 @@ use Gradually\GraduateBundle\Form\ApplicationType;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/")
-     * @Template()
-     */
-    public function indexAction()
-    {
-    }
-
-    /**
      * @Route("/{id}")
      * @Template()
      */
@@ -44,7 +36,7 @@ class DefaultController extends Controller
 
     	return array(
     		'job' => $job,
-    		'applications' => $job->getApplications()
+    		'applicationCount' => count($job->getApplications())
     	);
     }
 
@@ -58,6 +50,9 @@ class DefaultController extends Controller
     	if(($user = $this->getUser()) === null){
     		return $this->redirect($this->generateUrl('gradually_user_default_login'));
     	}
+
+        // get the job
+        $job = $this->getDoctrine()->getRepository('GraduallyJobBundle:Job')->find($id);
 
     	// recruiters can't apply. Technically this action will allow admin to apply
     	if($user->getType() == 'RECRUITER'){
@@ -80,6 +75,7 @@ class DefaultController extends Controller
 
     	return array(
     		'form' => $form->createView(),
+            'job' => $job
     	);
     }
 
