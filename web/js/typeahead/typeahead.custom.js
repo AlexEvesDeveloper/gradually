@@ -5,6 +5,8 @@ var substringMatcher = function(strs) {
     // an array that will be populated with substring matches
     matches = [];
  
+    // only search from the beginning, makes the result list appear quicker for the user
+    q = '^'+q;
     // regex used to determine if a string contains the substring `q`
     substrRegex = new RegExp(q, 'i');
  

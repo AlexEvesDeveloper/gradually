@@ -96,13 +96,13 @@ class GraduateSearchHandler
 		if(($resultFrom = $form->getData()->getResultFrom()) !== null){
 			$resultFrom = $resultFrom->getId();
 		}else{
-			$resultFrom = 5;
+			$resultFrom = 10;
 		}	
 
 		if(($resultTo = $form->getData()->getResultTo()) !== null){
 			$resultTo = $resultTo->getId();
 		}else{
-			$resultTo = 1;
+			$resultTo = 6;
 		}
 
 		$this->queryString .= ' AND (result.id <= :resultFrom 

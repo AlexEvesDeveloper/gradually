@@ -364,7 +364,7 @@ class LoadUserData implements FixtureInterface
 		    foreach($recruiters as $recruiter){
 			for($i = 1; $i < 2; $i++){
 				$j = new Job();
-				$j->setTitle(sprintf('%s: Job %d', $recruiter->getCompanyName(), $i));
+				$j->setTitle(sprintf('Recruiter %d: Job %d', rand(1, 5), rand(1,5)));
 				$j->setDescription('Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat nunc vitae porta consectetur. Sed diam sapien, eleifend eu tempor vel, vehicula a sem. Nullam a tellus vehicula sem viverra volutpat. Nunc id est efficitur, auctor mi vel, tempus diam. Curabitur venenatis, eros sed scelerisque imperdiet, dui magna pretium nisi, at lobortis elit diam sit amet risus. Maecenas accumsan eleifend justo. Fusce sit amet libero ut ante auctor pulvinar. Aenean vitae felis at lacus facilisis interdum. Cras tempus tincidunt metus sit amet fringilla.');
 
 				// random from 

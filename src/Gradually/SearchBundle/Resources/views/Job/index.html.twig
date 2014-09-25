@@ -1,34 +1,102 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
-<div class="container under-navbar">
-	<div class="row">
-	{{form_start(form)}}
-		{{form_label(form.recruiter)}}
-		{{form_widget(form.recruiter)}}
-		{{form_label(form.salaryFrom)}}
-		{{form_widget(form.salaryFrom)}}
-		{{form_label(form.salaryTo)}}
-		{{form_widget(form.salaryTo)}}
-		{{form_label(form.locationString, 'Location' )}}
-		{{form_widget(form.locationString, {'attr': {'class': 'typeahead'}})}}
-		{{form_label(form.distance)}}
-		{{form_widget(form.distance)}}
-		{{form_label(form.save)}}
-		{{form_widget(form.save, {attr : {class: 'btn btn-primary'}})}}
-	{{form_end(form)}}
-	</div>
-	<div class="row">
-        	{% for job in jobs %}
-                	<h3>
-                		<a href="{{ path('gradually_job_default_view', {'id' : job.id}) }}">{{job.title}}</a>
-                	</h3>
-			<p>{{job.location.town}}</p>
-			<p>{{job.location.postcode}}</p>
-        	{% endfor %}	
+
+
+	<div id="wrapper">
+		<div id="sidebar-wrapper">
+			<div class="row">
+				<div class="col-md-1"></div>
+				<div class="col-md-9">
+					{{form_start(form, {'attr':{'class': 'form-horizontal sidebar-form','role': 'form'}})}}
+						<div class="row">
+							<div class="col-md-12">
+								<div class="form-group">
+									{{form_label(form.recruiter)}}
+									{{form_widget(form.recruiter, {'attr':{'class':'form-control'}})}}
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<div class="form-group">
+									{{form_label(form.salaryFrom)}}
+									{{form_widget(form.salaryFrom, {'attr':{'class':'form-control'}})}}
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<div class="form-group">
+									{{form_label(form.salaryTo)}}
+									{{form_widget(form.salaryTo, {'attr':{'class':'form-control'}})}}
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<div class="form-group">
+									{{form_label(form.locationString, 'Location')}}
+									{{form_widget(form.locationString, {'attr':{'class':'typeahead form-control location-search-box'}})}}
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<div class="form-group">
+									{{form_label(form.distance)}}
+									{{form_widget(form.distance, {'attr':{'class':'form-control'}})}}
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<div class="form-group">
+									{{form_label(form.save)}}
+									{{form_widget(form.save, {attr : {class: 'btn btn-primary graduate-search-button'}})}}
+								</div>
+							</div>
+						</div>
+					{{form_end(form)}}			
+				</div>				
+			</div>
+		</div>
+		<div id="page-content-wrapper">
+			<div class="page-content">
+				<div class="row">
+				{% for job in jobs %}
+				<div class="row">
+    				<div class="col-md-2"></div>
+    				<div class="col-md-8 section">
+        				<div class="col-md-3 no-left-padding">
+							{% if job.recruiter.image is not null %}
+        					<img class="thum2bnail" src="{{ asset(graduate.image.fullPath) }}" style="width: 150px; height: 150px;" />
+        					{% else %}
+        					<img class="thum2bnail" src="{{ asset('uploads/profile_images/default/female.jpg') }}" style="width: 150px; height: 150px;" />
+        					{% endif %}
+        				</div>
+        				<div class="col-md-9">
+        					<h3><a href="{{ path('gradually_job_default_view', {'id' : job.id}) }}">{{job.title}}</a></h3>
+	                		<h4>{{job.recruiter.companyName}}</h4>
+	                		<h5>{{job.location.town}} ({{job.location.postcode}})</h5>
+	                		<h6>{{job.salaryFrom}} - {{job.salaryTo}}</h6>
+	                		<hr>
+                		</div> 
+                		<hr>
+                	</div>
+        			<div class="col-md-2"></div>
+				</div>
+        		{% endfor %}					
+				</div>
+			</div>
+		</div>
 	</div>
 
-</div>
+
+
+
+
+
 {% endblock %}
 {% block javascripts %}
     {{parent()}}

@@ -53,8 +53,9 @@ class GraduateController extends Controller
 			$orderBy = array('property' => 'graduate.id', 'order' => 'ASC');
 	    	$sh->prepareSearch($form, $orderBy);
 			$result = $sh->execute();	
-				
 
+
+			
 				/*
 				// caching
 				$cache = $this->get('cache');

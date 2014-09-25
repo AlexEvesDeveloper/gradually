@@ -38,7 +38,7 @@ class JobSearchHandler
 	public function prepareSearch(Form $form, array $orderBy)
 	{
 		$this->applyFilters($form);
-		$this->queryString .= sprintf(' ORDER BY %s %s', $orderBy['property'], $orderBy['order']);
+		$this->queryString = sprintf('%s ORDER BY %s %s', $this->queryString, $orderBy['property'], $orderBy['order']);
 	}
 	
 	/**
@@ -70,19 +70,19 @@ class JobSearchHandler
 		$this->queryParams['isActive'] = true;
 
 		if(($recruiter = $form->getData()->getRecruiter()) !== null){
-			$this->queryString .= ' AND recruiter.id = :recruiter';
+			$this->queryString = sprintf('%s AND recruiter.id = :recruiter', $this->queryString);
 			$this->queryParams['recruiter'] = $recruiter->getId();
 		}
 
 		if(($salaryFrom = $form->getData()->getSalaryFrom()) !== null){
 
-			$this->queryString .= ' AND (job.salaryFrom >= :salaryFrom';
+			$this->queryString = sprintf('%s AND ((job.salaryFrom >= :salaryFrom', $this->queryString);
 			
 			if(($salaryTo = $form->getData()->getSalaryTo()) !== null){
-				$this->queryString .= ' AND job.salaryFrom <= :salaryTo OR job.salaryTo >= :salaryFrom AND job.salaryTo <= :salaryTo)';
+				$this->queryString = sprintf('%s AND job.salaryFrom <= :salaryTo) OR (job.salaryTo >= :salaryFrom AND job.salaryTo <= :salaryTo))', $this->queryString);
 				$this->queryParams['salaryTo'] = $salaryTo;
 			}else{
-				$this->queryString .= ' OR job.salaryTo >= :salaryFrom)';
+				$this->queryString = sprintf('%s OR job.salaryTo >= :salaryFrom))', $this->queryString);
 			}
 			$this->queryParams['salaryFrom'] = $salaryFrom;
 		}	
@@ -108,16 +108,16 @@ class JobSearchHandler
 					$point = $locations[0]->getPoint();
 				}
 
-				$this->queryString .= ' AND DISTANCE(location.point, POINT_STR(:point)) / 1600 < :distance';
+				$this->queryString = sprintf('%s AND (DISTANCE(location.point, POINT_STR(:point)) / 1600 < :distance', $this->queryString);
 				$this->queryParams['point'] = $point;
 
 				// now handle extra locations that will be here if a town was entered
 				for($i = 1; $i < $locationCount; $i++){
 					$pointStr = sprintf('point%d', $i);
-					$this->queryString .= sprintf(' OR DISTANCE(location.point, POINT_STR(:%s)) / 1600 < :distance', $pointStr);
+					$this->queryString = sprintf('%s OR DISTANCE(location.point, POINT_STR(:%s)) / 1600 < :distance', $this->queryString, $pointStr);
 					$this->queryParams[$pointStr] = $locations[$i]->getPoint();
 				}
-
+				$this->queryString = sprintf('%s)', $this->queryString);
 
 				$this->queryParams['distance'] = $distance;
 			}
