@@ -42,10 +42,15 @@ class GraduateSearch
     private $yearTo;   
 
     /**
-     * @ORM\Column(name="result", type="string", length=3, nullable=true)
+     * @ORM\Column(name="result_from", type="integer", nullable=true)
      */
-    private $result;
+    private $resultFrom;
    
+    /**
+     * @ORM\Column(name="result_to", type="integer", nullable=true)
+     */
+    private $resultTo;
+
     /**
      * Get id
      *
@@ -103,48 +108,94 @@ class GraduateSearch
     }
 
     /**
-     * Set yearAttained
+     * Set yearFrom
      *
-     * @param string $yearAttained
+     * @param string $yearFrom
      * @return GraduateSearch
      */
-    public function setYearAttained($yearAttained)
+    public function setYearFrom($yearFrom)
     {
-        $this->yearAttained = $yearAttained;
+        $this->yearFrom = $yearFrom;
 
         return $this;
     }
 
     /**
-     * Get yearAttained
+     * Get yearFrom
      *
      * @return string 
      */
-    public function getYearAttained()
+    public function getYearFrom()
     {
-        return $this->yearAttained;
+        return $this->yearFrom;
     }
 
     /**
-     * Set result
+     * Set yearTo
      *
-     * @param string $result
+     * @param string $yearTo
      * @return GraduateSearch
      */
-    public function setResult($result)
+    public function setYearTo($yearTo)
     {
-        $this->result = $result;
+        $this->yearTo = $yearTo;
 
         return $this;
     }
 
     /**
-     * Get result
+     * Get yearTo
      *
      * @return string 
      */
-    public function getResult()
+    public function getYearTo()
     {
-        return $this->result;
+        return $this->yearTo;
+    }
+
+    /**
+     * Set resultFrom
+     *
+     * @param integer $resultFrom
+     * @return GraduateSearch
+     */
+    public function setResultFrom($resultFrom)
+    {
+        $this->resultFrom = $resultFrom;
+
+        return $this;
+    }
+
+    /**
+     * Get resultFrom
+     *
+     * @return integer 
+     */
+    public function getResultFrom()
+    {
+        return $this->resultFrom;
+    }
+
+    /**
+     * Set resultTo
+     *
+     * @param integer $resultTo
+     * @return GraduateSearch
+     */
+    public function setResultTo($resultTo)
+    {
+        $this->resultTo = $resultTo;
+
+        return $this;
+    }
+
+    /**
+     * Get resultTo
+     *
+     * @return integer 
+     */
+    public function getResultTo()
+    {
+        return $this->resultTo;
     }
 }

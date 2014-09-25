@@ -59,7 +59,7 @@
         {% for qualification in graduate.qualifications %}
           <h4>{{qualification.university.name}}</h4>
           <h5>{{qualification.degree.title}} ({{qualification.degreeLevel.title}})</h5>
-          <h6>{{qualification.result}} ({{qualification.yearAttained}})</h6>
+          <h6>{{qualification.result.name}} ({{qualification.yearAttained}})</h6>
           <hr>
         {% endfor %}
         <div id="add-qualification-modal" class="modal fade" style="display: none;">

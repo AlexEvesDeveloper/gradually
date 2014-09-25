@@ -59,7 +59,10 @@ class QualificationType extends AbstractType
             'class' => 'GraduallyUtilBundle:DegreeLevel',
         ));
 
-        $builder->add('result');
+        $builder->add('result', 'entity', array(
+            'class' => 'GraduallyUtilBundle:DegreeResult',
+            'property' => 'name'
+        ));
         $builder->add('yearAttained'); 
         $builder->add('save', 'submit', array('label' => 'Save'));
     }

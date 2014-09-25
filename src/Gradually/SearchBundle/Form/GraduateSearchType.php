@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Doctrine\ORM\EntityRepository;
+use Gradually\UtilBundle\Entity\DegreeResult;
 
 class GraduateSearchType extends AbstractType
 {
@@ -47,10 +48,23 @@ class GraduateSearchType extends AbstractType
                 'required' => false
             ))
 
-	        ->add('result', 'text', array(
-		        'required' => false
+	        ->add('resultFrom', 'entity', array(
+		        'class' => 'Gradually\UtilBundle\Entity\DegreeResult',
+                'multiple' => false,
+                'expanded' => false,
+                'empty_value' => '',
+                'property' => 'name',
+                'required' => false,
 	        ))
 	    
+            ->add('resultTo', 'entity', array(
+                'class' => 'Gradually\UtilBundle\Entity\DegreeResult',
+                'multiple' => false,
+                'expanded' => false,
+                'empty_value' => '',
+                'property' => 'name',
+                'required' => false,
+            ))
             ->add('save', 'submit', array('label' => 'Search'));
     }
     

@@ -8,9 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Qualification
  *
  * @ORM\Table(name="qualifications", indexes={
- *   @ORM\Index(name="year_attained_and_result", columns={"year_attained", "result"}),
- *   @ORM\Index(name="year_attained", columns={"year_attained"}), 
- *   @ORM\Index(name="result", columns={"result"})
+ *   @ORM\Index(name="year_attained", columns={"year_attained"})
  * })
  * @ORM\Entity
  */
@@ -54,9 +52,9 @@ class Qualification
     private $degreeLevel;
 
     /**
-     * @var string
+     * @var \Gradually\UtilBundle\Entity\DegreeResult
      *
-     * @ORM\Column(name="result", type="string", length=16)
+     * @ORM\ManyToOne(targetEntity="\Gradually\UtilBundle\Entity\DegreeResult")
      */
     private $result;
 
@@ -81,10 +79,10 @@ class Qualification
     /**
      * Set result
      *
-     * @param string $result
+     * @param \Gradually\UtilBundle\Entity\DegreeResult
      * @return Qualification
      */
-    public function setResult($result)
+    public function setResult(\Gradually\UtilBundle\Entity\DegreeResult $result = null)
     {
         $this->result = $result;
 
@@ -94,7 +92,7 @@ class Qualification
     /**
      * Get result
      *
-     * @return string 
+     * @return \Gradually\UtilBundle\Entity\DegreeResult
      */
     public function getResult()
     {

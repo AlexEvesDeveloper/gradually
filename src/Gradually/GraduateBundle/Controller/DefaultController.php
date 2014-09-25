@@ -44,23 +44,23 @@ class DefaultController extends Controller
             $em = $this->getDoctrine()->getManager();
             // upload image, first remove their old one, if they had one
             
-            if(($oldImage = $user->getImage()) !== null){
+            if(($oldImage = $graduate->getImage()) !== null){
                 $em->remove($oldImage);
                 $em->flush();
             }
                      
-            $image->setUser($user);
-            $user->setProfileImage($image);
+            $image->setUser($graduate);
+            $graduate->setProfileImage($image);
             
             $em->persist($image);
             $em->flush();            
         }
 
-        if(($image = $user->getImage()) === null){
+        if(($image = $graduate->getImage()) === null){
             $imagePath = 'uploads/profile_images/default/female.jpg';
         }else{
-            $imageFilename = $image->getId() . '.' . $image->getPath();
-            $imagePath = 'uploads/profile_images/' . $imageFilename;
+            $imagePath = $image->getFullPath();
+            //print $imagePath; exit;
         }
         // add new Qualification
         $qual = new Qualification();

@@ -42,10 +42,15 @@ class GraduateSearch
     private $yearTo;   
 
     /**
-     * @ORM\Column(name="result", type="string", length=3, nullable=true)
+     * @ORM\Column(name="result_from", type="integer", nullable=true)
      */
-    private $result;
+    private $resultFrom;
    
+    /**
+     * @ORM\Column(name="result_to", type="integer", nullable=true)
+     */
+    private $resultTo;
+
     /**
      * Get id
      *
@@ -103,29 +108,6 @@ class GraduateSearch
     }
 
     /**
-     * Set result
-     *
-     * @param string $result
-     * @return GraduateSearch
-     */
-    public function setResult($result)
-    {
-        $this->result = $result;
-
-        return $this;
-    }
-
-    /**
-     * Get result
-     *
-     * @return string 
-     */
-    public function getResult()
-    {
-        return $this->result;
-    }
-
-    /**
      * Set yearFrom
      *
      * @param string $yearFrom
@@ -169,5 +151,51 @@ class GraduateSearch
     public function getYearTo()
     {
         return $this->yearTo;
+    }
+
+    /**
+     * Set resultFrom
+     *
+     * @param integer $resultFrom
+     * @return GraduateSearch
+     */
+    public function setResultFrom($resultFrom)
+    {
+        $this->resultFrom = $resultFrom;
+
+        return $this;
+    }
+
+    /**
+     * Get resultFrom
+     *
+     * @return integer 
+     */
+    public function getResultFrom()
+    {
+        return $this->resultFrom;
+    }
+
+    /**
+     * Set resultTo
+     *
+     * @param integer $resultTo
+     * @return GraduateSearch
+     */
+    public function setResultTo($resultTo)
+    {
+        $this->resultTo = $resultTo;
+
+        return $this;
+    }
+
+    /**
+     * Get resultTo
+     *
+     * @return integer 
+     */
+    public function getResultTo()
+    {
+        return $this->resultTo;
     }
 }

@@ -14,6 +14,7 @@ use Gradually\ProfileBundle\Entity\RecruiterProfile;
 use Gradually\UtilBundle\Entity\University;
 use Gradually\UtilBundle\Entity\Degree;
 use Gradually\UtilBundle\Entity\DegreeLevel;
+use Gradually\UtilBundle\Entity\DegreeResult;
 use Gradually\GraduateBundle\Entity\Qualification;
 use Gradually\JobBundle\Entity\Job;
 use Gradually\PurchaseBundle\Entity\PurchaseOption;
@@ -27,7 +28,7 @@ class LoadUserData implements FixtureInterface
      */
     public function load(ObjectManager $manager)
     {
-	// LOCATIONS
+		// LOCATIONS
 		$locations = $this->createLocations($manager);
 
         // UNIVERSITIES
@@ -38,6 +39,9 @@ class LoadUserData implements FixtureInterface
 
         // DEGREES
 		$degrees = $this->createDegrees($manager, $degreeLevels);
+
+		// DEGREE RESULTS
+		$degreeResults = $this->createDegreeResults($manager);
 
         // CONNECT UNIS AND DEGREES
 		$this->connectUniversitiesToDegrees($manager, $universities, $degrees);
@@ -51,11 +55,11 @@ class LoadUserData implements FixtureInterface
     	// USERS
 		$adminUsers = $this->createAdminUsers($manager, $roles['admin']);
 		$superUsers = $this->createSuperUsers($manager, $roles['super']);
-		$graduateUsers = $this->createGraduateUsers($manager, $roles['graduate'], $universities, $degrees, $degreeLevels);
+		$graduateUsers = $this->createGraduateUsers($manager, $roles['graduate'], $universities, $degrees, $degreeLevels, $degreeResults);
 		$recruiterUsers = $this->createRecruiterUsers($manager, $roles['recruiter']);
 	
-	// JOBS
-	$jobs = $this->createJobs($manager, $recruiterUsers, $locations);
+		// JOBS
+		$jobs = $this->createJobs($manager, $recruiterUsers, $locations);
     }
 
 	protected function createUniversities($manager)
@@ -121,6 +125,33 @@ class LoadUserData implements FixtureInterface
 		
         	$manager->flush();
 		return $return;
+	}
+
+	protected function createDegreeResults($manager)
+	{
+		$f = new DegreeResult();
+		$f->setName('First-class honours');
+		$manager->persist($f);
+
+		$us = new DegreeResult();
+		$us->setName('Upper second-class honours');
+		$manager->persist($us);
+
+		$ls = new DegreeResult();
+		$ls->setName('Lower second-class honours');
+		$manager->persist($ls);
+
+		$t = new DegreeResult();
+		$t->setName('Third-class honours');
+		$manager->persist($t);
+
+		$o = new DegreeResult();
+		$o->setName('Ordinary');
+		$manager->persist($o);		
+
+		$manager->flush();
+		
+		return array($f, $us, $ls, $t, $o); 
 	}
 
         protected function connectUniversitiesToDegrees($manager, $universities, $degrees)
@@ -244,7 +275,7 @@ class LoadUserData implements FixtureInterface
 		return array($userSuper);
 	}
 
-	protected function createGraduateUsers($manager, $role, $universities, $degrees, $degreeLevels)
+	protected function createGraduateUsers($manager, $role, $universities, $degrees, $degreeLevels, $degreeResults)
 	{
 		$return = array();
 		for($i = 1; $i < 11; $i++){
@@ -255,8 +286,6 @@ class LoadUserData implements FixtureInterface
 			$g->setUsername(sprintf('grad%d@test.com', $i));
 			$g->setPassword(password_hash(sprintf('grad%dpwd', $i), PASSWORD_BCRYPT, array('cost' => 12)));
 			$g->addRole($role);
-		
-
 		
 			// random number of qualifications
 			$rand = rand(1,3);
@@ -272,18 +301,21 @@ class LoadUserData implements FixtureInterface
 				$levelIndex = rand(0, count($degreeLevels)-1);
 				$q->setDegreeLevel($degreeLevels[$levelIndex]);
 				// random results
-				switch(rand(0, 3)){
+				switch(rand(0, 4)){
 					case 0:
-						$q->setResult('1');
+						$q->setResult($degreeResults[0]);
 						break;
 					case 1:
-						$q->setResult('2:1');
+						$q->setResult($degreeResults[1]);
 						break;
 					case 2:
-						$q->setResult('2:2');
+						$q->setResult($degreeResults[2]);
 						break;
 					case 3:
-						$q->setResult('3');
+						$q->setResult($degreeResults[3]);
+						break;
+					case 4:
+						$q->setResult($degreeResults[4]);
 						break;
 				}
 				// random year
@@ -294,13 +326,12 @@ class LoadUserData implements FixtureInterface
 				$manager->persist($q);
 			}
 			
-
 			$manager->persist($g);
 		
 			$return[] = $g;
 		}
 		
-        	$manager->flush();
+        $manager->flush();
 		return $return;
 	}
 

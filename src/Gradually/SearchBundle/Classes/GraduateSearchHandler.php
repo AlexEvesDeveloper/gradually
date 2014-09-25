@@ -25,6 +25,7 @@ class GraduateSearchHandler
 	    	JOIN graduate.qualifications qualification
 			JOIN qualification.university university
 			JOIN qualification.degree degree
+			JOIN qualification.result result
 			WHERE graduate.isActive = :isActive
 	    ';
 
@@ -48,7 +49,7 @@ class GraduateSearchHandler
 	public function execute()
 	{
 		$query = $this->doctrine->getManager()->createQuery($this->queryString)->setParameters($this->queryParams);
-		$query->useResultCache(true, 600, 'KEY' . md5($this->getQueryString()));
+		//$query->useResultCache(true, 600, 'KEY' . md5($this->getQueryString()));
 		return $query->getResult();	
 	}
 
@@ -92,9 +93,22 @@ class GraduateSearchHandler
 		$this->queryParams['yearFrom'] = $yearFrom;
 		$this->queryParams['yearTo'] = $yearTo;
 
-		if(($result = $form->getData()->getResult()) !== null){
-			$this->queryString .= ' AND qualification.result = :result';
-			$this->queryParams['result'] = $result;
-		}		
+		if(($resultFrom = $form->getData()->getResultFrom()) !== null){
+			$resultFrom = $resultFrom->getId();
+		}else{
+			$resultFrom = 5;
+		}	
+
+		if(($resultTo = $form->getData()->getResultTo()) !== null){
+			$resultTo = $resultTo->getId();
+		}else{
+			$resultTo = 1;
+		}
+
+		$this->queryString .= ' AND (result.id <= :resultFrom 
+								AND result.id >= :resultTo)';
+		
+		$this->queryParams['resultFrom'] = $resultFrom;
+		$this->queryParams['resultTo'] = $resultTo;		
 	}
 }

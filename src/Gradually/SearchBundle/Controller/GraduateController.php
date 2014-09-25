@@ -45,15 +45,16 @@ class GraduateController extends Controller
 		    		$currentCredits = $user->getSearchCredits();
 		    		$user->setSearchCredits(--$currentCredits);
 		    		$em->persist($user);
-	    	    		$em->flush();
+	    	    	$em->flush();
 				}
 	    	}
 	
-	    		$sh = $this->container->get('graduate_search_handler');
-				$orderBy = array('property' => 'graduate.id', 'order' => 'ASC');
-	    		$sh->prepareSearch($form, $orderBy);
-				$result = $sh->execute();	
+	    	$sh = $this->container->get('graduate_search_handler');
+			$orderBy = array('property' => 'graduate.id', 'order' => 'ASC');
+	    	$sh->prepareSearch($form, $orderBy);
+			$result = $sh->execute();	
 				
+
 				/*
 				// caching
 				$cache = $this->get('cache');
