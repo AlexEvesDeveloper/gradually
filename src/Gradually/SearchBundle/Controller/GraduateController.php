@@ -22,13 +22,13 @@ class GraduateController extends Controller
     public function indexAction(Request $request)
     {
 		// initialise empty search results
+	    	$em = $this->getDoctrine()->getManager();
 		$result = array();
 		$graduateSearch = new GraduateSearch();
 		$form = $this->createForm(new GraduateSearchType(), $graduateSearch);
 
 		$form->handleRequest($request);
 		if($form->isValid()){
-	    	$em = $this->getDoctrine()->getManager();
 	
 	    	// redirect to login if not logged in
 	    	if(($user = $this->getUser()) === null){
@@ -37,10 +37,15 @@ class GraduateController extends Controller
 	
 			$result = $em->getRepository('GraduallyUserBundle:GraduateUser')->search($form);
 		}
-		
+	
+		// by default, show all. No ordering at present
+		if(empty($result)){
+			$result = $em->getRepository('GraduallyUserBundle:GraduateUser')->findAll();
+		}
+	
 		return array(
 	    	'form' => $form->createView(),
 	    	'graduates' => $result
 		);
-	}
+	}	
 }
