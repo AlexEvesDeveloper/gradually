@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * GraduateUser
  *
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Gradually\UserBundle\Entity\GraduateUserRepository")
  */
 class GraduateUser extends User
 {

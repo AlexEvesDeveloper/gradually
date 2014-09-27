@@ -1,7 +1,4 @@
 services:
-    graduate_search_handler:
-        class: Gradually\SearchBundle\Classes\GraduateSearchHandler
-        arguments: ['@doctrine']
     job_search_handler:
         class: Gradually\SearchBundle\Classes\JobSearchHandler
         arguments: ['@doctrine']

@@ -35,41 +35,7 @@ class GraduateController extends Controller
 	    		return $this->redirect($this->generateUrl('gradually_user_default_login'));
 	    	}		
 	
-	    	// recruiters without search credits redirect to purchase page, otherwise reduce one credit
-	    	if($user->getType() == 'RECRUITER'){
-	    		if(!$user->getSearchCredits()){
-		    		// insufficient credits
-		    		return $this->redirect($this->generateUrl('gradually_purchase_default_index'));
-				}else{
-		    		// decrement credits by one
-		    		$currentCredits = $user->getSearchCredits();
-		    		$user->setSearchCredits(--$currentCredits);
-		    		$em->persist($user);
-	    	    	$em->flush();
-				}
-	    	}
-	
-	    	$sh = $this->container->get('graduate_search_handler');
-			$orderBy = array('property' => 'graduate.id', 'order' => 'ASC');
-	    	$sh->prepareSearch($form, $orderBy);
-			$result = $sh->execute();	
-
-
-			
-				/*
-				// caching
-				$cache = $this->get('cache');
-				$cache->setMemcached($this->get('memcached'));
-	
-	
-				$queryKey = 'KEY' . md5($sh->getQueryString());
-				if($resultString = $cache->fetch($queryKey)){
-					$result = unserialize($resultString);
-				}else{
-					$result = $sh->execute();
-					$cache->save($queryKey, serialize($result), 30);	
-				}
-				*/
+			$result = $em->getRepository('GraduallyUserBundle:GraduateUser')->search($form);
 		}
 		
 		return array(

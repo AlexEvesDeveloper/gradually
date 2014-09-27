@@ -2,23 +2,15 @@
 
 namespace Gradually\SearchBundle\Classes;
 
-use Doctrine\Bundle\DoctrineBundle\Registry;
+use Doctrine\ORM\EntityManager;
 use Symfony\Component\Form\Form;
 
-class GraduateSearchHandler
+class GraduateSearchHandler extends BaseSearchHandler
 {
-	protected $queryString;
-	protected $queryParams = array();
-	protected $doctrine;
-
 	/**
-     * Constructor.
-     *
-     * Initialise database connection and inject services.
-	 *
-	 * @param \Doctrine\Bundle\DoctrineBundle\Registry $doctrine.
+	 * Create the opening query string that will be applicable in all search cases
      */
-	public function __construct(Registry $doctrine)
+	public function initQueryString()
 	{
 		$this->queryString = '
 			SELECT graduate, qualification, university, degree FROM GraduallyUserBundle:GraduateUser graduate
@@ -28,45 +20,10 @@ class GraduateSearchHandler
 			JOIN qualification.result result
 			WHERE graduate.isActive = :isActive
 	    ';
-
-	    $this->doctrine = $doctrine;
-	}
-
-	/**
-	 * Construct the query string.
-	 */
-	public function prepareSearch(Form $form, array $orderBy)
-	{
-		$this->applyFilters($form);
-		$this->queryString = sprintf('%s ORDER BY %s %s', $this->queryString, $orderBy['property'], $orderBy['order']);
-	}
-
-	/**
-	 * Execute the query.
-	 *
-	 * @return the result set.
-	 */
-	public function execute()
-	{
-		$query = $this->doctrine->getManager()->createQuery($this->queryString)->setParameters($this->queryParams);
-		//$query->useResultCache(true, 600, 'KEY' . md5($this->getQueryString()));
-		return $query->getResult();	
-	}
-
-	/**
-	 * Returns the query string, with its parameters appended to the end, comma separated.
-	 *
-	 * Primarily used by memcache to create a unique key for each specificly filtered query,
-	 * But also good for debugging purposes.
-	 */
-	public function getQueryString()
-	{
-		return $this->queryString . implode(',', $this->queryParams);
 	}
 
 	protected function applyFilters(Form $form)
 	{
-		// a hard coded filter, might need refactoring at some point
 		$this->queryParams['isActive'] = true;
 
 		if(($university = $form->getData()->getUniversity()) !== null){
@@ -96,14 +53,14 @@ class GraduateSearchHandler
 		if(($resultFrom = $form->getData()->getResultFrom()) !== null){
 			$resultFrom = $resultFrom->getId();
 		}else{
-			$result = $this->doctrine->getRepository('GraduallyUtilBundle:DegreeResult')->findOneByName('Ordinary');
+			$result = $this->em->getRepository('GraduallyUtilBundle:DegreeResult')->findOneByName('Ordinary');
 			$resultFrom = $result->getId();
 		}	
 
 		if(($resultTo = $form->getData()->getResultTo()) !== null){
 			$resultTo = $resultTo->getId();
 		}else{
-			$result = $this->doctrine->getRepository('GraduallyUtilBundle:DegreeResult')->findOneByName('First-class honours');
+			$result = $this->em->getRepository('GraduallyUtilBundle:DegreeResult')->findOneByName('First-class honours');
 			$resultTo = $result->getId();
 		}
 

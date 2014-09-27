@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Job
  *
  * @ORM\Table(name="jobs")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Gradually\JobBundle\Entity\JobRepository")
  * @ORM\HasLifecycleCallbacks()
  */
 class Job
