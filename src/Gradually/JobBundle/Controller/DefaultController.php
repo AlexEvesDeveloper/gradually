@@ -69,6 +69,9 @@ class DefaultController extends Controller
     		$application->setGraduate($user);
     		$application->setJob($em->getRepository('GraduallyJobBundle:Job')->find($id));
 
+            $user->addApplication($application);
+
+            $em->persist($user);
     		$em->persist($application);
     		$em->flush();
     	}

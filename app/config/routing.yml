@@ -17,6 +17,10 @@ gradually_job:
     resource: "@GraduallyJobBundle/Controller/"
     type:     annotation
 
+gradually_application:
+    resource: "@GraduallyApplicationBundle/Controller/"
+    type:     annotation
+
 gradually_recruiter:
     resource: "@GraduallyRecruiterBundle/Controller/"
     type:     annotation
