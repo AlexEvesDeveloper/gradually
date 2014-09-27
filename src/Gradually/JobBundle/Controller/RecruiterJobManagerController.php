@@ -10,8 +10,6 @@ use Gradually\UserBundle\Entity\RecruiterUser;
 use Gradually\JobBundle\Entity\Job;
 use Gradually\JobBundle\Entity\Location;
 use Gradually\JobBundle\Form\JobType;
-use Gradually\NotificationBundle\Classes\NotificationManager;
-use Gradually\NotificationBundle\Classes\Factories\JobNotifierFactory;
 use Gradually\LibraryBundle\Classes\Doctrine\Point;
 
 /**
@@ -66,12 +64,8 @@ class RecruiterJobManagerController extends Controller
             // attach the job to this recruiter
             $job->setRecruiter($recruiter);
 
-            // create the location
-            // dummy point
-	    $point = new Point(10, 20.5);
-            $location = new Location();
-            $location->setPostcode('LN6');
-            $location->setPoint($point);
+            // find the location            
+            $location = $em->getRepository('GraduallyJobBundle:Location')->findOneByPostcode('LN6');
             $em->persist($location);
             $job->setLocation($location);
 
@@ -82,11 +76,9 @@ class RecruiterJobManagerController extends Controller
             $em->persist($recruiter);
             $em->flush();
 
-            $this->notifyRecruiterSubscribers($recruiter, $job);
-            // TODO redirect to global job view
-            return $this->redirect($this->generateUrl('gradually_job_recruiterjobmanager_view', array(
-                'id' => $id,
-                'jobId' => $job->getId()
+            // return to the Recruiters Job index view
+            return $this->redirect($this->generateUrl('gradually_job_recruiterjobmanager_index', array(
+                'id' => $id
             )));
         }
 
@@ -130,24 +122,6 @@ class RecruiterJobManagerController extends Controller
         return array(
             'form' => $form->createView()
         );
-    }
-
-    /**
-     * Get all Graduates that are subscribed to this Recruiter and notify them.
-     *
-     * @param Recruiter
-     */
-    protected function notifyRecruiterSubscribers(RecruiterUser $recruiter, Job $job)
-    {
-        $subscribers = $this->getDoctrine()
-            ->getRepository('GraduallyUserBundle:RecruiterUser')
-            ->findAllSubscribedGraduates($recruiter->getId());
-
-        foreach($subscribers as $subscriber){
-            $notifier = JobNotifierFactory::getNotifier($subscriber->getNotificationMethod());
-            $nm = new NotificationManager($notifier);
-            $nm->notify(array($subscriber, $recruiter, $job));
-        }
     }
 
     /**

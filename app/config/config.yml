@@ -115,3 +115,9 @@ services:
             - [ addServers, [ %memcached.servers%]]
     cache:
         class: Doctrine\Common\Cache\MemcachedCache
+
+    # doctrine event subscribers
+    new.job.subscriber:
+        class: Gradually\JobBundle\EventSubscribers\NewJobSubscriber
+        tags:
+            - { name: doctrine.event_subscriber, connection: default }

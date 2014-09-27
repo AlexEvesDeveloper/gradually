@@ -277,7 +277,7 @@ class GraduateUser extends User
      */
     public function getNotificationMethod()
     {
-        return 'text';
+        return 'email';
         return $this->notificationMethod;
     }
 }
