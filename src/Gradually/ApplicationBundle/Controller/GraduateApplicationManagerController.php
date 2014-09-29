@@ -23,7 +23,6 @@ class GraduateApplicationManagerController extends Controller
             return $this->redirect($this->generateUrl('gradually_user_default_login'));
         }
 
-        // get all jobs belonging to this recruiter
         $graduate = $this->getDoctrine()->getManager()->getRepository('GraduallyUserBundle:GraduateUser')->find($id);
         
         return array(

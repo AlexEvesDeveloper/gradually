@@ -1,12 +1,63 @@
-{% extends '::base.html.twig' %}
+{% extends "::base.html.twig" %}
 
 {% block body %}
-<p>Jobs</p>
+<div id="wrapper">
+    <div id="sidebar-wrapper">
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-9 under-navbar">        
+        </div>
+        <div class="col-md-1"></div>
+      </div>
+    </div>
+    <div id="page-content-wrapper">
+      	<div class="page-content">
+        {% for job in jobs %}
+        	<div class="row">
+          		<div class="col-md-1"></div>
+	        	<div class="col-md-10 section">
+          			<div class="row">
+          				<div class="col-md-9">
+          					<h4>
+          						<a href="{{path('gradually_job_default_view', {'id':job.id})}}">
+          							{{job.title}}
+          						</a>
+          					</h4>
+          				</div>
+          				<div class="col-md-3 padding-left-70">
+          					<a class="btn show-applications">View applications</a>
+          				</div>
+          			</div>
+					<div class="row">
+						<div class="col-md-12 section collapsed-group applications-container hide">
+							<div class="applications collapse">
+								<h2>{{job.title}}</h2>
+								<p>{{job.description}}</p>
+							</div>
+						</div>
+					</div>
+          		</div>
+        		<div class="col-md-1"></div>
+        	</div>
+        {% endfor %}
+	    </div>
+    </div>
+</div>
+{% endblock %}
 
-{% for job in jobs %}
-    <p><a href="{{ path('gradually_job_recruiterjobmanager_view', {'id' : recruiter.id, 'jobId' : job.id}) }}">{{ job.title }}</a></p>
-{% endfor %}
+{% block javascripts %}
+	{{parent()}}
 
-<p><a href="{{ path('gradually_job_recruiterjobmanager_add', {'id' : recruiter.id}) }}">Add a new job</a></p>
+	<script>
+		$('.show-applications').click(function(){
+			$('.show-applications').toggleClass('view');
+			if($('.show-applications').hasClass('view')){
+				$('.show-applications').html('View applications');
+			}else{
+				$('.show-applications').html('Hide applications');
+			}
 
+			$('.applications-container').toggleClass('hide');
+		});
+	</script>
 {% endblock %}

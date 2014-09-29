@@ -21,6 +21,11 @@ class DefaultController extends Controller
      */
     public function viewAction(Request $request, $id)
     {
+        // redirect to login if not logged in
+        if(($user = $this->getUser()) == null){
+            return $this->redirect($this->generateUrl('gradually_user_default_login'));
+        }
+        
     	$recruiter = $this->getDoctrine()->getManager()->getRepository('GraduallyUserBundle:RecruiterUser')->find($id);
 
         // check for an Image upload and process if necessary

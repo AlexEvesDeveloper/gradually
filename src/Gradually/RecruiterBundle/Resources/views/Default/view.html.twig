@@ -7,7 +7,9 @@
         <div class="col-md-1"></div>
         <div class="col-md-9 under-navbar">
           {% if app.user.id == recruiter.id %}
-          <a href="{{ path('gradually_job_recruiterjobmanager_index', {'id' : recruiter.id}) }}">Manage jobs</a>
+          <a href="{{ path('gradually_job_recruiterjobmanager_index', {'id' : recruiter.id}) }}">
+            Manage jobs
+          </a>         
           {% elseif app.user.type == 'GRADUATE' %}
           <a href="{{ path('gradually_application_graduateapplicationmanager_index', {'id':recruiter.id}) }}">
             View active jobs FIX THE LINK
@@ -67,19 +69,6 @@
         </div>
     </div>
   </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
 </div>
 {% endblock %}
 

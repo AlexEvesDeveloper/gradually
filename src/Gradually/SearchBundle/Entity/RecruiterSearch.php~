@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * RecruiterSearch
  *
- * @ORM\Table(name="graduate_searches")
+ * @ORM\Table(name="recruiter_searches")
  * @ORM\Entity
  */
 class RecruiterSearch
@@ -57,5 +57,18 @@ class RecruiterSearch
     public function getRecruiter()
     {
         return $this->recruiter;
+    }
+
+    /**
+     * Set recruiter
+     *
+     * @param \Gradually\UserBundle\Entity\RecruiterUser $recruiter
+     * @return RecruiterSearch
+     */
+    public function setRecruiter(\Gradually\UserBundle\Entity\RecruiterUser $recruiter = null)
+    {
+        $this->recruiter = $recruiter;
+
+        return $this;
     }
 }
