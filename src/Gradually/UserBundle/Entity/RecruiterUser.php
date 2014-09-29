@@ -45,6 +45,13 @@ class RecruiterUser extends User
     private $searchCredits;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="notification_method", type="string", length=16)
+     */
+    private $notificationMethod;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -233,5 +240,29 @@ class RecruiterUser extends User
     public function getType()
     {
         return parent::TYPE_RECRUITER;
+    }
+
+    /**
+     * Set notificationMethod
+     *
+     * @param string $notificationMethod
+     * @return RecruiterUser
+     */
+    public function setNotificationMethod($notificationMethod)
+    {
+        $this->notificationMethod = $notificationMethod;
+
+        return $this;
+    }
+
+    /**
+     * Get notificationMethod
+     *
+     * @return string 
+     */
+    public function getNotificationMethod()
+    {
+        return 'email';
+        return $this->notificationMethod;
     }
 }

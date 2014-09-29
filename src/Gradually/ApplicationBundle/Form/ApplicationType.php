@@ -1,6 +1,6 @@
 <?php
 
-namespace Gradually\GraduateBundle\Form;
+namespace Gradually\ApplicationBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -26,7 +26,7 @@ class ApplicationType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Gradually\GraduateBundle\Entity\Application'
+            'data_class' => 'Gradually\ApplicationBundle\Entity\Application'
         ));
     }
 
@@ -35,6 +35,6 @@ class ApplicationType extends AbstractType
      */
     public function getName()
     {
-        return 'gradually_graduatebundle_application';
+        return 'gradually_applicationbundle_application';
     }
 }

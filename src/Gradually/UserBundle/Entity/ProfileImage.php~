@@ -46,6 +46,8 @@ class ProfileImage
      */
     private $file;
 
+    private $fullPath;
+
     /**
      * Get id
      *
@@ -237,5 +239,10 @@ class ProfileImage
     public function getUser()
     {
         return $this->user;
+    }
+
+    public function getFullPath()
+    {
+        return sprintf("%s/%s.%s", $this->getUploadDir(), $this->getId(), $this->getPath());
     }
 }

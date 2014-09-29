@@ -77,6 +77,7 @@ doctrine:
                     GraduallyJobBundle: { type: annotation, dir: Entity/ }
                     GraduallyPurchaseBundle: { type: annotation, dir: Entity/ }
                     GraduallySearchBundle: { type: annotation, dir: Entity/ }
+                    GraduallyApplicationBundle: { type: annotation, dir: Entity/ }
                     #GraduallyRecruiterBundle: { type: annotation, dir: Entity/ }
                     #GraduallyNotificationBundle: { type: annotation, dir: Entity/ }
                     #GraduallyAdminBundle: { type: annotation, dir: Entity/ }
@@ -115,9 +116,3 @@ services:
             - [ addServers, [ %memcached.servers%]]
     cache:
         class: Doctrine\Common\Cache\MemcachedCache
-
-    # doctrine event subscribers
-    new.job.subscriber:
-        class: Gradually\JobBundle\EventSubscribers\NewJobSubscriber
-        tags:
-            - { name: doctrine.event_subscriber, connection: default }

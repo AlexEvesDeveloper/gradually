@@ -1,6 +1,6 @@
 <?php
 
-namespace Gradually\GraduateBundle\Entity;
+namespace Gradually\ApplicationBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="applications")
  * @ORM\Entity
+ * @ORM\EntityListeners({"Gradually\ApplicationBundle\EventListeners\ApplicationListener"})
  */
 class Application
 {

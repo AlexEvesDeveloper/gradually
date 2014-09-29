@@ -45,9 +45,9 @@ class GraduateUser extends User
     private $universities;
 
     /**
-     * var \Gradually\GraduateBundle\Entity\Application
+     * var \Gradually\ApplicationBundle\Entity\Application
      *
-     * @ORM\OneToMany(targetEntity="\Gradually\GraduateBundle\Entity\Application", mappedBy="graduate") 
+     * @ORM\OneToMany(targetEntity="\Gradually\ApplicationBundle\Entity\Application", mappedBy="graduate") 
      */
     private $applications;
 
@@ -227,10 +227,10 @@ class GraduateUser extends User
     /**
      * Add applications
      *
-     * @param \Gradually\GraduateBundle\Entity\Application $applications
+     * @param \Gradually\ApplicationBundle\Entity\Application $applications
      * @return GraduateUser
      */
-    public function addApplication(\Gradually\GraduateBundle\Entity\Application $applications)
+    public function addApplication(\Gradually\ApplicationBundle\Entity\Application $applications)
     {
         $this->applications[] = $applications;
 
@@ -240,9 +240,9 @@ class GraduateUser extends User
     /**
      * Remove applications
      *
-     * @param \Gradually\GraduateBundle\Entity\Application $applications
+     * @param \Gradually\ApplicationBundle\Entity\Application $applications
      */
-    public function removeApplication(\Gradually\GraduateBundle\Entity\Application $applications)
+    public function removeApplication(\Gradually\ApplicationBundle\Entity\Application $applications)
     {
         $this->applications->removeElement($applications);
     }

@@ -8,7 +8,6 @@ use Doctrine\ORM\Mapping as ORM;
  * Qualification
  *
  * @ORM\Table(name="qualifications", indexes={
- *   @ORM\Index(name="year_attained_and_result", columns={"year_attained", "result"}),
  *   @ORM\Index(name="year_attained", columns={"year_attained"})
  * })
  * @ORM\Entity

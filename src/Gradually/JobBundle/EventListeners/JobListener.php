@@ -1,33 +1,24 @@
 <?php
 
-namespace Gradually\JobBundle\EventSubscribers;
+namespace Gradually\JobBundle\EventListeners;
 
-use Doctrine\Common\EventSubscriber;
 use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
 use Gradually\JobBundle\Entity\Job;
 use Gradually\NotificationBundle\Classes\Notifiers\Notifier;
 
-class NewJobSubscriber implements EventSubscriber
+class JobListener 
 {
-	public function getSubscribedEvents()
+	public function postPersist(Job $job, LifecycleEventArgs $args)
 	{
-		return array('postPersist');
-	}
-
-	public function postPersist(LifecycleEventArgs $args)
-	{
-		$entity = $args->getEntity();
 		$em = $args->getEntityManager();
 
-		if($entity instanceof Job){
-			$this->handleNotifications($entity, $em);
-		}
+		$this->NotifySubscribedGraduates($job, $em);
 	}
 
-	private function handleNotifications($entity, $em)
+	private function NotifySubscribedGraduates($job, $em)
 	{
 		// get the Graduates subscribed to this Recruiter
-		$recruiter = $entity->getRecruiter();
+		$recruiter = $job->getRecruiter();
 		$subscribers = $em->getRepository('GraduallyUserBundle:RecruiterUser')
 			->findAllSubscribedGraduates($recruiter->getId());	
 
@@ -39,7 +30,7 @@ class NewJobSubscriber implements EventSubscriber
 				'event_name' => 'NewJob',
 				'notification_method' => $notificationMethod,
 				'recruiter' => $recruiter,
-				'job' => $entity,
+				'job' => $job,
 				'graduate' => $subscriber
 			));
 		}	

@@ -4,7 +4,7 @@ namespace Gradually\NotificationBundle\Classes\Notifiers\Email;
 
 use Gradually\NotificationBundle\Classes\Notifiers\NotifierInterface;
 
-class EmailNewJobNotifier implements NotifierInterface
+class EmailNewApplicationNotifier implements NotifierInterface
 {
 	static $instance;
 
@@ -21,14 +21,13 @@ class EmailNewJobNotifier implements NotifierInterface
 
 	public function notify(array $data)
 	{
-		$graduate = $data['graduate'];
-		$job = $data['job'];
-		$recruiter = $job->getRecruiter();
+		$application = $data['application'];
 
-		$content = sprintf('Hi %s, %s have posted a new job: %s', 
-			$graduate->getFirstName(), 
-			$recruiter->getCompanyName(),
-			$job->getTitle()
+		$content = sprintf('Hi %s, %s has applied to your job, titled: %s.<br>The following cover note was attached:<br>%s', 
+			$application->getJob()->getRecruiter()->getCompanyName(),
+			$application->getGraduate()->getFirstName(), 
+			$application->getJob()->getTitle(),
+			$application->getCoverNote()
 		);
 	}
 

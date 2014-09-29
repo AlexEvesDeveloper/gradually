@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="jobs")
  * @ORM\Entity(repositoryClass="Gradually\JobBundle\Entity\JobRepository")
+ * @ORM\EntityListeners({"Gradually\JobBundle\EventListeners\JobListener"})
  * @ORM\HasLifecycleCallbacks()
  */
 class Job
@@ -30,7 +31,7 @@ class Job
     /**
      * var \Gradually\GraduateBundle\Entity\Application
      *
-     * @ORM\OneToMany(targetEntity="\Gradually\GraduateBundle\Entity\Application", mappedBy="job") 
+     * @ORM\OneToMany(targetEntity="\Gradually\ApplicationBundle\Entity\Application", mappedBy="job") 
      */
     private $applications;
 
@@ -389,10 +390,10 @@ class Job
     /**
      * Add applications
      *
-     * @param \Gradually\GraduateBundle\Entity\Application $applications
+     * @param \Gradually\ApplicationBundle\Entity\Application $applications
      * @return Job
      */
-    public function addApplication(\Gradually\GraduateBundle\Entity\Application $applications)
+    public function addApplication(\Gradually\ApplicationBundle\Entity\Application $applications)
     {
         $this->applications[] = $applications;
 
@@ -402,9 +403,9 @@ class Job
     /**
      * Remove applications
      *
-     * @param \Gradually\GraduateBundle\Entity\Application $applications
+     * @param \Gradually\ApplicationBundle\Entity\Application $applications
      */
-    public function removeApplication(\Gradually\GraduateBundle\Entity\Application $applications)
+    public function removeApplication(\Gradually\ApplicationBundle\Entity\Application $applications)
     {
         $this->applications->removeElement($applications);
     }

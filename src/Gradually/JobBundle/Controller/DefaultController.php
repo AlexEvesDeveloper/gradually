@@ -7,8 +7,8 @@ use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Gradually\GraduateBundle\Entity\Application;
-use Gradually\GraduateBundle\Form\ApplicationType;
+use Gradually\ApplicationBundle\Entity\Application;
+use Gradually\ApplicationBundle\Form\ApplicationType;
 
 
 
