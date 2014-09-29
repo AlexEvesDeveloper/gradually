@@ -2,7 +2,7 @@
 body {
   padding-top: 40px;
   padding-bottom: 40px;
-  background-color: #f5f5f5;
+  background-color: #EEF9FF;
 }
 
 ul{
@@ -68,8 +68,8 @@ p.inline{
   margin-top: 20px;
   margin-bottom: 0px;
   line-height: 1.42857143;
-  background-color: #e3e3e3;
-  border: 1px solid #ddd;
+  background-color: #66CCFF;
+  border: 1px solid #009FEE;
   border-radius: 4px 4px 0px 0px;
   -webkit-transition: all .2s ease-in-out;
   -o-transition: all .2s ease-in-out;
@@ -218,12 +218,12 @@ p.inline{
     height: 100%;
     margin-left: -250px;
     overflow-y: auto;
-    background: #e3e3e3;
+    background: #BBE8FF;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
-        box-shadow: 1px 1px 5px #c1c1c1;
+    box-shadow: 1px 1px 5px #66CCFF;
 }
 
 #wrapper.toggled #sidebar-wrapper {

@@ -6,9 +6,15 @@
       <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-9 under-navbar">
+          {% if app.user.id == graduate.id %}
           <a href="{{ path('gradually_application_graduateapplicationmanager_index', {'id':graduate.id}) }}">
             View your applications
           </a>
+          {% elseif app.user.type == 'RECRUITER' %}
+          <a href="{{ path('gradually_application_graduateapplicationmanager_index', {'id':graduate.id}) }}">
+            View all applications FIX THE LINK
+          </a>
+          {% endif %}         
         </div>
         <div class="col-md-1"></div>
       </div>
@@ -50,8 +56,10 @@
                   </div>
                 </div>
               </div>
-              {{ form_end(pForm) }}  
+              {{ form_end(pForm) }}
+            {% if app.user.id == graduate.id %} 
             <p><a data-toggle="modal" href="#add-profileimage-modal" class="btn btn-primary btn-large">Change Image</a></p>
+            {% endif %}
             </div>
             <div class="col-md-7">
               <h3>{{ graduate.firstname | capitalize }} {{ graduate.lastname }}</h3>
@@ -120,7 +128,9 @@
                 </div>
               </div>
               {{ form_end(qForm) }}
+              {% if app.user.id == graduate.id %} 
               <p><a data-toggle="modal" href="#add-qualification-modal" class="btn btn-primary btn-large">Add Qualification</a></p>
+              {% endif %}
           </div>
           <div class="col-md-3"></div>
       </div>

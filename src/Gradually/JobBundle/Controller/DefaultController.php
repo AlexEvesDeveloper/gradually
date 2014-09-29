@@ -93,11 +93,12 @@ class DefaultController extends Controller
     protected function viewCountNeedsUpdating($id)
     {
     	$request = Request::createFromGlobals();
-    	if($request->cookies->has('job_view') && $request->cookies->get('job_view') == $id){
+        $cookieName = sprintf('job_view_%d', $id);
+    	if($request->cookies->has($cookieName) && $request->cookies->get($cookieName) == $id){
     		return false;
     	}
 
-    	setcookie('job_view', $id, time() + 3600);
+    	setcookie($cookieName, $id, time() + 3600);
 
     	return true;
     }
