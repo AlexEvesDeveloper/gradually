@@ -1,0 +1,69 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+
+	<div id="wrapper">
+		<div id="sidebar-wrapper">
+			<div class="row">
+				<div class="col-md-1"></div>
+				<div class="col-md-9">
+					{{form_start(form, {'attr':{'class': 'form-horizontal sidebar-form','role': 'form'}})}}
+						<div class="row">
+							<div class="col-md-12">
+								<div class="form-group">
+									{{form_label(form.recruiter)}}
+									{{form_widget(form.recruiter, {'attr':{'class':'form-control'}})}}
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<div class="form-group">
+									{{form_label(form.save)}}
+									{{form_widget(form.save, {attr : {class: 'btn btn-primary graduate-search-button'}})}}
+								</div>
+							</div>
+						</div>
+					{{form_end(form)}}			
+				</div>				
+			</div>
+		</div>
+		<div id="page-content-wrapper">
+			<div class="page-content">
+				{% for recruiter in recruiters %}
+				<div class="row">
+    				<div class="col-md-2"></div>
+    				<div class="col-md-8 section">
+        				<div class="col-md-3 no-left-padding">
+							{% if recruiter.image is not null %}
+        					<img class="thum2bnail" src="{{ asset(graduate.image.fullPath) }}" style="width: 150px; height: 150px;" />
+        					{% else %}
+        					<img class="thum2bnail" src="{{ asset('uploads/profile_images/default/female.jpg') }}" style="width: 150px; height: 150px;" />
+        					{% endif %}
+        				</div>
+        				<div class="col-md-9">
+        					<h3>
+        						<a href="{{ path('gradually_recruiter_default_view', {'id' : recruiter.id}) }}">
+        							{{recruiter.companyName}}
+        						</a>
+        					</h3>	
+                		</div> 
+                		<hr>
+                	</div>
+        			<div class="col-md-2"></div>
+				</div>
+        		{% endfor %}	
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
+{% block javascripts %}
+{{parent()}}
+
+<script>
+	$('#menu-toggle').click(function(){
+		$('#wrapper').toggleClass("toggled");
+	});
+</script>
+{% endblock %}

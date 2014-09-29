@@ -1,11 +1,98 @@
-{% extends '::base.html.twig' %}
+{% extends "::base.html.twig" %}
 
 {% block body %}
-<p>Name: {{ recruiter.companyName }}</p>
-<p>Profile Id: {{ recruiter.id }}</p>
-<p><a href="{{ path('gradually_job_recruiterjobmanager_index', {'id' : recruiter.id}) }}">Manage jobs</a></p>
-{% if userType == 'GRADUATE' %}
-	<a class="btn btn-primary" href="{{path('gradually_recruiter_default_watch', 
-		{'recruiterId' : recruiter.id, 'graduateId' : app.user.id}) }}">Watch this Recruiter</a>
-{% endif %}
+  <div id="wrapper">
+    <div id="sidebar-wrapper">
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-9 under-navbar">
+          {% if app.user.id == recruiter.id %}
+          <a href="{{ path('gradually_job_recruiterjobmanager_index', {'id' : recruiter.id}) }}">Manage jobs</a>
+          {% elseif app.user.type == 'GRADUATE' %}
+          <a href="{{ path('gradually_application_graduateapplicationmanager_index', {'id':recruiter.id}) }}">
+            View active jobs FIX THE LINK
+          </a>
+          {% endif %}         
+        </div>
+        <div class="col-md-1"></div>
+      </div>
+    </div>
+    <div id="page-content-wrapper">
+      <div class="page-content">
+        <div class="row">
+          <div class="col-md-3"></div>
+          <div class="col-md-6 section">
+            <div class="col-md-5 no-left-padding">
+              <img class="thumbnail" src="{{ asset(imagePath) }}" style="width: 200px; height: 200px;" />
+              <div id="add-profileimage-modal" class="modal fade" style="display: none;">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <a data-dismiss="modal" class="close">x</a>
+                      <h3>Update image</h3>
+                    </div>
+                    <div class="modal-body">
+                      {{ form_start(pForm) }}
+                        <div class="profile-image-upload fileinput fileinput-new" data-provides="fileinput">
+                  <div class="profile-image-upload-preview fileinput-preview thumbnail" data-trigger="        fileinput" style="width: 200px; height: 200px; display:none;"></div>
+                          <div>
+                            <span class="btn btn-default btn-file">
+                              <span class="fileinput-new">
+                                {{ form_label(pForm.file, 'Find an image...') }}
+                                {{ form_widget(pForm.file) }}
+                              </span>
+                              <span class="fileinput-exists">Change</span>
+                              <input type="file" name="...">
+                            </span>
+                          </div>
+                        </div>
+                    </div>  
+                    <div class="modal-footer">
+                      <a>{{ form_widget(pForm.save, {'attr': {'class': 'btn btn-success'}}) }}</a>
+                      <a href="#" class="btn" data-dismiss="modal">Cancel</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {{ form_end(pForm) }}
+            {% if app.user.id == recruiter.id %} 
+            <p><a data-toggle="modal" href="#add-profileimage-modal" class="btn btn-primary btn-large">Change Image</a></p>
+            {% endif %}
+            </div>
+            <div class="col-md-7">
+              <h3>{{ recruiter.companyName | capitalize }}</h3>
+            </div>
+          </div>
+          <div class="col-md-3"></div>
+        </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  
+  <!-- Boostrap modal -->
+  <script src="{{ asset('js/bootstrap-modal.js') }}"></script>
+
+<script>
+  $('.profile-image-upload').click(function(){
+    $('.profile-image-upload-preview').css('display', 'inline-block')
+  });
+</script>
+
 {% endblock %}

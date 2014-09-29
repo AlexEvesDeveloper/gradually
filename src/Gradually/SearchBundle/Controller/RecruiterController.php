@@ -6,14 +6,14 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Gradually\SearchBundle\Entity\GraduateSearch;
-use Gradually\SearchBundle\Form\GraduateSearchType;
-use Gradually\SearchBundle\Classes\GraduateSearchHandler;
+use Gradually\SearchBundle\Entity\RecruiterSearch;
+use Gradually\SearchBundle\Form\RecruiterSearchType;
+use Gradually\SearchBundle\Classes\RecruiterSearchHandler;
 
 /**
-* @Route("/graduates")
+* @Route("/recruiters")
 */
-class GraduateController extends Controller
+class RecruiterController extends Controller
 {
     /**
      * @Route("/")
@@ -24,8 +24,8 @@ class GraduateController extends Controller
 		// initialise empty search results
 	    $em = $this->getDoctrine()->getManager();
 		$result = array();
-		$graduateSearch = new GraduateSearch();
-		$form = $this->createForm(new GraduateSearchType(), $graduateSearch);
+		$recruiterSearch = new RecruiterSearch();
+		$form = $this->createForm(new RecruiterSearchType(), $recruiterSearch);
 
 		$form->handleRequest($request);
 		if($form->isValid()){
@@ -35,17 +35,17 @@ class GraduateController extends Controller
 	    		return $this->redirect($this->generateUrl('gradually_user_default_login'));
 	    	}		
 	
-			$result = $em->getRepository('GraduallyUserBundle:GraduateUser')->search($form);
+			$result = $em->getRepository('GraduallyUserBundle:RecruiterUser')->search($form);
 		}
 	
 		// by default, show all. No ordering at present
 		if(empty($result)){
-			$result = $em->getRepository('GraduallyUserBundle:GraduateUser')->findAll();
+			$result = $em->getRepository('GraduallyUserBundle:RecruiterUser')->findAll();
 		}
 	
 		return array(
 	    	'form' => $form->createView(),
-	    	'graduates' => $result
+	    	'recruiters' => $result
 		);
 	}	
 }
