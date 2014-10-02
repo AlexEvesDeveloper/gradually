@@ -4,17 +4,23 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <!--
     <parameters>
-        <parameter key="gradually_notification.example.class">Gradually\NotificationBundle\Example</parameter>
+        <parameter key="gradually_notification.classes.notifiers.notifier">Gradually\NotificationBundle\Classes\Notifiers\Notifier</parameter>
+        <parameter key="gradually_notification.classes.notifiers.email.email_new_application_notifier">Gradually\NotificationBundle\Classes\Notifiers\Email\EmailNewApplicationNotifier</parameter>
+        <parameter key="gradually_notification.classes.notifiers.email.email_new_job_notifier">Gradually\NotificationBundle\Classes\Notifiers\Email\EmailNewJobNotifier</parameter>
     </parameters>
 
     <services>
-        <service id="gradually_notification.example" class="%gradually_notification.example.class%">
-            <argument type="service" id="service_id" />
-            <argument>plain_value</argument>
-            <argument>%parameter_name%</argument>
+        <service id="gradually_notification.classes.notifiers.notifier" class="%gradually_notification.classes.notifiers.notifier%">
+            <argument type="service" id="service_container" />
+        </service>
+
+        <service id="gradually_notification.classes.notifiers.email.email_new_application_notifier" class="%gradually_notification.classes.notifiers.email.email_new_application_notifier%">
+            <argument type="service" id="mailer" />
+        </service>
+        
+        <service id="gradually_notification.classes.notifiers.email.email_new_job_notifier" class="%gradually_notification.classes.notifiers.email.email_new_job_notifier%">
+            <argument type="service" id="mailer" />
         </service>
     </services>
-    -->
 </container>

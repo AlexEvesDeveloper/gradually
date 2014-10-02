@@ -2,25 +2,17 @@
 
 namespace Gradually\NotificationBundle\Classes\Notifiers\Email;
 
-use JMS\DiExtraBundle\Annotation as DI;
 use Gradually\NotificationBundle\Classes\Notifiers\NotifierInterface;
 
 class EmailNewApplicationNotifier implements NotifierInterface
 {
-	static $instance;
+	private $mailer;
 
-	public static function getInstance()
+	public function __construct(\Swift_Mailer $mailer)
 	{
-		static $instance = null;
-
-		if($instance === null){
-			$instance = new static();
-		}
-
-		return $instance;
+		$this->mailer = $mailer;
 	}
 
-	// pass the mailer object in here?
 	public function notify(array $data)
 	{
 		$application = $data['application'];
@@ -38,11 +30,7 @@ class EmailNewApplicationNotifier implements NotifierInterface
 			->setTo($application->getJob()->getRecruiter()->getEmail())
 			->setBody($content);
 
-		print $application->getJob()->getRecruiter()->getEmail();
-		exit;
+		$this->mailer->send($message);
 	}
 
-	private function __construct(){
-	private function __clone(){}
-	private function __wakeup(){}
 }

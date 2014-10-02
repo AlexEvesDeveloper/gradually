@@ -4,17 +4,16 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <!--
+    
     <parameters>
-        <parameter key="gradually_application.example.class">Gradually\ApplicationBundle\Example</parameter>
+        <parameter key="gradually_application.event_subscribers.new_application_subscriber">Gradually\ApplicationBundle\EventSubscribers\NewApplicationSubscriber</parameter>
     </parameters>
 
     <services>
-        <service id="gradually_application.example" class="%gradually_application.example.class%">
-            <argument type="service" id="service_id" />
-            <argument>plain_value</argument>
-            <argument>%parameter_name%</argument>
+        <service id="gradually_application.new_application_subscriber" class="%gradually_application.event_subscribers.new_application_subscriber%">
+            <argument type="service" id="service_container" />
+            <tag name="doctrine.event_subscriber" />
         </service>
     </services>
-    -->
+    
 </container>
