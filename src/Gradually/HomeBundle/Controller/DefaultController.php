@@ -14,6 +14,34 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        return array();
+        return array(
+        	'userType' => ($user = $this->getUser()) !== null ? $user->getType() : null
+        );
+    }
+
+    /**
+     * @Template()
+     */
+    public function anonymousAction()
+    {
+    	return array();
+    }
+
+    /**
+     * @Template()
+     */
+    public function recruiterAction()
+    {
+    	return array(
+    		'recruiter' => $this->getUser()
+    	);
+    }
+
+    /**
+     * @Template()
+     */
+    public function graduateAction()
+    {
+    	return array();
     }
 }
