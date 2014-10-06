@@ -17,7 +17,7 @@
         <!-- Bootstrap core CSS -->
         <link rel="stylesheet" href="{{asset('js/bootstrap/dist/css/bootstrap.css')}}">
         <link rel="stylesheet" type="text/css" href="{{asset('js/jquery.gritter/css/jquery.gritter.css')}}" />
-        <link rel="stylesheet" href="{{asset('fonts/font-awesome-4/css/font-awesome.min.css')}}">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -40,12 +40,41 @@
         <!-- SIDE BAR -->
         {% block sidebar %}
             <div class="cl-sidebar">
+                <div class="cl-toggle"><i class="fa fa-bars"></i></div><!-- cl-toggle -->
+                <div class="cl-navblock">
+                    <div class="menu-space">
+                        <div class="content">
+                            <div class="sidebar-logo">
+                                <div class="logo">
+                                    <a class="navbar-brand" href="{{ path('gradually_home_default_index') }}">
+                                        GRADUALLY
+                                    </a>
+                                </div><!-- logo -->
+                            </div><!-- sidebar-logo -->
+                            {% if app.user is not null %}
+                            <div class="side-user">
+                                <div class="avatar">
+                                    <img alt="Avatar" src="{{asset('images/testing/avatar6.jpg')}}" />
+                                </div>
+                            </div><!-- side-user -->
+                            {% endif %}
+                            <ul class="cl-vnavigation">
+                                <li>
+                                    <a href="#"><i class="fa fa-icon-name"></i>First level item</a>
+                                    <ul class="sub-menu">
+                                        <li><a href="#">Second level item</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div><!-- content -->
+                    </div><!-- menu-space -->
+                </div><!-- cl-navblock -->
             </div><!-- cl-sidebar -->
         {% endblock %}
-        <div id="pcont" class="container-fluid">
+        <div class="container-fluid" id="pcont">
             {% block topbar %}
                 <!-- TOP BAR -->
-                <div id="head-nav" class="nav navbar-default">
+                <div id="head-nav" class="navbar navbar-default">
                     <div class="container-fluid">
                         <div class="navbar-collapse">
                             <ul class="nav navbar-nav navbar-right user-nav">
@@ -68,6 +97,7 @@
                             </ul>
                             <ul class="nav navbar-nav not-nav">
                                 <!-- left menu items -->
+                                Some items Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero quaerat iure, accusamus?
                             </ul>
                         </div><!-- navbar-collapse -->
                     </div><!-- container-fluid -->
@@ -76,6 +106,9 @@
             <!-- CONTENT -->
             <div class="cl-mcont">
                 {% block body %}
+                <div class="col-md-12">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo illo maiores deserunt odit et tenetur, sapiente, quod quia natus eos doloribus suscipit quae obcaecati sint autem quibusdam vel atque ipsum aut dicta eveniet voluptates commodi animi dolorem. Molestias cum, provident reprehenderit nostrum est numquam recusandae placeat cupiditate ipsum quaerat itaque optio! Minus inventore, quae. Saepe, ea? Excepturi fugit tempora ut repudiandae iste nesciunt sequi, fugiat cum nisi hic maxime, sapiente, distinctio rerum asperiores consectetur quae. Expedita possimus consectetur vero nulla veniam quaerat, illo ut, voluptatem repellendus nihil quis libero cupiditate! Ducimus quod sit incidunt ex quis amet fugiat tempore eligendi maxime, mollitia! Illo fugit, perferendis aut quidem suscipit, sequi ipsum reprehenderit numquam excepturi sed sint error natus, dolore minus labore culpa quis, ab mollitia accusantium maiores praesentium aliquid!</p>
+                </div>
                 {% endblock %}
             </div><!-- cl-mcont -->
         </div><!-- pcont -->
