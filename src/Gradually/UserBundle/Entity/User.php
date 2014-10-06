@@ -46,7 +46,7 @@ abstract class User implements AdvancedUserInterface, \Serializable
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=60, unique=true)
+     * @ORM\Column(name="email", type="string", length=60)
      *
      * @Assert\Email
      * @Assert\NotBlank

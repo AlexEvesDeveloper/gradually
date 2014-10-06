@@ -6,17 +6,11 @@ use Gradually\NotificationBundle\Classes\Notifiers\NotifierInterface;
 
 class EmailNewApplicationNotifier implements NotifierInterface
 {
-	static $instance;
+	private $mailer;
 
-	public static function getInstance()
+	public function __construct(\Swift_Mailer $mailer)
 	{
-		static $instance = null;
-
-		if($instance === null){
-			$instance = new static();
-		}
-
-		return $instance;
+		$this->mailer = $mailer;
 	}
 
 	public function notify(array $data)
@@ -29,10 +23,14 @@ class EmailNewApplicationNotifier implements NotifierInterface
 			$application->getJob()->getTitle(),
 			$application->getCoverNote()
 		);
+
+		$message = \Swift_Message::newInstance()
+			->setSubject(sprintf('Application received: %s', $application->getJob()->getTitle()))
+			->setFrom('noreply@gradually.alexeves.co.uk')
+			->setTo($application->getJob()->getRecruiter()->getEmail())
+			->setBody($content);
+
+		$this->mailer->send($message);
 	}
 
-	// insist it remains a singleton
-	private function __construct(){}
-	private function __clone(){}
-	private function __wakeup(){}
 }

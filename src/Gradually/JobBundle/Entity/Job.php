@@ -9,7 +9,6 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="jobs")
  * @ORM\Entity(repositoryClass="Gradually\JobBundle\Entity\JobRepository")
- * @ORM\EntityListeners({"Gradually\JobBundle\EventListeners\JobListener"})
  * @ORM\HasLifecycleCallbacks()
  */
 class Job

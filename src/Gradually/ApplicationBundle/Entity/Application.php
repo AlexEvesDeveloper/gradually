@@ -9,7 +9,6 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="applications")
  * @ORM\Entity
- * @ORM\EntityListeners({"Gradually\ApplicationBundle\EventListeners\ApplicationListener"})
  * @ORM\HasLifecycleCallbacks()
  */
 class Application

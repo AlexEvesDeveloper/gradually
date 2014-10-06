@@ -1,6 +1,9 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
+    - { resource: "@GraduallyApplicationBundle/Resources/config/services.xml" }
+    - { resource: "@GraduallyJobBundle/Resources/config/services.xml" }
+    - { resource: "@GraduallyNotificationBundle/Resources/config/services.xml" }
 
 framework:
     #esi:             ~
@@ -116,3 +119,6 @@ services:
             - [ addServers, [ %memcached.servers%]]
     cache:
         class: Doctrine\Common\Cache\MemcachedCache
+
+    
+
