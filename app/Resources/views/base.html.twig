@@ -11,16 +11,6 @@
 
     <title>Gradually</title>
     {% block stylesheets %}
-<<<<<<< HEAD
-        <!-- Bootstrap -->
-        <link rel="stylesheet" href="{{ asset('css/bootstrap/bootstrap.min.css') }}">
-        <!-- Jasny Bootstrap -->
-        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
-        <link rel="stylesheet" href="{{ asset('css/datepicker.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/datepicker3.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/font-awesome.css') }}">
-=======
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,400italic,700,800' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Raleway:300,200,100' rel='stylesheet' type='text/css'>
 
@@ -42,24 +32,10 @@
         <link rel="stylesheet" type="text/css" href="js/jquery.codemirror/theme/ambiance.css">
         <link rel="stylesheet" type="text/css" href="js/jquery.vectormaps/jquery-jvectormap-1.2.2.css"  media="screen"/>
         -->
-
         <link rel="stylesheet" href="{{asset('css/style.css')}}" />  
->>>>>>> sidebar
     {% endblock %}
 </head>
-
   <body>
-<<<<<<< HEAD
-    {% block body %}
-    <div id="wrapper">
-        {% if userType == 'RECRUITER' %}
-            {{ render(controller("GraduallyHomeBundle:Default:recruiter"))}}
-        {% else %}
-            {{ render(controller("GraduallyHomeBundle:Default:anonymous"))}}
-        {% endif %}
-    </div>
-    {% endblock %}
-=======
     <div id="cl-wrapper">
         <!-- SIDE BAR -->
         {% block sidebar %}
@@ -104,9 +80,7 @@
             </div><!-- cl-mcont -->
         </div><!-- pcont -->
     </div>
->>>>>>> sidebar
 
-    
     {% block javascripts %}
         <script src="{{asset('js/jquery.js')}}"></script>
         <script src="{{asset('js/jquery.cookie/jquery.cookie.js')}}"></script>
