@@ -22,7 +22,7 @@ class DefaultController extends Controller
     /**
      * @Template()
      */
-    public function anonymousAction()
+    public function anonymousSidebarAction()
     {
     	return array();
     }
@@ -30,7 +30,7 @@ class DefaultController extends Controller
     /**
      * @Template()
      */
-    public function recruiterAction()
+    public function recruiterSidebarAction()
     {
     	return array(
     		'recruiter' => $this->getUser()
@@ -40,8 +40,28 @@ class DefaultController extends Controller
     /**
      * @Template()
      */
-    public function graduateAction()
+    public function graduateSidebarAction()
     {
     	return array();
+    }
+
+    /**
+     * @Template()
+     */
+    public function recruiterTopbarAction()
+    {
+        return array(
+            'recruiter' => $this->getUser()
+        );
+    }
+
+    /**
+     * @Template()
+     */
+    public function inboxPopupAction()
+    {
+        return array(
+            'user' => $this->getUser()
+        );
     }
 }

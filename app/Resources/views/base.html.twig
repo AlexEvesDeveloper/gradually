@@ -34,120 +34,90 @@
         -->
         <link rel="stylesheet" href="{{asset('css/style.css')}}" />  
     {% endblock %}
-</head>
-  <body>
-    <div id="cl-wrapper">
-        <!-- SIDE BAR -->
-        {% block sidebar %}
+    </head>
+    <body class="animated">
+        <div id="cl-wrapper">
+            {% block sidebar %}
             <div class="cl-sidebar">
-                <div class="cl-toggle"><i class="fa fa-bars"></i></div><!-- cl-toggle -->
+                <div class="cl-toggle"><i class="fa fa-bars"></i></div>
                 <div class="cl-navblock">
                     <div class="menu-space">
                         <div class="content">
                             <div class="sidebar-logo">
                                 <div class="logo">
-                                    <a class="navbar-brand" href="{{ path('gradually_home_default_index') }}">
-                                        GRADUALLY
-                                    </a>
-                                </div><!-- logo -->
-                            </div><!-- sidebar-logo -->
-                            {% if app.user is not null %}
-                            <div class="side-user">
-                                <div class="avatar">
-                                    <img alt="Avatar" src="{{asset('images/testing/avatar6.jpg')}}" />
+                                    <a href="{{path('gradually_home_default_index')}}">GRADUALLY</a>
                                 </div>
-                            </div><!-- side-user -->
+                            </div>
+                            {% if app.user is null %}
+                                {{ render(controller('GraduallyHomeBundle:Default:anonymousSidebar'))}}
+                            {% elseif app.user.type == 'RECRUITER' %}
+                                {{ render(controller('GraduallyHomeBundle:Default:recruiterSidebar'))}}
+                            {% elseif app.user.type == 'GRADUATE' %}
+                                {{ render(controller('GraduallyHomeBundle:Default:graduateSidebar'))}}
                             {% endif %}
-                            <ul class="cl-vnavigation">
-                                <li>
-                                    <a href="#"><i class="fa fa-icon-name"></i>First level item</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="#">Second level item</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div><!-- content -->
-                    </div><!-- menu-space -->
-                </div><!-- cl-navblock -->
-            </div><!-- cl-sidebar -->
-        {% endblock %}
-        <div class="container-fluid" id="pcont">
-            {% block topbar %}
-                <!-- TOP BAR -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endblock %}
+            <div class="container-fluid" id="pcont">
+                {% block topbar %}
+                <!-- TOP NAVBAR -->
                 <div id="head-nav" class="navbar navbar-default">
                     <div class="container-fluid">
                         <div class="navbar-collapse">
-                            <ul class="nav navbar-nav navbar-right user-nav">
-                                <!-- right menu items -->
-                                {% if not app.user %}
-                                <li>Sign in</li>
-                                {% elseif app.user.type == 'RECRUITER' %}
-                                <li class="dropdown profile_menu">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                        <img alt="Avatar" src="{{asset('images/testing/avatar6-2.jpg')}}" />
-                                        <span>{{app.user.companyName}}</span><b class="caret"></b>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a href="{{ path('gradually_user_default_logout') }}">Sign out</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                {% endif %}
-                            </ul>
-                            <ul class="nav navbar-nav not-nav">
-                                <!-- left menu items -->
-                                Some items Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero quaerat iure, accusamus?
-                            </ul>
-                        </div><!-- navbar-collapse -->
-                    </div><!-- container-fluid -->
-                </div><!-- head-nav -->
-            {% endblock %}
-            <!-- CONTENT -->
-            <div class="cl-mcont">
-                {% block body %}
-                <div class="col-md-12">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo illo maiores deserunt odit et tenetur, sapiente, quod quia natus eos doloribus suscipit quae obcaecati sint autem quibusdam vel atque ipsum aut dicta eveniet voluptates commodi animi dolorem. Molestias cum, provident reprehenderit nostrum est numquam recusandae placeat cupiditate ipsum quaerat itaque optio! Minus inventore, quae. Saepe, ea? Excepturi fugit tempora ut repudiandae iste nesciunt sequi, fugiat cum nisi hic maxime, sapiente, distinctio rerum asperiores consectetur quae. Expedita possimus consectetur vero nulla veniam quaerat, illo ut, voluptatem repellendus nihil quis libero cupiditate! Ducimus quod sit incidunt ex quis amet fugiat tempore eligendi maxime, mollitia! Illo fugit, perferendis aut quidem suscipit, sequi ipsum reprehenderit numquam excepturi sed sint error natus, dolore minus labore culpa quis, ab mollitia accusantium maiores praesentium aliquid!</p>
+                            {% if app.user is null %}
+                                {{ render(controller('GraduallyHomeBundle:Default:anonymousTopbar'))}}
+                            {% elseif app.user.type == 'RECRUITER' %}
+                                {{ render(controller('GraduallyHomeBundle:Default:recruiterTopbar'))}}
+                            {% elseif app.user.type == 'GRADUATE' %}
+                                {{ render(controller('GraduallyHomeBundle:Default:graduateTopbar'))}}
+                            {% endif %}            
+                        </div><!--/.nav-collapse animate-collapse -->
+                    </div>
                 </div>
                 {% endblock %}
-            </div><!-- cl-mcont -->
-        </div><!-- pcont -->
-    </div>
-
-    {% block javascripts %}
-        <script src="{{asset('js/jquery.js')}}"></script>
-        <script src="{{asset('js/jquery.cookie/jquery.cookie.js')}}"></script>
-        <script src="{{asset('js/jquery.pushmenu/js/jPushMenu.js')}}"></script>
-        <script type="text/javascript" src="{{asset('js/jquery.nanoscroller/jquery.nanoscroller.js')}}"></script>
-        <script type="text/javascript" src="{{asset('js/jquery.sparkline/jquery.sparkline.min.js')}}"></script>
-        <script type="text/javascript" src="{{asset('js/jquery.ui/jquery-ui.js')}}" ></script>
-        <script type="text/javascript" src="{{asset('js/jquery.gritter/js/jquery.gritter.js')}}"></script>
-        <script type="text/javascript" src="{{asset('js/behaviour/core.js')}}"></script>
-
-        <script src="{{asset('js/bootstrap/dist/js/bootstrap.min.js')}}"></script>
-        
-        <!--
-        <script src="js/jquery.codemirror/lib/codemirror.js"></script>
-        <script src="js/jquery.codemirror/mode/xml/xml.js"></script>
-        <script src="js/jquery.codemirror/mode/css/css.js"></script>
-        <script src="js/jquery.codemirror/mode/htmlmixed/htmlmixed.js"></script>
-        <script src="js/jquery.codemirror/addon/edit/matchbrackets.js"></script>
-        <script src="js/jquery.vectormaps/jquery-jvectormap-1.2.2.min.js"></script>
-        <script src="js/jquery.vectormaps/maps/jquery-jvectormap-world-mill-en.js"></script>
-        -->
-        <script src="{{asset('js/behaviour/dashboard.js')}}"></script>
-  
-        <!--
-        <script type="text/javascript" src="js/jquery.flot/jquery.flot.js"></script>
-        <script type="text/javascript" src="js/jquery.flot/jquery.flot.pie.js"></script>
-        <script type="text/javascript" src="js/jquery.flot/jquery.flot.resize.js"></script>
-        <script type="text/javascript" src="js/jquery.flot/jquery.flot.labels.js"></script>
-        -->
-
-        <!-- Jansny Bootstrap -->
-        <!--
-        <script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
-        -->
-    {% endblock %}
-  </body>
+                {% block content %}
+                <div class="cl-mcont">           
+                    <h3 class="text-center">Content goes here!</h3>
+                </div>
+                {% endblock %}
+            </div>     
+        </div>
+        {% block javascripts %}
+            <script src="{{asset('js/jquery.js')}}"></script>
+            <script src="{{asset('js/jquery.cookie/jquery.cookie.js')}}"></script>
+            <script src="{{asset('js/jquery.pushmenu/js/jPushMenu.js')}}"></script>
+            <script type="text/javascript" src="{{asset('js/jquery.nanoscroller/jquery.nanoscroller.js')}}"></script>
+            <script type="text/javascript" src="{{asset('js/jquery.sparkline/jquery.sparkline.min.js')}}"></script>
+            <script type="text/javascript" src="{{asset('js/jquery.ui/jquery-ui.js')}}" ></script>
+            <script type="text/javascript" src="{{asset('js/jquery.gritter/js/jquery.gritter.js')}}"></script>
+            <script type="text/javascript" src="{{asset('js/behaviour/core.js')}}"></script>
+    
+            <script src="{{asset('js/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+            
+            <!--
+            <script src="js/jquery.codemirror/lib/codemirror.js"></script>
+            <script src="js/jquery.codemirror/mode/xml/xml.js"></script>
+            <script src="js/jquery.codemirror/mode/css/css.js"></script>
+            <script src="js/jquery.codemirror/mode/htmlmixed/htmlmixed.js"></script>
+            <script src="js/jquery.codemirror/addon/edit/matchbrackets.js"></script>
+            <script src="js/jquery.vectormaps/jquery-jvectormap-1.2.2.min.js"></script>
+            <script src="js/jquery.vectormaps/maps/jquery-jvectormap-world-mill-en.js"></script>
+            -->
+            <script src="{{asset('js/behaviour/dashboard.js')}}"></script>
+      
+            <!--
+            <script type="text/javascript" src="js/jquery.flot/jquery.flot.js"></script>
+            <script type="text/javascript" src="js/jquery.flot/jquery.flot.pie.js"></script>
+            <script type="text/javascript" src="js/jquery.flot/jquery.flot.resize.js"></script>
+            <script type="text/javascript" src="js/jquery.flot/jquery.flot.labels.js"></script>
+            -->
+    
+            <!-- Jansny Bootstrap -->
+            <!--
+            <script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
+            -->
+        {% endblock %}
+    </body>
 </html>
