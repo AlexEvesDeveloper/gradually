@@ -14,16 +14,15 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        $userType = '';
-        $imagePath = '';
+        $imagePath = 'uploads/profile_images/default/female.jpg';
 
-        if(($user = $this->getUser()) !== null){
-            $userType = $user->getType();
-            $imagePath = $user->getImage()->getFullPath();
-        }
+	$userType = ($user = $this->getUser()) !== null ? $user->getType() : "ANONYMOUS";
+	if($user && $user->getImage()){
+	    $imagePath = $user->getImage()->getFullPath();
+	}	
 
         return array(
-        	'userType' => $userType,
+            'userType' => $userType,
             'imagePath' => $imagePath
         );
     }
