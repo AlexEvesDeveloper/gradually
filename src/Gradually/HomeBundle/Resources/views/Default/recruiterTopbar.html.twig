@@ -5,6 +5,12 @@
             <span>{{app.user.companyname}}</span><b class="caret"></b>
         </a>
         <ul class="dropdown-menu">
+        	<li>
+        		<a href="{{path('gradually_recruiter_default_view', {'id':app.user.id}) }}">
+        			Company profile	
+        		</a>
+        	</li>
+        	<li class="divider"></li>
             <li><a href="{{path('gradually_user_default_logout')}}">Sign out</a></li>
         </ul>
     </li>

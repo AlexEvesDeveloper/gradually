@@ -24,6 +24,37 @@ class RecruiterUserRepository extends EntityRepository
 		return $this->getEntityManager()->createQuery($query)->setParameters($params)->getResult();
 	}
 
+	public function findRecentJobs($recruiterId, $max)
+	{
+		$query = "
+			SELECT job FROM GraduallyJobBundle:Job job
+			JOIN job.recruiter recruiter
+			WHERE recruiter.id = :recruiterId
+			AND job.isActive = :isActive
+			ORDER BY job.id DESC
+		";
+
+		$params['recruiterId'] = $recruiterId;
+		$params['isActive'] = true;
+
+		return $this->getEntityManager()->createQuery($query)->setParameters($params)->setMaxResults($max)->getResult();
+	}
+
+	public function findRecentApplications($recruiterId, $max)
+	{
+		$query = "
+			SELECT application FROM GraduallyApplicationBundle:Application application
+			JOIN application.job job
+			JOIN job.recruiter recruiter
+			WHERE recruiter.id = :recruiterId
+			ORDER BY application.id DESC
+		";
+
+		$params['recruiterId'] = $recruiterId;
+
+		return $this->getEntityManager()->createQuery($query)->setParameters($params)->setMaxResults($max)->getResult();
+	}
+
 	public function search(Form $form, array $orderBy = array('property' => 'recruiter.id', 'order' => 'ASC'))
 	{
 		$sh = new RecruiterSearchHandler($this->getEntityManager());

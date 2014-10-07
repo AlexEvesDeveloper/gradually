@@ -110,7 +110,7 @@ class DefaultController extends Controller
      * @param Request $request.
      * @param Form $form
      */
-    private function handleImageSubmit(RecruiterUser $graduate, ProfileImage $image, Request $request, Form $form)
+    private function handleImageSubmit(RecruiterUser $recruiter, ProfileImage $image, Request $request, Form $form)
     {
         $form->handleRequest($request);
         

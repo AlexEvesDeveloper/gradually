@@ -58,6 +58,25 @@ class DefaultController extends Controller
     /**
      * @Template()
      */
+    public function recruiterDashboardAction()
+    {
+        $repo = $this->getDoctrine()->getRepository('GraduallyUserBundle:RecruiterUser');
+        $user = $this->getUser();
+        $userId = $user->getId();
+
+        $recentJobs = $repo->findRecentJobs($userId, 5);
+        $recentApplications = $repo->findRecentApplications($userId, 5);
+
+        return array(
+            'recruiter' => $user,
+            'recentJobs' => $recentJobs,
+            'recentApplications' => $recentApplications
+        );
+    }
+
+    /**
+     * @Template()
+     */
     public function inboxPopupAction()
     {
         return array(

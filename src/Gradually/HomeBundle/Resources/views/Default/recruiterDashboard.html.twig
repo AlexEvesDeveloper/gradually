@@ -1,0 +1,48 @@
+<div class="col-sm-12 col-md-8">
+	<div class="block-flat">
+		<div class="header">
+			<h3>Recent jobs that you've posted</h3>
+		</div>
+		<div class="content">
+			<table class="no-border">
+				<thead class="no-border">
+					<tr>
+						<th>Title</th>
+						<th class="text-right">Action</th>
+					</tr>
+				</thead>
+				<tbody class="no-border-y">
+					{% for job in recentJobs %}
+					<tr>
+						<td>{{job.title}}</td>
+						<td class="text-right">Edit</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>		
+		</div>
+	</div>
+</div>
+<div class="col-sm-12 col-md-8">
+	<div class="block-flat">
+		<div class="header">
+			<h3>Recent applications that you've received</h3>
+		</div>
+		<div class="content">
+			<table class="no-border">
+				<thead class="no-border">
+					<tr>
+						<th>Name</th>
+					</tr>
+				</thead>
+				<tbody class="no-border-y">
+					{% for application in recentApplications %}
+					<tr>
+						<td>{{application.graduate.firstname}} {{application.graduate.lastname}}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>		
+		</div>
+	</div>
+</div>

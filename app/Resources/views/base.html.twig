@@ -32,9 +32,11 @@
         <link rel="stylesheet" type="text/css" href="js/jquery.codemirror/theme/ambiance.css">
         <link rel="stylesheet" type="text/css" href="js/jquery.vectormaps/jquery-jvectormap-1.2.2.css"  media="screen"/>
         -->
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
         <link rel="stylesheet" href="{{asset('css/style.css')}}" />  
     {% endblock %}
     </head>
+    {% block body %}
     <body class="animated">
         <div id="cl-wrapper">
             {% block sidebar %}
@@ -79,7 +81,13 @@
                 {% endblock %}
                 {% block content %}
                 <div class="cl-mcont">           
-                    <h3 class="text-center">Content goes here!</h3>
+                    {% if app.user is null %}
+                        {{ render(controller('GraduallyHomeBundle:Default:anonymousDashboard'))}}
+                    {% elseif app.user.type == 'RECRUITER' %}
+                        {{ render(controller('GraduallyHomeBundle:Default:recruiterDashboard'))}}
+                    {% elseif app.user.type == 'GRADUATE' %}
+                        {{ render(controller('GraduallyHomeBundle:Default:graduateDashboard'))}}
+                    {% endif %}                   
                 </div>
                 {% endblock %}
             </div>     
@@ -115,9 +123,10 @@
             -->
     
             <!-- Jansny Bootstrap -->
-            <!--
+            
             <script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
-            -->
+            
         {% endblock %}
     </body>
+    {% endblock %}
 </html>
