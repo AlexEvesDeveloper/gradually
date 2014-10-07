@@ -22,4 +22,46 @@ class JobRepository extends EntityRepository
 		
 		return $query->getResult();	
 	}
+
+	public function findMostRecentJobs($recruiterId, $max)
+	{
+		$query = "
+			SELECT job FROM GraduallyJobBundle:Job job
+			JOIN job.recruiter recruiter
+			WHERE recruiter.id = :recruiterId
+			ORDER BY job.id DESC
+		";
+
+		$params['recruiterId'] = $recruiterId;
+
+		return $this->getEntityManager()->createQuery($query)->setParameters($params)->setMaxResults($max)->getResult();
+	}
+
+	public function findMostViewedJobs($recruiterId, $max)
+	{
+		$query = "
+			SELECT job FROM GraduallyJobBundle:Job job
+			JOIN job.recruiter recruiter
+			WHERE recruiter.id = :recruiterId
+			ORDER BY job.viewCount DESC
+		";
+
+		$params['recruiterId'] = $recruiterId;
+
+		return $this->getEntityManager()->createQuery($query)->setParameters($params)->setMaxResults($max)->getResult();
+	}
+
+	public function findMostAppliedJobs($recruiterId, $max)
+	{
+		$query = "
+			SELECT job FROM GraduallyJobBundle:Job job
+			JOIN job.recruiter recruiter
+			WHERE recruiter.id = :recruiterId
+			ORDER BY job.applicationCount DESC
+		";
+
+		$params['recruiterId'] = $recruiterId;
+
+		return $this->getEntityManager()->createQuery($query)->setParameters($params)->setMaxResults($max)->getResult();
+	}
 }

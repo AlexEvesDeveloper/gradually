@@ -360,7 +360,11 @@ class LoadUserData implements FixtureInterface
 	protected function createJobs($manager, $recruiters, $locations)
 	{
 		$return = array();
+		$breakOut = 0;
 		foreach($locations as $location){
+			if(++$breakOut == 51){
+				break;
+			}
 		    foreach($recruiters as $recruiter){
 			for($i = 1; $i < 2; $i++){
 				$j = new Job();
@@ -378,6 +382,9 @@ class LoadUserData implements FixtureInterface
 				$j->setRecruiter($recruiter);
 
 				$j->setLocation($location);
+
+				$j->setApplicationCount(rand(0,200));
+				$j->setViewCount(rand(0,500));
 
 				$manager->persist($j);
 				$return[] = $j;

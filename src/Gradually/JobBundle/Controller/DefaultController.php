@@ -67,11 +67,15 @@ class DefaultController extends Controller
     		$em = $this->getDoctrine()->getManager();
 
     		$application->setGraduate($user);
-    		$application->setJob($em->getRepository('GraduallyJobBundle:Job')->find($id));
+            $job = $em->getRepository('GraduallyJobBundle:Job')->find($id);
+    		$application->setJob($job);
+            // do this in an event subscriber
+            $job->setApplicationCount($job->getApplicationCount() + 1);
 
             $user->addApplication($application);
 
             $em->persist($user);
+            $em->persist($job);
     		$em->persist($application);
     		$em->flush();
     	}

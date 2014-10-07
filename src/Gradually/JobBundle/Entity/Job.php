@@ -35,6 +35,11 @@ class Job
     private $applications;
 
     /**
+     * @ORM\Column(name="application_count", type="integer")
+     */
+    private $applicationCount;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255)
@@ -360,7 +365,9 @@ class Job
      */
     public function initViewCount()
     {
-        $this->setViewCount(0);
+        //TODO reapply when live
+        //$this->setViewCount(0);
+        //$this->setApplicationCount(0);
     }    
 
     /**
@@ -440,5 +447,28 @@ class Job
     public function getLocation()
     {
         return $this->location;
+    }
+
+    /**
+     * Set applicationCount
+     *
+     * @param integer $applicationCount
+     * @return Job
+     */
+    public function setApplicationCount($applicationCount)
+    {
+        $this->applicationCount = $applicationCount;
+
+        return $this;
+    }
+
+    /**
+     * Get applicationCount
+     *
+     * @return integer 
+     */
+    public function getApplicationCount()
+    {
+        return $this->applicationCount;
     }
 }

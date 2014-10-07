@@ -9,7 +9,6 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="jobs")
  * @ORM\Entity(repositoryClass="Gradually\JobBundle\Entity\JobRepository")
- * @ORM\EntityListeners({"Gradually\JobBundle\EventListeners\JobListener"})
  * @ORM\HasLifecycleCallbacks()
  */
 class Job
@@ -34,6 +33,11 @@ class Job
      * @ORM\OneToMany(targetEntity="\Gradually\ApplicationBundle\Entity\Application", mappedBy="job") 
      */
     private $applications;
+
+    /**
+     * @ORM\Column(name="application_count", type="integer")
+     */
+    private $applicationCount;
 
     /**
      * @var string

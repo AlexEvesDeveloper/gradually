@@ -10,39 +10,22 @@ class DefaultController extends Controller
 {
     /**
      * @Route("/")
-     * @Template()
+     * @Template("::base.html.twig")
      */
     public function indexAction()
     {
+        $userType = '';
+        $imagePath = '';
+
+        if(($user = $this->getUser()) !== null){
+            $userType = $user->getType();
+            $imagePath = $user->getImage()->getFullPath();
+        }
+
         return array(
-        	'userType' => ($user = $this->getUser()) !== null ? $user->getType() : null
+        	'userType' => $userType,
+            'imagePath' => $imagePath
         );
-    }
-
-    /**
-     * @Template()
-     */
-    public function anonymousSidebarAction()
-    {
-    	return array();
-    }
-
-    /**
-     * @Template()
-     */
-    public function recruiterSidebarAction()
-    {
-    	return array(
-    		'recruiter' => $this->getUser()
-    	);
-    }
-
-    /**
-     * @Template()
-     */
-    public function graduateSidebarAction()
-    {
-    	return array();
     }
 
     /**
@@ -55,24 +38,7 @@ class DefaultController extends Controller
         );
     }
 
-    /**
-     * @Template()
-     */
-    public function recruiterDashboardAction()
-    {
-        $repo = $this->getDoctrine()->getRepository('GraduallyUserBundle:RecruiterUser');
-        $user = $this->getUser();
-        $userId = $user->getId();
 
-        $recentJobs = $repo->findRecentJobs($userId, 5);
-        $recentApplications = $repo->findRecentApplications($userId, 5);
-
-        return array(
-            'recruiter' => $user,
-            'recentJobs' => $recentJobs,
-            'recentApplications' => $recentApplications
-        );
-    }
 
     /**
      * @Template()

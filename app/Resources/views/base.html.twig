@@ -51,11 +51,11 @@
                                 </div>
                             </div>
                             {% if app.user is null %}
-                                {{ render(controller('GraduallyHomeBundle:Default:anonymousSidebar'))}}
+                                {% include 'GraduallyHomeBundle:Layout:anonymousSidebar.html.twig' %}
                             {% elseif app.user.type == 'RECRUITER' %}
-                                {{ render(controller('GraduallyHomeBundle:Default:recruiterSidebar'))}}
+                                {% include 'GraduallyRecruiterBundle:Layout:recruiterSidebar.html.twig' %}
                             {% elseif app.user.type == 'GRADUATE' %}
-                                {{ render(controller('GraduallyHomeBundle:Default:graduateSidebar'))}}
+                                {% include 'GraduallyGraduateBundle:Layout:graduateSidebar.html.twig' %}
                             {% endif %}
                         </div>
                     </div>
@@ -69,11 +69,11 @@
                     <div class="container-fluid">
                         <div class="navbar-collapse">
                             {% if app.user is null %}
-                                {{ render(controller('GraduallyHomeBundle:Default:anonymousTopbar'))}}
+                                {% include 'GraduallyHomeBundle:Layout:anonymousTopbar.html.twig' %}
                             {% elseif app.user.type == 'RECRUITER' %}
-                                {{ render(controller('GraduallyHomeBundle:Default:recruiterTopbar'))}}
+                                {% include 'GraduallyRecruiterBundle:Layout:recruiterTopbar.html.twig' %}
                             {% elseif app.user.type == 'GRADUATE' %}
-                                {{ render(controller('GraduallyHomeBundle:Default:graduateTopbar'))}}
+                                {% include 'GraduallyGraduateBundle:Layout:graduateTopbar.html.twig' %}
                             {% endif %}            
                         </div><!--/.nav-collapse animate-collapse -->
                     </div>
@@ -82,11 +82,11 @@
                 {% block content %}
                 <div class="cl-mcont">           
                     {% if app.user is null %}
-                        {{ render(controller('GraduallyHomeBundle:Default:anonymousDashboard'))}}
+                        {% include 'GraduallyHomeBundle:Dashboard:anonymousDashboard.html.twig' %}
                     {% elseif app.user.type == 'RECRUITER' %}
-                        {{ render(controller('GraduallyHomeBundle:Default:recruiterDashboard'))}}
+                        {% include 'GraduallyRecruiterBundle:Dashboard:dashboard.html.twig' %}
                     {% elseif app.user.type == 'GRADUATE' %}
-                        {{ render(controller('GraduallyHomeBundle:Default:graduateDashboard'))}}
+                        {% include 'GraduallyGraduateBundle:Dashboard:graduateDashboard.html.twig' %}
                     {% endif %}                   
                 </div>
                 {% endblock %}
