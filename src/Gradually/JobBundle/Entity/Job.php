@@ -365,9 +365,8 @@ class Job
      */
     public function initViewCount()
     {
-        //TODO reapply when live
-        //$this->setViewCount(0);
-        //$this->setApplicationCount(0);
+        $this->setViewCount(0);
+        $this->setApplicationCount(0);
     }    
 
     /**

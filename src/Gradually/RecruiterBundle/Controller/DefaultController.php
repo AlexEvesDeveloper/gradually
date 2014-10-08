@@ -77,7 +77,7 @@ class DefaultController extends Controller
             $token = new UsernamePasswordToken($user, $user->getPassword(), 'secured_area', $user->getRoles());
             $this->container->get('security.context')->setToken($token);
  
-            return $this->redirect($this->generateUrl('gradually_recruiter_default_view', array('id' => $user->getId())));
+            return $this->redirect($this->generateUrl('gradually_home_default_index'));
         }
 
         return array('form' => $form->createView());

@@ -55,8 +55,11 @@ class RecruiterJobManagerController extends Controller
         }
 
         $job = new Job();
-        $form = $this->createForm(new JobType(), $job);
-
+        $form = $this->createForm(new JobType(), $job, array(
+            'action' => $this->generateUrl('gradually_job_recruiterjobmanager_add', array(
+                'id' => $id
+            ))
+        ));
         $form->handleRequest($request);
         if($form->isValid()){
             $em = $this->getDoctrine()->getManager();
@@ -77,9 +80,7 @@ class RecruiterJobManagerController extends Controller
             $em->flush();
 
             // return to the Recruiters Job index view
-            return $this->redirect($this->generateUrl('gradually_job_recruiterjobmanager_index', array(
-                'id' => $id
-            )));
+            return $this->redirect($this->generateUrl('gradually_home_default_index'));
         }
 
         return array(

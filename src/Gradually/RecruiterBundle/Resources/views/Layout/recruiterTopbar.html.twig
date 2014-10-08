@@ -1,7 +1,7 @@
 <ul class="nav navbar-nav navbar-right user-nav">
     <li class="dropdown profile_menu">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <img alt="Avatar" src="{{asset(imagePath)}}" height="40px" width="40px" />
+            <img alt="Avatar" src="{{asset(imagePath)}}" height="30px" width="30px" />
             <span>{{app.user.companyname}}</span><b class="caret"></b>
         </a>
         <ul class="dropdown-menu">
@@ -15,4 +15,50 @@
         </ul>
     </li>
 </ul>
-{{ render(controller('GraduallyHomeBundle:Default:inboxPopup'))}}
+<ul class="nav navbar-nav not-nav">
+    <li class="button dropdown">
+        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+            <i class=" fa fa-envelope" data-toggle="tooltip" data-placement="bottom" title="Messages"></i>
+        </a>
+        <ul class="dropdown-menu messages">
+            <li>
+                <div class="nano nscroller">
+                    <div class="content">
+                        <ul>
+                            <li>
+                                <a href="#">
+                                <img src="images/avatar2.jpg" alt="avatar" />
+                                    <span class="date pull-right">13 Sept.</span> 
+                                    <span class="name">Ann</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <ul class="foot">
+                    <li><a href="#">View all messages </a></li>
+                </ul>           
+            </li>
+        </ul>
+    </li>             
+    <li class="button">   
+        <button class="btn btn-default" data-toggle="modal" data-target="#md-new-job" type="button">
+            <i class=" fa fa-envelope" data-toggle="tooltip" data-placement="bottom" title="New job"></i>
+        </button> 
+    </li>
+</ul>
+<div id="md-new-job" class="modal fade" style="display:none;">
+    <div class="modal-dialog large-width">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a data-dismiss="modal" class="close">x</a>
+                <h3>Post a new job</h3>
+            </div>
+            <div class="modal-body form">
+                {{render(controller('GraduallyJobBundle:RecruiterJobManager:add', {'id':app.user.id}))}}
+            </div>
+        </div>
+    </div>
+</div>
+
+

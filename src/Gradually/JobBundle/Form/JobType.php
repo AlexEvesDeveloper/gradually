@@ -15,11 +15,21 @@ class JobType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title')
-            ->add('description')
-            ->add('salaryFrom')
-            ->add('salaryTo')
-            ->add('save', 'submit', array('label' => 'Post job'))    
+            ->add('title', 'text', array(
+                'required' => false
+            ))
+            ->add('description', 'textarea', array(
+                'required' => false        
+            ))
+            ->add('salaryFrom', 'text', array(
+                'required' => false
+            ))
+            ->add('salaryTo', 'text', array(
+                'required' => false
+            ))
+            ->add('save', 'submit', array(
+                'label' => 'Post Job'
+            ))
         ;
     }
     

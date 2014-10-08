@@ -1,8 +1,74 @@
-{% extends '::base.html.twig' %}
-
-{% block body %}
-<div class="container under-navbar">
-    {{form_start(form)}}
-    {{form_end(form)}}
+<div class="row wizard-row">
+	<div class="col-md-12 fuelux">
+		<div class="block-wizard">
+			<div id="wizard1" class="wizard wizard-ux">
+				<ul class="steps">
+					<li data-target="#step1" class="active">
+						Job details
+						<span class="chevron"></span>
+					</li>
+					<li data-target="#step2">
+						Location
+						<span class="chevron"></span>
+					</li>
+					<li data-target="#step3">
+						Notifications
+						<span class="chevron"></span>
+					</li>
+				</ul>
+				<div class="actions">
+              		<button type="button" class="btn btn-xs btn-prev btn-primary"> 
+              			<i class="icon-arrow-left"></i>
+              			Prev
+              		</button>
+              		<button type="button" class="btn btn-xs btn-next btn-primary" data-last="Finish">
+              			Next
+              			<i class="icon-arrow-right"></i>
+              		</button>
+            	</div>
+			</div>
+			<div class="step-content">
+				{{form_start(form, {attr:{'class':'group-border-dashed', 'role':'form'}})}}
+					<div id="step1" class="step-pane active">
+						<div class="form-group">
+							{{form_label(form.title)}}
+							{{form_widget(form.title, {attr:{'class':'form-control'}})}}
+						</div>
+                		<div class="form-group">
+                    			<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    			<button type="button" data-wizard="#wizard1" class="btn btn-primary wizard-next">
+                    				Next Step <i class="fa fa-caret-right"></i>
+                    			</button>
+                		</div>
+					</div>
+					<div id="step2" class="step-pane">
+						<div class="form-group">
+							{{form_label(form.description)}}
+							{{form_widget(form.description, {attr:{'class':'form-control'}})}}
+						</div>
+                		<div class="form-group">
+                    			<button type="button" data-wizard="#wizard1" class="btn btn-primary wizard-previous">Previous</button>
+                    			<button type="button" data-wizard="#wizard1" class="btn btn-primary wizard-next">
+                    				Next Step <i class="fa fa-caret-right"></i>
+                    			</button>
+                		</div>
+					</div>
+					<div id="step3" class="step-pane">
+						<div class="form-group">
+							{{form_label(form.salaryFrom)}}
+							{{form_widget(form.salaryFrom, {attr:{'class':'form-control'}})}}
+						</div>
+						<div class="form-group">
+							{{form_label(form.salaryTo)}}
+							{{form_widget(form.salaryTo, {attr:{'class':'form-control'}})}}
+						</div>
+                		<div class="form-group">
+                    		<button type="button" data-wizard="#wizard1" class="btn btn-primary wizard-previous">Previous</button>
+							{{form_widget(form.save, {attr:{'class':'btn btn-success'}})}}
+                		</div>
+					</div>						
+				{{form_end(form)}}
+			</div>
+		</div>
+	</div>
 </div>
-{% endblock %}

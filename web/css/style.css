@@ -4624,8 +4624,8 @@ a.list-group-item:hover + a.list-group-item {
   width: 90%;
   max-width: none;
 }
-.custom-width {
-  width: 40%;
+.large-width {
+  width: 80%;
   max-width: none;
 }
 .full-color .md-content {
@@ -7336,7 +7336,7 @@ ul.timeline li > .date {
   margin: 0;
 }
 .wizard-row .fuelux {
-  position: absolute;
+  /*position: absolute; aie removed as wizard not working within modal */
   width: 100%;
   padding: 0;
 }
@@ -7884,4 +7884,9 @@ ul.timeline li > .date {
     background: white;
     cursor: inherit;
     display: block;
+}
+
+/* aie */
+.form-group.extra-top-margin{
+  margin-top: 50px;
 }

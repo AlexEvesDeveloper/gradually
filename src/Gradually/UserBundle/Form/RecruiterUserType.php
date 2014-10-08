@@ -16,9 +16,8 @@ class RecruiterUserType extends UserType
     {
         parent::buildForm($builder, $options);
         $builder
-            ->add('companyName')
-            ->add('email')
-            ->add('submit', 'submit', array('label' => 'Get started'))
+            ->add('companyName', 'text')
+            ->add('email', 'email')
         ;
     }
     

@@ -16,6 +16,8 @@
 
         <!-- Bootstrap core CSS -->
         <link rel="stylesheet" href="{{asset('js/bootstrap/dist/css/bootstrap.css')}}">
+        <link rel="stylesheet" href="{{asset('css/fuelux/fuelux.css')}}" />  
+        <link rel="stylesheet" href="{{asset('css/fuelux/fuelux-responsive.css')}}" /> 
         <link rel="stylesheet" type="text/css" href="{{asset('js/jquery.gritter/css/jquery.gritter.css')}}" />
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
@@ -125,7 +127,47 @@
             <!-- Jansny Bootstrap -->
             
             <script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
+
+            <script src="{{asset('js/fuelux/loader.js')}}"></script>
+            <script type="text/javascript">
+            $(document).ready(function(){
+                //initialize the javascript
             
+                //Fuel UX
+                $('.wizard-ux').wizard();
+                
+                $('.dropdown-toggle').dropdown();
+            
+                $('.wizard-ux').on('changed',function(){
+                //delete $.fn.slider;
+                $('.bslider').slider();
+                });
+                
+                $(".wizard-next").click(function(e){
+                var id = $(this).data("wizard");
+                $(id).wizard('next');
+                e.preventDefault();
+                });
+                
+                $(".wizard-previous").click(function(e){
+                var id = $(this).data("wizard");
+                $(id).wizard('previous');
+                e.preventDefault();
+                });
+            
+                    /*Switch*/
+                $('.switch').bootstrapSwitch();
+                /*Slider*/
+                $('.bslider').slider();     
+                /*Select2*/
+                    $(".select2").select2({
+                    width: '100%'
+                    });
+                /*Tags*/
+                    $(".tags").select2({tags: 0,width: '100%'});
+            });
+            </script>
+           
         {% endblock %}
     </body>
     {% endblock %}
