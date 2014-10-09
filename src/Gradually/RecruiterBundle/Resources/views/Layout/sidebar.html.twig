@@ -3,7 +3,12 @@
         <img src="{{asset(imagePath)}}" alt="Avatar" width="50px" height="50px" />
     </div>
     <div class="info">
-        Stats overview here
+        <ul class="list-unstyled white-text">
+            <li>Job posts remaining: {{app.user.postingCredits}}</li>
+            <li>Premium posts remaining: {{app.user.premiumCredits}}</li>
+            <li>Search access: {% if app.user.searchCredits > 1 %}Yes{% else %}No{% endif %}</li>
+        </ul>
+
     </div>
 </div>
 <ul class="cl-vnavigation">

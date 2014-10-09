@@ -40,6 +40,11 @@ class RecruiterUser extends User
     private $postingCredits;
 
     /**
+     * @ORM\Column(name="premium_credits", type="integer")
+     */
+    private $premiumCredits;
+
+    /**
      * @ORM\Column(name="search_credits", type="integer")
      */
     private $searchCredits;
@@ -60,8 +65,6 @@ class RecruiterUser extends User
         $this->graduates = new \Doctrine\Common\Collections\ArrayCollection();
         $this->jobs = new \Doctrine\Common\Collections\ArrayCollection();
         $this->transactions = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->setPostingCredits(0);
-        $this->setSearchCredits(0);
     }
 
     /**
@@ -264,5 +267,28 @@ class RecruiterUser extends User
     {
         return 'email';
         return $this->notificationMethod;
+    }
+
+    /**
+     * Set premiumCredits
+     *
+     * @param integer $premiumCredits
+     * @return RecruiterUser
+     */
+    public function setPremiumCredits($premiumCredits)
+    {
+        $this->premiumCredits = $premiumCredits;
+
+        return $this;
+    }
+
+    /**
+     * Get premiumCredits
+     *
+     * @return integer 
+     */
+    public function getPremiumCredits()
+    {
+        return $this->premiumCredits;
     }
 }

@@ -19,7 +19,15 @@ class RecruiterUserType extends UserType
             ->add('companyName', 'text')
             ->add('email', 'email')
             ->add('postingCredits', 'choice', array(
-                'choices' => array('1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', '5+' => '5+'),
+                'choices' => array('1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', 'n' => 'n'),
+                'expanded' => true
+            ))
+            ->add('premiumCredits', 'choice', array(
+                'choices' => array('0' => '0', '1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', 'n' => 'n'),
+                'expanded' => true
+            ))
+            ->add('searchCredits', 'choice', array(
+                'choices' => array('0' => '0', '1' => '1'),
                 'expanded' => true
             ))
             ->add('save', 'submit', array(

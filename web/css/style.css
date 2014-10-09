@@ -7887,6 +7887,16 @@ ul.timeline li > .date {
 }
 
 /* aie */
-button.btn.btn-default.margin-left-15{
+button.btn.btn-default.margin-left-15, button.btn.btn-primary.margin-left-15{
   margin-left: 15px;
+}
+
+button.btn.btn-xl{
+  padding: 20px 34px;
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.white-text{
+  color: #ddd;
 }

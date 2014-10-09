@@ -40,6 +40,11 @@ class RecruiterUser extends User
     private $postingCredits;
 
     /**
+     * @ORM\Column(name="premium_credits", type="integer")
+     */
+    private $premiumCredits;
+
+    /**
      * @ORM\Column(name="search_credits", type="integer")
      */
     private $searchCredits;
