@@ -18,6 +18,13 @@ class RecruiterUserType extends UserType
         $builder
             ->add('companyName', 'text')
             ->add('email', 'email')
+            ->add('postingCredits', 'choice', array(
+                'choices' => array('1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', '5+' => '5+'),
+                'expanded' => true
+            ))
+            ->add('save', 'submit', array(
+                'label' => 'Post Job'
+            ))
         ;
     }
     

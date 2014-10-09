@@ -52,7 +52,9 @@ class DefaultController extends Controller
     public function newAction(Request $request)
     {
          $user = new RecruiterUser();
-         $form = $this->createForm(new RecruiterUserType, $user);
+         $form = $this->createForm(new RecruiterUserType, $user, array(
+            'action' => $this->generateUrl('gradually_recruiter_default_new')
+        ));
  
          $form->handleRequest($request);
  
