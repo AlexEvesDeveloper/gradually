@@ -53,11 +53,11 @@
                                 </div>
                             </div>
                             {% if app.user is null %}
-                                {% include 'GraduallyHomeBundle:Layout:anonymousSidebar.html.twig' %}
+                                {% include 'GraduallyHomeBundle:Layout:sidebar.html.twig' %}
                             {% elseif app.user.type == 'RECRUITER' %}
-                                {% include 'GraduallyRecruiterBundle:Layout:recruiterSidebar.html.twig' %}
+                                {% include 'GraduallyRecruiterBundle:Layout:sidebar.html.twig' %}
                             {% elseif app.user.type == 'GRADUATE' %}
-                                {% include 'GraduallyGraduateBundle:Layout:graduateSidebar.html.twig' %}
+                                {% include 'GraduallyGraduateBundle:Layout:sidebar.html.twig' %}
                             {% endif %}
                         </div>
                     </div>
@@ -67,28 +67,28 @@
             <div class="container-fluid" id="pcont">
                 {% block topbar %}
                 <!-- TOP NAVBAR -->
-                <div id="head-nav" class="navbar navbar-default">
+                <nav id="head-nav" class="navbar navbar-default">
                     <div class="container-fluid">
                         <div class="navbar-collapse">
                             {% if app.user is null %}
-                                {% include 'GraduallyHomeBundle:Layout:anonymousTopbar.html.twig' %}
+                                {% include 'GraduallyHomeBundle:Layout:topbar.html.twig' %}
                             {% elseif app.user.type == 'RECRUITER' %}
-                                {% include 'GraduallyRecruiterBundle:Layout:recruiterTopbar.html.twig' %}
+                                {% include 'GraduallyRecruiterBundle:Layout:topbar.html.twig' %}
                             {% elseif app.user.type == 'GRADUATE' %}
-                                {% include 'GraduallyGraduateBundle:Layout:graduateTopbar.html.twig' %}
+                                {% include 'GraduallyGraduateBundle:Layout:topbar.html.twig' %}
                             {% endif %}            
                         </div><!--/.nav-collapse animate-collapse -->
                     </div>
-                </div>
+                </nav>
                 {% endblock %}
                 {% block content %}
                 <div class="cl-mcont">           
                     {% if app.user is null %}
-                        {% include 'GraduallyHomeBundle:Dashboard:anonymousDashboard.html.twig' %}
+                        {% include 'GraduallyHomeBundle:Dashboard:dashboard.html.twig' %}
                     {% elseif app.user.type == 'RECRUITER' %}
                         {% include 'GraduallyRecruiterBundle:Dashboard:dashboard.html.twig' %}
                     {% elseif app.user.type == 'GRADUATE' %}
-                        {% include 'GraduallyGraduateBundle:Dashboard:graduateDashboard.html.twig' %}
+                        {% include 'GraduallyGraduateBundle:Dashboard:dashboard.html.twig' %}
                     {% endif %}                   
                 </div>
                 {% endblock %}
