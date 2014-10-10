@@ -72,9 +72,13 @@ class DefaultController extends Controller
     public function newAction(Request $request)
     {
         $user = new GraduateUser();
-        $form = $this->createForm(new GraduateUserType, $user);
+        $form = $this->createForm(new GraduateUserType, $user, array(
+            'action' => $this->generateUrl('gradually_graduate_default_new')
+        ));
 
         $form->handleRequest($request);
+
+        // set a cookie to initialise the welcome wizard
 
         if($form->isValid()){
             $em = $this->getDoctrine()->getManager();
@@ -97,7 +101,7 @@ class DefaultController extends Controller
             $token = new UsernamePasswordToken($user, $user->getPassword(), 'secured_area', $user->getRoles());
             $this->container->get('security.context')->setToken($token);
 
-            return $this->redirect($this->generateUrl('gradually_graduate_default_view', array('id' => $user->getId())));
+            return $this->redirect($this->generateUrl('gradually_home_default_index'));
         }
 
         return array('form' => $form->createView());

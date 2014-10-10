@@ -16,10 +16,12 @@ class DefaultController extends Controller
     {
         $imagePath = 'uploads/profile_images/default/female.jpg';
 
-	$userType = ($user = $this->getUser()) !== null ? $user->getType() : "ANONYMOUS";
-	if($user && $user->getImage()){
-	    $imagePath = $user->getImage()->getFullPath();
-	}	
+	    $userType = ($user = $this->getUser()) !== null ? $user->getType() : "ANONYMOUS";
+
+
+	    if($user && $user->getImage()){
+            $imagePath = $user->getImage()->getFullPath();
+	    }	
 
         return array(
             'userType' => $userType,

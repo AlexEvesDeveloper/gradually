@@ -7900,3 +7900,7 @@ button.btn.btn-xl{
 .white-text{
   color: #ddd;
 }
+
+.max-width-300{
+  max-width: 300px;
+}

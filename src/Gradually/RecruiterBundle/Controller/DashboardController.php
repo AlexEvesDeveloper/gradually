@@ -26,4 +26,24 @@ class DashboardController extends Controller
             'mostApplied' => $mostApplied,
         );
     }
+
+    /**
+     * @Template()
+     */
+    public function applicationsWidgetAction()
+    {
+        $repo = $this->getDoctrine()->getRepository('GraduallyApplicationBundle:Application');
+        $user = $this->getUser();
+        $userId = $user->getId();
+
+        $applicationCount = $repo->findApplicationCountForARecruiter($userId);
+        $mostRecent = $repo->findMostRecentApplications($userId, 5);
+        // most relevant
+        // most local
+
+        return array(
+            'hasApplications' => count($mostRecent),
+            'mostRecent' => $mostRecent,
+        );
+    }
 }

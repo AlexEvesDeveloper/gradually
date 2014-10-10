@@ -72,6 +72,11 @@ abstract class User implements AdvancedUserInterface, \Serializable
      */
     private $image;
 
+    /**
+     * @ORM\Column(name="completed_welcome_wizard", type="boolean")
+     */
+    private $completedWelcomeWizard;
+
     const TYPE_ADMIN = 'ADMIN';
     const TYPE_GRADUATE = 'GRADUATE';
     const TYPE_RECRUITER = 'RECRUITER';
@@ -84,6 +89,7 @@ abstract class User implements AdvancedUserInterface, \Serializable
     public function __construct()
     {
         $this->isActive = true;
+        $this->completedWelcomeWizard = false;
         $this->roles = new ArrayCollection();
     }
 
@@ -325,5 +331,28 @@ abstract class User implements AdvancedUserInterface, \Serializable
         $this->image = $image;
 
         return $this;
+    }
+
+    /**
+     * Set completedWelcomeWizard
+     *
+     * @param boolean $completedWelcomeWizard
+     * @return User
+     */
+    public function setCompletedWelcomeWizard($completedWelcomeWizard)
+    {
+        $this->completedWelcomeWizard = $completedWelcomeWizard;
+
+        return $this;
+    }
+
+    /**
+     * Get completedWelcomeWizard
+     *
+     * @return boolean 
+     */
+    public function getCompletedWelcomeWizard()
+    {
+        return $this->completedWelcomeWizard;
     }
 }

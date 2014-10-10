@@ -1,0 +1,41 @@
+<div class="col-sm-12 col-md-8">
+	<div class="block-flat">
+		<div class="header">
+			<h3>Your applications at a glance</h3>
+		</div>
+		<div class="content">
+			<div class="tab-container">
+				{% if hasApplications == false %}
+					You haven't received any applications yet
+				{% else %}
+				<ul class="nav nav-tabs">
+					<li class="active"><a data-toggle="tab" href="#most-recent">Most recent</a></li>
+					<li><a data-toggle="tab" href="#most-relevant">Most relevant</a></li>
+					<li><a data-toggle="tab" href="#most-local">Most local</a></li>
+				</ul>
+				<div class="tab-content">
+					<div id="most-recent" class="tab-pane active cont">
+						<table class="no-border">
+							<thead class="no-border">
+								<tr>
+									<th>Title</th>
+									<th class="text-right">Action</th>
+								</tr>
+							</thead>
+							<tbody class="no-border-y">
+								{% for application in mostRecent %}
+								<tr>
+									<td>{{application.graduate.firstname}} {{application.graduate.lastname}}</td>
+									<td class="text-right">Edit</td>
+								</tr>
+								{% endfor %}
+							</tbody>
+						</table>						
+					</div>
+				</div>
+				<a href="">View all of your applications</a>
+				{% endif %}
+			</div>		
+		</div>
+	</div>
+</div>

@@ -1,155 +1,54 @@
 {% extends "::base.html.twig" %}
 
-{% block body %}
-  <div id="wrapper">
-    <div id="sidebar-wrapper">
-      <div class="row">
-        <div class="col-md-1"></div>
-        <div class="col-md-9 under-navbar">
-          {% if app.user.id == graduate.id %}
-          <a href="{{ path('gradually_application_graduateapplicationmanager_index', {'id':graduate.id}) }}">
-            View your applications
-          </a>
-          {% elseif app.user.type == 'RECRUITER' %}
-          <a href="{{ path('gradually_application_graduateapplicationmanager_index', {'id':graduate.id}) }}">
-            View all applications FIX THE LINK
-          </a>
-          {% endif %}         
-        </div>
-        <div class="col-md-1"></div>
-      </div>
+{% block content %}
+<div class="cl-mcont col-md-8 col-md-offset-2">
+  <div class="block-flat">
+    <div class="header">
+      <h3>Overview</h3>
     </div>
-    <div id="page-content-wrapper">
-      <div class="page-content">
-        <div class="row">
-          <div class="col-md-3"></div>
-          <div class="col-md-6 section">
-            <div class="col-md-5 no-left-padding">
-              <img class="thumbnail" src="{{ asset(imagePath) }}" style="width: 200px; height: 200px;" />
-              <div id="add-profileimage-modal" class="modal fade" style="display: none;">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <a data-dismiss="modal" class="close">x</a>
-                      <h3>Update image</h3>
-                    </div>
-                    <div class="modal-body">
-                      {{ form_start(pForm) }}
-                        <div class="profile-image-upload fileinput fileinput-new" data-provides="fileinput">
-                  <div class="profile-image-upload-preview fileinput-preview thumbnail" data-trigger="        fileinput" style="width: 200px; height: 200px; display:none;"></div>
-                          <div>
-                            <span class="btn btn-default btn-file">
-                              <span class="fileinput-new">
-                                {{ form_label(pForm.file, 'Find an image...') }}
-                                {{ form_widget(pForm.file) }}
-                              </span>
-                              <span class="fileinput-exists">Change</span>
-                              <input type="file" name="...">
-                            </span>
-                          </div>
-                        </div>
-                    </div>  
-                    <div class="modal-footer">
-                      <a>{{ form_widget(pForm.save, {'attr': {'class': 'btn btn-success'}}) }}</a>
-                      <a href="#" class="btn" data-dismiss="modal">Cancel</a>
-                    </div>
+    <div class="content">
+      <img class="thumbnail" src="{{ asset(imagePath) }}" style="width: 150px; height: 150px;" />
+      {% if app.user.id == graduate.id %} 
+        <p><a data-toggle="modal" href="#add-profileimage-modal" class="btn btn-primary btn-large">Change Image</a></p>
+      {% endif %}
+      <div id="add-profileimage-modal" class="modal fade" style="display: none;">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <a data-dismiss="modal" class="close">x</a>
+              <h3>Update image</h3>
+            </div>
+            <div class="modal-body">
+              {{ form_start(pForm) }}
+                <div class="profile-image-upload fileinput fileinput-new" data-provides="fileinput">
+                  <div class="profile-image-upload-preview fileinput-preview thumbnail" data-trigger=" fileinput" style="width: 200px; height: 200px; display:none;"></div>
+                    <div>
+                    <span class="btn btn-default btn-file">
+                      <span class="fileinput-new">
+                        {{ form_label(pForm.file, 'Find an image...') }}
+                        {{ form_widget(pForm.file) }}
+                      </span>
+                      <span class="fileinput-exists">Change</span>
+                      <input type="file" name="...">
+                    </span>
                   </div>
                 </div>
-              </div>
-              {{ form_end(pForm) }}
-            {% if app.user.id == graduate.id %} 
-            <p><a data-toggle="modal" href="#add-profileimage-modal" class="btn btn-primary btn-large">Change Image</a></p>
-            {% endif %}
-            </div>
-            <div class="col-md-7">
-              <h3>{{ graduate.firstname | capitalize }} {{ graduate.lastname }}</h3>
+            </div>  
+            <div class="modal-footer">
+              <a>{{ form_widget(pForm.save, {'attr': {'class': 'btn btn-success'}}) }}</a>
+              <a href="#" class="btn" data-dismiss="modal">Cancel</a>
             </div>
           </div>
-          <div class="col-md-3"></div>
         </div>
-        <div class="row">
-          <div class="col-md-3"></div>
-          <div class="col-md-6 section-header">
-            <h3>Qualifications</h3>
-          </div>
-          <div class="col-md-3"></div>
-        </div>
-        <div class="row">
-          <div class="col-md-3"></div>
-          <div class="col-md-6 section">
-              {% for qualification in graduate.qualifications %}
-                <h4>{{qualification.university.name}}</h4>
-                <h5>{{qualification.degree.title}} ({{qualification.degreeLevel.title}})</h5>
-                <h6>{{qualification.result.name}} ({{qualification.yearAttained}})</h6>
-                <hr>
-              {% endfor %}
-              <div id="add-qualification-modal" class="modal fade" style="display: none;">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <a data-dismiss="modal" class="close">x</a>
-                      <h3>Add a new qualification</h3>
-                    </div>
-                    <div class="modal-body">
-                      {{ form_start(qForm) }}
-                        {{ form_errors(qForm) }}
-                        <div>
-                            {{ form_label(qForm.university) }}
-                            {{ form_errors(qForm.university) }}
-                            {{ form_widget(qForm.university) }}
-                        </div>
-                        <div>
-                            {{ form_label(qForm.degree) }}
-                            {{ form_errors(qForm.degree) }}
-                            {{ form_widget(qForm.degree) }}
-                        </div>
-                        <div>
-                            {{ form_label(qForm.degreeLevel) }}
-                            {{ form_errors(qForm.degreeLevel) }}
-                            {{ form_widget(qForm.degreeLevel) }}
-                        </div>
-                        <div>
-                            {{ form_label(qForm.result) }}
-                            {{ form_errors(qForm.result) }}
-                            {{ form_widget(qForm.result) }}
-                        </div>
-                        <div>
-                            {{ form_label(qForm.yearAttained) }}
-                            {{ form_errors(qForm.yearAttained) }}
-                            {{ form_widget(qForm.yearAttained) }}
-                        </div>
-                    
-                    </div>  
-                    <div class="modal-footer">
-                      <a>{{ form_widget(qForm.save, {'attr': {'class': 'btn btn-success'}}) }}</a>
-                      <a href="#" class="btn" data-dismiss="modal">Cancel</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              {{ form_end(qForm) }}
-              {% if app.user.id == graduate.id %} 
-              <p><a data-toggle="modal" href="#add-qualification-modal" class="btn btn-primary btn-large">Add Qualification</a></p>
-              {% endif %}
-          </div>
-          <div class="col-md-3"></div>
       </div>
+      {{ form_end(pForm) }} 
+
+      
+
+
     </div>
   </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
+</div><!-- cl-mcont -->
 {% endblock %}
 
 {% block javascripts %}
@@ -164,29 +63,5 @@
   });
 </script>
 
-<script>
-var $university = $('#gradually_graduatebundle_qualification_university');
-// When university gets selected ...
-$university.change(function() {
-  // ... retrieve the corresponding form.
-  var $form = $(this).closest('form');
-  // Simulate form data, but only include the selected university value.
-  var data = {};
-  data[$university.attr('name')] = $university.val();
-  // Submit data via AJAX to the form's action path.
-  $.ajax({
-    url : $form.attr('action'),
-    type: $form.attr('method'),
-    data : data,
-    success: function(html) {
-      // Replace degree field ...
-      $('#gradually_graduatebundle_qualification_degree').replaceWith(
-        // ... with the returned one from the AJAX response.
-        $(html).find('#gradually_graduatebundle_qualification_degree')
-      );
-      // Degree field now displays the appropriate degrees.
-    }
-  });
-});
-</script>
 {% endblock %}
+

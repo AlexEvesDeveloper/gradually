@@ -1,0 +1,169 @@
+<div id="graduate-welcome-wizard" class="modal fade" style="display: none;">
+	<div class="modal-dialog large-width">
+        <div class="modal-content">
+            <div class="modal-header">
+              	<h3>Welcome to JuRu!</h3>
+            </div>
+            <div class="modal-body">
+				<div class="row wizard-row">
+    				<div class="col-md-12 fuelux">
+        				<div class="block-wizard">
+            				<div id="wizard1" class="wizard wizard-ux">
+                				<ul class="steps">
+                    				<li data-target="#step1-graduate-welcome" class="active">
+                        				Welcome
+                        				<span class="chevron"></span>
+                    				</li>
+                    				<li data-target="#step2-graduate-welcome">
+                        				Education
+                        				<span class="chevron"></span>
+                    				</li>
+                    				<li data-target="#step3-graduate-welcome">
+                        				Skills
+                        				<span class="chevron"></span>
+                    				</li>
+                    				<li data-target="#step4-graduate-welcome">
+                        				Notifications
+                        				<span class="chevron"></span>
+                    				</li>
+                    				<li data-target="#step5-graduate-welcome">
+                        				Finish
+                        				<span class="chevron"></span>
+                    				</li>
+                				</ul>
+                				<div class="actions">
+                    				<button type="button" class="btn btn-xs btn-prev btn-primary"> 
+                        				<i class="icon-arrow-left"></i>
+                        				Prev
+                    				</button>
+                    				<button type="button" class="btn btn-xs btn-next btn-primary" data-last="Finish">
+                        				Next
+                        				<i class="icon-arrow-right"></i>
+                    				</button>
+                				</div>
+            				</div>
+            				<div class="step-content">
+                                
+                    				<div id="step1-graduate-welcome" class="step-pane active">
+                        				<div class="form-group">
+                            				<button type="button" data-wizard="#wizard1" class="btn btn-primary wizard-next">
+                                				Next Step <i class="fa fa-caret-right"></i>
+                            				</button>
+                        				</div>
+                    				</div>
+                    				<div id="step2-graduate-welcome" class="step-pane">
+                                        {{ form_start(qForm, {attr:{'id':'add-qualification-form', 'role':'form'}}) }}
+                                            <div class="form-group">
+                                                <div class="col-sm-12">
+                                                    <div class="input-group max-width-300">
+                                                        {{ form_label(qForm.university, 'What University did you attend?', {'label_attr': {'class':'control-label'}})}}
+                                                        {{ form_widget(qForm.university, {attr:{'class':'form-control'}})}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-sm-12">
+                                                    <div class="input-group max-width-300">
+                                                        {{ form_label(qForm.degree, 'What degree did you complete?', {'label_attr': {'class':'control-label'}})}}
+                                                        {{ form_widget(qForm.degree, {attr:{'class':'form-control'}})}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-sm-12">
+                                                    <div class="input-group max-width-300">
+                                                        {{ form_label(qForm.degreeLevel, 'What degree level did you study?', {'label_attr': {'class':'control-label'}})}}
+                                                        {{ form_widget(qForm.degreeLevel, {attr:{'class':'form-control'}})}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-sm-12">
+                                                    <div class="input-group max-width-300">
+                                                        {{ form_label(qForm.result, 'What result did you achieve?', {'label_attr': {'class':'control-label'}})}}
+                                                        {{ form_widget(qForm.result, {attr:{'class':'form-control'}})}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-sm-12">
+                                                    <div class="input-group max-width-300">
+                                                        {{ form_label(qForm.yearAttained, 'What year did you graduate', {'label_attr': {'class':'control-label'}})}}
+                                                        {{ form_widget(qForm.yearAttained, {attr:{'class':'form-control'}})}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-sm-12">
+                                                    <div class="input-group max-width-300">
+                                                        <button type="button" id="new-qualification" class="btn btn-success">Save</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                        				{{ form_end(qForm) }}
+                        				<div class="form-group">
+                            				<button type="button" data-wizard="#wizard1" class="btn btn-primary wizard-previous margin-left-15">
+                                				<i class="fa fa-caret-left"></i> Previous 
+                            				</button>
+                            				<button type="button" data-wizard="#wizard1" class="btn btn-primary wizard-next">
+                                				Next Step <i class="fa fa-caret-right"></i>
+                            				</button>
+                        				</div>
+                    				</div>
+                    				<div id="step3-graduate-welcome" class="step-pane">
+                        				Skills
+                        				<div class="form-group">
+                            				<button type="button" data-wizard="#wizard1" class="btn btn-primary wizard-previous margin-left-15">
+                                				<i class="fa fa-caret-left"></i> Previous 
+                            				</button>
+                            				<button type="button" data-wizard="#wizard1" class="btn btn-primary wizard-next">
+                                				Next Step <i class="fa fa-caret-right"></i>
+                            				</button>
+                        				</div>
+                    				</div>
+                    				<div id="step4-graduate-welcome" class="step-pane">
+                        				Notifications
+                        				<div class="form-group">
+                            				<button type="button" data-wizard="#wizard1" class="btn btn-primary wizard-previous margin-left-15">
+                                				<i class="fa fa-caret-left"></i> Previous 
+                            				</button>
+                            				<button type="button" data-wizard="#wizard1" class="btn btn-primary wizard-next">
+                                				Next Step <i class="fa fa-caret-right"></i>
+                            				</button>
+                        				</div>
+                    				</div>
+                    				<div id="step5-graduate-welcome" class="step-pane">
+                        				Finish
+                        				<div class="form-group">
+                            				<button type="button" data-wizard="#wizard1" class="btn btn-primary wizard-previous margin-left-15">
+                                				<i class="fa fa-caret-left"></i> Previous 
+                            				</button>
+                            				<button type="button" data-wizard="#wizard1" class="btn btn-success wizard-next">
+                                				Finish! <i class="fa fa-caret-right"></i>
+                            				</button>
+                        				</div>
+                    				</div>                      
+            				</div>
+        				</div>
+    				</div>
+				</div>
+            </div>  
+          </div>
+        </div>
+      </div>
+
+<script>
+	$('#graduate-welcome-wizard').modal('show');
+
+    $('#new-qualification').on('click', function () {
+        url = '/gradually/web/app_dev.php/graduates/dashboard';
+        data = $('#add-qualification-form').serialize();
+        $.post(
+            url,
+            data,
+            function(results){
+                console.log(results.success);
+            }
+        );
+    });
+</script>

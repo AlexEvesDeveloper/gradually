@@ -1,10 +1,13 @@
-<div class="col-sm-12 col-md-8">
+<div class="col-sm-12">
 	<div class="block-flat">
 		<div class="header">
 			<h3>Your jobs at a glance</h3>
 		</div>
 		<div class="content">
 			<div class="tab-container">
+				{% if app.user.jobs|length == 0 %}
+					You haven't posted any jobs yet
+				{% else %}
 				<ul class="nav nav-tabs">
 					<li class="active"><a data-toggle="tab" href="#most-recent">Most recent</a></li>
 					<li><a data-toggle="tab" href="#most-viewed">Most views</a></li>
@@ -66,8 +69,9 @@
 						</table>						
 					</div>
 				</div>
+				<a href="">View all of your jobs</a>
+				{% endif %}
 			</div>		
-			<a href="">View all of your jobs</a>
 		</div>
 	</div>
 </div>

@@ -37,6 +37,7 @@
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
         <link rel="stylesheet" href="{{asset('css/style.css')}}" />  
         <script src="{{asset('js/jquery.js')}}"></script>
+        <script src="{{asset('js/bootstrap/dist/js/bootstrap.min.js')}}"></script>
     {% endblock %}
     </head>
     {% block body %}
@@ -89,7 +90,7 @@
                     {% elseif app.user.type == 'RECRUITER' %}
                         {% include 'GraduallyRecruiterBundle:Dashboard:dashboard.html.twig' %}
                     {% elseif app.user.type == 'GRADUATE' %}
-                        {% include 'GraduallyGraduateBundle:Dashboard:dashboard.html.twig' %}
+                        {% include 'GraduallyGraduateBundle:Dashboard:index.html.twig' %}
                     {% endif %}                   
                 </div>
                 {% endblock %}
@@ -104,7 +105,6 @@
             <script type="text/javascript" src="{{asset('js/jquery.gritter/js/jquery.gritter.js')}}"></script>
             <script type="text/javascript" src="{{asset('js/behaviour/core.js')}}"></script>
     
-            <script src="{{asset('js/bootstrap/dist/js/bootstrap.min.js')}}"></script>
             
             <!--
             <script src="js/jquery.codemirror/lib/codemirror.js"></script>
