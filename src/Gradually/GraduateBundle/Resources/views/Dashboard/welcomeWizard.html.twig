@@ -2,7 +2,7 @@
 	<div class="modal-dialog large-width">
         <div class="modal-content">
             <div class="modal-header">
-              	<h3>Welcome to JuRu!</h3>
+              	<h3>Welcome to Juru!</h3>
             </div>
             <div class="modal-body">
 				<div class="row wizard-row">
@@ -52,6 +52,17 @@
                         				</div>
                     				</div>
                     				<div id="step2-graduate-welcome" class="step-pane">
+                                        <div class="form-group">
+                                            <div class="col-sm-12">
+                                                <h6>Click 'Add a degree' if you have one or more degrees that you would like to declare</h6>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-12">
+                                                <button id="degree-yes" class="btn btn-default">Add a degree</button>
+                                            </div>
+                                        </div>
+                                        <div id="add-qualification-container">
                                         {{ form_start(qForm, {attr:{'id':'add-qualification-form', 'role':'form'}}) }}
                                             <div class="form-group">
                                                 <div class="col-sm-12">
@@ -101,6 +112,7 @@
                                                 </div>
                                             </div>
                         				{{ form_end(qForm) }}
+                                        </div>
                         				<div class="form-group">
                             				<button type="button" data-wizard="#wizard1" class="btn btn-primary wizard-previous margin-left-15">
                                 				<i class="fa fa-caret-left"></i> Previous 
@@ -154,8 +166,19 @@
 
 <script>
 	$('#graduate-welcome-wizard').modal('show');
+    $('#add-qualification-container').hide();
+
+    $('#degree-yes').on('click', function(){
+
+        $('#add-qualification-container').fadeIn(100);
+
+
+    });
+
 
     $('#new-qualification').on('click', function () {
+        $('#add-qualification-container').addClass('hide');
+        $('#degree-yes').html('Add another degree');
         url = '/gradually/web/app_dev.php/graduates/dashboard';
         data = $('#add-qualification-form').serialize();
         $.post(
