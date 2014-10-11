@@ -8,8 +8,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\Form\Form;
 
-use Gradually\GraduateBundle\Entity\Qualification;
-use Gradually\GraduateBundle\Form\QualificationType;
+use Gradually\JobBundle\Entity\JobTitleTag;
+use Gradually\JobBundle\Form\JobTitleTagType;
 use Gradually\UserBundle\Entity\GraduateUser;
 
 /**
@@ -24,34 +24,49 @@ class DashboardController extends Controller
 	public function welcomeWizardAction(Request $request)
 	{
 		// add qualifications
-        $qualification = new Qualification();
-        $qForm = $this->createForm(new QualificationType, $qualification, array(
+        $jobTitleTag = new JobTitleTag();
+        $jTTForm = $this->createForm(new JobTitleTagType, $jobTitleTag, array(
             'action' => $this->generateUrl('gradually_graduate_dashboard_welcomewizard')
         ));
-        $this->handleQualificationSubmit($this->getUser(), $qualification, $request, $qForm);
+        $this->handleJobTitleTagSubmit($this->getUser(), $jobTitleTag, $request, $jTTForm);
 
         return array(
-        	'qForm' => $qForm->createView(),
+        	'jTTForm' => $jTTForm->createView(),
         );
 	}
 
     /**
-     * Upload the User's new Qualification.
+     * Upload the User's new JobTitleTag
      *
      * @param GraduateUser $graduate
-     * @param ProfileImage $image.
+     * @param JobTitleTag $jobTitleTag
      * @param Request $request.
      * @param Form $form
      */
-    private function handleQualificationSubmit(GraduateUser $graduate, Qualification $qualification, Request $request, Form $form)
+    private function handleJobTitleTagSubmit(GraduateUser $graduate, JobTitleTag $jobTitleTag, Request $request, Form $form)
     {
         $form->handleRequest($request);
 
         if($form->isValid()){
             $em = $this->getDoctrine()->getManager();
-            $qualification->setGraduate($graduate);
             
-            $em->persist($qualification);
+            // Use an existing tag if possible, don't create a duplicate
+            if(($existingTag = $em->getRepository('GraduallyJobBundle:JobTitleTag')->findOneByTitle($form->getData()->getTitle())) !== null){
+                $jobTitleTag = $existingTag;
+            }else{
+                $em->persist($jobTitleTag);                
+            }
+
+            // Do nothing if the relationship exists
+            if($graduate->getJobTitleTags()->contains($jobTitleTag)){
+                return;
+            }
+            
+            $graduate->addJobTitleTag($jobTitleTag);
+            $jobTitleTag->addGraduate($graduate);
+
+            $em->persist($graduate);
+            $em->persist($jobTitleTag);
             $em->flush();
         }     
     }

@@ -332,4 +332,27 @@ abstract class User implements AdvancedUserInterface, \Serializable
 
         return $this;
     }
+
+    /**
+     * Set completedWelcomeWizard
+     *
+     * @param boolean $completedWelcomeWizard
+     * @return User
+     */
+    public function setCompletedWelcomeWizard($completedWelcomeWizard)
+    {
+        $this->completedWelcomeWizard = $completedWelcomeWizard;
+
+        return $this;
+    }
+
+    /**
+     * Get completedWelcomeWizard
+     *
+     * @return boolean 
+     */
+    public function getCompletedWelcomeWizard()
+    {
+        return $this->completedWelcomeWizard;
+    }
 }

@@ -15,11 +15,11 @@
                         				<span class="chevron"></span>
                     				</li>
                     				<li data-target="#step2-graduate-welcome">
-                        				Education
+                        				Job preferences
                         				<span class="chevron"></span>
                     				</li>
                     				<li data-target="#step3-graduate-welcome">
-                        				Skills
+                        				Location
                         				<span class="chevron"></span>
                     				</li>
                     				<li data-target="#step4-graduate-welcome">
@@ -43,75 +43,45 @@
                 				</div>
             				</div>
             				<div class="step-content">
-                                
                     				<div id="step1-graduate-welcome" class="step-pane active">
+                                        <div class="form-group">
+                                                <p>Here at Juru we are committed to finding jobs that best suit your requirements.</p>
+                                                <p>By taking 30 seconds to tell us about the kind of jobs that you are looking for, we can send you instant notification, either by e-mail or text, when job matches are posted.</p>
+                                        </div>
                         				<div class="form-group">
                             				<button type="button" data-wizard="#wizard1" class="btn btn-primary wizard-next">
-                                				Next Step <i class="fa fa-caret-right"></i>
+                                				Get started<i class="fa fa-caret-right"></i>
                             				</button>
                         				</div>
                     				</div>
                     				<div id="step2-graduate-welcome" class="step-pane">
                                         <div class="form-group">
                                             <div class="col-sm-12">
-                                                <h6>Click 'Add a degree' if you have one or more degrees that you would like to declare</h6>
+                                                <h6>Please tell us the job title of the job that you are looking for. Try to be as specific as you can, for example, 'Project manager' or 'Credit controller'.</h6>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="col-sm-12">
-                                                <button id="degree-yes" class="btn btn-default">Add a degree</button>
+                                                <button id="another-jobtitle" class="btn btn-info">Add another job title?</button>
                                             </div>
                                         </div>
-                                        <div id="add-qualification-container">
-                                        {{ form_start(qForm, {attr:{'id':'add-qualification-form', 'role':'form'}}) }}
+                                        <div id="add-jobtitle-container">
+                                        {{ form_start(jTTForm, {attr:{'id':'add-jobtitle-form', 'role':'form'}}) }}
                                             <div class="form-group">
                                                 <div class="col-sm-12">
                                                     <div class="input-group max-width-300">
-                                                        {{ form_label(qForm.university, 'What University did you attend?', {'label_attr': {'class':'control-label'}})}}
-                                                        {{ form_widget(qForm.university, {attr:{'class':'form-control'}})}}
+                                                        {{ form_widget(jTTForm.title, {attr:{'class':'form-control', 'placeholder':'Job title'}})}}
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <div class="col-sm-12">
                                                     <div class="input-group max-width-300">
-                                                        {{ form_label(qForm.degree, 'What degree did you complete?', {'label_attr': {'class':'control-label'}})}}
-                                                        {{ form_widget(qForm.degree, {attr:{'class':'form-control'}})}}
+                                                        <button type="button" id="new-jobtitle" class="btn btn-success">Save</button>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="form-group">
-                                                <div class="col-sm-12">
-                                                    <div class="input-group max-width-300">
-                                                        {{ form_label(qForm.degreeLevel, 'What degree level did you study?', {'label_attr': {'class':'control-label'}})}}
-                                                        {{ form_widget(qForm.degreeLevel, {attr:{'class':'form-control'}})}}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="col-sm-12">
-                                                    <div class="input-group max-width-300">
-                                                        {{ form_label(qForm.result, 'What result did you achieve?', {'label_attr': {'class':'control-label'}})}}
-                                                        {{ form_widget(qForm.result, {attr:{'class':'form-control'}})}}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="col-sm-12">
-                                                    <div class="input-group max-width-300">
-                                                        {{ form_label(qForm.yearAttained, 'What year did you graduate', {'label_attr': {'class':'control-label'}})}}
-                                                        {{ form_widget(qForm.yearAttained, {attr:{'class':'form-control'}})}}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="col-sm-12">
-                                                    <div class="input-group max-width-300">
-                                                        <button type="button" id="new-qualification" class="btn btn-success">Save</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                        				{{ form_end(qForm) }}
+                        				{{ form_end(jTTForm) }}
                                         </div>
                         				<div class="form-group">
                             				<button type="button" data-wizard="#wizard1" class="btn btn-primary wizard-previous margin-left-15">
@@ -166,21 +136,21 @@
 
 <script>
 	$('#graduate-welcome-wizard').modal('show');
-    $('#add-qualification-container').hide();
+    $('#another-jobtitle').hide();
+    $('#another-jobtitle').on('click', function(){
 
-    $('#degree-yes').on('click', function(){
-
-        $('#add-qualification-container').fadeIn(100);
+        $('#add-jobtitle-container').fadeIn(100);
 
 
     });
 
 
-    $('#new-qualification').on('click', function () {
-        $('#add-qualification-container').addClass('hide');
+    $('#new-jobtitle').on('click', function () {
+        $('#another-jobtitle').fadeIn('slow');
+        $('#add-jobtitle-container').hide();
         $('#degree-yes').html('Add another degree');
-        url = '/gradually/web/app_dev.php/graduates/dashboard';
-        data = $('#add-qualification-form').serialize();
+        url = 'graduates/dashboard';
+        data = $('#add-jobtitle-form').serialize();
         $.post(
             url,
             data,

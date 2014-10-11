@@ -45,6 +45,11 @@ class GraduateUser extends User
     private $universities;
 
     /**
+     * @ORM\ManyToMany(targetEntity="\Gradually\JobBundle\Entity\JobTitleTag", mappedBy="graduates")
+     */
+    private $jobTitleTags;
+
+    /**
      * var \Gradually\ApplicationBundle\Entity\Application
      *
      * @ORM\OneToMany(targetEntity="\Gradually\ApplicationBundle\Entity\Application", mappedBy="graduate") 
@@ -67,6 +72,7 @@ class GraduateUser extends User
         $this->qualifications = new \Doctrine\Common\Collections\ArrayCollection();
         $this->recruiters = new \Doctrine\Common\Collections\ArrayCollection();
         $this->universities = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->jobTitleTags = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -279,5 +285,38 @@ class GraduateUser extends User
     {
         return 'email';
         return $this->notificationMethod;
+    }
+
+    /**
+     * Add jobTitleTags
+     *
+     * @param \Gradually\JobBundle\Entity\JobTitleTag $jobTitleTags
+     * @return GraduateUser
+     */
+    public function addJobTitleTag(\Gradually\JobBundle\Entity\JobTitleTag $jobTitleTags)
+    {
+        $this->jobTitleTags[] = $jobTitleTags;
+
+        return $this;
+    }
+
+    /**
+     * Remove jobTitleTags
+     *
+     * @param \Gradually\JobBundle\Entity\JobTitleTag $jobTitleTags
+     */
+    public function removeJobTitleTag(\Gradually\JobBundle\Entity\JobTitleTag $jobTitleTags)
+    {
+        $this->jobTitleTags->removeElement($jobTitleTags);
+    }
+
+    /**
+     * Get jobTitleTags
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getJobTitleTags()
+    {
+        return $this->jobTitleTags;
     }
 }
