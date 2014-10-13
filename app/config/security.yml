@@ -15,15 +15,11 @@ security:
         ROLE_ADMIN: [ROLE_RECRUITER, ROLE_GRADUATE]
         ROLE_SUPER: ROLE_ADMIN
 
-    access_control:
-        - { path: ^/admin/, roles: ROLE_ADMIN }
-        - { path: ^/admin$, roles: ROLE_ADMIN }
-
     providers:
         main:
-            entity: { class: GraduallyUserBundle:User, property: username }
+            entity: { class: GraduallyUtilBundle:User, property: username }
 
     encoders:
-        Gradually\UserBundle\Entity\User: 
+        Gradually\UtilBundle\Entity\User: 
             algorithm: bcrypt
             cost: 12

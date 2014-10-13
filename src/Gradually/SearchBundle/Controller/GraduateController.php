@@ -6,8 +6,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Gradually\SearchBundle\Entity\GraduateSearch;
-use Gradually\SearchBundle\Form\GraduateSearchType;
+use Gradually\UtilBundle\Entity\GraduateSearch;
+use Gradually\UtilBundle\Form\GraduateSearchType;
 use Gradually\SearchBundle\Classes\GraduateSearchHandler;
 
 /**
@@ -35,12 +35,12 @@ class GraduateController extends Controller
 	    		return $this->redirect($this->generateUrl('gradually_user_default_login'));
 	    	}		
 	
-			$result = $em->getRepository('GraduallyUserBundle:GraduateUser')->search($form);
+			$result = $em->getRepository('GraduallyUtilBundle:GraduateUser')->search($form);
 		}
 	
 		// by default, show all. No ordering at present
 		if(empty($result)){
-			$result = $em->getRepository('GraduallyUserBundle:GraduateUser')->findAll();
+			$result = $em->getRepository('GraduallyUtilBundle:GraduateUser')->findAll();
 		}
 	
 		return array(

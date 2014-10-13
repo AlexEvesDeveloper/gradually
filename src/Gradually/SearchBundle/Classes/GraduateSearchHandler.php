@@ -13,7 +13,7 @@ class GraduateSearchHandler extends BaseSearchHandler
 	public function initQueryString()
 	{
 		$this->queryString = '
-			SELECT graduate, qualification, university, degree FROM GraduallyUserBundle:GraduateUser graduate
+			SELECT graduate, qualification, university, degree FROM GraduallyUtilBundle:GraduateUser graduate
 	    	JOIN graduate.qualifications qualification
 			JOIN qualification.university university
 			JOIN qualification.degree degree

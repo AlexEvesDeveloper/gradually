@@ -8,11 +8,6 @@ gradually_home:
     type:     annotation
     prefix:   /
 
-gradually_purchase:
-    resource: "@GraduallyPurchaseBundle/Controller/"
-    type:     annotation
-    prefix:   /purchase
-
 gradually_job:
     resource: "@GraduallyJobBundle/Controller/"
     type:     annotation
@@ -34,7 +29,3 @@ gradually_graduate:
 gradually_user:
     resource: "@GraduallyUserBundle/Controller/"
     type:     annotation
-
-gradually_admin:
-    resource: "@GraduallyAdminBundle/Resources/config/routing.yml"
-    prefix:   /admin

@@ -7,10 +7,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Gradually\UserBundle\Entity\RecruiterUser;
-use Gradually\JobBundle\Entity\Job;
-use Gradually\JobBundle\Entity\Location;
-use Gradually\JobBundle\Form\JobType;
-use Gradually\LibraryBundle\Classes\Doctrine\Point;
+use Gradually\UtilBundle\Entity\Job;
+use Gradually\UtilBundle\Entity\Location;
+use Gradually\UtilBundle\Form\JobType;
+use Gradually\UtilBundle\Classes\Doctrine\Point;
 
 /**
  * @Route("/recruiters/{id}/jobs")
@@ -28,7 +28,7 @@ class RecruiterJobManagerController extends Controller
         }
 
         // get all jobs belonging to this recruiter
-        $recruiter = $this->getDoctrine()->getManager()->getRepository('GraduallyUserBundle:RecruiterUser')->find($id);
+        $recruiter = $this->getDoctrine()->getManager()->getRepository('GraduallyUtilBundle:RecruiterUser')->find($id);
         
         return array(
             'recruiter' => $recruiter,
@@ -47,7 +47,7 @@ class RecruiterJobManagerController extends Controller
         }
 
         // get the Recruiter
-        $recruiter = $this->getDoctrine()->getRepository('GraduallyUserBundle:RecruiterUser')->find($id);
+        $recruiter = $this->getDoctrine()->getRepository('GraduallyUtilBundle:RecruiterUser')->find($id);
 
         // check posting credits
         if(!($postingCredits = $recruiter->getPostingCredits())){
@@ -68,7 +68,7 @@ class RecruiterJobManagerController extends Controller
             $job->setRecruiter($recruiter);
 
             // find the location            
-            $location = $em->getRepository('GraduallyJobBundle:Location')->findOneByPostcode('LN6');
+            $location = $em->getRepository('GraduallyUtilBundle:Location')->findOneByPostcode('LN6');
             $em->persist($location);
             $job->setLocation($location);
 
@@ -98,7 +98,7 @@ class RecruiterJobManagerController extends Controller
             return $this->redirect($this->generateUrl('gradually_user_default_login'));
         }
 
-        $job = $this->getDoctrine()->getRepository('GraduallyJobBundle:Job')->findOneBy(
+        $job = $this->getDoctrine()->getRepository('GraduallyUtilBundle:Job')->findOneBy(
             array(
                 'id' => $jobId,
                 'recruiter' => $id

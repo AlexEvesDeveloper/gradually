@@ -6,7 +6,7 @@ use Doctrine\Common\EventSubscriber;
 use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Gradually\JobBundle\Entity\Job;
+use Gradually\UtilBundle\Entity\Job;
 
 class NewJobSubscriber implements EventSubscriber
 {
@@ -36,7 +36,7 @@ class NewJobSubscriber implements EventSubscriber
 	{
 		// get the Graduates subscribed to this Recruiter
 		$recruiter = $entity->getRecruiter();
-		$subscribers = $em->getRepository('GraduallyUserBundle:RecruiterUser')
+		$subscribers = $em->getRepository('GraduallyUtilBundle:RecruiterUser')
 			->findAllSubscribedGraduates($recruiter->getId());
 		// notify each Graduate, using their preferred method of communication
 		foreach($subscribers as $subscriber){

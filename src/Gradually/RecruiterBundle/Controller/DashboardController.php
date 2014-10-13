@@ -13,7 +13,7 @@ class DashboardController extends Controller
      */
     public function jobsWidgetAction()
     {
-        $repo = $this->getDoctrine()->getRepository('GraduallyJobBundle:Job');
+        $repo = $this->getDoctrine()->getRepository('GraduallyUtilBundle:Job');
         $userId = $this->getUser()->getId();
 
         $mostRecent = $repo->findMostRecentJobs($userId, 5);
@@ -32,7 +32,7 @@ class DashboardController extends Controller
      */
     public function applicationsWidgetAction()
     {
-        $repo = $this->getDoctrine()->getRepository('GraduallyApplicationBundle:Application');
+        $repo = $this->getDoctrine()->getRepository('GraduallyUtilBundle:Application');
         $user = $this->getUser();
         $userId = $user->getId();
 

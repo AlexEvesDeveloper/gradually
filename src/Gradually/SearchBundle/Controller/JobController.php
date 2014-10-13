@@ -6,8 +6,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Gradually\SearchBundle\Entity\JobSearch;
-use Gradually\SearchBundle\Form\JobSearchType;
+use Gradually\UtilBundle\Entity\JobSearch;
+use Gradually\UtilBundle\Form\JobSearchType;
 use Gradually\SearchBundle\Classes\JobSearchHandler;
 
 /**
@@ -30,10 +30,10 @@ class JobController extends Controller
 		if($form->isValid()){
 	    	$em = $this->getDoctrine()->getManager();
 
-	    	$result = $em->getRepository('GraduallyJobBundle:Job')->search($form);
+	    	$result = $em->getRepository('GraduallyUtilBundle:Job')->search($form);
 		}
 
-		$locations = $this->getDoctrine()->getRepository('GraduallyJobBundle:Location')->findAll();
+		$locations = $this->getDoctrine()->getRepository('GraduallyUtilBundle:Location')->findAll();
 		// create a repo function to get town names, but for now...
 		$towns = array();
 		foreach($locations as $l){

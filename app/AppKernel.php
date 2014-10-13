@@ -16,7 +16,6 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-            new Gradually\AdminBundle\GraduallyAdminBundle(),
             new Gradually\UserBundle\GraduallyUserBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new Gradually\GraduateBundle\GraduallyGraduateBundle(),
@@ -24,14 +23,12 @@ class AppKernel extends Kernel
             new Gradually\UtilBundle\GraduallyUtilBundle(),
             new FOS\RestBundle\FOSRestBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
-	    new JMS\DiExtraBundle\JMSDiExtraBundle($this),
+	        new JMS\DiExtraBundle\JMSDiExtraBundle($this),
     	    new JMS\AopBundle\JMSAopBundle(),
             new Gradually\JobBundle\GraduallyJobBundle(),
-            new Gradually\PurchaseBundle\GraduallyPurchaseBundle(),
             new Gradually\HomeBundle\GraduallyHomeBundle(),
             new Gradually\SearchBundle\GraduallySearchBundle(),
             new Gradually\NotificationBundle\GraduallyNotificationBundle(),
-            new Gradually\LibraryBundle\GraduallyLibraryBundle(),
             new Gradually\ApplicationBundle\GraduallyApplicationBundle(),
         );
 

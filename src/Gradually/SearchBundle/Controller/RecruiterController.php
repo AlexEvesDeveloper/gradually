@@ -6,8 +6,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Gradually\SearchBundle\Entity\RecruiterSearch;
-use Gradually\SearchBundle\Form\RecruiterSearchType;
+use Gradually\UtilBundle\Entity\RecruiterSearch;
+use Gradually\UtilBundle\Form\RecruiterSearchType;
 use Gradually\SearchBundle\Classes\RecruiterSearchHandler;
 
 /**
@@ -35,12 +35,12 @@ class RecruiterController extends Controller
 	    		return $this->redirect($this->generateUrl('gradually_user_default_login'));
 	    	}		
 	
-			$result = $em->getRepository('GraduallyUserBundle:RecruiterUser')->search($form);
+			$result = $em->getRepository('GraduallyUtilBundle:RecruiterUser')->search($form);
 		}
 	
 		// by default, show all. No ordering at present
 		if(empty($result)){
-			$result = $em->getRepository('GraduallyUserBundle:RecruiterUser')->findAll();
+			$result = $em->getRepository('GraduallyUtilBundle:RecruiterUser')->findAll();
 		}
 	
 		return array(

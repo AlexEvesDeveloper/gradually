@@ -13,7 +13,7 @@ class RecruiterSearchHandler extends BaseSearchHandler
 	public function initQueryString()
 	{
 		$this->queryString = '
-			SELECT recruiter FROM GraduallyUserBundle:RecruiterUser recruiter
+			SELECT recruiter FROM GraduallyUtilBundle:RecruiterUser recruiter
 			WHERE recruiter.isActive = :isActive
 	    ';
 	}

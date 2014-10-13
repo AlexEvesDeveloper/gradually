@@ -6,7 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Gradually\UserBundle\Entity\GraduateUser;
+use Gradually\UtilBundle\Entity\GraduateUser;
 
 /**
  * @Route("/graduates/{id}/applications")
@@ -23,7 +23,7 @@ class GraduateApplicationManagerController extends Controller
             return $this->redirect($this->generateUrl('gradually_user_default_login'));
         }
 
-        $graduate = $this->getDoctrine()->getManager()->getRepository('GraduallyUserBundle:GraduateUser')->find($id);
+        $graduate = $this->getDoctrine()->getManager()->getRepository('GraduallyUtilBundle:GraduateUser')->find($id);
         
         return array(
             'graduate' => $graduate,

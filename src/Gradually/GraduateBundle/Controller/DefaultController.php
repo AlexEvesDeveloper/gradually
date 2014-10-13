@@ -9,13 +9,13 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Form\Form;
 
-use Gradually\UserBundle\Entity\GraduateUser;
-use Gradually\UserBundle\Entity\Role;
-use Gradually\GraduateBundle\Entity\Qualification;
+use Gradually\UtilBundle\Entity\GraduateUser;
+use Gradually\UtilBundle\Entity\Role;
+use Gradually\UtilBundle\Entity\Qualification;
 
-use Gradually\UserBundle\Form\GraduateUserType;
-use Gradually\GraduateBundle\Form\QualificationType;
-use Gradually\UserBundle\Entity\ProfileImage;
+use Gradually\UtilBundle\Form\GraduateUserType;
+use Gradually\UtilBundle\Form\QualificationType;
+use Gradually\UtilBundle\Entity\ProfileImage;
 
 
 class DefaultController extends Controller
@@ -42,7 +42,7 @@ class DefaultController extends Controller
 
         } 
 
-    	$graduate = $this->getDoctrine()->getManager()->getRepository('GraduallyUserBundle:GraduateUser')->find($id);
+    	$graduate = $this->getDoctrine()->getManager()->getRepository('GraduallyUtilBundle:GraduateUser')->find($id);
 
         // check for an Image upload and process if necessary
         $image = new ProfileImage();
@@ -84,7 +84,7 @@ class DefaultController extends Controller
             $em = $this->getDoctrine()->getManager();
             
             // set role to ROLE_NORMAL
-            $role = $em->getRepository('GraduallyUserBundle:Role')->findOneByName('graduate');
+            $role = $em->getRepository('GraduallyUtilBundle:Role')->findOneByName('graduate');
             $user->addRole($role);
             
             // encode the password
@@ -115,7 +115,7 @@ class DefaultController extends Controller
      *
      * @return Bool
      */
-    private function recruiterHasAccess(\Gradually\UserBundle\Entity\RecruiterUser $user, $id)
+    private function recruiterHasAccess(\Gradually\UtilBundle\Entity\RecruiterUser $user, $id)
     {
         $graduatesUserCanAccess = $user->getGraduates();
         foreach($graduatesUserCanAccess as $graduate){

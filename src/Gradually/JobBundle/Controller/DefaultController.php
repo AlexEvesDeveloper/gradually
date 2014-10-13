@@ -7,8 +7,8 @@ use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Gradually\ApplicationBundle\Entity\Application;
-use Gradually\ApplicationBundle\Form\ApplicationType;
+use Gradually\UtilBundle\Entity\Application;
+use Gradually\UtilBundle\Form\ApplicationType;
 
 
 
@@ -24,7 +24,7 @@ class DefaultController extends Controller
     public function viewAction($id)
     {    	
     	$em = $this->getDoctrine()->getManager();
-    	$job = $em->getRepository('GraduallyJobBundle:Job')->find($id);
+    	$job = $em->getRepository('GraduallyUtilBundle:Job')->find($id);
 
     	// handle the view count
     	if($this->viewCountNeedsUpdating($id)){
@@ -52,7 +52,7 @@ class DefaultController extends Controller
     	}
 
         // get the job
-        $job = $this->getDoctrine()->getRepository('GraduallyJobBundle:Job')->find($id);
+        $job = $this->getDoctrine()->getRepository('GraduallyUtilBundle:Job')->find($id);
 
     	// recruiters can't apply. Technically this action will allow admin to apply
     	if($user->getType() == 'RECRUITER'){
@@ -67,7 +67,7 @@ class DefaultController extends Controller
     		$em = $this->getDoctrine()->getManager();
 
     		$application->setGraduate($user);
-            $job = $em->getRepository('GraduallyJobBundle:Job')->find($id);
+            $job = $em->getRepository('GraduallyUtilBundle:Job')->find($id);
     		$application->setJob($job);
             // do this in an event subscriber
             $job->setApplicationCount($job->getApplicationCount() + 1);

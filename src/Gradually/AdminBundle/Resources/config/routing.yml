@@ -1,3 +1,0 @@
-gradually_admin_homepage:
-    path:     /
-    defaults: { _controller: GraduallyAdminBundle:Default:index }

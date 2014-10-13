@@ -9,9 +9,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Form\Form;
 
-use Gradually\UserBundle\Entity\RecruiterUser;
-use Gradually\UserBundle\Form\RecruiterUserType;
-use Gradually\UserBundle\Entity\ProfileImage;
+use Gradually\UtilBundle\Entity\RecruiterUser;
+use Gradually\UtilBundle\Form\RecruiterUserType;
+use Gradually\UtilBundle\Entity\ProfileImage;
 
 class DefaultController extends Controller
 {
@@ -26,7 +26,7 @@ class DefaultController extends Controller
             return $this->redirect($this->generateUrl('gradually_user_default_login'));
         }
         
-    	$recruiter = $this->getDoctrine()->getManager()->getRepository('GraduallyUserBundle:RecruiterUser')->find($id);
+    	$recruiter = $this->getDoctrine()->getManager()->getRepository('GraduallyUtilBundle:RecruiterUser')->find($id);
 
         // check for an Image upload and process if necessary
         $image = new ProfileImage();
@@ -62,7 +62,7 @@ class DefaultController extends Controller
             $em = $this->getDoctrine()->getManager();
  
             // set role to ROLE_NORMAL
-            $role = $em->getRepository('GraduallyUserBundle:Role')->findOneByName('recruiter');
+            $role = $em->getRepository('GraduallyUtilBundle:Role')->findOneByName('recruiter');
             $user->addRole($role);
  
             // encode the password
@@ -94,8 +94,8 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         
-        $graduate = $em->getRepository('GraduallyUserBundle:GraduateUser')->find($graduateId);
-        $graduate->addRecruiter($em->getRepository('GraduallyUserBundle:RecruiterUser')->find($recruiterId));
+        $graduate = $em->getRepository('GraduallyUtilBundle:GraduateUser')->find($graduateId);
+        $graduate->addRecruiter($em->getRepository('GraduallyUtilBundle:RecruiterUser')->find($recruiterId));
 
         $em->persist($graduate);
         $em->flush();

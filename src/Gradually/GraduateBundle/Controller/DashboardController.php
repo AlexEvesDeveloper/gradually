@@ -8,9 +8,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\Form\Form;
 
-use Gradually\JobBundle\Entity\JobTitleTag;
-use Gradually\JobBundle\Form\JobTitleTagType;
-use Gradually\UserBundle\Entity\GraduateUser;
+use Gradually\Utilundle\Entity\JobTitleTag;
+use Gradually\UtilBundle\Form\JobTitleTagType;
+use Gradually\UtilBundle\Entity\GraduateUser;
 
 /**
  * @Route("/dashboard")
@@ -51,7 +51,7 @@ class DashboardController extends Controller
             $em = $this->getDoctrine()->getManager();
             
             // Use an existing tag if possible, don't create a duplicate
-            if(($existingTag = $em->getRepository('GraduallyJobBundle:JobTitleTag')->findOneByTitle($form->getData()->getTitle())) !== null){
+            if(($existingTag = $em->getRepository('GraduallyUtilBundle:JobTitleTag')->findOneByTitle($form->getData()->getTitle())) !== null){
                 $jobTitleTag = $existingTag;
             }else{
                 $em->persist($jobTitleTag);                

@@ -4,8 +4,8 @@ namespace Gradually\SearchBundle\Classes;
 
 use Doctrine\Bundle\DoctrineBundle\Registry;
 use Symfony\Component\Form\Form;
-use Gradually\SearchBundle\Form\JobSearchType;
-use Gradually\LibraryBundle\Classes\Doctrine\Point;
+use Gradually\UtilBundle\Form\JobSearchType;
+use Gradually\UtilBundle\Classes\Doctrine\Point;
 
 class JobSearchHandler extends BaseSearchHandler
 {
@@ -15,7 +15,7 @@ class JobSearchHandler extends BaseSearchHandler
 	public function initQueryString()
 	{
 		$this->queryString = '
-			SELECT job, recruiter FROM GraduallyJobBundle:Job job
+			SELECT job, recruiter FROM GraduallyUtilBundle:Job job
 			JOIN job.recruiter recruiter
 			JOIN job.location location
 			WHERE job.isActive = :isActive

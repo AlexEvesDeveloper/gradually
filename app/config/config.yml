@@ -56,7 +56,7 @@ doctrine:
         password: "%database_password%"
         charset:  UTF8
         types:
-            point: Gradually\LibraryBundle\Classes\Doctrine\PointType
+            point: Gradually\UtilBundle\Classes\Doctrine\PointType
         mapping_types:
             point: point
         # if using pdo_sqlite as your database driver, add the path in parameters.yml
@@ -74,20 +74,11 @@ doctrine:
                 query_cache_driver: memcached
                 connection: default
                 mappings:
-                    GraduallyUserBundle: { type: annotation, dir: Entity/ }
                     GraduallyUtilBundle: { type: annotation, dir: Entity/ }
-                    GraduallyGraduateBundle: { type: annotation, dir: Entity/ }
-                    GraduallyJobBundle: { type: annotation, dir: Entity/ }
-                    GraduallyPurchaseBundle: { type: annotation, dir: Entity/ }
-                    GraduallySearchBundle: { type: annotation, dir: Entity/ }
-                    GraduallyApplicationBundle: { type: annotation, dir: Entity/ }
-                    #GraduallyRecruiterBundle: { type: annotation, dir: Entity/ }
-                    #GraduallyNotificationBundle: { type: annotation, dir: Entity/ }
-                    #GraduallyAdminBundle: { type: annotation, dir: Entity/ }
                 dql:
                     numeric_functions:
-                        point_str: Gradually\LibraryBundle\Classes\Doctrine\PointStr
-                        distance: Gradually\LibraryBundle\Classes\Doctrine\Distance
+                        point_str: Gradually\UtilBundle\Classes\Doctrine\PointStr
+                        distance: Gradually\UtilBundle\Classes\Doctrine\Distance
 
 # Swiftmailer Configuration
 swiftmailer:
