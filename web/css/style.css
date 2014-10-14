@@ -7902,6 +7902,14 @@ button.btn.btn-xl{
   color: #ddd;
 }
 
+.background-white{
+  background-color: #fff;
+}
+
 .max-width-300{
   max-width: 300px;
+}
+
+.display-block{
+  display: block;
 }

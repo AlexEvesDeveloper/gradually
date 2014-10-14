@@ -16,7 +16,10 @@ class JobSearchType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            //->add('keywords')
+            ->add('keywords', 'text', array(
+                'required' =>false,
+                'mapped' => false
+            ))
             ->add('salaryFrom', 'choice', array(
                 'choices' => $this->getSalaryChoices(),
                 'empty_value' => 'No minimum',
@@ -41,8 +44,7 @@ class JobSearchType extends AbstractType
 	        ->add('locationString', 'text', array(
                 'required' => false
             ))
-	        ->add('distance')
-            ->add('save', 'submit', array('label' => 'Search'));
+	        ->add('distance');
     }
     
     /**

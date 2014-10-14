@@ -47,10 +47,10 @@ class JobSearchHandler extends BaseSearchHandler
 		if(($locationString = $form->getData()->getLocationString()) !== null){
 			if(is_numeric($locationString[1]) || is_numeric($locationString[2])){
 				// postcode entered
-				$locations = $this->em->getRepository('GraduallyJobBundle:Location')->findOneByPostcode($locationString);
+				$locations = $this->em->getRepository('GraduallyUtilBundle:Location')->findOneByPostcode($locationString);
 			}else{
 				// town entered, need all postcodes for this town
-				$locations = $this->em->getRepository('GraduallyJobBundle:Location')->findByTown(ucwords($locationString));
+				$locations = $this->em->getRepository('GraduallyUtilBundle:Location')->findByTown(ucwords($locationString));
 			}
 			
 			if(($distance = $form->getData()->getDistance()) === null){

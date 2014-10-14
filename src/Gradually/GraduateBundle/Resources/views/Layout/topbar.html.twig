@@ -1,7 +1,9 @@
 <ul class="nav navbar-nav navbar-right user-nav">
     <li class="dropdown profile_menu">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <img alt="Avatar" src="{{asset(imagePath)}}" height="30px" width="30px" />
+            {% if app.user.image is not null %}
+            <img alt="Avatar" src="{{asset(app.user.image.fullPath)}}" height="30px" width="30px" />
+            {% endif %}
             <span>{{app.user.firstname}}</span><b class="caret"></b>
         </a>
         <ul class="dropdown-menu">

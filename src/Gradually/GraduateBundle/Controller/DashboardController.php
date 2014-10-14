@@ -126,40 +126,4 @@ class DashboardController extends Controller
         $em->persist($graduate);
         $em->flush();
     }
-
-    /**
-     * Upload the User's new JobTitleTag
-     *
-     * @param GraduateUser $graduate
-     * @param JobTitleTag $jobTitleTag
-     * @param Request $request.
-     * @param Form $form
-     */
-    private function handleJobTitleTagSubmit(GraduateUser $graduate, JobTitleTag $jobTitleTag, Request $request, SymForm $form)
-    {
-        $form->handleRequest($request);
-
-        if($form->isValid()){
-            $em = $this->getDoctrine()->getManager();
-            
-            // Use an existing tag if possible, don't create a duplicate
-            if(($existingTag = $em->getRepository('GraduallyUtilBundle:JobTitleTag')->findOneByTitle($form->getData()->getTitle())) !== null){
-                $jobTitleTag = $existingTag;
-            }else{
-                $em->persist($jobTitleTag);                
-            }
-
-            // Do nothing if the relationship exists
-            if($graduate->getJobTitleTags()->contains($jobTitleTag)){
-                return;
-            }
-            
-            $graduate->addJobTitleTag($jobTitleTag);
-            $jobTitleTag->addGraduate($graduate);
-
-            $em->persist($graduate);
-            $em->persist($jobTitleTag);
-            $em->flush();
-        }     
-    }
 }

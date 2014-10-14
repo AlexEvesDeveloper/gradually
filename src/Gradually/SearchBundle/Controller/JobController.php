@@ -43,6 +43,7 @@ class JobController extends Controller
 		
 		$towns = array_unique($towns);
 
+
 		return array(
 	    	'form' => $form->createView(),
 	    	'jobs' => $result,
