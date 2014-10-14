@@ -15,8 +15,6 @@ use Doctrine\ORM\Mapping as ORM;
 class Qualification
 {
     /**
-     * @var integer
-     *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -24,20 +22,18 @@ class Qualification
     private $id;
 
     /**
-     * @var GraduateUser
-     *
-     * @ORM\ManyToOne(targetEntity="GraduateUser", inversedBy="qualifications")
+     * @ORM\ManyToOne(targetEntity="Cv", inversedBy="qualifications")
      */
-    private $graduate;
+    private $cv;
 
     /**
-     * @ORM\Column(name="school", type="string", length=128)
-     */   
+     * @ORM\ManyToOne(targetEntity="School", inversedBy="qualifications")
+     */
     private $school;
 
     /**
-     * @ORM\Column(name="course", type="string", length=128)
-     */   
+     * @ORM\ManyToOne(targetEntity="Course", inversedBy="qualifications")
+     */  
     private $course;
 
     /**
@@ -51,8 +47,6 @@ class Qualification
     private $grade;
 
     /**
-     * @var integer
-     *
      * @ORM\Column(name="year_attained", type="smallint")
      */
     private $yearAttained;
@@ -183,25 +177,25 @@ class Qualification
     }
 
     /**
-     * Set graduate
+     * Set cv
      *
-     * @param \Gradually\UtilBundle\Entity\GraduateUser $graduate
+     * @param \Gradually\UtilBundle\Entity\Cv $cv
      * @return Qualification
      */
-    public function setGraduate(\Gradually\UtilBundle\Entity\GraduateUser $graduate = null)
+    public function setCv(\Gradually\UtilBundle\Entity\Cv $cv = null)
     {
-        $this->graduate = $graduate;
+        $this->cv = $cv;
 
         return $this;
     }
 
     /**
-     * Get graduate
+     * Get cv
      *
-     * @return \Gradually\UtilBundle\Entity\GraduateUser 
+     * @return \Gradually\UtilBundle\Entity\Cv
      */
-    public function getGraduate()
+    public function getCv()
     {
-        return $this->graduate;
+        return $this->cv;
     }
 }

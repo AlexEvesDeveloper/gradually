@@ -7,15 +7,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
-use Symfony\Component\Form\Form;
+use Symfony\Component\Form\Form as SymForm;
 
-use Gradually\UtilBundle\Entity\GraduateUser;
-use Gradually\UtilBundle\Entity\Role;
-use Gradually\UtilBundle\Entity\Qualification;
-
-use Gradually\UtilBundle\Form\GraduateUserType;
-use Gradually\UtilBundle\Form\QualificationType;
-use Gradually\UtilBundle\Entity\ProfileImage;
+use Gradually\UtilBundle\Entity;
+use Gradually\UtilBundle\Form;
 
 
 class DefaultController extends Controller
@@ -45,13 +40,13 @@ class DefaultController extends Controller
     	$graduate = $this->getDoctrine()->getManager()->getRepository('GraduallyUtilBundle:GraduateUser')->find($id);
 
         // check for an Image upload and process if necessary
-        $image = new ProfileImage();
+        $image = new Entity\ProfileImage();
         $pForm = $this->createFormBuilder($image)->add('file')->add('save', 'submit')->getForm();
         $this->handleImageSubmit($graduate, $image, $request, $pForm);
 
         // add new Qualification
-        $qualification = new Qualification();
-        $qForm = $this->createForm(new QualificationType, $qualification);
+        $qualification = new Entity\Qualification();
+        $qForm = $this->createForm(new Form\QualificationType, $qualification);
         $this->handleQualificationSubmit($graduate, $qualification, $request, $qForm);
 
 
@@ -71,8 +66,8 @@ class DefaultController extends Controller
      */
     public function newAction(Request $request)
     {
-        $user = new GraduateUser();
-        $form = $this->createForm(new GraduateUserType, $user, array(
+        $user = new Entity\GraduateUser();
+        $form = $this->createForm(new Form\GraduateUserType, $user, array(
             'action' => $this->generateUrl('gradually_graduate_default_new')
         ));
 
@@ -86,6 +81,11 @@ class DefaultController extends Controller
             // set role to ROLE_NORMAL
             $role = $em->getRepository('GraduallyUtilBundle:Role')->findOneByName('graduate');
             $user->addRole($role);
+
+            // create an empty CV for them
+            $cv = new Entity\Cv();
+            $cv->setGraduate($user);
+            $em->persist($cv);
             
             // encode the password
             $user->setPassword(password_hash($form->getData()->getPassword(), PASSWORD_BCRYPT, array('cost' => 12)));
@@ -115,7 +115,7 @@ class DefaultController extends Controller
      *
      * @return Bool
      */
-    private function recruiterHasAccess(\Gradually\UtilBundle\Entity\RecruiterUser $user, $id)
+    private function recruiterHasAccess(Entity\RecruiterUser $user, $id)
     {
         $graduatesUserCanAccess = $user->getGraduates();
         foreach($graduatesUserCanAccess as $graduate){
@@ -136,7 +136,7 @@ class DefaultController extends Controller
      * @param Request $request.
      * @param Form $form
      */
-    private function handleImageSubmit(GraduateUser $graduate, ProfileImage $image, Request $request, Form $form)
+    private function handleImageSubmit(Entity\GraduateUser $graduate, Entity\ProfileImage $image, Request $request, SymForm $form)
     {
         $form->handleRequest($request);
         
@@ -163,7 +163,7 @@ class DefaultController extends Controller
      * @param Request $request.
      * @param Form $form
      */
-    private function handleQualificationSubmit(GraduateUser $graduate, Qualification $qualification, Request $request, Form $form)
+    private function handleQualificationSubmit(Entity\GraduateUser $graduate, Entity\Qualification $qualification, Request $request, SymForm $form)
     {
         $form->handleRequest($request);
 

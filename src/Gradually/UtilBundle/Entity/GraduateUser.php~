@@ -28,9 +28,9 @@ class GraduateUser extends User
     protected $lastName;
 
     /**
-     * @ORM\OneToMany(targetEntity="Qualification", mappedBy="graduate")
+     * @ORM\OneToOne(targetEntity="Cv", mappedBy="graduate")
      */
-    private $qualifications;
+    private $cv;
 
     /**
      * @ORM\ManyToMany(targetEntity="RecruiterUser", inversedBy="graduates")
@@ -38,19 +38,9 @@ class GraduateUser extends User
     private $recruiters;
 
     /**
-     * @ORM\ManyToMany(targetEntity="School", mappedBy="graduates")
+     * @ORM\ManyToMany(targetEntity="JobTitle", mappedBy="graduates")
      */
-    private $schools;
-
-    /**
-     * @ORM\ManyToMany(targetEntity="Course", mappedBy="graduates")
-     */
-    private $courses;
-
-    /**
-     * @ORM\ManyToMany(targetEntity="JobTitleTag", mappedBy="graduates")
-     */
-    private $jobTitleTags;
+    private $jobTitles;
 
     /**
      * @ORM\OneToMany(targetEntity="Application", mappedBy="graduate") 
@@ -70,11 +60,19 @@ class GraduateUser extends User
     public function __construct()
     {
         parent::__construct();
-        $this->qualifications = new \Doctrine\Common\Collections\ArrayCollection();
         $this->recruiters = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->universities = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->jobTitleTags = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->schools = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->applications = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->jobTitles = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return parent::TYPE_GRADUATE;
     }
 
     /**
@@ -124,39 +122,6 @@ class GraduateUser extends User
     }
 
     /**
-     * Add qualifications
-     *
-     * @param Qualification $qualifications
-     * @return GraduateUser
-     */
-    public function addQualification(Qualification $qualifications)
-    {
-        $this->qualifications[] = $qualifications;
-
-        return $this;
-    }
-
-    /**
-     * Remove qualifications
-     *
-     * @param Qualification $qualifications
-     */
-    public function removeQualification(Qualification $qualifications)
-    {
-        $this->qualifications->removeElement($qualifications);
-    }
-
-    /**
-     * Get qualifications
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getQualifications()
-    {
-        return $this->qualifications;
-    }
-
-    /**
      * Add recruiters
      *
      * @param RecruiterUser $recruiters
@@ -187,49 +152,6 @@ class GraduateUser extends User
     public function getRecruiters()
     {
         return $this->recruiters;
-    }
-
-    /**
-     * Add schoold
-     *
-     * @param School $school
-     * @return GraduateUser
-     */
-    public function addUniversity(School $school)
-    {
-        $this->schools[] = $school;
-
-        return $this;
-    }
-
-    /**
-     * Remove school
-     *
-     * @param School $school
-     */
-    public function removeUniversity(School $school)
-    {
-        $this->schools->removeElement($school);
-    }
-
-    /**
-     * Get school
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getUniversities()
-    {
-        return $this->schools;
-    }
-
-    /**
-     * Get type
-     *
-     * @return string
-     */
-    public function getType()
-    {
-        return parent::TYPE_GRADUATE;
     }
 
     /**
@@ -290,101 +212,59 @@ class GraduateUser extends User
     }
 
     /**
-     * Add jobTitleTags
+     * Add jobTitles
      *
-     * @param JobTitleTag $jobTitleTags
+     * @param JobTitle $jobTitles
      * @return GraduateUser
      */
-    public function addJobTitleTag(JobTitleTag $jobTitleTags)
+    public function addJobTitle(JobTitle $jobTitles)
     {
-        $this->jobTitleTags[] = $jobTitleTags;
+        $this->jobTitles[] = $jobTitles;
 
         return $this;
     }
 
     /**
-     * Remove jobTitleTags
+     * Remove jobTitles
      *
-     * @param JobTitleTag $jobTitleTags
+     * @param JobTitle $jobTitles
      */
-    public function removeJobTitleTag(JobTitleTag $jobTitleTags)
+    public function removeJobTitle(JobTitle $jobTitles)
     {
-        $this->jobTitleTags->removeElement($jobTitleTags);
+        $this->jobTitles->removeElement($jobTitles);
     }
 
     /**
-     * Get jobTitleTags
+     * Get jobTitles
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getJobTitleTags()
+    public function getJobTitles()
     {
-        return $this->jobTitleTags;
+        return $this->jobTitles;
     }
 
+
     /**
-     * Add schools
+     * Set cv
      *
-     * @param \Gradually\UtilBundle\Entity\School $schools
+     * @param \Gradually\UtilBundle\Entity\Cv $cv
      * @return GraduateUser
      */
-    public function addSchool(\Gradually\UtilBundle\Entity\School $schools)
+    public function setCv(\Gradually\UtilBundle\Entity\Cv $cv = null)
     {
-        $this->schools[] = $schools;
+        $this->cv = $cv;
 
         return $this;
     }
 
     /**
-     * Remove schools
+     * Get cv
      *
-     * @param \Gradually\UtilBundle\Entity\School $schools
+     * @return \Gradually\UtilBundle\Entity\Cv 
      */
-    public function removeSchool(\Gradually\UtilBundle\Entity\School $schools)
+    public function getCv()
     {
-        $this->schools->removeElement($schools);
-    }
-
-    /**
-     * Get schools
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getSchools()
-    {
-        return $this->schools;
-    }
-
-    /**
-     * Add courses
-     *
-     * @param \Gradually\UtilBundle\Entity\Course $courses
-     * @return GraduateUser
-     */
-    public function addCourse(\Gradually\UtilBundle\Entity\Course $courses)
-    {
-        $this->courses[] = $courses;
-
-        return $this;
-    }
-
-    /**
-     * Remove courses
-     *
-     * @param \Gradually\UtilBundle\Entity\Course $courses
-     */
-    public function removeCourse(\Gradually\UtilBundle\Entity\Course $courses)
-    {
-        $this->courses->removeElement($courses);
-    }
-
-    /**
-     * Get courses
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getCourses()
-    {
-        return $this->courses;
+        return $this->cv;
     }
 }

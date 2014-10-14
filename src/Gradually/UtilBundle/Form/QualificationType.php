@@ -6,27 +6,36 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class ApplicationType extends AbstractType
+class QualificationType extends AbstractType
 {
-    /**
+	/**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('coverNote', 'textarea')
-            ->add('save', 'submit', array('label' => 'Submit Application'))
+        	->add('school', 'text', array(
+        		'mapped' => false
+        	))
+        	
+        	->add('course', 'text', array(
+        		'mapped' => false
+        	))
+
+        	->add('courseLevel')
+        	->add('grade')
+        	->add('yearAttained')
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Gradually\UtilBundle\Entity\Application'
+            'data_class' => 'Gradually\UtilBundle\Entity\Qualification'
         ));
     }
 
@@ -35,6 +44,6 @@ class ApplicationType extends AbstractType
      */
     public function getName()
     {
-        return 'gradually_utilbundle_application';
+        return 'gradually_utilbundle_qualification';
     }
 }

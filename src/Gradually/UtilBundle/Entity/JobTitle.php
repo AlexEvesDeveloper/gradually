@@ -6,12 +6,12 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * JobTitleTag
+ * JobValue
  *
- * @ORM\Table(name="job_title_tags")
+ * @ORM\Table(name="job_values")
  * @ORM\Entity
  */
-class JobTitleTag
+class JobTitle
 {
     /**
      * @var integer
@@ -25,12 +25,12 @@ class JobTitleTag
     /**
      * @var string
      *
-     * @ORM\Column(name="title", type="string", length=255)
+     * @ORM\Column(name="value", type="string", length=255)
      */
-    private $title;
+    private $value;
 
     /**
-     * @ORM\ManyToMany(targetEntity="GraduateUser", inversedBy="jobTitleTags"))
+     * @ORM\ManyToMany(targetEntity="GraduateUser", inversedBy="jobTitles"))
      */
     private $graduates;
 
@@ -46,26 +46,26 @@ class JobTitleTag
     }
 
     /**
-     * Set title
+     * Set value
      *
-     * @param string $title
-     * @return JobTitleTag
+     * @param string $value
+     * @return JobValueTag
      */
-    public function setTitle($title)
+    public function setValue($value)
     {
-        $this->title = $title;
+        $this->value = $value;
 
         return $this;
     }
 
     /**
-     * Get title
+     * Get value
      *
      * @return string 
      */
-    public function getTitle()
+    public function getValue()
     {
-        return $this->title;
+        return $this->value;
     }
     /**
      * Constructor
@@ -79,7 +79,7 @@ class JobTitleTag
      * Add graduates
      *
      * @param GraduateUser $graduates
-     * @return JobTitleTag
+     * @return JobValueTag
      */
     public function addGraduate(GraduateUser $graduates)
     {

@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * School
  *
- * @ORM\Table(name="schools", indexes={@ORM\Index(name="school_name", columns={"name"})})
+ * @ORM\Table(name="schools")
  * @ORM\Entity()
  */
 class School
@@ -25,22 +25,21 @@ class School
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="value", type="string", length=255)
      */
-    private $name;
-
+    private $value;
+    
     /**
-     * @ORM\ManyToMany(targetEntity="GraduateUser", inversedBy="schools"))
+     * @ORM\OneToMany(targetEntity="Qualification", mappedBy="school"))
      */
-    private $graduates;
+    private $qualifications;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->degrees = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->graduates = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->qualifications = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -54,63 +53,58 @@ class School
     }
 
     /**
-     * Set name
+     * Set value
      *
-     * @param string $name
+     * @param string $value
      * @return School
      */
-    public function setName($name)
+    public function setValue($value)
     {
-        $this->name = $name;
+        $this->value = $value;
 
         return $this;
     }
 
     /**
-     * Get name
+     * Get value
      *
      * @return string 
      */
-    public function getName()
+    public function getValue()
     {
-        return $this->name;
+        return $this->value;
     }
 
     /**
-     * Add graduates
+     * Add qualification
      *
-     * @param GraduateUser $graduates
+     * @param Qualification $qualification
      * @return School
      */
-    public function addGraduate(GraduateUser $graduates)
+    public function addQualification(Qualification $qualification)
     {
-        $this->graduates[] = $graduates;
+        $this->qualifications[] = $qualification;
 
         return $this;
     }
 
     /**
-     * Remove graduates
+     * Remove qualification
      *
-     * @param GraduateUser $graduates
+     * @param Qualification $qualification
      */
-    public function removeGraduate(GraduateUser $graduates)
+    public function removeQualification(Qualification $qualification)
     {
-        $this->graduates->removeElement($graduates);
+        $this->qualifications->removeElement($qualification);
     }
 
     /**
-     * Get graduates
+     * Get qualifications
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getGraduates()
+    public function getQualifications()
     {
-        return $this->graduates;
-    }
-
-    public function __toString()
-    {
-        return $this->name;
+        return $this->qualifications;
     }
 }

@@ -25,21 +25,21 @@ class Course
     /**
      * @var string
      *
-     * @ORM\Column(name="title", type="string", length=255)
+     * @ORM\Column(name="value", type="string", length=255)
      */
-    private $title;
+    private $value;
 
     /**
-     * @ORM\ManyToMany(targetEntity="GraduateUser", inversedBy="schools"))
+     * @ORM\OneToMany(targetEntity="Qualification", mappedBy="course"))
      */
-    private $graduates;
+    private $qualifications;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->graduates = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->qualifications = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -53,63 +53,63 @@ class Course
     }
 
     /**
-     * Set title
+     * Set value
      *
-     * @param string $title
+     * @param string $value
      * @return Degree
      */
-    public function setTitle($title)
+    public function setValue($value)
     {
-        $this->title = $title;
+        $this->value = $value;
 
         return $this;
     }
 
     /**
-     * Get title
+     * Get value
      *
      * @return string 
      */
-    public function getTitle()
+    public function getValue()
     {
-        return $this->title;
+        return $this->value;
     }
 
     public function __toString()
     {
-        return $this->title;
+        return $this->value;
     }    
 
     /**
-     * Add graduates
+     * Add qualification
      *
-     * @param \Gradually\UtilBundle\Entity\GraduateUser $graduates
+     * @param Qualification $qualification
      * @return Course
      */
-    public function addGraduate(\Gradually\UtilBundle\Entity\GraduateUser $graduates)
+    public function addQualification(Qualification $qualification)
     {
-        $this->graduates[] = $graduates;
+        $this->qualifications[] = $qualification;
 
         return $this;
     }
 
     /**
-     * Remove graduates
+     * Remove qualification
      *
-     * @param \Gradually\UtilBundle\Entity\GraduateUser $graduates
+     * @param Qualification $qualification
      */
-    public function removeGraduate(\Gradually\UtilBundle\Entity\GraduateUser $graduates)
+    public function removeQualification(Qualification $qualification)
     {
-        $this->graduates->removeElement($graduates);
+        $this->qualifications->removeElement($qualification);
     }
 
     /**
-     * Get graduates
+     * Get qualifications
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getGraduates()
+    public function getQualifications()
     {
-        return $this->graduates;
+        return $this->qualifications;
     }
 }
