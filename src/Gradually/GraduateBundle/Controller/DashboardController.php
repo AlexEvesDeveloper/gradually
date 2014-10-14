@@ -52,6 +52,17 @@ class DashboardController extends Controller
 
         if($form->isValid()){
             $em = $this->getDoctrine()->getManager();
+    
+            // Use an existing tag if possible, don't create a duplicate
+            $schoolInput = $request->request->get('gradually_utilbundle_qualification')['school'];
+            $school = $this->getEntityByValue('School', $schoolInput); 
+
+
+            $courseInput = $request->request->get('gradually_utilbundle_qualification')['course']; 
+            $course = $this->getEntityByValue('Course', $courseInput);
+
+            $qualification->setSchool($school);
+            $qualification->setCourse($course);
                     
             $cv = $graduate->getCv();
             $cv->addQualification($qualification);
@@ -61,6 +72,27 @@ class DashboardController extends Controller
             $em->persist($qualification);
             $em->flush();
         }         
+    }
+
+    /**
+     * If it exists, return it, otherwise create one, persist it, and return it
+     */
+    private function getEntityByValue($entity, $value)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $repo = sprintf('GraduallyUtilBundle:%s', $entity);
+        if(($existingEntity = $em->getRepository($repo)->findOneByValue($value)) !== null){
+            // already exists
+            return $existingEntity;
+        }
+
+        $fullEntity = sprintf('Gradually\UtilBundle\Entity\%s', $entity);
+        $entity = new $fullEntity;
+        $entity->setValue($value);
+        $em->persist($entity);
+
+        return $entity;
     }
 
     private function saveExperience(Entity\GraduateUser $graduate, Entity\Experience $experience, Request $request, SymForm $form)

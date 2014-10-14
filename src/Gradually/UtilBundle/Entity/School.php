@@ -14,7 +14,6 @@ use Doctrine\ORM\Mapping as ORM;
 class School
 {
     /**
-     * @var integer
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -23,7 +22,6 @@ class School
     private $id;
 
     /**
-     * @var string
      *
      * @ORM\Column(name="value", type="string", length=255)
      */

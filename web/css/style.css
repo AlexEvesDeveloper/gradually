@@ -5187,6 +5187,7 @@ body.modal-open,
 }
 .block-flat .content {
   padding: 15px 3px 0 3px;
+  overflow: hidden; /* aie */
 }
 .block-flat .content.full-width {
   padding: 0;

@@ -221,10 +221,10 @@ class ProfileImage
     /**
      * Set user
      *
-     * @param \Gradually\UserBundle\Entity\User $user
+     * @param User $user
      * @return ProfileImage
      */
-    public function setUser(\Gradually\UserBundle\Entity\User $user = null)
+    public function setUser(User $user = null)
     {
         $this->user = $user;
 

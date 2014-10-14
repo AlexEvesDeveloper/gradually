@@ -1,16 +1,17 @@
 {% extends "::base.html.twig" %}
 
 {% block content %}
-<div class="cl-mcont col-md-8 col-md-offset-2">
+<div class="cl-mcont col-md-10 col-md-offset-1">
   <div class="block-flat">
     <div class="header">
       <h3>Overview</h3>
     </div>
     <div class="content">
-      <img class="thumbnail" src="{{ asset(imagePath) }}" style="width: 150px; height: 150px;" />
-      {% if app.user.id == graduate.id %} 
-        <p><a data-toggle="modal" href="#add-profileimage-modal" class="btn btn-primary btn-large">Change Image</a></p>
-      {% endif %}
+      <div class="col-sm-12 col-md-3">
+        <img class="thumbnail" src="{{ asset(imagePath) }}" style="width: 150px; height: 150px;" />
+        {% if app.user.id == graduate.id %} 
+          <p><a data-toggle="modal" href="#add-profileimage-modal" class="btn btn-primary btn-large">Change Image</a></p>
+        {% endif %}
       <div id="add-profileimage-modal" class="modal fade" style="display: none;">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -42,12 +43,55 @@
         </div>
       </div>
       {{ form_end(pForm) }} 
-
-      
-
-
+      </div>
+      <div class="col-sm-12 col-md-9">
+        <h3>{{graduate.firstName}} {{graduate.lastName}}</h3>
+      </div>
     </div>
   </div>
+
+  <div class="block-flat">
+    <div class="header">
+      <h3>Work Experience</h3>
+    </div>
+    <div class="content">
+      {% for e in graduate.cv.experiences %}
+      <ul class="list-group">
+        <li class="list-group-item">
+        <h4>{{e.company}} ({{e.yearFrom}} - {{e.yearTo}})</h4>
+        <p>{{e.summary}}:</p> 
+        </li>
+      </ul>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="block-flat">
+    <div class="header">
+      <h3>Qualifications</h3>
+    </div>
+    <div class="content">
+      {% for q in graduate.cv.qualifications %}
+      <ul class="list-group">
+        <li class="list-group-item">
+        <h4>{{q.course.value}} ({{q.courseLevel}})</h4>
+        <em>{{q.school.value}}:</em> {{q.yearAttained}}<br>
+        Grade: {{q.grade}}
+        </li>
+      </ul>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="block-flat col-sm-12">
+    <div class="header">
+      <h3>Skills</h3>
+    </div>
+    <div class="content">
+      List of specific skills
+    </div>
+  </div>
+
 </div><!-- cl-mcont -->
 {% endblock %}
 
