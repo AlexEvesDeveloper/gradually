@@ -236,7 +236,7 @@
     $('#upload-experience').on('click', function () {
         $.ajax({
             type: "POST",
-            url: 'http://localhost:81/gradually/web/app_dev.php/api/graduates/{{app.user.id}}/experiences.json',
+            url: "{{path('post_graduate_experiences', {'graduate':app.user.id})}}",
             data: $('#add-experience-form').serialize()
         }).done(function(){
             location.reload();
@@ -248,7 +248,7 @@
     $('#upload-qualification').on('click', function () {
         $.ajax({
             type: "POST",
-            url: 'http://localhost:81/gradually/web/app_dev.php/api/graduates/{{app.user.id}}/qualifications.json',
+            url: "{{path('post_graduate_qualifications', {'graduate':app.user.id})}}",
             data: $('#add-qualification-form').serialize()
         }).done(function(){
             location.reload();

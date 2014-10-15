@@ -65,7 +65,9 @@ class DefaultController extends Controller
     public function newAction(Request $request)
     {
         return array(
-            'form' => $this->createForm(new Form\GraduateUserType, new Entity\GraduateUser)->createView()
+            'form' => $this->createForm(new Form\GraduateUserType, new Entity\GraduateUser, array(
+                'action' => $this->generateUrl('post_graduates')
+            ))->createView()
         );
     }
 

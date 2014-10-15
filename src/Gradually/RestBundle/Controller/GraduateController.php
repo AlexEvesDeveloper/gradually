@@ -68,6 +68,9 @@ class GraduateController extends FOSRestController implements ClassResourceInter
         $token = new UsernamePasswordToken($graduate, $graduate->getPassword(), 'secured_area', $graduate->getRoles());
         $this->container->get('security.context')->setToken($token);
     
-    	return new Response(json_encode($graduate), Codes::HTTP_CREATED);
+        return $this->redirect($this->generateUrl('gradually_home_default_index'));
+
+        // uncomment the below if I decide to post graduates via REST
+    	// return new Response(json_encode($graduate), Codes::HTTP_CREATED);
     }
 }

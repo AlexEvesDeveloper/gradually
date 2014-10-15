@@ -30,7 +30,7 @@ class GraduateControllerTest extends WebTestCase
     	$json = json_encode(array(
     		'firstName' => 'Tom',
     		'lastName' => 'Jones',
-    		'email' => 'tom@test.com',
+    		'email' => 'tom3@test.com',
     		'password' => 'fsdfpassword'
     	));
 
