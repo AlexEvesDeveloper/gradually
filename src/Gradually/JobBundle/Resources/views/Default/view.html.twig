@@ -1,29 +1,18 @@
 {% extends '::base.html.twig' %}
 
-{% block body %}
-	<div id="wrapper">
-		<div id="sidebar-wrapper">
-			<div class="row">
-				<div class="col-md-1"></div>
-				<div class="col-md-9">
-				</div>
-				<div class="col-md-1"></div>
-			</div>
-		</div>
-		<div id="page-content-wrapper">
-			<div class="page-content">
-				<div class="row">
-					<div class="col-md-1"></div>
-					<div class="col-md-10 section">
-						<h2>{{job.title}}</h2>
-						<p><span class="bold">Applications:</span> {{applicationCount}}</p>
-						<p>{{job.description}}</p>
-						<a class="btn btn-primary" href="{{path('gradually_job_default_apply',{'id':job.id})}}">	Apply
-						</a>
-					</div>
-					<div class="col-md-1"></div>
-				</div>
-			</div>
+{% block content %}
+<div class="cl-mcont col-md-10 col-md-offset-1">
+  	<div class="block-flat">
+    	<div class="header">
+      		<h3>{{job.title}}</h3>
+			<p><span class="bold">Applications:</span> {{applicationCount}}</p>
+    	</div>
+    	<div class="content">
+			<p>{{job.description}}</p>
+			<a class="btn btn-primary" href="{{path('gradually_job_default_apply',{'id':job.id})}}">	
+				Apply
+			</a>
 		</div>
 	</div>
+</div>
 {% endblock %}

@@ -1,67 +1,33 @@
 {% extends '::base.html.twig' %}
 
-{% block body %}
-	<div id="wrapper">
-		<div id="sidebar-wrapper">
-			<div class="row">
-				<div class="col-md-1"></div>
-				<div class="col-md-9">
+{% block content %}
+<div class="cl-mcont col-md-10 col-md-offset-1">
+  	<div class="block-flat">
+    	<div class="header">
+      		<h3>{{job.title}}</h3>
+    	</div>
+    	<div class="content">
+			<a class="btn btn-primary col-md-12 show-job-details view" data-toggle="collapse" data-target=".job-details">
+				View job details
+			</a>
+			<div class="col-md-12 section collapsed-group job-details-container hide">
+				<div class="job-details collapse">
+					<h2>{{job.title}}</h2>
+					<p>{{job.description}}</p>
 				</div>
-				<div class="col-md-1"></div>
 			</div>
-		</div>
-		<div id="page-content-wrapper">
-			<div class="page-content">
-				<div class="row">
-					<div class="col-md-1"></div>
-					<div class="col-md-10">
-					<a class="btn btn-primary col-md-12 show-job-details view" data-toggle="collapse" data-target=".job-details">
-						View job details
-					</a>
-					</div>
-					<div class="col-md-1"></div>
+      		<p>Submit a cover letter with your application to improve your chances of being noticed.</p>
+			{{form_start(form, {'attr':{'class': 'form-horizontal sidebar-form','role': 'form'}})}}
+				{{form_widget(form.coverNote, {'attr':{'class':'form-control', 'rows':'10'}})}}
+				<div class="form-group">
+					{{form_label(form.save)}}
+					{{form_widget(form.save, {attr : {class: 'btn btn-primary graduate-search-button'}})}}
 				</div>
-				<div class="row">
-					<div class="col-md-1"></div>
-					<div class="col-md-10">
-					<div class="col-md-12 section collapsed-group job-details-container hide">
-						<div class="job-details collapse">
-							<h2>{{job.title}}</h2>
-							<p>{{job.description}}</p>
-						</div>
-					</div>
-					</div>
-					<div class="col-md-1"></div>
-				</div>
-  				<div class="row">
-    				<div class="col-md-1"></div>
-    				<div class="col-md-10">
-      				<p>Submit a cover letter with your application to improve your chances of being noticed.</p>
-    				</div>
-    				<div class="col-md-1"></div>
-  				</div>
-				<div class="row">
-					<div class="col-md-1"></div>
-					<div class="col-md-10">
-						{{form_start(form, {'attr':{'class': 'form-horizontal sidebar-form','role': 'form'}})}}
-							{{form_widget(form.coverNote, {'attr':{'class':'form-control', 'rows':'10'}})}}
-						
-					</div>
-					<div class="col-md-1"></div>
-				</div>
-				<div class="row">
-					<div class="col-md-1"></div>
-					<div class="col-md-2">
-						<div class="form-group">
-							{{form_label(form.save)}}
-							{{form_widget(form.save, {attr : {class: 'btn btn-primary graduate-search-button'}})}}
-						</div>
-					</div>
-				</div>
-				{{form_end(form)}}
-			</div>
-		</div>
-	</div>
+			{{form_end(form)}}
+    	</div>
+    </div>
+</div>
+
 {% endblock %}
 
 {% block javascripts %}
