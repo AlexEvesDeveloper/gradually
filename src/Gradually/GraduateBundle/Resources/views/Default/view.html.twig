@@ -51,8 +51,67 @@
   </div>
 
   <div class="block-flat">
-    <div class="header">
-      <h3>Work Experience</h3>
+    <div class="header overflow-hidden">
+      <div class="col-sm-9">
+        <h3>Work experience</h3>        
+      </div>
+      <div class="col-sm-3 pull-right padding-right-5">
+        <a href="#add-experience" class="btn btn-primary pull-right" data-toggle="modal">
+          Add work experience
+        </a>
+        <div id="add-experience" class="modal fade" style="display: none;">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <a data-dismiss="modal" class="close">x</a>
+                <h3>Add some work experience</h3>
+              </div>
+              <div class="modal-body overflow-hidden">
+                {{ form_start(eForm, {attr:{'id':'add-experience-form', 'role':'form'}}) }}
+                <div class="form-group">
+                  <div class="col-sm-12">
+                    <div class="input-group max-width-300">
+                      {{ form_widget(eForm.company, {attr:{'class':'form-control', 'placeholder':'Company'}})}}
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-sm-12">
+                    <div class="input-group max-width-300">
+                      {{ form_widget(eForm.summary, {attr:{'class':'form-control', 'placeholder':'Summary'}})}}
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-sm-12">
+                    <div class="input-group max-width-300">
+                      {{ form_widget(eForm.yearFrom, {attr:{'class':'form-control', 'placeholder':'Year From'}})}}
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-sm-12">
+                    <div class="input-group max-width-300">
+                      {{ form_widget(eForm.yearTo, {attr:{'class':'form-control', 'placeholder':'Year To'}})}}
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-sm-12">
+                    <div class="input-group max-width-300">
+                      <button type="button" id="upload-experience" class="btn btn-success">Save</button>
+                    </div>
+                  </div>
+                </div>
+                {{ form_end(eForm) }}
+              </div>  
+              <div class="modal-footer">
+                <a href="#" class="btn" data-dismiss="modal">Cancel</a>
+              </div>
+            </div>
+          </div>
+        </div>        
+      </div>
     </div>
     <div class="content">
       {% for e in graduate.cv.experiences %}
@@ -67,8 +126,74 @@
   </div>
 
   <div class="block-flat">
-    <div class="header">
-      <h3>Qualifications</h3>
+    <div class="header overflow-hidden">
+      <div class="col-sm-9">
+        <h3>Qualifications</h3>        
+      </div>
+      <div class="col-sm-3 pull-right padding-right-5">
+        <a href="#add-qualification" class="btn btn-primary pull-right" data-toggle="modal">
+          Add qualification
+        </a>
+        <div id="add-qualification" class="modal fade" style="display: none;">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <a data-dismiss="modal" class="close">x</a>
+                <h3>Add a qualification</h3>
+              </div>
+              <div class="modal-body overflow-hidden">
+                {{ form_start(qForm, {attr:{'id':'add-qualification-form', 'role':'form'}}) }}
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <div class="input-group max-width-300">
+                          {{ form_widget(qForm.school, {attr:{'class':'form-control', 'placeholder':'Institute'}})}}
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <div class="input-group max-width-300">
+                          {{ form_widget(qForm.course, {attr:{'class':'form-control', 'placeholder':'Course'}})}}
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <div class="input-group max-width-300">
+                          {{ form_widget(qForm.courseLevel, {attr:{'class':'form-control', 'placeholder':'Qualification Level'}})}}
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <div class="input-group max-width-300">
+                          {{ form_widget(qForm.grade, {attr:{'class':'form-control', 'placeholder':'Grade acheived'}})}}
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <div class="input-group max-width-300">
+                          {{ form_widget(qForm.yearAttained, {attr:{'class':'form-control', 'placeholder':'Year attained'}})}}
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <div class="input-group max-width-300">
+                          <button type="button" id="upload-qualification" class="btn btn-success">Save</button>
+                        </div>
+                    </div>
+                </div>
+                {{ form_end(qForm) }}
+              </div>  
+              <div class="modal-footer">
+                <a href="#" class="btn" data-dismiss="modal">Cancel</a>
+              </div>
+            </div>
+          </div>
+        </div>      
+      </div>
     </div>
     <div class="content">
       {% for q in graduate.cv.qualifications %}
@@ -101,10 +226,36 @@
   <!-- Boostrap modal -->
   <script src="{{ asset('js/bootstrap-modal.js') }}"></script>
 
+  <script>
+    $('.profile-image-upload').click(function(){
+      $('.profile-image-upload-preview').css('display', 'inline-block')
+    });
+  </script>
+
 <script>
-  $('.profile-image-upload').click(function(){
-    $('.profile-image-upload-preview').css('display', 'inline-block')
-  });
+    $('#upload-experience').on('click', function () {
+        $.ajax({
+            type: "POST",
+            url: 'http://localhost:81/gradually/web/app_dev.php/api/graduates/{{app.user.id}}/experiences.json',
+            data: $('#add-experience-form').serialize()
+        }).done(function(){
+            location.reload();
+        }).fail(function(){
+            alert("Failed");
+        })
+    });
+
+    $('#upload-qualification').on('click', function () {
+        $.ajax({
+            type: "POST",
+            url: 'http://localhost:81/gradually/web/app_dev.php/api/graduates/{{app.user.id}}/qualifications.json',
+            data: $('#add-qualification-form').serialize()
+        }).done(function(){
+            location.reload();
+        }).fail(function(){
+            alert("Failed");
+        })
+    });  
 </script>
 
 {% endblock %}

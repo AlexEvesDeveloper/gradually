@@ -15,19 +15,19 @@
                         				<span class="chevron"></span>
                     				</li>
                     				<li data-target="#step2-graduate-welcome">
-                        				Job preferences
+                        				Qualifications
                         				<span class="chevron"></span>
                     				</li>
                     				<li data-target="#step3-graduate-welcome">
-                        				Location
+                        				Work experience
                         				<span class="chevron"></span>
                     				</li>
                     				<li data-target="#step4-graduate-welcome">
-                        				Notifications
+                        				Skills
                         				<span class="chevron"></span>
                     				</li>
                     				<li data-target="#step5-graduate-welcome">
-                        				Finish
+                        				Job requirements
                         				<span class="chevron"></span>
                     				</li>
                 				</ul>
@@ -43,242 +43,84 @@
                 				</div>
             				</div>
             				<div class="step-content">
-                    				<div id="step1-graduate-welcome" class="step-pane active">
-                                        <div class="form-group">
-                                                <p>Here at Juru we are committed to finding jobs that best suit your requirements.</p>
-                                                <p>By taking 30 seconds to tell us about the kind of jobs that you are looking for, we can send you instant notification, either by e-mail or text, when job matches are posted.</p>
-                                        </div>
-                        				<div class="form-group">
-                            				<button type="button" data-wizard="#wizard1" class="btn btn-primary wizard-next">
-                                				Get started<i class="fa fa-caret-right"></i>
-                            				</button>
-                        				</div>
-                    				</div>
-                    				<div id="step2-graduate-welcome" class="step-pane">
-                                        <div class="form-group">
-                                            <div class="col-sm-12">
-                                                <h6>Do you have any qualifications that you would like to add to your CV?</h6>
-                                            </div>
-                                        </div>
-                                        <div class="form-group question-area">
-                                            <div class="col-sm-12">
-                                                <button id="add-qualification-question-yes" class="btn btn-primary">Yes</button>
-                                                <button id="add-qualification-question-no" class="btn btn-primary">No</button>
-                                            </div>
-                                            <div class="col-sm-12">
-                                                <button id="add-another-qualification-question-yes" class="btn btn-info hide">Add another job title?</button>
-                                            </div>
-                                        </div>
-                                        <div id="add-qualification-container" class="hide">
-                                        {{ form_start(qForm, {attr:{'id':'add-qualification-form', 'role':'form'}}) }}
-                                            <div class="form-group">
-                                                <div class="col-sm-12">
-                                                    <div class="input-group max-width-300">
-                                                        {{ form_widget(qForm.school, {attr:{'class':'form-control', 'placeholder':'Institute'}})}}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="col-sm-12">
-                                                    <div class="input-group max-width-300">
-                                                        {{ form_widget(qForm.course, {attr:{'class':'form-control', 'placeholder':'Course'}})}}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="col-sm-12">
-                                                    <div class="input-group max-width-300">
-                                                        {{ form_widget(qForm.courseLevel, {attr:{'class':'form-control', 'placeholder':'Qualification Level'}})}}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="col-sm-12">
-                                                    <div class="input-group max-width-300">
-                                                        {{ form_widget(qForm.grade, {attr:{'class':'form-control', 'placeholder':'Grade acheived'}})}}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="col-sm-12">
-                                                    <div class="input-group max-width-300">
-                                                        {{ form_widget(qForm.yearAttained, {attr:{'class':'form-control', 'placeholder':'Year attained'}})}}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="col-sm-12">
-                                                    <div class="input-group max-width-300">
-                                                        <button type="button" id="upload-qualification" class="btn btn-success">Save</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                        				{{ form_end(qForm) }}
-                                        </div>
-                        				<div class="form-group">
-                            				<button type="button" data-wizard="#wizard1" class="btn btn-primary wizard-previous margin-left-15">
-                                				<i class="fa fa-caret-left"></i> Previous 
-                            				</button>
-                            				<button type="button" data-wizard="#wizard1" class="btn btn-primary wizard-next">
-                                				Next Step <i class="fa fa-caret-right"></i>
-                            				</button>
-                        				</div>
-                    				</div>
-                    				<div id="step3-graduate-welcome" class="step-pane">
-                                        <div class="form-group">
-                                            <div class="col-sm-12">
-                                                <h6>Please tell us the job title of the job that you are looking for. Try to be as specific as you can, for example, 'Project manager' or 'Credit controller'.</h6>
-                                            </div>
-                                        </div>
-                                        <div class="form-group question-area">
-                                            <div class="col-sm-12">
-                                                <button id="add-experience-question-yes" class="btn btn-primary">Yes</button>
-                                                <button id="add-experience-question-no" class="btn btn-primary">No</button>
-                                            </div>
-                                            <div class="col-sm-12">
-                                                <button id="add-another-experience-question-yes" class="btn btn-info hide">Add another work experience</button>
-                                            </div>
-                                        </div>
-                                        <div id="add-experience-container" class="hide">
-                                        {{ form_start(eForm, {attr:{'id':'add-experience-form', 'role':'form'}}) }}
-                                            <div class="form-group">
-                                                <div class="col-sm-12">
-                                                    <div class="input-group max-width-300">
-                                                        {{ form_widget(eForm.company, {attr:{'class':'form-control', 'placeholder':'Company'}})}}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="col-sm-12">
-                                                    <div class="input-group max-width-300">
-                                                        {{ form_widget(eForm.summary, {attr:{'class':'form-control', 'placeholder':'Summary'}})}}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="col-sm-12">
-                                                    <div class="input-group max-width-300">
-                                                        {{ form_widget(eForm.yearFrom, {attr:{'class':'form-control', 'placeholder':'Year From'}})}}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="col-sm-12">
-                                                    <div class="input-group max-width-300">
-                                                        {{ form_widget(eForm.yearTo, {attr:{'class':'form-control', 'placeholder':'Year To'}})}}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="col-sm-12">
-                                                    <div class="input-group max-width-300">
-                                                        <button type="button" id="upload-experience" class="btn btn-success">Save</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        {{ form_end(eForm) }}
-                                        </div>
-                                        <div class="form-group">
-                                            <button type="button" data-wizard="#wizard1" class="btn btn-primary wizard-previous margin-left-15">
-                                                <i class="fa fa-caret-left"></i> Previous 
-                                            </button>
-                                            <button type="button" data-wizard="#wizard1" class="btn btn-primary wizard-next">
-                                                Next Step <i class="fa fa-caret-right"></i>
-                                            </button>
-                                        </div>
-                    				</div>
-                    				<div id="step4-graduate-welcome" class="step-pane">
-                        				Notifications
-                        				<div class="form-group">
-                            				<button type="button" data-wizard="#wizard1" class="btn btn-primary wizard-previous margin-left-15">
-                                				<i class="fa fa-caret-left"></i> Previous 
-                            				</button>
-                            				<button type="button" data-wizard="#wizard1" class="btn btn-primary wizard-next">
-                                				Next Step <i class="fa fa-caret-right"></i>
-                            				</button>
-                        				</div>
-                    				</div>
-                    				<div id="step5-graduate-welcome" class="step-pane">
-                        				Finish
-                        				<div class="form-group">
-                            				<button type="button" data-wizard="#wizard1" class="btn btn-primary wizard-previous margin-left-15">
-                                				<i class="fa fa-caret-left"></i> Previous 
-                            				</button>
-                            				<button id="finish" type="button" data-dismiss="modal" data-wizard="#wizard1" class="btn btn-success wizard-next">
-                                				Finish! <i class="fa fa-caret-right"></i>
-                            				</button>
-                        				</div>
-                    				</div>                      
+                    			<div id="step1-graduate-welcome" class="step-pane active">
+                                    <div class="form-group">
+                                        <p class="font-weight-600 font-size-14">Before you begin applying for jobs, we recommend that you complete your online CV.</p>
+                                        <p class="font-weight-500 font-size-14">The great news is that from now on, this CV will replace your paper based one, so no more editing in a text editor, and uploading in on to recruitment sites!</p>
+                                        <p class="font-weight-500 font-size-14">And what's even better, Juru will ask you for the relevant details, and format it for you, so no more wondering what details to put on your CV, or how it should look.</p>
+                                        <p class="font-weight-500 font-size-14">Before we get started, let's take a quick look at the kind of information you can expect to put on your CV.</p>
+                                    </div>
+                        			<div class="form-group">
+                            			<button type="button" data-wizard="#wizard1" class="btn btn-primary wizard-next">
+                                			Next <i class="fa fa-caret-right"></i>
+                            			</button>
+                        			</div>
+                                </div>
+                    			<div id="step2-graduate-welcome" class="step-pane">
+                                    <div class="form-group">
+                                        <p class="font-weight-500 font-size-14">Before you begin applying for jobs, we recommend that you complete your online CV.<p>
+                                    </div>
+                        			<div class="form-group">
+                            			<button type="button" data-wizard="#wizard1" class="btn btn-primary wizard-previous">
+                                			<i class="fa fa-caret-left"></i> Previous 
+                            			</button>
+                            			<button type="button" data-wizard="#wizard1" class="btn btn-primary wizard-next">
+                                			Next <i class="fa fa-caret-right"></i>
+                            			</button>
+                        			</div>
+                    			</div>
+                    			<div id="step3-graduate-welcome" class="step-pane">
+                                    <div class="form-group">
+                                        <p class="font-weight-500 font-size-14">Before you begin applying for jobs, we recommend that you complete your online CV.<p>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="button" data-wizard="#wizard1" class="btn btn-primary wizard-previous">
+                                            <i class="fa fa-caret-left"></i> Previous 
+                                        </button>
+                                        <button type="button" data-wizard="#wizard1" class="btn btn-primary wizard-next">
+                                            Nearly there <i class="fa fa-caret-right"></i>
+                                        </button>
+                                    </div>
+                    			</div>
+                    			<div id="step4-graduate-welcome" class="step-pane">
+                                    <div class="form-group">
+                                        <p class="font-weight-500 font-size-14">Before you begin applying for jobs, we recommend that you complete your online CV.<p>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="button" data-wizard="#wizard1" class="btn btn-primary wizard-previous">
+                                            <i class="fa fa-caret-left"></i> Previous 
+                                        </button>
+                                        <button type="button" data-wizard="#wizard1" class="btn btn-primary wizard-next">
+                                            One more <i class="fa fa-caret-right"></i>
+                                        </button>
+                                    </div>
+                    			</div>
+                    			<div id="step5-graduate-welcome" class="step-pane">
+                                    <div class="form-group">
+                                        <p class="font-weight-500 font-size-14">Before you begin applying for jobs, we recommend that you complete your online CV.<p>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="button" data-wizard="#wizard1" class="btn btn-primary wizard-previous">
+                                            <i class="fa fa-caret-left"></i> Previous 
+                                        </button>
+                                        <button id="finish" type="button" data-dismiss="modal" data-wizard="#wizard1" class="btn btn-primary wizard-next">
+                                            That's it! <i class="fa fa-caret-right"></i>
+                                        </button>
+                                    </div>
+                    			</div>                      
             				</div>
         				</div>
     				</div>
 				</div>
             </div>  
-          </div>
         </div>
-      </div>
+    </div>
+</div>
 
 <script>
     // handle qualification uploads from ajax wizard
-	$('#graduate-welcome-wizard').modal('show');
+    $('#graduate-welcome-wizard').modal('show');
 
-    $('#add-qualification-question-yes').on('click', function () {
-        $('#add-qualification-container').removeClass('hide');
-        $('.question-area').addClass('hide');
-        $('#add-qualification-question-yes').addClass('hide');
-        $('#add-qualification-question-no').addClass('hide');
-    }); 
-
-    $('#add-another-qualification-question-yes').on('click', function () {
-        $('#add-qualification-container').removeClass('hide');
-        $('.question-area').addClass('hide');
-        $('#add-another-qualification-question-yes').addClass('hide');
-    });  
-
-    $('#upload-qualification').on('click', function () {
-        url = 'graduates/dashboard';
-        data = $('#add-qualification-form').serialize();
-        $.post(url, data);
-
-        $('#add-qualification-container').addClass('hide');
-        $('#add-qualification-question-yes').addClass('hide');
-        $('#add-qualification-question-no').addClass('hide');
-        $('#add-another-qualification-question-yes').removeClass('hide');
-        $('.question-area').removeClass('hide');
-
-    });
-</script>
-
-<script>
-    // handle experience uploads from ajax wizard
-    $('#add-experience-question-yes').on('click', function () {
-        $('#add-experience-container').removeClass('hide');
-        $('.question-area').addClass('hide');
-        $('#add-experience-question-yes').addClass('hide');
-        $('#add-experience-question-no').addClass('hide');
-    }); 
-
-    $('#add-another-experience-question-yes').on('click', function () {
-        $('#add-experience-container').removeClass('hide');
-        $('.question-area').addClass('hide');
-        $('#add-another-experience-question-yes').addClass('hide');
-    });
-
-    $('#upload-experience').on('click', function () {
-        url = 'graduates/dashboard';
-        data = $('#add-experience-form').serialize();
-        $.post(url, data);
-
-        $('#add-experience-container').addClass('hide');
-        $('#add-experience-question-yes').addClass('hide');
-        $('#add-experience-question-no').addClass('hide');
-        $('#add-another-experience-question-yes').removeClass('hide');
-        $('.question-area').removeClass('hide');
-    });  
-</script>
-
-
-<script>
     $('#finish').on('click', function () {
         data = {'id':{{app.user.id}}};   
         $.post('graduates/dashboard/complete-wizard', data)

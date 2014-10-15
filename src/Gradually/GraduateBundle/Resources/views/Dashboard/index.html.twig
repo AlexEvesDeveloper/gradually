@@ -5,5 +5,5 @@ Recommendation widget: Most relevant, most local
 
 
 {% if app.user.completedWelcomeWizard == false %}
-	{{ render(controller('GraduallyGraduateBundle:Dashboard:welcomeWizard')) }}
+	{% include 'GraduallyGraduateBundle:Dashboard:welcomeWizard.html.twig' %}
 {% endif %}

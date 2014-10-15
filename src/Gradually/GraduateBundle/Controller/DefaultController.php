@@ -44,11 +44,8 @@ class DefaultController extends Controller
         $pForm = $this->createFormBuilder($image)->add('file')->add('save', 'submit')->getForm();
         $this->handleImageSubmit($graduate, $image, $request, $pForm);
 
-        // add new Qualification
-        $qualification = new Entity\Qualification();
-        $qForm = $this->createForm(new Form\QualificationType, $qualification);
-        $this->handleQualificationSubmit($graduate, $qualification, $request, $qForm);
-
+        $qForm = $this->createForm(new Form\QualificationType, new Entity\Qualification);
+        $eForm = $this->createForm(new Form\ExperienceType, new Entity\Experience);
 
         $imagePath = ($image = $graduate->getImage()) === null ? 'uploads/profile_images/default/female.jpg' : $image->getFullPath();
   
@@ -56,6 +53,7 @@ class DefaultController extends Controller
             'graduate' => $graduate,
             'pForm' => $pForm->createView(),
             'qForm' => $qForm->createView(),
+            'eForm' => $eForm->createView(),
             'imagePath' => $imagePath
         );
     }
@@ -66,45 +64,9 @@ class DefaultController extends Controller
      */
     public function newAction(Request $request)
     {
-        $user = new Entity\GraduateUser();
-        $form = $this->createForm(new Form\GraduateUserType, $user, array(
-            'action' => $this->generateUrl('gradually_graduate_default_new')
-        ));
-
-        $form->handleRequest($request);
-
-        // set a cookie to initialise the welcome wizard
-
-        if($form->isValid()){
-            $em = $this->getDoctrine()->getManager();
-            
-            // set role to ROLE_NORMAL
-            $role = $em->getRepository('GraduallyUtilBundle:Role')->findOneByName('graduate');
-            $user->addRole($role);
-
-            // create an empty CV for them
-            $cv = new Entity\Cv();
-            $cv->setGraduate($user);
-            $em->persist($cv);
-            
-            // encode the password
-            $user->setPassword(password_hash($form->getData()->getPassword(), PASSWORD_BCRYPT, array('cost' => 12)));
-
-            // manually set the e-mail as the username
-            $user->setUsername($form->getData()->getEmail());
-
-            // finish up
-            $em->persist($user);
-            $em->flush();
-
-            // log the new user in
-            $token = new UsernamePasswordToken($user, $user->getPassword(), 'secured_area', $user->getRoles());
-            $this->container->get('security.context')->setToken($token);
-
-            return $this->redirect($this->generateUrl('gradually_home_default_index'));
-        }
-
-        return array('form' => $form->createView());
+        return array(
+            'form' => $this->createForm(new Form\GraduateUserType, new Entity\GraduateUser)->createView()
+        );
     }
 
     /**
@@ -153,26 +115,5 @@ class DefaultController extends Controller
             $em->persist($image);
             $em->flush();
         }     
-    }  
-
-    /**
-     * Upload the User's new Qualification.
-     *
-     * @param GraduateUser $graduate
-     * @param ProfileImage $image.
-     * @param Request $request.
-     * @param Form $form
-     */
-    private function handleQualificationSubmit(Entity\GraduateUser $graduate, Entity\Qualification $qualification, Request $request, SymForm $form)
-    {
-        $form->handleRequest($request);
-
-        if($form->isValid()){
-            $em = $this->getDoctrine()->getManager();
-            $qualification->setGraduate($graduate);
-            
-            $em->persist($qualification);
-            $em->flush();
-        }     
-    }      
+    }       
 }

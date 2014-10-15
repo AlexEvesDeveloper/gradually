@@ -1,0 +1,13 @@
+graduate:
+    type: rest
+    resource: Gradually\RestBundle\Controller\GraduateController
+
+qualification:
+    parent: graduate
+    type: rest
+    resource: Gradually\RestBundle\Controller\QualificationController
+
+experience:
+    parent: graduate
+    type: rest
+    resource: Gradually\RestBundle\Controller\ExperienceController

@@ -28,7 +28,8 @@ class ExperienceType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Gradually\UtilBundle\Entity\Experience'
+            'data_class' => 'Gradually\UtilBundle\Entity\Experience',
+            'csrf_protection' => false
         ));
     }
 
@@ -37,6 +38,6 @@ class ExperienceType extends AbstractType
      */
     public function getName()
     {
-        return 'gradually_utilbundle_experience';
+        return '';
     }
 }

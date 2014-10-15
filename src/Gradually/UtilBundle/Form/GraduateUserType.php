@@ -28,7 +28,8 @@ class GraduateUserType extends UserType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Gradually\UtilBundle\Entity\GraduateUser'
+            'data_class' => 'Gradually\UtilBundle\Entity\GraduateUser',
+            'csrf_protection' => false
         ));
     }
 
@@ -37,6 +38,6 @@ class GraduateUserType extends UserType
      */
     public function getName()
     {
-        return 'gradually_utilbundle_graduateuser';
+        return '';
     }
 }

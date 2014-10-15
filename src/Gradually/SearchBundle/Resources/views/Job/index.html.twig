@@ -38,8 +38,8 @@
 				</div>
 			</div>
 		</div>
-		<button type="button" id="advanced-search-filters" class="btn btn-primary btn-sm pull-right">Advanced search</button>
-		<button type="submit" id="submit-search" class="btn btn-primary btn-sm">Search</button>
+		<button type="submit" id="submit-search" class="btn btn-primary btn-sm pull-right">Search</button>
+		<button type="button" id="advanced-search-filters" class="btn btn-primary btn-sm">Advanced search</button>
 		{{form_end(form)}}
 	</div>
 </div>
@@ -80,7 +80,13 @@
 	// add a padding to the library code 
 	$('.tt-dataset-locations').css('padding-left','8px');
 	$('#advanced-search-filters').click(function(){
-		$('#advanced-search-container').removeClass('hide');
+		if($('#advanced-search-container').hasClass('hide')){
+			$('#advanced-search-container').removeClass('hide');
+			$('#advanced-search-filters').html('Basic search');
+		}else{
+			$('#advanced-search-container').addClass('hide');
+			$('#advanced-search-filters').html('Advanced search');
+		}
 	});
 </script>
 

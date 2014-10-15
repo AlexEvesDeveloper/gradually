@@ -35,7 +35,8 @@ class QualificationType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Gradually\UtilBundle\Entity\Qualification'
+            'data_class' => 'Gradually\UtilBundle\Entity\Qualification',
+            'csrf_protection' => false
         ));
     }
 
@@ -44,6 +45,6 @@ class QualificationType extends AbstractType
      */
     public function getName()
     {
-        return 'gradually_utilbundle_qualification';
+        return '';
     }
 }
