@@ -44,8 +44,8 @@ class DashboardController extends Controller
         return array(
             'hasApplications' => count($mostRecent),
             'mostRecent' => $mostRecent,
-            //'jobs' => $jobRepo->findAllJobsWithNewApplicationsForThisRecruiter($recruiterId) (WHERE application.status = SENT). When done, remove the line below
-            'jobs' => $this->getDoctrine()->getRepository('GraduallyUtilBundle:Job')->findBy(array('recruiter' => $userId), array('id' => 'DESC'))
+            'jobs' => $this->getDoctrine()->getRepository('GraduallyUtilBundle:Job')->findAllJobsWithNewApplicationsForThisRecruiter($userId) 
+            //'jobs' => $this->getDoctrine()->getRepository('GraduallyUtilBundle:Job')->findBy(array('recruiter' => $userId), array('id' => 'DESC'))
         );
     }
 }

@@ -64,4 +64,20 @@ class JobRepository extends EntityRepository
 
 		return $this->getEntityManager()->createQuery($query)->setParameters($params)->setMaxResults($max)->getResult();
 	}
+
+	public function findAllJobsWithNewApplicationsForThisRecruiter($recruiterId) 
+	{
+		$query = "
+			SELECT job FROM GraduallyUtilBundle:Job job
+			JOIN job.applications application
+			JOIN job.recruiter recruiter
+			WHERE recruiter.id = :recruiterId
+			AND application.status = :status
+		";
+
+		$params['recruiterId'] = $recruiterId;
+		$params['status'] = 'SENT';
+
+		return $this->getEntityManager()->createQuery($query)->setParameters($params)->getResult();	
+	}
 }
