@@ -16,8 +16,12 @@ class RecruiterUserType extends UserType
     {
         parent::buildForm($builder, $options);
         $builder
-            ->add('companyName', 'text')
-            ->add('email', 'email')
+            ->add('companyName', 'text', array(
+                'required' => false,
+            ))
+            ->add('email', 'email', array(
+                'required' => false,
+            ))
             ->add('postingCredits', 'choice', array(
                 'required' => false,
                 'choices' => array('1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', 'n' => 'n'),
