@@ -78,6 +78,8 @@ class DefaultController extends Controller
             $em->persist($job);
     		$em->persist($application);
     		$em->flush();
+
+            return $this->redirect($this->generateUrl('gradually_home_default_index'));
     	}
 
     	return array(

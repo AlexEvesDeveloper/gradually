@@ -23,12 +23,89 @@
 								</tr>
 							</thead>
 							<tbody class="no-border-y">
-								{% for application in mostRecent %}
+								{% for job in jobs %}
+									<script>
+										var appIds = new Array();
+									</script>
+								{% for application in job.applications %}
+									<script>
+										appIds[appIds.length] = {{application.id}}
+									</script>
+								{% endfor %}
 								<tr>
-									<td>{{application.graduate.firstname}} {{application.graduate.lastname}}</td>
+									<td>
+										<a href="#job-applications-{{job.id}}" data-toggle="modal">
+											{{job.title}}
+										</a>
+        								<div id="job-applications-{{job.id}}" class="modal fade">
+          									<div class="modal-dialog large-width">
+            									<div class="modal-content">
+              										<div class="modal-header">
+                										<a data-dismiss="modal" class="close">x</a>
+                										<h3>Applications</h3>
+              										</div>
+              										<div class="modal-body overflow-hidden">
+														{% for application in job.applications %}
+															<div id="application-container-{{application.id}}" class="hide">
+																<h3>{{application.graduate.firstName}} {{application.graduate.lastName}}</h3><hr>
+																<div class="cover-note">
+																	<h4>Cover note</h4>
+																	<p>{{application.coverNote}}</p>
+																</div>
+																<hr>
+																<button id="shortlist-application-{{application.id}}" class="btn btn-success pull-right">Shortlist</button>
+																<button id="decline-application-{{application.id}}" class="btn btn-warning pull-right">Decline</button>
+															</div>
+															<script>
+																var currentId = appIds[appIds.length - 1];
+																var elementId = '#application-container-'+currentId;
+																$(elementId).removeClass("hide");
+																
+																$('#decline-application-{{application.id}}').on('click', function () {
+ 																	$.ajax({
+            															type: "POST",
+            															url: "{{path('gradually_application_recruiterapplicationmanager_declineapplication', {'applicationId':application.id})}}",
+        															}).done(function(){
+            															var currentId = appIds[appIds.length - 1];
+																		var currentElement = '#application-container-'+currentId;
+            															appIds.pop();
+																		var nextId = appIds[appIds.length - 1];
+																		var nextElement = '#application-container-'+nextId;
+        																$(currentElement).addClass("hide");
+																		$(nextElement).removeClass("hide");
+        															}).fail(function(){
+            															console.log("fail");
+        															})
+    															});
+
+																$('#shortlist-application-{{application.id}}').on('click', function () {
+ 																	$.ajax({
+            															type: "POST",
+            															url: "{{path('gradually_application_recruiterapplicationmanager_shortlistapplication', {'applicationId':application.id})}}",
+        															}).done(function(){
+            															var currentId = appIds[appIds.length - 1];
+																		var currentElement = '#application-container-'+currentId;
+            															appIds.pop();
+																		var nextId = appIds[appIds.length - 1];
+																		var nextElement = '#application-container-'+nextId;
+        																$(currentElement).addClass("hide");
+																		$(nextElement).removeClass("hide");
+        															}).fail(function(){
+            															console.log("fail");
+        															})
+    															});
+
+															</script>						
+														{% endfor %}
+              										</div>
+              									</div>
+											</div>
+										</div>
+									</td>
 									<td class="text-right">Edit</td>
 								</tr>
 								{% endfor %}
+
 							</tbody>
 						</table>						
 					</div>
@@ -39,3 +116,7 @@
 		</div>
 	</div>
 </div>
+
+<script>
+
+</script>

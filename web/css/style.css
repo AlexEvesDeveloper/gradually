@@ -7923,6 +7923,10 @@ button.btn.btn-xl{
   padding-right: 5px;
 }
 
+.color-white{
+  color: #FFF;
+}
+
 .font-weight-600{
   font-weight: 600;
 }
@@ -7933,4 +7937,12 @@ button.btn.btn-xl{
 
 .font-size-14{
   font-size: 14px;
+}
+
+.cursor-auto{
+  cursor: auto;
+}
+
+.width-100-px{
+  width: 100px;
 }

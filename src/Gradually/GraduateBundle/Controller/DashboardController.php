@@ -13,11 +13,23 @@ use Symfony\Component\Form\Form as SymForm;
 use Gradually\UtilBundle\Entity;
 use Gradually\UtilBundle\Form;
 
-/**
- * @Route("/dashboard")
- */
 class DashboardController extends Controller
 {
+    /**
+     * @Template()
+     */
+    public function applicationsWidgetAction()
+    {
+        $applications = $this->getDoctrine()
+            ->getRepository('GraduallyUtilBundle:Application')
+            ->findBy(array('graduate' => $this->getUser()->getId()), array('id' => 'DESC'));
+
+        return array(
+            'hasApplications' => count($applications),
+            'applications' => $applications
+        );
+    }
+
     /**
      * Update the wizard flag for this User.
      *

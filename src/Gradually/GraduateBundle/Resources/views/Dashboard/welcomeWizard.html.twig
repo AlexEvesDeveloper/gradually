@@ -103,7 +103,7 @@
                                         <button type="button" data-wizard="#wizard1" class="btn btn-primary wizard-previous">
                                             <i class="fa fa-caret-left"></i> Previous 
                                         </button>
-                                        <button id="finish" type="button" data-dismiss="modal" data-wizard="#wizard1" class="btn btn-primary wizard-next">
+                                        <button id="finish" type="button" data-dismiss="modal" data-wizard="#wizard1" class="btn btn-success wizard-next">
                                             That's it! <i class="fa fa-caret-right"></i>
                                         </button>
                                     </div>
@@ -123,6 +123,6 @@
 
     $('#finish').on('click', function () {
         data = {'id':{{app.user.id}}};   
-        $.post('graduates/dashboard/complete-wizard', data)
+        $.post("{{path('gradually_graduate_dashboard_completewizard')}}", data)
     }); 
 </script>
