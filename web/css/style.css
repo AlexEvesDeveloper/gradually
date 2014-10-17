@@ -8058,7 +8058,84 @@ p.how-it-works{
   color: rgb(136, 136, 136);
 }
 
+.top-button{
+  margin-top: 60px;
+}
 
+.button-1 {
+  display: inline-block;
+  height: 52px;
+  margin-right: 20px;
+    padding: 14px 20px 14px 20px;
+    background: rgb(119, 97, 167);
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 22px;
+    color: #fff;
+    text-align: left;
+    text-transform: uppercase;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    vertical-align: middle;
+}
+
+.button-1:hover {
+  background: #ffa456;
+  opacity: 0.5;
+  color: #fff;
+}
+
+
+.button-2 {
+  display: inline-block;
+  height: 52px;
+
+    padding: 13px 20px 0 20px;
+    border: 1px solid #aaa;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 22px;
+    color: rgb(85, 85, 85);
+    text-align: left;
+    text-transform: uppercase;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    vertical-align: middle;
+    width: 160px;
+    text-align: center;
+}
+
+.button-2:hover {
+  border: 1px solid #aaa;
+  opacity: 0.5;
+  color: #fff;
+}
+
+
+.button-3 {
+  display: inline-block;
+  height: 52px;
+  margin: 0;
+    padding: 14px 20px 0 20px;
+    background: #ffa456;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 22px;
+    color: #fff;
+    text-align: left;
+    text-transform: uppercase;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    vertical-align: middle;
+}
+
+.button-3:hover {
+  background: #eee;
+    color: #888;
+}
 
 
 
