@@ -1,29 +1,67 @@
-<div class="jumbotron col-md-12 background-color-very-light-purple text-align-center">
-	<h2>Juru builds your CV step by step. No fluff.</h2>
-	<h4>No more guessing what to put on your CV.</h4>
-	<h4>No more document formatting in text editors.</h4>
-	<h4>Our step by step wizard will guide you through building your CV.</h4>
-	<h4>Share your CV with Recruiters and Employers.</h4>
-	<button class="btn btn-primary btn-lg margin-top-30" data-toggle="modal" data-target="#md-find-a-job" type="button">
-		Start now.
+<div class="jumbotron juru-jumbotron col-md-12 background-color-very-light-purple text-align-center color-white">
+	<h1>Juru</h1>
+	<h2 class="margin-top-60 jumbotron-h2">One place to create, edit, and share your CV and portfolio.</h2>
+	<p class="margin-top-30 jumbotron-p"></p>
+	<p class="jumbotron-p">No more guessing what to put on your CV.</p>
+	<p class="jumbotron-p">No more document formatting in text editors.</p>
+	<p class="jumbotron-p">Simply sign up, create, and share.</p>
+
+	<button class="btn btn-primary btn-xl margin-top-30" data-toggle="modal" data-target="#md-find-a-job" type="button">
+		START NOW
 	</button>
 </div>
 <div class="jumbotron col-md-12 text-align-center">
-	<h2>Update and share your CV from a central place, from anywhere in the world.</h2>
-	<h4 class="margin-top-30"></h4>
-	<h4>No more uploading CV's to recruiter sites, just share your Juru CV instead.</h4>
-	<h4>No more searching for the latest copy of your CV on your hard drive</h4>
-	<h4>Simply log in, update, and share</h4>
-</div>
-<div class="jumbotron col-md-12 background-color-light-purple text-align-center">
-	<h2>Showcase your CV to the world</h2>
-	<img class="margin-top-30" src="{{asset('images/jumbograb.jpg')}}" width="1000px" height="800px" />
-</div>
-<div class="jumbotron col-md-12 text-align-center">
-	<h2>Full portfolio management</h2>
+	<h2 class="jumbotron-h2">How it works</h2>
+	<div class="row">
+		<div class="col-sm-4 features-box">
+			<div class="features-box-icon">
+				<i class="fa fa-pencil"></i>
+			</div>
+			<h3>Sign Up</h3>
+			<p class="how-it-works">Create your free account in 20 seconds. Begin by clicking
+				<a href="#" data-toggle="modal" data-target="#md-find-a-job">
+					here
+				</a>
+			</p>
+		</div>
+		<div class="col-sm-4 features-box">
+			<div class="features-box-icon">
+				<i class="fa fa-user"></i>
+			</div>
+			<h3>Create your CV</h3>
+			<p class="how-it-works">Add work experience, qualifications, and skills, and let Juru create your CV page.</p>
+		</div>
+		<div class="col-sm-4 features-box">
+			<div class="features-box-icon">
+				<i class="fa fa-share"></i>
+			</div>
+			<h3>Share</h3>
+			<p class="how-it-works">No more uploading CV's to recruiter sites, just share your Juru CV instead.</p>
+		</div>
+	</div>
 </div>
 
 
+<div class="jumbotron juru-jumbotron col-md-12 background-color-very-light-purple text-align-center color-white">
+	<h2 class="jumbotron-h2">Update and share your CV from anywhere in the world.</h2>
+	<p class="how-it-works margin-top-30">No more searching for your latest CV on your hard drive. Simply log in, update your CV, declare that you are looking for work, and share your CV with Recruiters and Employers.</p>
+	<div class="row">
+		<div class="col-md-6 single-feature-box">
+			<img src="{{asset('images/jumbograb.jpg')}}" width="500px" height="400px" />
+		</div>
+		<div class="col-md-6 single-feature-box">
+			<div class="single-feature-box-text">
+				<div class="single-feature-box-text-icon">
+					<i class="fa fa-graduation-cap"></i>
+				</div>
+				<h3>Showcase your portfolio</h3>
+				<div class="single-feature-box-text-description">
+					Use our portfolio tool to showcase work items on your portfolio pages.
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 
 <!-- new CV modal -->
 <div id="md-find-a-job" class="modal fade" style="display:none;">

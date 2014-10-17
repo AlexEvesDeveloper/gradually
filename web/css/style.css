@@ -7893,15 +7893,6 @@ button.btn.btn-default.margin-left-15, button.btn.btn-primary.margin-left-15{
   margin-left: 15px;
 }
 
-button.btn.btn-xl{
-  padding: 20px 34px;
-  font-size: 18px;
-  font-weight: 300;
-}
-
-.white-text{
-  color: #ddd;
-}
 
 .background-white{
   background-color: #fff;
@@ -7955,6 +7946,10 @@ button.btn.btn-xl{
   margin-top: 30px;
 }
 
+.margin-top-60{
+  margin-top: 60px;
+}
+
 .background-color-very-light-purple{
   background-color: #e9e5f1;
 }
@@ -7970,3 +7965,104 @@ button.btn.btn-xl{
 .line-height-1-half{
   line-height: 1.5em;
 }
+
+.juru-jumbotron{
+  background-image: url('../images/jumbobackground.jpg');
+  background-position: 0% 100%;
+  background-size: 100% auto;
+}
+
+.btn-xl{
+  padding: 24px 28px;
+  font-size: 18px;
+  font-weight: 500;
+  border-radius: 10px;
+}
+
+.jumbotron-h2{
+  font-family: 'Montserrat', 'Open Sans', sans-serif;
+  font-size: 36px;
+  font-weight: normal;
+}
+
+.jumbotron-p{
+  margin-bottom: 15px;
+  font-size: 21px;
+  font-weight: 300;
+  color: #e3e3e3;
+}
+
+.features-box{
+  margin-top: 30px;
+}
+
+.features-box .features-box-icon{
+  width: 80px;
+  height: 80px;
+  padding-top: 10px;
+  background: rgb(119, 97, 167);
+  border-radius: 6px;
+  font-size: 50px;
+  color: #FFF;
+  line-height: 50px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+p.how-it-works{
+  color: rgb(136, 136, 136);
+  line-height: 32px;
+  font-size: 18px;
+}
+
+.single-feature-box{
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.single-feature-box-text-icon{
+  float: left;
+  width: 60px;
+  height: 60px;
+  padding-top: 10px;
+  background: rgb(119, 97, 167);
+  border-radius: 6px;
+  font-size: 36px;
+  color: #FFF;
+  line-height: 40px;
+  text-align: center;
+}
+
+.single-feature-box-text{
+  padding-left: 30px;
+  overflow: hidden;
+  text-align: left;
+}
+
+.single-feature-box-text h3{
+  margin-top: 0px;
+  margin-left: 60px;
+  padding-left: 35px;
+  
+  margin-top: 0;
+  font-size: 30px;
+  font-weight: 300;
+  line-height: 34px;
+}
+
+.single-feature-box-text-description{
+  float: right;
+  width: 83%;
+  font-size: 18px;
+  line-height: 32px;
+  color: rgb(136, 136, 136);
+}
+
+
+
+
+
+
+
+
+
