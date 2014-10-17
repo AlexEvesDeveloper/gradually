@@ -1,42 +1,37 @@
-<div class="col-sm-12">
-	<div class="block-flat">
-		<div class="content overflow-hidden">
-			<h4>Post a job with us</h4>
-			<button class="btn btn-primary pull-right" data-toggle="modal" data-target="#md-post-a-job" type="button">
-				Post a job
-			</button>
-		</div>
-	</div>
+<div class="jumbotron col-md-12 background-color-very-light-purple text-align-center">
+	<h2>Juru builds your CV step by step. No fluff.</h2>
+	<h4>No more guessing what to put on your CV.</h4>
+	<h4>No more document formatting in text editors.</h4>
+	<h4>Our step by step wizard will guide you through building your CV.</h4>
+	<h4>Share your CV with Recruiters and Employers.</h4>
+	<button class="btn btn-primary btn-lg margin-top-30" data-toggle="modal" data-target="#md-find-a-job" type="button">
+		Start now.
+	</button>
 </div>
-<div class="col-sm-12">
-	<div class="block-flat">
-		<div class="content overflow-hidden">
-			<h4 class="pull-right">Register now and start searching for jobs</h4>
-			<button class="btn btn-primary" data-toggle="modal" data-target="#md-find-a-job" type="button">
-				Find a job
-			</button>
-		</div>
-	</div>
+<div class="jumbotron col-md-12 text-align-center">
+	<h2>Update and share your CV from a central place, from anywhere in the world.</h2>
+	<h4 class="margin-top-30"></h4>
+	<h4>No more uploading CV's to recruiter sites, just share your Juru CV instead.</h4>
+	<h4>No more searching for the latest copy of your CV on your hard drive</h4>
+	<h4>Simply log in, update, and share</h4>
 </div>
-<div id="md-post-a-job" class="modal fade" style="display:none;">
-    <div class="modal-dialog large-width">
-        <div class="modal-content">
-            <div class="modal-header">
-                <a data-dismiss="modal" class="close">x</a>
-                <h3>Post a job</h3>
-            </div>
-            <div class="modal-body form">
-				{{render(controller('GraduallyRecruiterBundle:Default:new'))}}
-	    	</div>
-        </div>
-    </div>
+<div class="jumbotron col-md-12 background-color-light-purple text-align-center">
+	<h2>Showcase your CV to the world</h2>
+	<img class="margin-top-30" src="{{asset('images/jumbograb.jpg')}}" width="1000px" height="800px" />
 </div>
+<div class="jumbotron col-md-12 text-align-center">
+	<h2>Full portfolio management</h2>
+</div>
+
+
+
+<!-- new CV modal -->
 <div id="md-find-a-job" class="modal fade" style="display:none;">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <a data-dismiss="modal" class="close">x</a>
-                <h3>Candidate register</h3>
+                <h3>Start building your CV.</h3>
             </div>
             <div class="modal-body form">
 				{{render(controller('GraduallyGraduateBundle:Default:new'))}}

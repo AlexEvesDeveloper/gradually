@@ -95,7 +95,7 @@ ul {
   padding-bottom: 5px;
 }
 .jumbotron {
-  margin-top: 20px;
+  /* margin-top: 20px; aie */
 }
 #pcont {
   margin-left: 216px;
@@ -7924,7 +7924,7 @@ button.btn.btn-xl{
 }
 
 .color-white{
-  color: #FFF;
+  color: #FFF !important;
 }
 
 .font-weight-600{
@@ -7945,4 +7945,28 @@ button.btn.btn-xl{
 
 .width-100-px{
   width: 100px;
+}
+
+.text-align-center{
+  text-align: center;
+}
+
+.margin-top-30{
+  margin-top: 30px;
+}
+
+.background-color-very-light-purple{
+  background-color: #e9e5f1;
+}
+
+.background-color-light-purple{
+  background-color: #baaed4;
+}
+
+.no-padding{
+  padding: 0 !important;
+}
+
+.line-height-1-half{
+  line-height: 1.5em;
 }

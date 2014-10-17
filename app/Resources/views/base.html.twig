@@ -6,10 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>{% block title %}Gradually{% endblock %}</title>
+    <title>{% block title %}Juru{% endblock %}</title>
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 
-    <title>Gradually</title>
     {% block stylesheets %}
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,400italic,700,800' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Raleway:300,200,100' rel='stylesheet' type='text/css'>
@@ -43,6 +42,7 @@
     {% block body %}
     <body class="animated">
         <div id="cl-wrapper">
+            {% if app.user %}
             {% block sidebar %}
             <div class="cl-sidebar">
                 <div class="cl-toggle"><i class="fa fa-bars"></i></div>
@@ -51,12 +51,10 @@
                         <div class="content">
                             <div class="sidebar-logo">
                                 <div class="logo">
-                                    <a href="{{path('gradually_home_default_index')}}">GRADUALLY</a>
+                                    <a href="{{path('gradually_home_default_index')}}">JURU</a>
                                 </div>
                             </div>
-                            {% if app.user is null %}
-                                {% include 'GraduallyHomeBundle:Layout:sidebar.html.twig' %}
-                            {% elseif app.user.type == 'RECRUITER' %}
+                            {% if app.user.type == 'RECRUITER' %}
                                 {% include 'GraduallyRecruiterBundle:Layout:sidebar.html.twig' %}
                             {% elseif app.user.type == 'GRADUATE' %}
                                 {% include 'GraduallyGraduateBundle:Layout:sidebar.html.twig' %}
@@ -66,6 +64,7 @@
                 </div>
             </div>
             {% endblock %}
+            {% endif %}
             <div class="container-fluid" id="pcont">
                 {% block topbar %}
                 <!-- TOP NAVBAR -->
@@ -84,7 +83,11 @@
                 </nav>
                 {% endblock %}
                 {% block content %}
-                <div class="cl-mcont">           
+                {% if app.user %}
+                <div class="cl-mcont">
+                {% else %}
+                <div class="cl-mcont no-padding">
+                {% endif %}           
                     {% if app.user is null %}
                         {% include 'GraduallyHomeBundle:Dashboard:dashboard.html.twig' %}
                     {% elseif app.user.type == 'RECRUITER' %}
