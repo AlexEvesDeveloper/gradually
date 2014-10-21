@@ -1,10 +1,14 @@
 {% extends "::base.html.twig" %}
 
 {% block content %}
-<div class="cl-mcont col-md-10 col-md-offset-1">
+
+
+
+<div id="cv-content" class="cl-mcont col-md-10 col-md-offset-1">
   <div class="block-flat">
-    <div class="header">
-      <h3>Overview</h3>
+    <div class="header overflow-hidden">
+      <h3 class="pull-left">Overview</h3>
+      <a href="javascript:demoTwoPageDocument()" class="btn btn-orange pull-right">Download as PDF</a>
     </div>
     <div class="content">
       <div class="col-sm-12 col-md-3">
@@ -217,6 +221,10 @@
     </div>
   </div>
 
+
+
+
+
 </div><!-- cl-mcont -->
 {% endblock %}
 
@@ -256,6 +264,23 @@
             alert("Failed");
         })
     });  
+</script>
+
+<script>
+var fullName = "{{app.user.firstName}}" + " " + "{{app.user.lastName}}";
+var email = "{{app.user.email}}";
+
+var exp = {};
+var i = 0;
+{% for e in graduate.cv.experiences %}
+  exp[i] = {};
+  exp[i]["Company"] = "{{e.company}}";
+  exp[i]["Summary"] = "{{e.summary}}";
+  i++;
+{% endfor %}
+
+
+
 </script>
 
 {% endblock %}

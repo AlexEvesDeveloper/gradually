@@ -40,6 +40,14 @@
         <link href='http://fonts.googleapis.com/css?family=Rock+Salt' rel='stylesheet' type='text/css'>
         <script src="{{asset('js/jquery.js')}}"></script>
         <script src="{{asset('js/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+
+        <!-- jsPDF -->
+        <script type="text/javascript" src="{{asset('js/jspdf/jspdf.debug.js')}}"></script>
+        <script type="text/javascript" src="{{asset('js/jspdf/FileSaver.js')}}"></script>
+        <script type="text/javascript" src="{{asset('js/jspdf/cv-creator.js')}}"></script>
+        <script type="text/javascript" src="{{asset('js/jspdf/jspdf.plugin.standard_fonts_metrics.js')}}"></script> 
+        <script type="text/javascript" src="{{asset('js/jspdf/jspdf.plugin.split_text_to_size.js')}}"></script>
+        <script type="text/javascript" src="{{asset('js/jspdf/jspdf.plugin.from_html.js')}}"></script>
     {% endblock %}
     </head>
     {% block body %}
@@ -170,7 +178,11 @@
 
             <script src="{{ asset('js/bootstrap-modal.js') }}"></script>
            
+
+
+
         {% endblock %}
     </body>
+
     {% endblock %}
 </html>
