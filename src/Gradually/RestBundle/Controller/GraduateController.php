@@ -4,17 +4,17 @@ namespace Gradually\RestBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use FOS\RestBundle\Controller\FOSRestController;
-use FOS\RestBundle\Controller\Annotations\View;
 use FOS\RestBundle\Util\Codes;
-use FOS\RestBundle\Routing\ClassResourceInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use FOS\RestBundle\Controller\Annotations\View;
+use FOS\RestBundle\Controller\FOSRestController;
+use FOS\RestBundle\Routing\ClassResourceInterface;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 use Gradually\UtilBundle\Entity;
 use Gradually\UtilBundle\Form;
 
-class GraduateController extends FOSRestController implements ClassResourceInterface
+class GraduateController extends BaseController
 {
 	/**
 	 * @View()

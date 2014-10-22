@@ -5,11 +5,15 @@ namespace Gradually\UtilBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection; 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 
 /**
  * GraduateUser
  *
  * @ORM\Entity(repositoryClass="Gradually\UtilBundle\Repository\GraduateUserRepository")
+ *
+ * @ExclusionPolicy("all")
  */
 class GraduateUser extends User
 {
@@ -17,6 +21,8 @@ class GraduateUser extends User
      * @var string
      *
      * @ORM\Column(name="first_name", type="string", length=64)
+     *
+     * @Expose
      */
     protected $firstName;
  
@@ -24,6 +30,8 @@ class GraduateUser extends User
      * @var string
      *
      * @ORM\Column(name="last_name", type="string", length=64)
+     *
+     * @Expose
      */
     protected $lastName;
 
@@ -39,6 +47,8 @@ class GraduateUser extends User
 
     /**
      * @ORM\ManyToMany(targetEntity="JobTitle", mappedBy="graduates")
+     *
+     * @Expose
      */
     private $jobTitles;
 
@@ -51,6 +61,8 @@ class GraduateUser extends User
      * @var string
      *
      * @ORM\Column(name="notification_method", type="string", length=16)
+     *
+     * @Expose
      */
     private $notificationMethod;
 
@@ -207,7 +219,7 @@ class GraduateUser extends User
      */
     public function getNotificationMethod()
     {
-        return 'email';
+        //return 'email';
         return $this->notificationMethod;
     }
 

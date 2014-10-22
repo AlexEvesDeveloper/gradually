@@ -30,7 +30,7 @@ class JobTitle
     private $value;
 
     /**
-     * @ORM\ManyToMany(targetEntity="GraduateUser", inversedBy="jobValues"))
+     * @ORM\ManyToMany(targetEntity="GraduateUser", inversedBy="jobTitles"))
      */
     private $graduates;
 

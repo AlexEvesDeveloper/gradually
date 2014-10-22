@@ -2,12 +2,22 @@ graduate:
     type: rest
     resource: Gradually\RestBundle\Controller\GraduateController
 
-qualification:
+cv:
     parent: graduate
+    type: rest
+    resource: Gradually\RestBundle\Controller\CvController
+
+qualification:
+    parent: cv
     type: rest
     resource: Gradually\RestBundle\Controller\QualificationController
 
 experience:
-    parent: graduate
+    parent: cv
     type: rest
     resource: Gradually\RestBundle\Controller\ExperienceController
+
+profile:
+    parent: cv
+    type: rest
+    resource: Gradually\RestBundle\Controller\ProfileController

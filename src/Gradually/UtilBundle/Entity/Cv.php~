@@ -26,6 +26,11 @@ class Cv
     private $graduate;
 
     /**
+     * @ORM\Column(name="profile", type="text")
+     */
+    private $profile;
+
+    /**
      * @ORM\OneToMany(targetEntity="Qualification", mappedBy="cv")
      */
     private $qualifications;

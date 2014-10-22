@@ -14,23 +14,29 @@ use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Gradually\UtilBundle\Entity;
 use Gradually\UtilBundle\Form;
 
-class QualificationController extends FOSRestController implements ClassResourceInterface
+class QualificationController extends BaseController
 {
-	/**
-	 * @View()
-	 */
-	public function cgetAction(Entity\GraduateUser $graduate)
-	{
+    /**
+     * @View()
+     */
+    public function cgetAction(Entity\GraduateUser $graduate, Entity\Cv $cv)
+    {
+        if(!$this->verifyEntity($graduate, $cv)){
+            return $this->view(null, Codes::HTTP_NOT_FOUND);
+        }
+
 		return $this->getDoctrine()->getRepository('GraduallyUtilBundle:Qualification')->findAll();
 	}
 
     /**
-     * @var Entity\GraduateUser $graduate
-     *
      * @View()
      */
-    public function getAction(Entity\GraduateUser $graduate, Entity\Qualification $qualification)
+    public function getAction(Entity\GraduateUser $graduate, Entity\Cv $cv, Entity\Qualification $qualification)
     {
+        if(!$this->verifyEntity($graduate, $cv)){
+            return $this->view(null, Codes::HTTP_NOT_FOUND);
+        }
+
         return $this->getDoctrine()->getRepository('GraduallyUtilBundle:Qualification')->findOneBy(
             array(
                 'id' => $qualification->getId(),
@@ -42,8 +48,12 @@ class QualificationController extends FOSRestController implements ClassResource
     /**
      * @var Request $request
      */
-    public function cpostAction(Request $request, Entity\GraduateUser $graduate)
+    public function cpostAction(Request $request, Entity\GraduateUser $graduate, Entity\Cv $cv)
     {
+        if(!$this->verifyEntity($graduate, $cv)){
+            return $this->view(null, Codes::HTTP_NOT_FOUND);
+        }
+
         $em = $this->getDoctrine()->getManager();
 
         $qualification = new Entity\Qualification;
@@ -60,7 +70,6 @@ class QualificationController extends FOSRestController implements ClassResource
         $qualification->setSchool($school);
         $qualification->setCourse($course);       
 
-        $cv = $graduate->getCv();
         $cv->addQualification($qualification);
         $qualification->setCv($cv);
 
@@ -90,5 +99,17 @@ class QualificationController extends FOSRestController implements ClassResource
         $em->persist($entity);
 
         return $entity;
+    }
+
+    private function verifyEntity(Entity\GraduateUser $graduate, Entity\Cv $cv)
+    {
+        $entity = $this->getDoctrine()->getRepository('GraduallyUtilBundle:Cv')->findOneBy(
+            array(
+                'id' => $cv->getId(),
+                'graduate' => $graduate->getId()
+            )
+        );
+
+        return (bool) $entity;
     }
 }

@@ -21,7 +21,7 @@ class Experience
 	private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Cv", inversedBy="qualifications")
+     * @ORM\ManyToOne(targetEntity="Cv", inversedBy="experiences")
      */
     private $cv;
 

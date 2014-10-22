@@ -4,12 +4,16 @@ namespace Gradually\UtilBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 
 /**
  * Cv
  *
  * @ORM\Table(name="cvs")
  * @ORM\Entity
+ *
+ * @ExclusionPolicy("all")
  */
 class Cv
 {
@@ -17,6 +21,8 @@ class Cv
 	 * @ORM\Column(name="id", type="integer")
 	 * @ORM\Id
 	 * @ORM\GeneratedValue(strategy="AUTO")
+     *
+     * @Expose
 	 */
 	private $id;
 
@@ -26,12 +32,23 @@ class Cv
     private $graduate;
 
     /**
+     * @ORM\Column(name="profile", type="text")
+     *
+     * @Expose
+     */
+    private $profile;
+
+    /**
      * @ORM\OneToMany(targetEntity="Qualification", mappedBy="cv")
+     *
+     * @Expose
      */
     private $qualifications;
 
     /**
      * @ORM\OneToMany(targetEntity="Experience", mappedBy="cv")
+     *
+     * @Expose
      */
     private $experiences;
 
@@ -141,5 +158,28 @@ class Cv
     public function getExperiences()
     {
         return $this->experiences;
+    }
+
+    /**
+     * Set profile
+     *
+     * @param string $profile
+     * @return Cv
+     */
+    public function setProfile($profile)
+    {
+        $this->profile = $profile;
+
+        return $this;
+    }
+
+    /**
+     * Get profile
+     *
+     * @return string 
+     */
+    public function getProfile()
+    {
+        return $this->profile;
     }
 }

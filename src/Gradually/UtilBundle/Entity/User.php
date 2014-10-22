@@ -6,6 +6,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 
 /**
  * @ORM\Entity
@@ -14,6 +16,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\DiscriminatorColumn(name="type", type="string")
  * @ORM\DiscriminatorMap({"graduate" = "GraduateUser", "recruiter" = "RecruiterUser", "admin" = "AdminUser"})
  * @ORM\Entity()
+ *
+ * @ExclusionPolicy("all")
  */
 abstract class User implements AdvancedUserInterface, \Serializable
 {
@@ -23,6 +27,8 @@ abstract class User implements AdvancedUserInterface, \Serializable
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     *
+     * @Expose
      */
     private $id;
 
@@ -50,6 +56,8 @@ abstract class User implements AdvancedUserInterface, \Serializable
      *
      * @Assert\Email
      * @Assert\NotBlank
+     *
+     * @Expose
      */
     private $email;
 

@@ -8,13 +8,12 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * School
  *
- * @ORM\Table(name="schools", indexes={@ORM\Index(name="school_name", columns={"name"})})
+ * @ORM\Table(name="schools")
  * @ORM\Entity()
  */
 class School
 {
     /**
-     * @var integer
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -23,7 +22,6 @@ class School
     private $id;
 
     /**
-     * @var string
      *
      * @ORM\Column(name="value", type="string", length=255)
      */
@@ -79,7 +77,7 @@ class School
      * Add qualification
      *
      * @param Qualification $qualification
-     * @return Course
+     * @return School
      */
     public function addQualification(Qualification $qualification)
     {

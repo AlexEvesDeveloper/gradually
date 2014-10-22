@@ -4,33 +4,42 @@ namespace Gradually\RestBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use FOS\RestBundle\Controller\FOSRestController;
-use FOS\RestBundle\Controller\Annotations\View;
 use FOS\RestBundle\Util\Codes;
-use FOS\RestBundle\Routing\ClassResourceInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
+use FOS\RestBundle\Controller\Annotations\View;
+use FOS\RestBundle\Controller\FOSRestController;
+use FOS\RestBundle\Routing\ClassResourceInterface;
 
 use Gradually\UtilBundle\Entity;
 use Gradually\UtilBundle\Form;
 
-class ExperienceController extends FOSRestController implements ClassResourceInterface
+class ExperienceController extends BaseController
 {
 	/**
 	 * @View()
 	 */
-	public function cgetAction(Entity\GraduateUser $graduate)
+	public function cgetAction(Entity\GraduateUser $graduate, Entity\Cv $cv)
 	{
-		return $this->getDoctrine()->getRepository('GraduallyUtilBundle:Experience')->findAll();
+        if(!$this->verifyEntity($graduate, $cv)){
+            return $this->view(null, Codes::HTTP_NOT_FOUND);
+        }
+
+		return $this->getDoctrine()->getRepository('GraduallyUtilBundle:Experience')->findBy(
+            array(
+                'cv' => $cv->getId()
+            )
+        );
 	}
 
     /**
-     * @var Entity\GraduateUser $graduate
-     *
      * @View()
      */
-    public function getAction(Entity\GraduateUser $graduate, Entity\Experience $experience)
+    public function getAction(Entity\GraduateUser $graduate, Entity\Cv $cv, Entity\Experience $experience)
     {
+        if(!$this->verifyEntity($graduate, $cv)){
+            return $this->view(null, Codes::HTTP_NOT_FOUND);
+        }
+
         return $this->getDoctrine()->getRepository('GraduallyUtilBundle:Experience')->findOneBy(
             array(
                 'id' => $experience->getId(),
@@ -42,8 +51,12 @@ class ExperienceController extends FOSRestController implements ClassResourceInt
     /**
      * @var Request $request
      */
-    public function cpostAction(Request $request, Entity\GraduateUser $graduate)
+    public function cpostAction(Request $request, Entity\GraduateUser $graduate, Entity\Cv $cv)
     {
+        if(!$this->verifyEntity($graduate, $cv)){
+            return $this->view(null, Codes::HTTP_NOT_FOUND);
+        }
+
         $em = $this->getDoctrine()->getManager();
 
         $experience = new Entity\Experience;
@@ -54,7 +67,6 @@ class ExperienceController extends FOSRestController implements ClassResourceInt
             return array('form' => $form);
         }
 
-        $cv = $graduate->getCv();
         $cv->addExperience($experience);
 
         $experience->setCv($cv);
@@ -64,5 +76,17 @@ class ExperienceController extends FOSRestController implements ClassResourceInt
         $em->flush();
 
     	return new Response(json_encode($experience), Codes::HTTP_CREATED);
+    }
+
+    private function verifyEntity(Entity\GraduateUser $graduate, Entity\Cv $cv)
+    {
+        $entity = $this->getDoctrine()->getRepository('GraduallyUtilBundle:Cv')->findOneBy(
+            array(
+                'id' => $cv->getId(),
+                'graduate' => $graduate->getId()
+            )
+        );
+
+        return (bool) $entity;
     }
 }
