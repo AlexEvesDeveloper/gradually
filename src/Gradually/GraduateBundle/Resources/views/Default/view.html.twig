@@ -334,8 +334,10 @@ var exp = {};
 var i = 0;
 {% for e in graduate.cv.experiences %}
   exp[i] = {};
-  exp[i]["Company"] = "{{e.company}}";
-  exp[i]["Summary"] = "{{e.summary}}";
+  exp[i]["company"] = "{{e.company}}";
+  exp[i]["summary"] = "{{e.summary}}";
+  exp[i]["yearFrom"] = "{{e.yearFrom}}";
+  exp[i]["yearTo"] = "{{e.yearTo}}";
   i++;
 {% endfor %}
 
