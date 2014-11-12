@@ -56,7 +56,7 @@ class RecruiterController extends BaseController
         $recruiter->setPassword(password_hash('password', PASSWORD_BCRYPT, array('cost' => 12)));
 
         // manually set the e-mail as the username
-        $recruiter->setUsername($form->getData()->getEmail());
+        $recruiter->setUsername($form->getData()->getCompanyName());
 
         // set the role
         $recruiter->addRole($em->getRepository('GraduallyUtilBundle:Role')->findOneByName('recruiter'));

@@ -31,12 +31,13 @@ class JobControllerTest extends WebTestCase
     		'title' => 'Account Manager',
     		'description' => 'Manage the accounts',
     		'salaryFrom' => 28000,
-    		'salaryTo' => 30000
+    		'salaryTo' => 30000,
+		'postcode' => 'LN6'
     	));
 
-    	$this->sendRequest('POST', 'api/recruiters/75/jobs.json', $json);
+    	$this->sendRequest('POST', 'api/recruiters/90/jobs.json', $json);
 
-    	print_r($this->client->getResponse()->getContent());
+//    	print_r($this->client->getResponse()->getContent());
 
     	$this->assertEquals($this->client->getResponse()->getStatusCode(), 201);
     }

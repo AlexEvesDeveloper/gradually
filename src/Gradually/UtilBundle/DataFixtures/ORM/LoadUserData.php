@@ -164,7 +164,7 @@ class LoadUserData implements FixtureInterface
 			$r->setCompanyName(sprintf('Recruiter %d', $i));
 			$r->setEmail(sprintf('rec%d@test.com', $i));
 			$r->setUsername(sprintf('Recruiter %d', $i));
-			$r->setPassword(password_hash(sprintf('rec%dpwd', $i), PASSWORD_BCRYPT, array('cost' => 12)));
+			$r->setPassword(password_hash('password', PASSWORD_BCRYPT, array('cost' => 12)));
 			$r->setPostingCredits(100);
 			$r->setPremiumCredits(100);
 			$r->setSearchCredits(100);
