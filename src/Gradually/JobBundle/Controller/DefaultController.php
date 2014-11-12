@@ -60,7 +60,9 @@ class DefaultController extends Controller
     	}
 
     	$application = new Application();
-    	$form = $this->createForm(new ApplicationType(), $application);
+    	$form = $this->createForm(new ApplicationType(), $application, array(
+            'action' => $this->generateUrl('gradually_job_default_apply', array('id' => $id))
+        ));
     	$form->handleRequest($request);
 
     	if($form->isValid()){

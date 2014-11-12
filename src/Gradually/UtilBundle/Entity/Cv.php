@@ -32,14 +32,14 @@ class Cv
     private $graduate;
 
     /**
-     * @ORM\Column(name="profile", type="text")
+     * @ORM\Column(name="profile", type="text", nullable=true)
      *
      * @Expose
      */
     private $profile;
 
     /**
-     * @ORM\OneToMany(targetEntity="Qualification", mappedBy="cv")
+     * @ORM\OneToMany(targetEntity="Qualification", mappedBy="cv",)
      *
      * @Expose
      */

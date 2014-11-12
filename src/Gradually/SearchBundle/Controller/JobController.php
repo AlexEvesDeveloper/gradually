@@ -24,7 +24,9 @@ class JobController extends Controller
 		// initialise empty search results
 		$result = array();
 		$jobSearch = new JobSearch();
-		$form = $this->createForm(new JobSearchType(), $jobSearch);
+		$form = $this->createForm(new JobSearchType(), $jobSearch, array(
+			'action' => $this->generateUrl('gradually_search_job_index')
+		));
 
 		$form->handleRequest($request);
 		if($form->isValid()){

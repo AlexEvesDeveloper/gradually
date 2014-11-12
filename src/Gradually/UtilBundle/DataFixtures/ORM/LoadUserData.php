@@ -165,6 +165,9 @@ class LoadUserData implements FixtureInterface
 			$r->setEmail(sprintf('rec%d@test.com', $i));
 			$r->setUsername(sprintf('Recruiter %d', $i));
 			$r->setPassword(password_hash(sprintf('rec%dpwd', $i), PASSWORD_BCRYPT, array('cost' => 12)));
+			$r->setPostingCredits(100);
+			$r->setPremiumCredits(100);
+			$r->setSearchCredits(100);
 			$r->addRole($role);
 	
 			$manager->persist($r);
@@ -179,6 +182,61 @@ class LoadUserData implements FixtureInterface
 
 	protected function createJobs($manager, $recruiters, $locations)
 	{
+		$jobs = array(
+			array(
+				'title' => 'PHP Developer', 'description' => 'Required to design and implement PHP applications',
+				'salaryFrom' => 30000, 'salaryTo' => 35000, 'location' => $locations[1441], 'applications' => 4,
+				'views' => 30
+			),
+			array(
+				'title' => 'Java Developer', 'description' => 'Required to design and implement Java applications',
+				'salaryFrom' => 35000, 'salaryTo' => 45000, 'location' => $locations[1673], 'applications' => 2,
+				'views' => 12
+			),
+			array(
+				'title' => 'Solutions Architect', 'description' => 'Required to design and architect IT solutions',
+				'salaryFrom' => 35000, 'salaryTo' => 55000, 'location' => $locations[663], 'applications' => 6,
+				'views' => 24
+			),
+			array(
+				'title' => 'Technical Support', 'description' => 'Required to technical support for customer IT solutions',
+				'salaryFrom' => 20000, 'salaryTo' => 22000, 'location' => $locations[599], 'applications' => 13,
+				'views' => 96
+			),
+			array(
+				'title' => 'Senior PHP Developer', 'description' => 'Required to design and implement PHP applications',
+				'salaryFrom' => 35000, 'salaryTo' => 40000, 'location' => $locations[1446], 'applications' => 7,
+				'views' => 51
+			),
+			array(
+				'title' => 'Senior Java Developer', 'description' => 'Required to design and implement Java applications',
+				'salaryFrom' => 40000, 'salaryTo' => 50000, 'location' => $locations[674], 'applications' => 9,
+				'views' => 26
+			),
+			array(
+				'title' => 'Project Manager', 'description' => 'Required to manage development projects',
+				'salaryFrom' => 30000, 'salaryTo' => 35000, 'location' => $locations[609], 'applications' => 15,
+				'views' => 104
+			),
+		);
+
+		foreach($jobs as $job){
+			$j = new Job();
+			$j->setTitle($job['title']);
+			$j->setDescription($job['description']);
+			$j->setSalaryFrom($job['salaryFrom']);
+			$j->setSalaryTo($job['salaryTo']);
+			$j->setLocation($job['location']);
+			$j->setApplicationCount($job['applications']);
+			$j->setViewCount($job['views']);
+			$j->setRecruiter($recruiters[0]);
+
+			$manager->persist($j);
+			$return[] = $j;
+		}
+/*
+		print_r($locations[2818]);
+		exit;
 		$return = array();
 		$breakOut = 0;
 		foreach($locations as $location){
@@ -212,6 +270,8 @@ class LoadUserData implements FixtureInterface
   	 	    }
 		}
         	$manager->flush();
+*/
+        $manager->flush();
 		return $return;
 	}
 

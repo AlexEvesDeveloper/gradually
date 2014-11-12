@@ -4,12 +4,16 @@ namespace Gradually\UtilBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 
 /**
  * Experience
  *
  * @ORM\Table(name="experiences")
  * @ORM\Entity
+ *
+ * @ExclusionPolicy("all")
  */
 class Experience
 {
@@ -17,6 +21,8 @@ class Experience
 	 * @ORM\Column(name="id", type="integer")
 	 * @ORM\Id
 	 * @ORM\GeneratedValue
+     *
+     * @Expose
 	 */
 	private $id;
 
@@ -27,21 +33,29 @@ class Experience
 
     /**
      * @ORM\Column(name="company", type="string", length=128)
+     *
+     * @Expose
      */   
     private $company;
 
     /**
      * @ORM\Column(name="year_from", type="smallint")
+     *
+     * @Expose
      */
     private $yearFrom;
 
     /**
      * @ORM\Column(name="year_to", type="smallint")
+     *
+     * @Expose
      */
     private $yearTo;
 
     /**
      * @ORM\Column(name="summary", type="text")
+     *
+     * @Expose
      */
     private $summary;
 

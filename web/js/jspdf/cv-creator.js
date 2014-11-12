@@ -1,5 +1,5 @@
 function demoTwoPageDocument() {
-	var doc = new jsPDF({'orientation':'portrait', 'lineHeight':1.5, 'textColor':'0.3 g'});
+	var doc = new jsPDF({'orientation':'portrait', 'lineHeight':1.5, 'textColor':'0.45 g'});
 
 	doc.setFont("helvetica");
 
@@ -29,7 +29,7 @@ function demoTwoPageDocument() {
 	verticalOffset += 5;
 	size = 9;
 	doc.setFontType("normal");
-	lines = doc.setFontSize(size).splitTextToSize(profile, 170)
+	lines = doc.setFontSize(size).splitTextToSize(profile, 170);
 	doc.text(20, verticalOffset + size / 72, lines);
 
 //--WORK EXPERIENCE-------------------------------------------------
@@ -53,9 +53,10 @@ function demoTwoPageDocument() {
 				
 		verticalOffset +=5;
 		doc.setFontType("normal");
-		doc.text(20, verticalOffset, obj["summary"]);
+		lines = doc.setFontSize(9).splitTextToSize(obj["summary"], 170);
+		doc.text(20, verticalOffset + size / 72, lines);
 
-		verticalOffset += 10;
+		verticalOffset += (lines.length * 5) + 10;
 	}
 
 	
