@@ -39,7 +39,8 @@ class JobType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Gradually\UtilBundle\Entity\Job'
+            'data_class' => 'Gradually\UtilBundle\Entity\Job',
+            'csrf_protection' => false
         ));
     }
 
@@ -48,6 +49,6 @@ class JobType extends AbstractType
      */
     public function getName()
     {
-        return 'gradually_utilbundle_job';
+        return '';
     }
 }

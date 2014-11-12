@@ -49,7 +49,8 @@ class RecruiterUserType extends UserType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Gradually\UtilBundle\Entity\RecruiterUser'
+            'data_class' => 'Gradually\UtilBundle\Entity\RecruiterUser',
+            'csrf_protection' => false
         ));
     }
 
@@ -58,6 +59,6 @@ class RecruiterUserType extends UserType
      */
     public function getName()
     {
-        return 'gradually_utilbundle_recruiteruser';
+        return '';
     }
 }

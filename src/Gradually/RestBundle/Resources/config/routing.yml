@@ -21,3 +21,12 @@ profile:
     parent: cv
     type: rest
     resource: Gradually\RestBundle\Controller\ProfileController
+
+recruiter:
+    type: rest
+    resource: Gradually\RestBundle\Controller\RecruiterController
+
+jobs:
+    parent: recruiter
+    type: rest
+    resource: Gradually\RestBundle\Controller\JobController
